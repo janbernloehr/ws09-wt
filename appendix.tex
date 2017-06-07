@@ -1,0 +1,133 @@
+\appendix
+
+\chapter{Begriffe und Sätze der Maß- und Integrationstheorie}
+
+Sei $(\Omega, {\mathcal A}, \mu)$ ein Maßraum.
+
+\begin{propn}[Satz von der monotonen Konvergenz (B.\ Levi)]
+Für erweitert reellwertige
+messbare Funktionen $f_{n}$ mit $f_{n} \geq0$ und $f_{n}
+\uparrow f$ existiert $\lim\limits_{n} \int f_{n}\dmu$ und es gilt
+\begin{align*}
+\lim\limits_{n} \int f_{n}\dmu = \int \lim\limits_{n}
+f_{n}\dmu.\fishhere
+\end{align*}
+\end{propn}
+
+\begin{propn}[Lemma von Fatou]
+Für jede Folge $(f_n)$ von erweitert reellwertigen
+messbaren Funktionen mit $f_n \ge 0$ $\mu$-f.ü. gilt
+\begin{align*}
+\int \liminf f_n \dmu \le \liminf \int f_n \dmu.\fishhere 
+\end{align*}
+\end{propn}
+
+\begin{propn}[Satz von der dominierten Konvergenz (Lebesgue)]
+Für erweitert-reellwertige messbare Funktionen $f_n$, $f$ und
+$g$ mit $f_n \to f$ $\mufu$, $|f_n| \le g$ $\mufu$ für
+alle $n$ und $\int g \dmu < \infty$ existiert $\lim_{n\to\infty} \int f_n\dmu$
+und es gilt
+\begin{align*}
+\lim_{n\to\infty} \int f_n \dmu = \int f\dmu.\fishhere
+\end{align*}
+\end{propn}
+
+\begin{defnn}
+\begin{defnenum}
+\item
+Das Maß $\mu$ heißt \emph{$\sigma$-endlich}, wenn es ein
+Folge von Mengen $A_n\in\AA$ gibt mit $A_n \uparrow
+\Omega$ und $\mu(A_n) < \infty$.
+\item Ein Maß $\nu$ auf ${\mathcal A}$ heißt \emph{$\mu$-stetig}, falls
+\begin{align*}
+\forall A \in \AA :  \mu(A)=0 \Rightarrow \nu(A)=0.\fishhere
+\end{align*} 
+\end{defnenum}
+\end{defnn}
+
+\begin{propn}[Satz von Radon-Nikodym]
+Seien $(\Omega,\AA)$ Messraum, $\mu$ und $\nu$ $\sigma$-endliche Maße auf
+$\AA$ und $\nu$ sei $\mu$-stetig.  Dann existiert eine Funktion
+$f:(\Omega,\AA) \to (\R_+, \BB_+)$ mit
+\begin{align*}
+\forall A \in \AA : \nu(A)=\int_A f\dmu
+\end{align*}
+$f$ ist eindeutig bis auf Äquivalenz ``=$\mu$-f.ü.''. \\ $f$ ist die
+sog.\ \emph{Radon-Nikodym-Ableitung} von $\nu$ nach $\mu$ und wird häufig
+kurz durch $\frac{\dnu}{\dmu}$ angegeben.\fishhere
+\end{propn}
+\begin{proof}
+Zum Beweis siehe Elstrodt.\qedhere
+\end{proof}
+
+\begin{bsp}
+Sei $Q$ ein W-Maß auf $\BB$, $\lambda$ das LB-Maß auf $\BB$ und $\Q$ sei
+$\lambda$-stetig. Dann ist die Radon-Nikodyn-Ableitung
+\begin{align*}
+\frac{\dQ}{\dlambda}
+\end{align*}
+die gewöhnliche Dichte von $Q$.\bsphere
+\end{bsp}
+
+\begin{propn}[Zusatz]
+Seien $\mu,\nu,\ph$ $\sigma$-endliche Maße, $\ph$ sei $\nu$-stetig und $\nu$
+sei $\mu$-stetig. Dann gilt
+\begin{align*}
+\frac{\dph}{\dmu} = \frac{\dph}{\dnu}\cdot \frac{\dnu}{\dmu}.\fishhere
+\end{align*}
+\end{propn}
+
+%\end{appendix}
+
+% 
+% \addcontentsline{toc}{section}{Literatur}
+%  
+\begin{thebibliography}{99}
+
+\bibitem{bauerII} Bauer, H. Wahrscheinlichkeitstheorie; de Gruyter, Berlin
+  (1990), 4.\ Aufl.
+\bibitem{bauerI} Bauer, H. Maß- und Integrationstheorie; de Gruyter, Berlin
+  (1998), 2.~Aufl.
+\bibitem{billingsley} Billingsley, P. Probability and Measure; Wiley, New York
+  (1995), 3rd ed.
+\bibitem{capinski-kopp} Capi\'{n}ski, M., Kopp, E. Measure Integral and
+  Probability; Springer (2004), 2nd ed.
+\bibitem{dudley} Dudley, R.M. Real Analysis and Probability; Cambridge
+  University Press (2002), 2nd ed.
+\bibitem{elstrodt} Elstrodt, J. Maß- und Integrationstheorie; Springer (2009),
+  6.~Aufl.
+\bibitem{feller} Feller, W. An Introduction to Probability and Its
+  Applications I,II; Wiley, New York (1970/71), 3rd ed./2nd ed.
+\bibitem{fisz} Fisz, M. Wahrscheinlichkeitsrechnung und mathematische
+  Statistik; VEB Deutscher Verlag der Wissenschaften, Berlin (1970),
+  5.\ Aufl.
+\bibitem{gaenssler-stute} Gänssler, P., Stute, W. Wahrscheinlichkeitstheorie;
+  Springer, Berlin (1977).
+\bibitem{henze} Henze, N. Stochastik für Einsteiger: Eine Einführung in die
+  faszinierende Welt des Zufalls; Vieweg+Teubner (2008), 7.~Aufl.
+\bibitem{hesse} Hesse, C. Wahrscheinlichkeitstheorie --- Eine Einführung mit
+  Beispielen und Anwendungen. Vieweg+Teubner (2009), 2.~Aufl.
+\bibitem{hinderer} Hinderer, K. Grundbegriffe der Wahrscheinlichkeitstheorie;
+  Springer, Berlin (1985), 3.~korr.\ Nachdruck.\\[-8mm]
+\bibitem{jacod-protter} Jacod, J., Protter, P. Probability
+  Essentials. Springer, Berlin (2004), 2nd ed.
+\bibitem{kallenberg} Kallenberg, O.  Foundations of Modern
+  Probability. Springer, New York (2001), 2nd ed.
+\bibitem{klenke} Klenke, A. Wahrscheinlichkeitstheorie; Springer, Heidelberg
+  (2006)
+\bibitem{krengel} Krengel, U. Einführung in die Wahrscheinlichkeitstheorie und
+  Statistik; Vieweg, Braunschweig (2003), 7.\ Aufl.
+\bibitem{loeve} Loève, M. Probability Theory I,II; Springer, Berlin (1977/78),
+  4th ed.
+\bibitem{meintrup-schaeffler} Meintrup D., Schäffler S. Stochastik --- Theorie
+  und Anwendungen; Springer (2004).
+\bibitem{williams-1} Williams, D. Probability with Martingales; Cambridge
+  University Press (1991).
+\bibitem{wengenroth} Wengenroth, J. Wahrscheinlichkeitstheorie. De Gruyter
+  (2008).
+\bibitem{williams} Williams, D. Weighing the Odds --- A Course in Probability
+  and Statistics; Cambridge University Press (2001).
+
+\end{thebibliography}
+
+%\printindex

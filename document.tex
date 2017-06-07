@@ -1,0 +1,335 @@
+% =============================================================================
+% Titel:		Wahrscheinlichkeitstheorie - Mitschrieb
+% Erstellt:	WS 09
+% Dozent:	PD Dr. J. Dippon
+% Autor:	Jan-Cornelius Molnar
+% =============================================================================
+%\documentclass[paper=a5,fleqn,DIV=calc,openright,twoside=false,notitlepage,version=last]{scrartcl}
+\documentclass[%
+	paper=a5,%
+	fleqn,%
+	DIV=18,%
+	%headings=openleft,
+	titlepage=false,%
+	bibliography=totoc,
+	numbers=noendperiod,
+	twoside=true]%
+	{scrbook}
+
+% =============================================================================
+% 					Benötigte Pakete
+% =============================================================================
+\usepackage{janmcommon}
+\usepackage{janmscript}
+\usepackage{float}
+\restylefloat{figure}
+\usepackage{fancyhdr}
+%\usepackage[num]{isodate}
+
+\usepackage{marginnote}
+\usepackage{makeidx}
+
+\usepackage[mathscr]{euscript}		% Euler Skript
+\usepackage{scalefnt}
+
+\makeindex
+
+
+% =============================================================================
+% 					Ana-Theorem-Style
+% =============================================================================
+% Theorem Umgebungen *MIT* Numerierung
+\theoremstyle{graymarginwithblueheader}
+\theorembodyfont{\itshape}
+\theoremseparator{}
+\theoremsymbol{}
+
+\newtheorem{prop}{Satz}[chapter]
+\newtheorem{lem}{Lemma}[chapter]
+\newtheorem{defn}{Definition}[chapter]
+\newtheorem{cor}{Korollar}[chapter]
+
+\theoremstyle{yellowheader}
+\theorembodyfont{\normalfont}
+\theoremseparator{}
+\theoremsymbol{}
+
+\newtheorem{bsp}{Bsp}[chapter]
+
+\theoremstyle{graymarginwithitblackheader}
+\theorembodyfont{\normalfont}
+\theoremseparator{}
+\theoremsymbol{}
+
+\newtheorem{bem}{Bemerkung.}[chapter]
+
+% Theorem Umgebungen *OHNE* Numerierung
+\theoremstyle{graymarginwithblueheadern}
+\theorembodyfont{\itshape}
+\theoremseparator{}
+\theoremsymbol{}
+
+\newtheorem{propn}{Satz}
+\newtheorem{lemn}{Lemma}
+\newtheorem{corn}{Korollar}
+\newtheorem{defnn}{Definition}
+
+\theoremstyle{graymarginwithyellowheadern}
+\theorembodyfont{\normalfont}
+\theoremseparator{}
+\theoremsymbol{}
+
+\newtheorem{bspn}{Bsp}
+
+\theoremstyle{graymarginwithitblackheadern}
+\theorembodyfont{\normalfont}
+\theoremseparator{}
+\theoremsymbol{}
+
+\newtheorem{bemn}{Bemerkung.}
+
+% =============================================================================
+% 					Überschriften-Style
+% =============================================================================
+% \renewcommand\thesection{\arabic{section}}
+% \renewcommand\thesubsection{\arabic{section}-\Alph{subsection}}
+% \renewcommand\thesubsubsection{\small\ensuremath{\blacksquare}\normalsize}
+\renewcommand\thesection{\arabic{chapter}-\Alph{section}}
+\renewcommand\thesubsection{\small\ensuremath{\blacksquare}\normalsize}
+\renewcommand\thebsp{\arabic{bsp}}
+
+\setkomafont{chapter}{\normalfont\bfseries\Huge\color{darkblue}}
+\setkomafont{section}{\normalfont\bfseries\Large\color{darkblue}}
+\setkomafont{subsection}{\normalfont\bfseries\color{darkblue}}
+
+%\setlength{\oddsidemargin}{-27pt}
+%\setlength{\evensidemargin}{-27pt}
+% \setlength{\marginparwidth}{1pt}
+
+% \titleformat{\section}%
+%   {\normalfont\bfseries\Huge\color{darkblue}}%
+%   {\thesection}%
+%   {0.6em}%
+%   {}%
+%   
+% \titleformat{\subsection}%
+%   {\normalfont\bfseries\Large\color{darkblue}}%
+%   {\thesubsection}%
+%   {0.6em}%
+%   {}%
+% 
+% \titleformat{\subsubsection}%
+%   {\normalfont\bfseries\color{darkblue}}%
+%   {\thesubsubsection}%
+%   {0.2em}%
+%   {}%
+
+% Standardauflistung
+\renewcommand{\labelenumi}{{\normalfont(\alph{enumi})}}
+
+% PsTricks Defaults
+\psset{linecolor=gdarkgray}
+\psset{tickcolor=gdarkgray}
+\psset{fillcolor=glightgray}
+
+% Startkapitel 0
+\setcounter{chapter}{-1}
+
+% Command definition
+\renewcommand{\AA}{\mathcal{A}}
+
+\renewcommand{\atop}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+
+\newcommand{\pcal}[1]{
+{\text{\scalefont{.82}\ensuremath{\mathscr{#1}}}}
+}
+\newcommand{\cto}{\overset{\mathrm{c}}{\to}}
+\newcommand{\Pto}{\overset{\mathbf{P}}{\to}}
+\renewcommand{\Dto}{\overset{\mathcal{D}}{\to}}
+
+\newcommand{\fs}{\ \text{f.s.}}
+\newcommand{\Pfs}{\ P\text{-f.s.}}
+
+\renewcommand{\Id}{\mathbf{1}}
+
+\newcommand{\Cov}{\mathbf{Cov}}
+
+\newcommand{\defl}{\coloneq}
+\newcommand{\defr}{\eqcolon}
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\renewcommand{\iff}{\Leftrightarrow}
+\renewcommand{\bar}[1]{\overline{#1}}
+
+\renewcommand{\CC}{\pcal{C}}
+
+\newcommand{\rvec}[1]{\underline{\vec{#1}}}
+\newcommand{\T}{\mathbb{T}}
+\renewcommand{\sp}{\mathrm{sp}}
+\newcommand{\ad}{\mathrm{ad}}
+\newcommand{\codim}{\mathrm{codim}}
+\renewcommand{\dph}{\mathrm{d}\ph}
+
+\newcommand{\Poi}{\mathrm{Poi}}
+\newcommand{\Exp}{\mathrm{Exp}}
+
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\lto}[1]{\overset{L^#1}{\longrightarrow}}
+
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\e}{\mathrm{e}}
+
+\newcommand{\sidenote}[1]{%
+\noindent\leavevmode\llap{#1\enspace}%
+}
+
+\newenvironment{bemenum}%
+	{\begin{enumerate}[label=\textsc{\alph{*}}.,leftmargin=17pt]}{\end{enumerate}}
+\newenvironment{defnenum}%
+	{\begin{enumerate}[label=\arabic{*}.)]}{\end{enumerate}}
+\newenvironment{defnpropenum}%
+	{\begin{enumerate}[label={\rm (\alph{*})}]}{\end{enumerate}}
+\newenvironment{propenum}%
+	{\begin{enumerate}[label=\alph{*})]}{\end{enumerate}}
+\newenvironment{equivenum}%
+	{\begin{enumerate}[label=(\roman{*})]}{\end{enumerate}}
+\newenvironment{bspenum}%
+	{\begin{enumerate}[label=\alph{*}.),leftmargin=17pt]}{\end{enumerate}}
+\newenvironment{proofenumarm}%
+	{\begin{enumerate}[label=\arabic{*}.),leftmargin=17pt]}{\end{enumerate}}
+\newenvironment{proofenumarabic}%
+	{\begin{enumerate}[label=\arabic{*}.),leftmargin=17pt]}{\end{enumerate}}
+\newenvironment{proofenumarabicbr}%
+	{\begin{enumerate}[label=(\arabic{*}),leftmargin=17pt]}{\end{enumerate}}
+\newenvironment{proofenumroman}%
+	{\begin{enumerate}[label=(\roman{*}),leftmargin=17pt]}{\end{enumerate}}
+\newenvironment{proofenum}%
+	{\begin{enumerate}[label=\alph{*}),leftmargin=17pt]}{\end{enumerate}}
+
+% Select page style
+\pagestyle{fancyplain}
+
+% Reset header & footer
+\fancyhf{}
+
+% Reset chapter & sectionmark
+\renewcommand{\chaptermark}[1]{\markboth{\textsc{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\textsc{#1}}{}}
+
+% Clear headrule
+\renewcommand{\headrule}{}
+
+% \setlength{\leftmargini}{0pt}
+
+% =============================================================================
+% 					Document-Body
+% =============================================================================
+\begin{document}
+
+%\frontmatter
+
+% Titel
+% 
+% \begin{titlepage}
+% \begin{centering}
+% {\huge\bf Wahrscheinlichkeitstheorie - Mitschrieb}
+% 
+% bei PD Dr. J. Dippon
+% 
+% Jan-Cornelius Molnar, Version: \today\ \thistime
+% 
+% \end{centering}
+% \end{titlepage}
+
+\begin{titlepage}
+\vspace*{2mm}
+\noindent\bf\color{gdarkgray}
+Jan-Cornelius Molnar
+
+\begin{center}
+\vspace*{10mm}
+{\noindent\huge\bf\color{darkblue} Wahrscheinlichkeitstheorie}
+
+\vspace*{10mm}
+Aufbauend auf einer Vorlesung von PD Dr. J. Dippon
+
+\vspace*{4mm}
+
+Stuttgart, Wintersemester 2009 / 2010
+\end{center}
+
+\vspace*{\fill}
+
+\begin{flushright}
+\small
+Version: \today\ \thistime
+\vspace*{5mm}
+
+Für Hinweise auf Druckfehler und Kommentare jeder Art bin ich dankbar.
+Viel Spaß!\footnote{\color{gdarkgray}
+Jan-Cornelius Molnar
+\href{mailto:jan.molnar@studentpartners.de}{jan.molnar@studentpartners.de}}
+\end{flushright}
+\end{titlepage}
+
+% Inhaltsverzeichnis
+\tableofcontents
+
+% Inhalt
+%\mainmatter
+
+\fancyhead[RO]{\footnotesize\color{gdarkgray}%
+	\marginnote{\Big|\;\textbf{\thesection}}\rightmark}
+\fancyhead[LE]{\footnotesize\color{gdarkgray}%
+	\marginnote{\;\textbf{\thechapter}\Big|}\leftmark}
+
+% Zweiseitig
+\fancyfoot[LE]{\footnotesize\color{gdarkgray}%
+ 	\thepage}%
+ \fancyfoot[RO]{\footnotesize\color{gdarkgray}%
+ 	\thepage}%
+ \fancyfoot[RE,LO]{\tiny\color{gdarkgray}\today\; \thistime}
+
+
+\input{00-GegenstandDerVorlesung.tex}
+
+\cleardoublepage
+\input{01-Wahrscheinlichkeitsraeume.tex}
+
+\cleardoublepage
+\input{02-KombinatorischeWahrscheinlichkeitsrechnung.tex}
+
+\cleardoublepage
+\input{03-ZufallsvariablenVerteilungen.tex}
+
+\cleardoublepage
+\input{04-ErwartungswerteDichten.tex}
+
+\cleardoublepage
+\input{05-Unabhaengigkeit.tex}
+
+\cleardoublepage
+\input{06-ErzeugendeFaltung.tex}
+
+\cleardoublepage
+\input{07-SpezielleVerteilungen.tex}
+
+\cleardoublepage
+\input{08-Konvergenzbegriffe.tex}
+
+\cleardoublepage
+\input{09-ZentraleGrenzwertsaetze.tex}
+
+\cleardoublepage
+\input{10-BedingteErwartungen.tex}
+
+\cleardoublepage
+\input{11-Martingale.tex}
+
+% \cleardoublepage
+\input{appendix.tex}
+
+\end{document}

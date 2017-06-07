@@ -1,0 +1,1223 @@
+\chapter{Erwartungswerte und Dichten}
+
+\section{Erwartungswert, Varianz und Lebesgue Integral}
+
+Gegeben seien ein W-Raum $(\Omega, \AA, P)$ und eine reelle Zufallsvariable $X$ auf
+$(\Omega, \AA, P)$ mit Verteilung $P_{X}$ (auf ${\BB}$) und Verteilungsfunktion
+$F:\mathbb{R} \to \mathbb{R}$.\\
+
+Der Erwartungswert $\E X$ der Zufallsvariable $X$ gibt einen ``mittleren Wert'' von $X$
+bezüglich $P$ an.
+
+\begin{bsp}
+Wir betrachten einen fairen Würfel.
+$X$ gebe die zufällige Augenzahl an. Den Erwartungswert von $X$ erhalten wir,
+indem wir die möglichen Werte von $X$ mit ihrer Wahrscheinlichkeit
+multiplizieren und aufsummieren,
+\begin{align*}
+\E X = 1\cdot \frac{1}{6} + 2\cdot \frac{1}{6} + \ldots + 6\cdot \frac{1}{6} =
+3.5.
+\end{align*}
+Für \emph{diskrete} Zufallsvariablen, das sind Zufallsvariablen deren
+Verteilung auf $\N_0$ konzentriert ist, erhalten wir somit,
+\begin{align*}
+\E X = \sum\limits_{k=1}^\infty k p_k,\qquad
+\text{mit } p_k = P[X=k].\bsphere
+\end{align*}
+\end{bsp}
+
+Diese Definition lässt sich allerdings nicht auf den Fall einer
+Zufallsvariablen mit einer auf einem  Kontinuum konzentrierten Verteilung
+übertragen. Um diesen Fall einzuschließen, gehen wir von der diskreten Summe
+zum kontinuierlichen Integral über, wir wählen also Integralansatz, um den
+Erwartungswert einzuführen.
+
+\subsection{Erwartungswert mittels Riemann-Stieltjes-Integral}
+
+\textit{Bezeichnungen.}
+\begin{align*}
+&X^{+}(\omega)\defl
+\begin{cases}
+X(\omega), &\text{falls } X(\omega) > 0,\\
+0,          &\text{sonst }
+\end{cases}\\
+&X^{-}(\omega)\defl
+\begin{cases}
+-X(\omega), \; &\text{ falls } X (\omega) < 0,\\
+0,              &\text{sonst. }
+\end{cases}
+\end{align*}
+
+Wir wählen zunächst den naiven Ansatz, den Erwartungswert von $X$ als Integral
+über den Wertebereich von $X$ zu definieren.
+
+\textit{1.\ Schritt}: Sei zunächst $X$ positiv ($X\geq 0$), d.h. $P_{X}(\R_{+})=
+1$ und $F(x) =0$ für $x < 0$. Wir ersetzen nun die Summe aus dem Beispiel durch
+ein Integral,
+\begin{align*}
+\E X\defl 
+\int_{\R_{+}} x\,P_{X}(\dx)
+\defl
+\int_{\R_{+}}x\,\dF(x) \defl
+\lim\limits_{a \to \infty}
+\int\limits_{[0,a]} x\dF(x),
+\end{align*}
+wobei es sich hier um ein \textit{Riemann-Stieltjes-Integral} von $x$ bezüglich
+$F$ handelt. Da der Integrand $x$ auf $\R_+$ positiv, gilt $0 \leq \E X \leq \infty$.
+
+Für $F(x) = x$ entspricht das Riemann-Stieltjes-Integral dem gewöhnlichen
+Riemann-Integral,
+\begin{align*}
+\int_{\R_{+}}x\,\dF(x) = \int_0^\infty x \dx.
+\end{align*}
+Allgemeiner entspricht das Riemann-Stieltjes-Integral 
+für stetig differenzierbares $F$ dem
+Riemann-Integral,
+\begin{align*}
+\int_{\R_{+}}x\,\dF(x) = \int_0^\infty x\ F'(x)\dx.
+\end{align*}
+
+\textit{2.\ Schritt}: Sei $X$ beliebig und $\E X^{+}$, $\E X^{-}$ nicht beide
+$\infty$, so ist der Erwartungswert von $X$ definiert als
+\begin{align*}
+\E X\defl \int_{\R}x\, P_{X}(\dx) \defl \E X^{+} - \E X^{-}.\fishhere
+\end{align*}
+
+\begin{defn}[Erster Versuch]
+\label{defn:4.1}
+des \emph{Erwartungswertes $\E X$ von $X$} als ein
+Integral auf dem Wertebereich von $X$:
+\begin{align*}
+\E X \defl \int_{\R} x\, P_{X}(\dx).\fishhere
+\end{align*}
+\end{defn}
+
+Für den Erwartungswert ist diese Definition ausreichend und historisch ist man
+auch genau so vorgegangen. Wir integrieren hier jedoch lediglich die stetige
+Funktion $x\mapsto x$. In der Wahrscheinlichkeitstheorie arbeitet man aber
+meist mit unstetigen Funktionen und für diese ist das
+Riemann-Stieltjes-Integral \textit{nicht} ausreichend.
+
+\subsection{Erwartungswert mittels Maß-Integral}
+
+Wir benötigen einen allgemeineren Integrationsbegriff, der es uns erlaubt,
+lediglich messbare (also insbesondere auch unstetige) Funktionen zu
+integrieren.
+
+Dazu machen wir einen neuen Integralansatz, wobei wir diesmal über den
+Definitionsbereich von $X$ also $\Omega$ integrieren.
+
+Sei also $X: (\Omega,\AA)\to (\R,\BB)$ messbar.
+
+\textit{0.\ Schritt}: Sei $X$ positiv und nehme nur endlich viele
+Werte an. Dann existiert eine Darstellung
+\begin{align*}
+X= \sum\limits^{N}_{i=1} \alpha _{i}\,\Id _{A_{i}},\qquad
+\alpha_{i} \in \R_+,\quad A_{i} \in \AA
+\end{align*}
+mit $A_i$ paarweise disjunkt und $\sum^{N}_{i=1} A_{i} = \Omega $.
+
+$\Id_A$ bezeichnet die sogenannte \emph{Indikatorfunktion} einer Menge $A$,
+\begin{align*}
+\Id_A(x) \defl
+\begin{cases}
+1, & x\in A,\\
+0, & x\notin A.
+\end{cases}
+\end{align*}
+Somit können wir den Erwartungswert definieren als
+\begin{align*}
+\E X\defl \int_{\Omega} X\dP\defl \sum\limits^{N}_{i=1} \alpha_{i}\, P(A_{i}).
+\end{align*}
+
+Diese Definition schließt z.B. den Fall des Würfels ein, jedoch sind wir
+beispielsweise noch nicht in der Lage, den Erwartungswert eines zufälligen 
+Temperaturwertes anzugeben.
+
+\textit{1.\ Schritt}: Sei nun $X$ lediglich positiv. In der Maßtheorie wird
+gezeigt, dass dann eine Folge von Zufallsvariablen $X_{n} \geq 0$ existiert,
+wobei $X_n$ jeweils nur endlich viele Werte annimmt und die Folge $(X_n)$
+monoton gegen $X$ konvergiert, $X_{n}(\omega) \uparrow X(\omega)$ für $n
+\to \infty$ und $\omega \in \Omega$.
+
+Somit können wir den Erwartungswert von $X$ definieren als
+\begin{align*}
+\E X \defl \int_{\Omega}X\dP \defl \lim\limits_{n \to
+\infty }\E X_{n},
+\end{align*}
+wobei der (uneigentliche) Grenzwert existiert, da die $\E X_n$ monoton wachsen. 
+
+\textit{2.\ Schritt}: Seien $\E X^{+}$, $\E X^{-}$ nicht beide $\infty$.
+\begin{align*}
+\E X\defl\int_{\Omega } X\dP\defl \E X^{+} - \E X^{-}.
+\end{align*}
+
+Somit erhalten wir die endgültige Definition des Erwartungswerts. 
+
+\begin{defn}
+\label{defn:4.2}
+des Erwartungswertes $\E X$ von $X$ als ein
+Integral auf dem Definitionsbereich von $X$:
+\begin{align*}
+\E X \defl \int_{\Omega}X(\omega)P(\domega) \defr \int_{\Omega}
+X\dP.\fishhere
+\end{align*}
+\end{defn}
+
+\begin{bem}[Bemerkungen zu Definition \ref{defn:4.2}]
+\label{bem:4.1}
+\begin{bemenum}
+\item\label{bem:4.1:1}
+Die einzelnen Schritte - insbesondere bei der 2.\ Definition über das
+Maß-Interal - sind sinnvoll. Für Interessierte werden die Details in der
+Maßtheorie, einem Teilgebiet der Analysis, behandelt.
+\item\label{bem:4.1:2}
+Die beiden Definitionen sind äquivalent.
+\item\label{bem:4.1:3}
+Existiert das  Integral
+\begin{align*}
+\int_{\R} x\ P_{X}(\dx)
+\end{align*}
+in 1.\ Definition, so ändert es seinen Wert nicht, wenn man es gemäß 2.\
+Definition erklärt. Insbesondere gilt dann,
+\begin{align*}
+\int_\Omega X\dP = \int_\R x\, P_X(\dx) = \int_\R x \dF(x).
+\end{align*}
+\item\label{bem:4.1:4}
+Der Begriff $\int_{\Omega}X\ \dP$ in Definition \ref{defn:4.2} lässt sich
+unmittelbar verallgemeinern auf den Fall eines Maßraumes $(\Omega , \AA, \mu )$
+(anstatt eines W-Raumes) und liefert
+\begin{align*}
+\int_{\Omega }X(\omega)\ \mu (\domega )\defr \int_{\Omega }
+X \dmu.
+\end{align*}
+
+\textit{Wichtige Spezialfälle}:
+\begin{defnenum}
+\item
+Sei $(\Omega, \AA) = (\R^{n}, {\BB}_{n})$ oder etwas allgemeiner
+$\Omega = B$ mit $B \in {\BB}_{n}$,  $\AA = B\cap \BB_n$ und $\mu =
+\lambda\Big|_{\AA}$ Restriktion des L-B-Maß(es) auf $\AA$.
+\begin{align*}
+\int_{\R^{n}}X\dlambda\quad \text{bzw.} \quad \int_{B} X\dmu
+\end{align*}
+wird als \emph{Lebesgue--Integral} bezeichnet.
+Im Falle $n=1$ schreiben wir auch
+\begin{align*}
+\int_{\R}X(x)\dx \quad \text{bzw.} \quad \int_{B} X(x)\dx.
+\end{align*}
+\item
+Sei $(\Omega,\AA)= (\R, {\BB})$ und $H: \R \to \R$ eine maßdefinierende Funktion
+mit zugehörigem Maß $\mu$, d.h.
+\begin{align*}
+H(b)-H(a) = \mu ((a,b]),\qquad -\infty< a <b < \infty,
+\end{align*}
+so schreiben wir
+\begin{align*}
+\int_{\R} X(x)\dH(x) \defl \int_{\R} X(x)\ H(\dx)\defl
+\int_{\R} X\ \dmu
+\end{align*}
+Die Verallgemeinerung auf $\Omega = B \in {\BB}$ folgt analog.
+\item Sei $(\Omega,\AA)=(\N_0,\PP(\N_0))$ und $\mu$ das Zählmaß, d.h.
+\begin{align*}
+\mu(A) = \text{Anzahl der Elemente in }A,
+\end{align*}
+so gilt für eine Funktion $f:\N_0\to\R$,
+\begin{align*}
+\int_{\N_0} f\dmu = \sum\limits_{k=0}^\infty f(k).
+\end{align*}
+Reihen sind also lediglich ein Spezialfall des Maß-Integrals.
+\end{defnenum}
+\item\label{bem:4.1:5}
+Sei $X$ eine erweitert-reelle Zufallsvariable auf einem W-Raum $(\Omega,
+\AA,P)$ mit $P[|X| = \infty] = 0$ und
+\begin{align*}
+Y(\omega ) \defl
+\begin{cases}
+X(\omega),& \text{falls } \abs{X(\omega)} < \infty, \; \; \omega \in \Omega,\\
+0 & \text{sonst},
+\end{cases}
+\end{align*}
+so definiert man $\E X\defl \E Y$, falls $\E X$ existiert. 
+\maphere
+\end{bemenum}
+\end{bem}
+
+Für das Maß- bzw. spezieller das Lebesgue-Integral existieren zahlreiche sehr
+allgemeine Sätze und elegante Beweisstrategien, die uns für das
+Riemann-Stieltjes-Integral nicht zur Verfügung stehen, weshalb wir im Folgenden
+fast ausschließlich von dieser Definition ausgehen werden.
+
+Wir haben bisher nicht geklärt, wie man ein Maß- bzw. ein  Lebesgue-Integral
+konkret berechnet, wenn $X$ nicht nur endlich viele Werte annimmt. Ist die
+Verteilungsfunktion stetig differenzierbar, so gilt
+\begin{align*}
+\int_\Omega X\dP = \int_\R x\, F'(x)\dx,
+\end{align*}
+wobei wir letzteres Integral durchaus als
+Lebesgue-Integral mit all seinen angenehmen Eigenschaften auffassen können,
+wir können damit aber auch rechnen wie mit dem Riemann-Integral (Substitution,
+partielle Integration, \ldots). Für allgemeineres $F$ müssen wir uns darauf
+beschränken, abstrakt mit dem Integral arbeiten zu können. 
+
+\begin{bem}
+\label{bem:4.2}
+Sei $(\Omega, \AA, P)$ ein W-Raum. Für $A \in \AA$ gilt
+$P (A) = \E\,\Id _{A}$.\maphere
+\end{bem}
+
+\begin{defn}
+\label{defn:4.3}
+Existiert für die reelle Zufallsvariable $X$ auf dem W-Raum
+$(\Omega, \AA,P)$ ein endlicher Erwartungswert $\E X$, so heißt $X$
+\emph{integrierbar} (bezüglich $P$). Analog für $\int_{\Omega } X\dmu $ in
+Bemerkung \ref{bem:4.1} \ref{bem:4.1:4}.\fishhere
+\end{defn}
+
+Ist $X$ eine positive Zufallsvariable, so können wir den Erwartungswert
+direkt mit Hilfe der Verteilungsfunktion berechnen.
+\begin{lem}
+\label{lem:4.1}
+Für eine reelle Zufallsvariable $X \geq 0$ mit Verteilungsfunktion $F$ gilt
+\begin{align*}
+\E X = \int^{\infty}_{0} (1-F(x))\dx.\fishhere
+\end{align*}
+\end{lem}
+\begin{proof}
+Wir verwenden Definition \ref{defn:4.1} mithilfe des R-S-Integrals,
+\begin{align*}
+\E X &= 
+\int_{\R_+} x\dF(x) = \lim\limits_{a\to\infty}
+\int_{[0,a]} x\dF(x)\\
+&\overset{\text{part.int.}}{=}
+\lim\limits_{a\to\infty} \left(
+x\,F(x)\Big|_{x=0}^a - 
+\int_0^a 1F(x)\dx
+\right)
+\overset{(*)}{=}
+\lim\limits_{a\to\infty}
+\left(a - \int_0^a F(x)\dx \right)\\
+&=
+\lim\limits_{a\to\infty}
+\left(\int_0^a (1-F(x))\dx \right)
+= 
+\int_0^\infty (1-F(x))\dx.
+\end{align*}
+\begin{proofenumarabic}
+\item Zu (*). Sei $\E X < \infty$
+\begin{align*}
+\infty &> \E X = \int\limits_{\R_+} x\dF(x)
+\ge \int\limits_{[a,\infty]}x\dF(x)
+\ge \int\limits_{[a,\infty]}a\dF(x)\\
+&\ge a\int\limits_{(a,\infty)}\dF(x)
+= a(1-F(a)) \ge 0.
+\end{align*}
+\item Außerdem:
+\begin{align*}
+\int\limits_{[a,\infty]} x\dF(x) \overset{a\to\infty}{\to} 0,
+\end{align*}
+da $\int_{[0,a]} x\dF(x) \to \int_{\R_+} x\dF(x)$, also
+\begin{align*}
+a(1-F(a))\overset{a\to\infty}{\to}0.
+\end{align*}
+\end{proofenumarabic}
+Der Fall $\E X = \infty$ wird gesonderd behandelt.\qedhere
+\end{proof}
+
+\subsection{Eigenschaften des Erwartungswerts}
+
+Der Erwartungswert einer reellen Zufallsvariablen $X$,
+\begin{align*}
+\E X = \int_\Omega X\dP = \int_\R x \dP_X,
+\end{align*}
+ist ein spezielles Maß-Integral. Daher übertragen sich alle Eigenschaften
+dieses Integrals auf den Erwartungswert.
+
+\begin{prop}
+\label{prop:4.1}
+Sei $X$ eine reelle Zufallsvariable auf einem W-Raum $(\Omega, \AA, P)$.
+\begin{propenum}
+\item
+$X$ integrierbar $\Leftrightarrow X^{+}$ und $X^{-}$ integrierbar
+$\Leftrightarrow |X| $ integrierbar.
+\item Existiert eine reelle integrierbare Zufallsvariable $Y \geq 0 $ mit
+\begin{align*}
+|X| \leq Y  \text{ P-f.s., so ist } X \text{ integrierbar}.
+\end{align*}
+\item
+Ist $X$ integrierbar und  existiert eine reelle Zufallsvariable $Y$ mit
+$Y = X$ P-f.s., dann existiert $\E Y = \E X $.\fishhere
+\end{propenum}
+\end{prop}
+\begin{proof}
+Der Beweis wird in der Maßtheorie geführt.\qedhere
+\end{proof}
+
+Im Gegensatz zum klassischen uneigentlichen Riemann-Integral ist es beim
+Maß-Integral nicht möglich, dass sich positive und negative Anteile gegenseitig
+eliminieren und so eine Funktion deren Positiv- oder Negativanteil alleine
+nicht integrierbar sind, als ganzes integrierbar wird. Es gibt also durchaus
+Funktionen die (uneigentlich) Riemann- aber nicht Lebesgue-integrierbar sind.
+Für ``viel mehr Funktionen'' gilt jedoch das Gegenteil.
+
+Beim Riemann-Integral ändert eine Abänderung einer Funktion an endlich vielen
+Punkten den Integralwert nicht, beim Lebesgue-Integral hingegen ändert eine
+Abänderung einer Zufallsvariabeln auf einer Menge vom Maß Null ihren
+Erwartungswert nicht.
+
+\begin{bsp}
+Die Dirichletfunktion $f:\R\to\R$ mit
+\begin{align*}
+f(x) = 
+\begin{cases}
+1, & x\in \Q,\\
+0, & x\in \R\setminus\Q.
+\end{cases}
+\end{align*}
+ist \textit{nicht} Riemann- aber Lebesgue-integirerbar. Das Lebesgue-Integral
+lässt sich auch sehr leicht berechnen, denn $f\ge 0$, also gilt nach Definition
+\begin{align*}
+\int_\R f(x)\dx = 1\cdot \lambda(\Q) + 0\cdot \lambda(\R\setminus\Q) = 1\cdot
+\underbrace{\lambda(\Q)}_{=0},
+\end{align*}
+denn $\Q$ ist abzählbare Teilmenge von $\R$.\bsphere
+\end{bsp}
+
+Ferner ist der Erwartungswert linear, monoton und erfüllt die
+Dreiecksungleichung.
+
+\begin{prop}
+\label{prop:4.2}
+Seien $X, Y $ reelle integrierbare Zufallsvariablen auf einem W-Raum
+$(\Omega, \AA, P)$.
+\begin{propenum}
+\item
+Es existiert $\E(X+Y)= \E X +\E Y$.
+\item
+Es existiert $\E(\alpha X)= \alpha \E X$ für $\alpha \in \R$.
+\item
+$X \geq Y \Rightarrow \E X \geq \E Y $.
+\item
+$|\E X|\leq \E|X| $.
+\item
+$X \geq 0, \; \; \E X =0 \Rightarrow X = 0 $ P-f.s.\fishhere
+\end{propenum}
+\end{prop}
+
+\begin{proof}[Beweisidee.]
+Wir beweisen lediglich die erste Behauptung, der Rest folgt analog. Dazu
+bedienen wir uns dem \textit{Standardtrick} für Beweise in der Maßtheorie.
+
+\textit{1. Schritt}. Reduktion auf $X\ge 0$ und $Y\ge 0$, dann Reduktion auf
+einfache Funktionen
+\begin{align*}
+X= \sum\limits_{i=1}^n \alpha_i \Id_{A_i},\qquad Y=
+\sum\limits_{j=1}^m \beta_j \Id_{B_j}
+\end{align*}
+mit $\sum\limits_{i=1}^n A_i = \Omega = \sum\limits_{j=1}^m B_j$. Sei
+$C_{ij}=A_i\cap B_j\in \AA$, so gilt
+\begin{align*}
+&X = \sum\limits_{i,j} \gamma_{ij} \Id_{C_{ij}},\qquad
+Y = \sum\limits_{i,j} \delta_{ij} \Id_{C_{ij}},\\
+\Rightarrow &
+X+Y = \sum\limits_{i,j} (\gamma_{ij}+\delta_{ij})\Id_{C_{ij}}.
+\end{align*}
+
+\textit{2. Schritt}. Nun seien $X\ge 0$ und $Y\ge 0$ beliebig und $X_n$, $Y_n$
+Folgen von einfachen Funktionen mit $X_n\uparrow X$, $Y_n\uparrow Y$ und
+$X_n+Y_n=Z_n\uparrow Z=X+Y$.
+
+Für jedes $n\in\N$ sind $X_n$ und $Y_n$ einfach und damit $\E$ linear. Es gilt
+also
+\begin{align*}
+\E (X_n+Y_n) = \E X_n + \E Y_n \le \E X + \E Y
+\end{align*}
+sowie
+\begin{align*}
+\E X_n + \E Y_n  = \E (X_n+Y_n) = \E Z_n \le \E Z = \E (X+ Y).
+\end{align*}
+Nach dem Grenzübergang für $n\to\infty$ erhalten wir somit
+\begin{align*}
+\E X + \E Y = \E (X+Y).
+\end{align*}
+
+\textit{3. Schritt}. Für $X$ und $Y$ integrierbar betrachten wir
+\begin{align*}
+X=X_+-X_-,\qquad Y = Y_+-Y_-.
+\end{align*}
+Nach dem eben gezeigten, können wir die Linearität von $\E$ für Positiv und
+Negativteil verwenden.
+\begin{align*}
+\E X + \E Y &= (\E X_+ \E Y_+) - (\E X_- + \E Y_-)
+= \E (X_++Y_+) - \E (X_-+Y_-)\\
+&= \E (X+Y).\qedhere
+\end{align*}
+\end{proof}
+
+\begin{bsp}
+Wir betrachten $n$ Bernoulli-Versuche mit jeweiliger Erfolgswahrscheinlichkeit
+$p$. Die Zufallsvariable $X_i$ nehme Werte $0$ bzw. $1$ an, falls im $i$-ten
+Versuch ein Misserfolg bzw. Erfolg aufgetreten ist ($i=1,\ldots,n$).
+
+$X=X_1+\ldots+X_n$ gibt die Anzahl der Erfolge an.
+\begin{align*}
+\E X = \E X_1 + \ldots \E X_n \overset{!}{=} n \E X_1 = np,
+\end{align*}
+da alle $X_i$ dieselbe Verteilungsfunktion besitzen.
+
+Der Erwartungswert einer $b(n,p)$-verteilten Zufallsvariablen ist also $np$.
+Ein alternativer (evtl. ungeschickterer) Rechenweg ist
+\begin{align*}
+\E X = \sum\limits_{k=0}^n kP[X=k] = \sum\limits_{k=0}^n
+k\binom{n}{k}p^k(1-p)^{n-k} = \ldots = np.\bsphere
+\end{align*}
+\end{bsp}
+
+Für das Riemann-Integral ist für die Vertauschbarkeit von
+Integration und Grenzwertbildung
+\begin{align*}
+\lim\limits_{n\to\infty}\int_{[a,b]} f_n(x)\dx
+=
+\int_{[a,b]} \lim\limits_{n\to\infty}f_n(x)\dx
+\end{align*}
+im Allgemeinen die gleichmäßige Konvergenz der $f_n$ erforderlich.
+Ein entscheidender Vorteil des Lebesgue-Integrals ist die Existenz von
+Konvergenzsätzen, die wesentlich schwächere Voraussetzungen für die
+Vertauschbarkeit haben.
+
+\begin{prop}[Satz von der monotonen Konvergenz (B. Levi)]
+\label{prop:4.3}
+Für reelle
+Zufallsvariablen
+$X_{n}$ auf $(\Omega, \AA, P)$ mit $X_{n} \geq0 \; \; (n \in
+\N)$,
+$X_{n} \uparrow X \; \; (n \to \infty) $ existiert
+\begin{align*}
+\E X = \lim\limits_{n} \E X_{n}.
+\end{align*}
+Hierbei $\E X \defl \infty$, falls $P[X= \infty ] > 0$. Entsprechend für Reihen von
+nichtnegativen Zufallsvariablen. -- Analog für $\int_{\Omega } X_{n}\dmu $ gemäß
+Bemerkung \ref{bem:4.1}d.\fishhere
+\end{prop}
+\begin{proof}
+Die Messbarkeit von $X$ folgt aus Satz \ref{prop:3.7}.
+% \begin{align*}
+% [X\le \alpha] = \bigcap_{n\in\N} [X_n\le \alpha],\qquad \alpha\in\R.
+% \end{align*}
+Die $X_n$ sind monoton wachsend und positiv, also ist $(\int_\Omega X_n\dP)_n$
+monotone Folge, somit existiert ihr Grenzwert. Setze
+\begin{align*}
+c \defl \lim\limits_{n\to\infty}\int_\Omega X_n\dP \le \int_\Omega X\dP.
+\end{align*}
+Es genügt nun für jede einfache Funktion $Y$ mit $Y\le X$ zu zeigen, dass
+\begin{align*}
+c \ge \int_\Omega Y\dP.
+\end{align*}
+Sei dazu
+\begin{align*}
+Y = \sum\limits_{i=1}^m \alpha_i\, \Id_{[Y= \alpha_i]},\qquad \alpha_i \ge 0.
+\end{align*}
+Sei $\delta <1 $ beliebig aber fest und
+\begin{align*}
+A_n \defl [X_n\ge \delta Y].
+\end{align*}
+Wegen $X_n\uparrow X$ folgt $A_n\uparrow \Omega$ also auch 
+$A_n\cap [Y=\alpha_j]\uparrow [Y=\alpha_j]$ für $j=1,\ldots,m$.
+\begin{align*}
+\delta \int_\Omega Y\dP &= \delta \sum\limits_{j=1}^m \alpha_j
+P[Y=\alpha_j] = \delta \sum\limits_{j=1}^m \alpha_j
+\lim\limits_{n\to\infty}P(A_n\cap[Y=\alpha_j])\\
+&= \lim\limits_{n\to\infty}
+\sum\limits_{j=1}^m \delta \alpha_j P(A_n\cap [Y=\alpha_j])
+= \lim\limits_{n\to\infty} \int_\Omega \underbrace{\delta Y\Id_{A_n}}_{\le
+X_n}\dP\\ &\le \lim\limits_{n\to\infty} \int_\Omega X_n\dP = c.
+\end{align*}
+Da die Ungleichung für jedes $\delta < 1$ gilt, folgt
+\begin{align*}
+\int_\Omega Y \dP \le c.\qedhere
+\end{align*}
+\end{proof}
+
+\section{Dichtefunktion und Zähldichte}
+
+\begin{defn}
+\label{defn:4.4}
+Sei $X$ ein $n$-dimensionaler Zufallsvektor mit Verteilung
+$P_{X}$ auf ${\BB}_{n}$ und Verteilungsfunktion $F: \R^{n} \to \R$.
+\begin{defnenum}
+\item
+Nimmt $X$ (eventuell nach Vernachlässigung einer $P$-Nullmenge in $\Omega$)
+höchstens abzählbar viele Werte an, so ist $P_{X}$ eine sogenannte
+\emph{diskrete W-Verteilung}.
+
+Ist $X$ eine reelle Zufallsvariable und $P_{X}$ auf $\N_{0}$ konzentriert, so
+heißt die Folge $(p_{k})_k$ mit
+\begin{align*}
+p_{k} \defl P_{X}(\setd{k}) = P[X=k],\qquad k \in \N_{0},
+\end{align*}
+(wobei $\sum_{k=0}^\infty p_{k}=1$) \emph{Zähldichte} von $X$ bzw. $P_{X}$.
+\item
+Gibt es eine Funktion
+\begin{align*}
+f: (\R^{n}, {\BB}_{n}) \to (\R_{+}, {\BB}_{+})
+\end{align*}
+für die das Lebesgue-Integral
+\begin{align*}
+\int_{\prod^{n}_{i=1}(-\infty,x_{i}]}f\dlambda 
+\end{align*}
+existiert und mit
+\begin{align*}
+P_{X}\left(\prod\limits^{n}_{i=1}(- \infty , x_{i}]\right) = F(x_{1},
+\ldots , x_{n}),\qquad (x_{1}, \ldots , x_{n}) \in \R^{n}
+\end{align*}
+übereinstimmt, so heißt
+$f$ \emph{Dichte(funktion)} von $X$ bzw. $P_{X}$ bzw. $F$.
+
+$P_{X}$ und
+$F$ heißen \emph{totalstetig}, falls sie eine Dichtefunktion
+besitzen.\fishhere
+\end{defnenum}
+\end{defn}
+
+\begin{bem}[Bemerkungen.]
+\label{bem:4.3}
+\begin{bemenum}
+\item
+Eine totalstetige Verteilungsfunktion ist stetig.
+\item
+Besitzt die $n$-dimensionale Verteilungsfunktion
+\begin{align*}
+F: \R^{n} \to \R
+\end{align*}
+eine Dichtefunktion
+\begin{align*}
+f: \R^{n} \to \R_{+},
+\end{align*}
+so existiert L-f.ü.
+\begin{align*}
+\frac{\partial^{n}F}{\partial x_{1} \ldots \partial x_{n}},
+\end{align*}
+und L-f.ü., d.h. insbesondere an den Stetigkeitsstellen von~$f$, gilt
+\begin{align*}
+\frac{\partial^{n}F}{\partial x_{1} \ldots \partial x_{n}} = f.
+\end{align*}
+\item
+Ein uneigentliches Riemann-Integral einer nichtnegativen ${\BB}_{n}$-${\cal
+B}$-messbaren Funktion lässt sich als Lebesgue-Integral deuten.\maphere
+\end{bemenum}
+\end{bem}
+
+Sind Dichtefunktion bzw. Zähldichte bekannt, so können wir den abstrakten
+Ausdruck $P_X$ durch ein Integral über eine konkrete Funktion bzw. durch eine
+Reihe ersetzen,
+\begin{align*}
+P_X(A) = \int_A f\dlambda \quad \text{bzw.} \quad \sum\limits_{k\in\N_0\cap A}
+p_k.
+\end{align*}
+
+Zufallsvariablen mit Dichtefunktion bzw. Zähldichte, sind für
+uns somit sehr ``zugänglich''. Es lassen sich jedoch nicht für alle
+Zufallsvariablen Dichten finden, denn dazu müsste jede Verteilungsfunktion
+$\fu{L}$ differenzierbar und Differentiation mit der Integration über $\R^n$
+vertauschbar sein.
+
+\begin{prop}
+\label{prop:4.4}
+Sei $X$ eine reelle Zufallsvariable mit Verteilung $P_{X}$.
+\begin{propenum}
+\item\label{prop:4.4:1}
+Ist $P_{X}$ auf $\N_{0}$ konzentriert mit Zähldichte $(p_{k})$, dann gilt
+\begin{align*}
+\E X = \sum\limits_{k=1}^\infty k\,p_{k}.
+\end{align*}
+\item\label{prop:4.4:2}
+Besitzt $X$ eine Dichtefunktion $f: \R \to \R_{+}$, so existiert das
+Lebesgue-Integral
+\begin{align*}
+\int_{\R} xf(x)\dx \defr \int_{\R} xf(x)\; \lambda(\dx)
+\end{align*}
+genau dann, wenn $\E X$ existiert, und es gilt hierbei
+\begin{align*}
+\E X= \int_{\R} xf(x)\dx.\fishhere
+\end{align*}
+\end{propenum}
+\end{prop}
+\begin{proof}
+\textit{Beweisidee zu Satz \ref{prop:4.4}\ref{prop:4.4:1}}
+Für den Erwartungswert gilt nach \ref{defn:4.2},
+\begin{align*}
+\E X = \int_\Omega X \dP.
+\end{align*}
+$X$ nimmt höchstens abzählbar viele verschiedene Werte in $\N_0$ an, wir können
+das Integral also schreiben als,
+\begin{align*}
+\int_\Omega X \dP = \lim\limits_{n\to\infty} \sum\limits_{k=0}^n k\cdot P[X=k]
+= \sum\limits_{k=0}^\infty k\, p_k. 
+\end{align*}
+\textit{Spezialfall zu \ref{prop:4.4}\ref{prop:4.4:2}}. Sei $X\ge 0$ und $F$
+stetig differenzierbar auf $(0,\infty)$. Wir verwenden die Definition des
+Erwartungswerts als Riemann-Stieltjes-Integral
+\begin{align*}
+\E X = \lim\limits_{x\to\infty} \int\limits_{[0,x]}
+t\dF(t)
+\overset{!}{=} \lim\limits_{x\to\infty} \int\limits_{[0,x]}
+t F'(t)\dt = \int\limits_{[0,\infty]}xf(x)\dx.
+\end{align*}
+(!) gilt, da $F$ stetig differenzierbar. Da $f$ nur auf der positiven rellen
+Achse Werte $\neq 0$ annimmt, gilt somit
+\begin{align*}
+\E X = \int_{\R}xf(x)\dx.
+\end{align*}
+Mit Hilfe des Transformationssatzes werden wir später einen vollständigen
+Beweis geben können.\qedhere
+\end{proof}
+
+Für eine Zufallsvariable $X$ auf $(\Omega,\AA,P)$ mit Dichtefunktion bzw.
+Zähldichte haben wir mit Satz \ref{prop:4.4} eine konkrete Möglichkeit den
+Erwartungswert zu berechnen. Wir betrachten dazu nun einige Beispiele.
+\begin{bsp}
+Sei $X$ $b(n,p)$-verteilt, d.h. $X$ hat die Zähldichte
+\begin{align*}
+p_k = P[X=k]= {n \choose k}p^{k}(1-p)^{n-k},\quad (k=0,1, \ldots,n)
+\end{align*}
+mit $n \in \N$ und $p\in [0,1]$. Für den Erwartungswert gilt $\E X=np$.\bsphere
+\end{bsp}
+\begin{bsp}
+Sei $X$ $\pi(\lambda )$-verteilt, d.h.
+\begin{align*}
+p_k=P[X=k]=\e^{- \lambda}{\displaystyle
+\frac{\lambda^{k}}{k!}},\qquad  k \in \N_{0},
+\end{align*}
+mit $\lambda >0$, so gilt $\E X = \lambda $.
+\begin{proof}
+Zu berechnen ist der Wert folgender Reihe,
+\begin{align*}
+\E X = \sum_{k=0}^\infty k\e^{-\lambda}\frac{\lambda^k}{k!}.
+\end{align*}
+Wir verwenden dazu folgende Hilfsunktion,
+\begin{align*}
+g(s) \defl \sum\limits_{k=0}^{\infty} \e^{-\lambda}\frac{\lambda^k}{k!}s^k
+= \e^{-\lambda}\e^{\lambda s},\qquad s\in [0,1].
+\end{align*}
+$g$ bezeichnet man auch als \emph{erzeugende Funktion} der Poisson-Verteilung.
+Wir werden in Kapitel \ref{chap:6} genauer darauf eingehen. Die Reihe
+konvergiert auf $[0,1]$ gleichmäßig, wir können also gliedweise
+differenzieren und erhalten somit,
+\begin{align*}
+g'(s) = \sum\limits_{k=1}k \e^{-\lambda} \frac{\lambda^k}{k!}s^{k-1}
+= \lambda \e^{-\lambda} \e^{\lambda s}.
+\end{align*}
+Setzen wir $s=1$, so erhalten wir
+\begin{align*}
+\E X = \sum\limits_{k=1}k \e^{-\lambda} \frac{\lambda^k}{k!} = g'(1)
+= \lambda.\qedhere\bsphere
+\end{align*}
+\end{proof}
+\end{bsp}
+\begin{bsp}
+Sei $X$ $N(a, \sigma ^{2})$-verteilt, d.h. $X$ besitzt die Dichtefunktion $f:
+\R \to \R_{+}$ mit
+\begin{align*}
+f(x) \defl \frac{1}{\sqrt{2 \pi }\sigma }\,\e^{-\frac{(x-a)^{2}}{2\sigma
+^{2}}},\qquad a \in \R,\quad \sigma > 0.
+\end{align*}
+Es gilt $\E X=a$.
+\begin{proof}
+Wir wenden Satz \ref{prop:4.4}\ref{prop:4.4:2} an und erhalten,
+\begin{align*}
+\E X =\int_\R xf(x)\dx
+= \int_\R (x-a)f(x)\dx + \int_\R a f(x) \dx.
+\end{align*}
+$f(x)$ ist symmetrisch bezüglich $x=a$, d.h. der linke Integrand ist
+asymmetrisch bezüglich $x=a$ und damit verschwindet das Integral.
+\begin{align*}
+\Rightarrow \E X = a \int_\R f(x)\dx = a,
+\end{align*}
+da $f$ Dichte.\qedhere\bsphere
+\end{proof}
+\end{bsp}
+\begin{bsp}
+Sei $X$ $\exp(\lambda)$ verteilt mit $\lambda > 0$, so besitzt $X$ die
+Dichtefunktion $f$ mit,
+\begin{align*}
+f(x) =
+\begin{cases}
+0,& x < 0,\\
+\lambda \e^{-\lambda x},& x \ge 0.
+\end{cases}
+\end{align*}
+Es gilt $\E X = \frac{1}{\lambda}$.
+\begin{proof}
+Eine Anwendung von Satz \ref{prop:4.4}\ref{prop:4.4:2} ergibt,
+\begin{align*}
+\E X &= \int_\R x f(x)\dx = \int_0^\infty x \lambda \e^{-\lambda x}\dx
+\overset{\text{part.int.}}{=}
+-x\e^{-\lambda x}\Big|_{0}^\infty + \int_0^\infty \e^{-\lambda x}\dx\\
+&= -\frac{1}{\lambda}\e^{-\lambda x}\Big|_0^\infty
+= \frac{1}{\lambda}.\qedhere\bsphere
+\end{align*}
+\end{proof}
+%\item
+%
+%\bsphere
+%\end{enumerate}
+\end{bsp}
+\begin{bsp}
+$X$ sei auf $[a,b]$ gleichverteilt, d.h. mit Dichtefunktion $f:\R\to\R_+$,
+\begin{align*}
+f(x) = 
+\begin{cases}
+0, & x\notin[a,b],\\
+\frac{1}{b-a}, & x\in [a,b].
+\end{cases}
+\end{align*}
+Dann ist $\E X = \frac{a+b}{2}$.
+\begin{proof}
+$f$ ist eine Rechteckfunktion, ihr Erwartungswert ist die
+Intervallmitte.\qedhere\bsphere
+\end{proof}
+\end{bsp}
+
+\subsection{Der Transformationssatz}
+
+\begin{prop}[Transformationssatz]
+\label{prop:4.5}
+Sei $X:(\Omega,\AA,P)\to \R$ eine reelle Zufallsvariable mit Verteilung
+$P_{X}$ und Verteilungsfunktion $F$, sowie
+\begin{align*}
+g: (\R, \BB) \to (\R, {\BB}).
+\end{align*}
+$\E(g \circ X)$ existiert genau dann,
+wenn $\int_{\R} g\dP_{X}$ existiert, und es gilt hierbei nach dem
+Transformationssatz für Integrale
+\begin{align*}
+\E(g \circ X) = \int_{\R}g\dP_{X} = : \int_{\R}g\dF\defr
+\int_{\R}g(x)\dF(x).
+\end{align*}
+Spezialfälle sind:
+\begin{align*}
+\E(g\circ X) =
+\begin{cases}
+\sum_{k\ge 0}g(k)p_{k}, & \mbox{ unter der Voraussetzung von Satz
+\ref{prop:4.4}a},\\ \int_{\R}g(x)f(x)\dlambda(x),
+& \mbox{ unter der Voraussetzung von Satz \ref{prop:4.4}b}.
+\end{cases}
+\end{align*}
+Insbesondere gilt (mit $g = \Id_{A}$, wobei $A \in {\BB}$)
+\begin{align*}
+P[X\in A] &=P_{X}(A) \\ &=
+\begin{cases}
+\sum_{k \in A\cap \N_{0}} p_{k} & \mbox{ u. V.
+von Satz \ref{prop:4.4}a}\\
+\int_{\R} \Id_{A} (x)f(x)\dlambda(x) \defr \int_{A}f(x)\,dx &
+\mbox{ u. V. von Satz \ref{prop:4.4}b}.\fishhere
+\end{cases}
+\end{align*}
+\end{prop}
+\begin{proof}
+Wir führen den Beweis nach der \textsc{Standardprozedur}.
+
+\textit{0. Schritt:}
+Beweis der Behauptung für $g=\Id_A$ und $A\in\BB$.
+\begin{align*}
+\int_\R \Id_A(x) \dP_X = P_X(A) = P(X^{-1}(A))
+= \int_\Omega X^{-1}(A)\dP = \int_\Omega \Id_A(X) \dP. 
+\end{align*}
+
+\textit{1. Schritt:}
+$g \ge 0$, wobei $g$ Linearkombination einfacher Funktionen.
+
+\textit{2. Schritt:} $g\ge 0$. Verwende den Satz von der monotonen Konvergenz.
+
+\textit{3. Schritt:} $g=g^+-g^-$.\qedhere
+\end{proof}
+
+Wir können somit einen vollständigen Beweis von \ref{prop:4.4}\,\ref{prop:4.4:2}
+geben.
+\begin{proof}
+Sei $X$ reelle Zufallsvariable und $g=\id$, d.h. $g(x)=x$, so gilt
+\begin{align*}
+\E X = \E(g\circ X) = \int_\R g\dP_X = \int_\R \id \dP_X.
+\end{align*}
+Die Verteilungsfunktion $F$ erzeugt das Maß $P_X$, somit gilt
+\begin{align*}
+\int_\R \id \dP_X = \int_\R x\dF(x).  
+\end{align*}
+Besitzt $X$ die Dichte $f$, d.h. $F'=f\fu{L}$, so gilt
+\begin{align*}
+\int_\R x\dF(x) = \int_\R x f(x) \dlambda(x).\qedhere 
+\end{align*}
+\end{proof}
+
+Wir betrachten einige Beispiele zu Satz \ref{prop:4.5}
+\begin{bsp}
+Ein Schütze trifft einen Punkt des Intervalls $[-1,1]$ gemäß einer
+Gleichverteilung und erhält den Gewinn $\frac{1}{\sqrt{\abs{x}}}$, wenn er den
+Punkt $x$ trifft, wobei wir $\frac{1}{0}\defl\infty$ gewichten.
+
+\textit{Gesucht ist der mittlere Gewinn des Schützen}. Dazu konstruieren
+wir eine Zufallsvariable $X$, die den zufällig getroffenen Punkt angibt. $X$
+ist nach Voraussetzung gleichverteilt, d.h. die zugehörige Dichte gegeben durch,
+\begin{align*}
+f(x) =
+\begin{cases}
+\frac{1}{2}, & x\in [-1,1],\\
+0, & \text{sonst}.
+\end{cases}
+\end{align*}
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-2.2,-0.7)(2.2,1.7)
+
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-2,-0.5)(2,1.5)[\color{gdarkgray}$x$,-90][\color{gdarkgray}$f(x)$,0]
+
+\psline[linecolor=darkblue](-1.5,0)(-1,0)(-1,1)(1,1)(1,0)(1.5,0)
+
+\rput(1.4,1.4){\color{gdarkgray}$f$}
+\end{pspicture}
+\caption{Dichtefunktion zu $X$.}
+\end{figure}
+
+Den mittleren Gewinn erhalten wir durch den Erwartungswert,
+\begin{align*}
+\E(\text{Gewinn}) &= \E \frac{1}{\sqrt{X}}
+= \int_\R \frac{1}{\sqrt{\abs{x}}}f(x)\dx
+= \frac{1}{2}\int_{[-1,1]} \frac{1}{\sqrt{\abs{x}}}\dx\\
+&= \int_0^1 \frac{1}{\sqrt{x}}\dx
+= 2\sqrt{x}\bigg|_{0}^1 = 2.\bsphere
+\end{align*}
+\end{bsp}
+\begin{bsp}
+Ein Punkt wird rein zufällig aus der Einheitskreisscheibe $K$ von $0$
+ausgewählt. Wie groß ist der zufällige Abstand dieses Punktes von $0$?
+
+Um diese Fragestellung zu modellieren, konstruieren wir einen zweidimensionalen
+Zufallsvektor $X=(X_1,X_2)$, der auf $K$ gleichverteilt ist. Die Dichtefunktion
+$f:\R^2 \to \R_+$ ist dann gegeben durch,
+\begin{align*}
+f(x_1,x_2) = 
+\begin{cases}
+\frac{1}{\pi}, & (x_1,x_2)\in K,\\
+0, & \text{sonst}.
+\end{cases}
+\end{align*}
+Gesucht ist nun $\E\sqrt{X_1^2 + X_2^2}$. Man arbeitet überlicherweise nicht
+auf $\Omega$.
+\begin{enumerate}
+  \item[] \textit{1. Weg (üblich)}. Anwendung des Transformationssatzes,
+\begin{align*}
+\E\sqrt{X_1^2 + X_2^2}
+&\overset{\ref{prop:4.5}}{=}
+\int_{\R^2}
+\sqrt{x_1^2+x_2^2}
+f(x_1,x_2)\dlambda(x_1,x_2)\\
+&\overset{\text{pol.koord.}}{=} \frac{1}{\pi}
+\int\limits_{\ph=0}^{2\pi}
+\int\limits_{r=0}^1
+r\cdot r 
+\dlambda(r,\ph)
+= \frac{2}{3}.
+\end{align*}
+\item[] \textit{2. Weg}.
+Betrachte die Zufallsvariable $Y=\sqrt{X_1^2+X_2^2}$ mit der
+zugehörigen Verteilungsfunktion
+\begin{align*}
+&F(y) \defl P[Y\le y] = 
+\begin{cases}
+0, & \text{falls } y \le 0,\\
+\frac{1}{\pi}\pi y^2 = y^2, & \text{falls } y\in (0,1),\\
+1, & \text{falls } y \ge 1.
+\end{cases}
+\end{align*}
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-2.2,-1)(2.2,3)
+
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-2,-0.5)(2,2.5)[\color{gdarkgray}$x$,-90][,0]
+
+\psline[linewidth=1.2pt,linecolor=darkblue](-1.7,0)(0,0)
+\psline[linewidth=1.2pt,linecolor=darkblue](1,1)(1.7,1)
+\psplot[linewidth=1.2pt,%
+	     linecolor=darkblue,%
+	     algebraic=true]%
+	     {0}{1}{%
+x^2 %
+}
+
+\psline[linecolor=purple](-1.7,0)(0,0)(1,2)
+\psline[linecolor=purple](1,0)(1.7,0)
+
+\rput(1.4,1.4){\color{darkblue}$F$}
+\rput(0.8,2.1){\color{purple}$f$}
+\end{pspicture}
+\caption{Dichtefunktion zu $X$.}
+\end{figure}
+
+$F$ ist bis auf den Punkt $y=1$ stetig differenzierbar, es gilt also
+\begin{align*}
+\E Y =
+\int_0^1 y F'(y)\dy = 2\int_0^1 y^2\dy = \frac{2}{3}.
+\end{align*}
+Welcher Weg (schneller) zum Ziel führt, hängt vom Problem ab.\bsphere 
+\end{enumerate}
+\end{bsp}
+
+\begin{propn}[Zusatz]
+Sei $X$ ein $n$-dimensionaler Zufallsvektor auf $(\Omega, {\cal
+A},P)$ und
+\begin{align*}
+g: (\R^n,\BB_n)\to(\R,\BB),
+\end{align*}
+so existiert $\E(g\circ X)$ genau dann, wenn $\int_{\R^n} g\dP_X$ existiert. In
+diesem Fall gilt
+\begin{align*}
+\E (g\circ X) = \int_\Omega g\circ X \dP = \int_{\R^n} g \dP_X. 
+\end{align*}
+Besitzt $X$ außerdem eine Dichtefunktion $f: \R^{n} \to \R_{+}$, so gilt
+\begin{align*}
+\E (g\circ X) = \int_{\R^n} g(x)f(x)\dlambda(x).
+\end{align*}
+Insbesondere gilt für $A\in\BB_{n}$,
+\begin{align*}
+P[X\in A]=P_{X}(A)= \int_{\R^{n}}\Id _{A}(x)f(x)\dx
+\defr \int_{A}f(x)\dx.
+\end{align*}
+[Falls das entsprechende Riemann-Integral existiert, so stimmen Riemann- und
+Lebesgue-Integral überein.]\fishhere
+\end{propn}
+\begin{proof}
+Der Beweis erfolgt wie im eindimensionalen Fall. Die letzte
+Behauptung folgt sofort für $g=\Id_A$.\qedhere
+\end{proof}
+
+\begin{bem}
+\label{bem:4.5}
+Das Integral $\int_{A}f(x)\dx $ im Zusatz zu Satz \ref{prop:4.4} ist entspricht
+dem $\lambda$-Maß der Ordinatenmenge
+\begin{align*}
+\setdef{(x,y) \in \R^{n+1}}{x \in A,\; 0\leq y \leq f(x)}
+\end{align*}
+von $f|_{A}$ in $\R^{n+1}$.\maphere
+\end{bem}
+
+\section{Momente von Zufallsvariablen}
+
+\begin{defn}
+\label{defn:4.5}
+Sei $X$ eine reelle Zufallsvariable und $k \in \N$. Im Falle der Existenz
+heißt $\E X^{k}$ das \emph{$k$-te  Moment} von $X$ und
+$\E(X-\E X)^ {k}$ das \emph{$k$-te  zentrale Moment} von $X$.\\
+Ist $X$ integrierbar, dann heißt
+\begin{align*}
+\V(X)\defl\E(X-\E X)^ {2}
+\end{align*}
+die \emph{Varianz} von $X$ und
+\begin{align*}
+\sigma (X) \defl _{_{_{ +}}}\!\! \sqrt{\V(X)}
+\end{align*}
+die \emph{Streuung} von $X$.\fishhere
+\end{defn}
+
+Das erste Moment einer Zufallsvariablen haben wir bereits als Erwartungswert
+kennengelernt. Die Varianz $\V(X)$, gibt die ``Schwankung'' der Zufallsvariablen
+$X$ als ``mittleren Wert'' ihrer quadratischen Abweichung von $\E X$ an.
+
+Für die Existenz der Varianz ist es nicht notwendig, die quadratische
+Integrierbarkeit von $X$ explizit zu fordern, da durch die Integrierbarkeit von
+$X$ gesichert ist, dass $(X-\E X)^2$ eine nicht-negative reelle Zufallsvariable
+und damit $\E(X-\E X)^2$ definiert ist (wenn auch möglicherweise $\infty$).
+
+\begin{lem}
+\label{lem:4.2}
+Sei $X$ eine reelle Zufallsvariable und $0\leq \alpha < \beta < \infty $. Dann
+gilt
+\begin{align*}
+\E|X|^{\beta}< \infty \Rightarrow \E|X|^{\alpha}< \infty.\fishhere
+\end{align*}
+\end{lem}
+
+\begin{proof}
+$\E\abs{X}^\alpha \le \E \left(\max\setd{1,\abs{X}^\beta}\right) \le 1 + \E
+\abs{X}^\beta < \infty$.\qedhere
+\end{proof}
+
+Da $\E X^k$ genau dann existiert, wenn $\E \abs{X}^k$ existiert, impliziert die
+Existenz des $k$-ten Moments somit die Existenz aller niedrigeren Momente $\E
+X^l$ mit $l\le k$.
+
+\begin{prop}
+\label{prop:4.6}
+Sei $X$ eine reelle integrierbare Zufallsvariable. Dann gilt
+\begin{propenum}
+\item
+$\V(X) =\E X^ {2}-(\E X)^ {2}$.
+\item
+$\V(aX+b) = a^ {2}\V(X),\quad a, b \in \R$.\fishhere
+\end{propenum}
+\end{prop}
+
+Im Gegensatz zum Erwartungswert ist die Varianz ist also insbesondere
+\textit{keine} lineare Operation.
+\begin{proof}
+Den Fall $\E X^2 = \infty$ behandeln wir durch Stutzung von $X$ in Höhe $c$ und
+gehen dann zum Grenzwert für $c\to\infty$ über.
+
+Betrachten wir also den Fall $\E X^2 < \infty$.
+\begin{proofenum}
+  \item $\V(X) = \E(X-\E(X))^2 = \E(X^2-2(\E X) X + (\E X)^2 )$.
+Nach Voraussetzung ist $\E X<\infty$ und somit,
+\begin{align*}
+\V(X) = \E X^2 - 2(\E X)(\E X) + (\E X)^2 = \E X^2 - (\E X)^2.
+\end{align*}
+\item Unter Verwendung der Linearität von $\E$ erhalten wir sofort,
+\begin{align*}
+\V(a X + b) &= \E(a X +b - \E(a X + b))^2 = \E(aX +b -a \E X -b)^2 \\ &=
+a^2\E(X-\E X)^2
+= a^2\V(X).\qedhere
+\end{align*}
+\end{proofenum}
+\end{proof}
+
+\begin{bsp}
+$X$ sei $b(n,p)$-verteilt mit $n\in \N$, $p \in [0,1]$. 
+$\V(x)=np(1-p)$. Wir werden dafür später einen einfachen Beweis gegeben
+können.\bsphere
+\end{bsp}
+\begin{bsp}
+$X$ sei $\pi(\lambda)$-verteilt mit $\lambda >0$.
+Die Berechnung der Varianz erfolgt mittels der Erzeugendenfunktion,
+\begin{align*}
+&g(s) = \sum\limits_{k=0}^n \e^{-\lambda} \frac{\lambda^k}{k!} s^k
+= \e^{-\lambda}\e^{\lambda s},\\
+&g''(s) = \sum\limits_{k=2}^n k(k-1)\e^{-\lambda} \frac{\lambda^k}{k!} s^{k-2}
+= \lambda^2\e^{-\lambda}\e^{\lambda s},\quad s\in[0,1].
+\end{align*}
+Auswerten ergibt
+\begin{align*}
+g''(1) = \underbrace{\sum\limits_{k=2}^n k(k-1)\e^{-\lambda}
+\frac{\lambda^k}{k!}}_{\ref{prop:4.5} = \E(X(X-1))}
+= \lambda^2.
+\end{align*}
+Somit erhalten wir,
+\begin{align*}
+&\E X^2 = \E(X(X-1)) + \E X = \lambda^2 + \lambda,\\
+&\V X = \E X^2 - (\E X)^2 = \lambda^2 + \lambda - \lambda^2 = \lambda.\bsphere
+\end{align*}
+\end{bsp}
+\begin{bsp}
+$X$ sei $N(a,\sigma^ {2})$-verteilt mit $a \in \R$, $\sigma >
+0$, dann ist $Y=\frac{1}{\sigma}(X-a)$ $N(0,1)$ verteilt.
+Wir können uns also auf den Fall $a=0$, $\sigma=1$ zurückziehen, wobei
+man leicht zeigen kann, dass $\E\abs{X}^n < \infty, \forall n\in\N$.
+
+Weiterhin gilt
+\begin{align*}
+\E X^{2k+1} = 0,\qquad k\in\N_0,
+\end{align*}
+da der Integrand eine ungerade Funktion ist und daher das Integral
+verschwindet. Insbesondere ist $\E X =0$.
+
+Für geraden Exponenten erhalten wir
+\begin{align*}
+\E X^{2k} &\overset{\ref{prop:4.5}}{=}
+\frac{1}{\sqrt{2\pi}}
+\int_\R x^{2k} \e^{-\frac{k^2}{2}}\dx\\
+&\overset{\text{part. int.}}{=}
+\underbrace{\frac{2}{\sqrt{2\pi}} \frac{1}{2k+1}
+x^{2k+1}\e^{-\frac{x^2}{2}}\bigg|_0^\infty}_{=0} - \frac{2}{\sqrt{2\pi}}
+\int\limits_0^\infty \frac{1}{2k+1} x^{2k+1}(-x)\e^{-\frac{x^2}{2}}\dx\\
+&=
+\frac{2}{\sqrt{2\pi}}\frac{1}{2k+1}
+\int\limits_0^\infty  x^{2k+2}\e^{-\frac{x^2}{2}}\dx
+= \frac{1}{2k+1}\E X^{2k+2}.
+\end{align*}
+Somit gilt für jedes $k\in\N_0$, $\E X^{2k+2} = (2k+1)\E X^{2k}$. Insbesondere
+erhalten wir
+\begin{align*}
+&\E X^0 = \E 1 = 1\quad \Rightarrow \E X^2 = 1
+\quad  \Rightarrow \V(X) = 1.
+\end{align*}
+Für allgemeines $N(a,\sigma^2)$ verteiltes $X$ erhalten wir somit,
+\begin{align*}
+&\E \left(\frac{1}{\sigma}(X-a)\right) = 0\Rightarrow \E X = a,\\
+&\V \left(\frac{1}{\sigma}(X-a)\right) = 1\Rightarrow \V X =
+\sigma^2.\bsphere
+\end{align*}
+\end{bsp}
+
+Die folgenden Ungleichungen haben zahlreiche Anwendungen und gehören zu den
+wichtigsten Hilfsmitteln der Stochastik.
+
+\begin{prop}
+\label{prop:4.7}
+Sei $X$ eine reelle Zufallsvariable auf einem W-Raum $(\Omega, {\cal
+A},P)$.
+Dann gilt für jedes $\varepsilon >0$, $r>0$:
+\begin{align*}
+P[| X | \geq \varepsilon ] \leq \varepsilon ^ {-r} \E | X | ^ {r},\qquad
+\text{\emph{Markoffsche Ungleichung}}.
+\end{align*}
+
+Für $r=2$ erhält man die sog. \emph{Tschebyschevsche Ungleichung}, die bei
+integrierbarem $X$ auch in der Variante
+\begin{align*}
+P[| X-\E X | \geq \varepsilon ] \leq \varepsilon ^ {-2} \V(X)
+\end{align*}
+angegeben wird.\fishhere
+\end{prop}
+\begin{proof}
+Zum Beweis verwenden wir eine Zufallsvariable $Y$, die $X$ ``stutzt'',
+\begin{align*}
+Y \defl
+\begin{cases}
+1, & \text{falls } \abs{X} \ge \ep,\\
+0, & \text{sonst}.
+\end{cases}
+\end{align*}
+Offensichtlich ist $Y\le \frac{\abs{X}^r}{\ep^r}$, d.h. $\E Y \le \ep^{-r}\E
+\abs{X}^r$, wobei $\E Y = P[\abs{X}\ge \ep]$.\qedhere
+\end{proof}
+
+Als Anwendung beweisen wir das Bernoullische schwache Gesetz der großen Zahlen. 
+
+\begin{bsp}
+Sei $Y_n$ eine Zufallsvariable, die die Anzahl der Erfolge in $n$
+Bernoulli-Versuchen mit jeweiliger Erfolgswahrscheinlichkeit $p\in[0,1]$ (fest)
+angibt. $Y_n$ ist also $b(n,p)$-verteilt und es gilt
+\begin{align*}
+\E Y_n = np,\qquad \V Y_n = np(1-p).
+\end{align*}
+Die relative Häufigkeit der Anzahl der Erfolge ist gegeben durch
+$\dfrac{Y_n}{n}$.
+
+Sei nun $\ep > 0$ beliebig aber fest, so gilt
+\begin{align*}
+P\left[\abs{\frac{Y_n}{n}-p}\ge \ep\right] \le \frac{\V
+\left(\frac{Y_n}{n}\right)}{\ep^2} = \frac{1}{\ep^2n^2}\V(Y_n) =
+\frac{p(1-p)}{\ep^2n}\to0,\quad n\to\infty.
+\end{align*}
+Zusammenfassend erhalten wir das \emph{Bernoullische schwache Gesetz der großen
+Zahlen},
+\begin{align*}
+\forall \ep > 0 : P\left[ \abs{\frac{Y_n}{n} -p} \ge \ep \right] \to 0,\qquad
+n\to\infty.
+\end{align*}
+
+Eines der Ziele dieser Vorlesung ist die Verallgemeinerung dieses Gesetzes auf
+das starke Kolmogorovsche Gesetz der großen Zahlen in Kapitel
+\ref{chap:9}.\bsphere
+\end{bsp}
+
+% \begin{prop}[Transformationssatz für Dichten]
+% \label{prop:4.8}
+% [Verallgemeinerung s. Hinderer S. 148]
+% Sei $Q$ ein W-Maß  auf ${\BB}_{2}$ und $T:  \R^{2}\to
+% \R^{2}$ eine injektive stetig-differenzierbare Abbildung.
+% Es sei $R\defl Q_{T}$ das
+% Bild-W-Maß von $Q$ bzgl.\ $T$ [d.h. $R(B) =Q(T^ {-1}(B))$, $B\in {\BB}_{2}$]
+% und $\Delta $ der Betrag der Funktionaldeterminante von $T$. Hat $R$ die Dichte
+% $g$, so hat $Q$ die Dichte $(g \circ T)\Delta$.\fishhere
+% \end{prop}

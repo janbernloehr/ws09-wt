@@ -1,0 +1,558 @@
+\chapter{Gesetze der großen Zahlen}
+\label{chap:8}
+
+\section{Konvergenzbegriffe}
+
+\begin{defn}
+\label{defn:8.1}
+Seien $X_n$, $X$ reelle Zufallsvariablen (für $n\in\N$) auf einem W-Raum
+$(\Omega,\AA,P)$. Die Folge $(X_n)$ heißt gegen $X$
+\begin{defnenum}
+  \item \emph{vollständig konvergent}, wenn für jedes $\ep>0$ gilt
+\begin{align*}
+\sum_{n\in\N} P[\abs{X_n-X}] \ge \ep]\to 0.
+\end{align*}
+Schreibweise $X_n\cto X$.
+\item \emph{konvergent $P$-fast sicher} ($P$-f.s., $\fs$), wenn
+\begin{align*}
+P[X_n\to X] = 1.
+\end{align*}
+\item \emph{konvergent nach Wahrscheinlichkeit} oder \emph{stochastisch
+konvergent}, wenn für jedes $\ep > 0$ gilt
+\begin{align*}
+P[\abs{X_n-X}\ge \ep]\to 0.
+\end{align*}
+Schreibweise $X_n\Pto X$,
+\item \emph{konvergent im $r$-ten Mittel} ($r>0$), wenn $\E \abs{X_n}^r, \E
+\abs{X}^r < \infty$ für $n\in\N$ und
+$
+\E\abs{X_n-X}^r \to 0.
+$
+
+Spezialfall: $r=2$, \ldots konvergenz im quadratischen Mittel.
+\item \emph{konvergent nach Verteilung}, wenn für jede beschränkte stetige
+Funktion $g: \R\to\R$ gilt
+\begin{align*}
+\E g(X_n) \to \E g(X),\qquad n\to\infty,
+\end{align*}
+oder --- hier äquivalent --- wenn für die Verteilungsfunktion $F_n$ und $F$ von
+$X_n$ bzw. $X$ gilt
+\begin{align*}
+F_n(x)\to F(x),\qquad n\to\infty,
+\end{align*}
+in jedem Stetigkeitspunkt $x$ von $F$. Schreibweise $X_n\Dto X$.\fishhere
+\end{defnenum}
+\end{defn}
+
+\begin{bem}[Bemerkungen.]
+\label{bem:8.1}
+\begin{bemenum}
+  \item Seien $F_n$ Verteilungsfunktionen für $n\in\N$, dann impliziert $(F_n)$
+  konvergiert \textit{nicht}, dass $\lim\limits_{n\to\infty} F_n$ eine
+  Verteilungsfunktion ist.
+  \item Die Grenzverteilungsfunktion in Definition \ref{defn:8.1} e) ist
+  eindeutig bestimmt.
+  \item Die Konvergenz in e.) entspricht einer
+  schwach*-Konvergenz der $F_n$ im Dualraum von $C_b(\R)$.\maphere
+\end{bemenum}
+\end{bem}
+
+\begin{prop}
+\label{prop:8.1}
+Seien $X_n$, $X$ reelle Zufallsvariablen auf einem W-Raum $(\Omega,\AA,P)$.
+\begin{propenum}
+  \item Falls $X_n\cto X$, so gilt $X_n\to X$ f.s.
+  \item Falls $X_n\to X$ f.s., so gilt $X_n\Pto X$.
+  \item Falls für $r> 0$, $X_n\to X$ im $r$-ten Mittel, so gilt $X_n\Pto X$.
+  \item Falls $X_n\Pto X$, so gilt $X_n\Dto X$.\fishhere
+\end{propenum}
+\end{prop}
+\begin{proof}
+\textit{Vorbetrachtung}. Seien $X_n,X$ reelle Zufallsvariablen, so gilt
+% $X_n\to X$ f.s.,
+%dies ist äquivalent zu
+\begin{align*}
+X_n\to X\Pfs &\Leftrightarrow P[\lim\limits_{n\to\infty} X_n = X] = 1\\
+&\Leftrightarrow
+P\left(\bigcap_{0<\ep\in\Q}\bigcup_{n\in\N}\bigcap_{m\ge n} \left[\abs{X_m -
+X}<\ep\right]\right) = 1
+\end{align*}
+Wobei sich die letzte Äquivalenz direkt aus dem $\ep-\delta$-Kriterium für
+konvergente Folgen ergibt, wenn man sich für die Wahl von $\ep$ auf
+$\Q$ zurückzieht.
+
+Dies ist natürlich äquivalent zu
+\begin{align*}
+&P\left(\bigcup_{0<\ep\in\Q}\bigcap_{n\in\N}\bigcup_{m\ge n} \left[\abs{X_m -
+X}\ge\ep\right]\right) = 0\\
+\Leftrightarrow
+&\forall \ep > 0 :  P\left(\bigcap_{n\in\N}\underbrace{\bigcup_{m\ge n}
+\left[\abs{X_m - X}\ge\ep\right]}_{\defl A_{n}(\ep)}\right) = 0
+\end{align*}
+Nun ist $A_n\downarrow A$, d.h. wir können dies auch schreiben als
+\begin{align*}
+&\forall \ep > 0 : 
+\lim\limits_{n\to\infty}P\left(A_n(\ep)\right) = 0\\
+\Leftrightarrow
+&
+\forall \ep > 0 : 
+\lim\limits_{n\to\infty}P\left(\sup_{m\ge n} \abs{X_m-X}\ge \ep\right) = 0.
+\end{align*}
+Weiterhin gilt
+\begin{align*}
+P[\abs{X_n-X}\ge \ep] \le
+P\left[\sup \abs{X_n-X}\ge \ep\right] \le
+\sum\limits_{m\ge n} P\left[\abs{X_n-X}\ge \ep\right].
+\end{align*}
+\begin{proofenum}
+  \item Falls $X_n\cto X$, dann gilt $\sum_{m\ge n}
+  P\left[\abs{X_n-X}\ge \ep\right]\to 0$ und damit auch
+\begin{align*}
+X_n\to X \fs
+\end{align*} 
+\item Falls $X_n\to X$ f.s., so gilt $P\left[\sup \abs{X_n-X}\ge \ep\right]\to
+0$ und damit auch
+\begin{align*}
+P[\abs{X_n-X}\ge \ep]\to 0.
+\end{align*}
+\item Unter Verwendung der Markov-Ungleichung erhalten wir
+\begin{align*}
+P\left[\abs{X_n-X}\ge \ep\right] \le \frac{1}{\ep^r}\E \abs{X_n-X}^r
+\end{align*}
+also $X_n\Pto X$, wenn $X_n\to X$ im $r$-ten Mittel.
+\item Sei  $g:\R\to\R$ beschränkt und stetig und $X_n\Pto X$. Es existiert also
+zu jeder Teilfolge $(X_{n'})$ eine konvergente Teilfolge $(X_{n''})$, die gegen
+$X$ konvergiert. Somit gilt
+$g(X_{n''})\to g(X)$ f.s.
+
+Mit dem Satz von der dominierten Konvergenz erhalten wir somit
+\begin{align*}
+\E g(X_{n''})\to \E g(X).
+\end{align*}
+Nun verwenden wir den Satz aus der Analysis, dass eine Folge genau dann
+konvergiert, wenn jede Teilfolge eine konvergente Teilfolge besitzt, und alle
+diese Teilfolgen denselben Grenzwert haben und erhalten somit, $\E g(X_n)\to \E
+g(X)$, d.h. $X_n\Dto X$.\qedhere
+\end{proofenum}
+\end{proof}
+
+\section{Schwache und starke Gesetze der großen Zahlen}
+
+\begin{defn}
+\label{defn:8.2}
+Eine Folge $(X_n)$ von integrierbaren reellen Zufallsvariablen auf einem W-Raum
+$(\Omega,\AA,P)$ genügt dem \emph{schwachen} bzw. \emph{starken Gesetz der
+großen Zahlen}, wenn
+\begin{align*}
+\frac{1}{n}\sum\limits_{k=1}^n (X_k-\E X_k) \to 0,\qquad n\to \infty\text{ nach
+Wahrscheinlichkeit bzw. } P\text{-f.s.}\fishhere
+\end{align*}
+\end{defn}
+
+\begin{bem}
+\label{bem:8.2}
+Genügt eine Folge von Zufallsvariablen dem starken Gesetzt der großen Zahlen,
+dann genügt sie auch dem schwachen Gesetz der großen Zahlen. Die Umkehrung gilt
+im Allgemeinen nicht.\maphere
+\end{bem}
+
+\begin{prop}[Kriterium von Kolmogorov für das starke Gesetz der großen Zahlen]
+\label{prop:8.2}
+Eine unabhängige Folge $(X_n)$ quadratisch integrierbarer reeller
+Zufallsvariablen mit
+\begin{align*}
+\sum\limits_{n=1}^\infty n^{-2}\V(X_n) < \infty
+\end{align*}
+genügt dem starken Gesetz der großen Zahlen.\fishhere
+\end{prop}
+
+\begin{proof}
+Wir wollen den Satz zunächst nur unter der stärkeren Bedingung
+\begin{align*}
+\sup_n \V(X_n) \defr C < \infty
+\end{align*}
+(jedoch unter der schwächeren Voraussetzung der paarweisen Unkorreliertheit der
+$(X_n)$ anstatt der Unabhängigkeit). Einen vollständigen Beweis werden wir mit
+Hilfe der Martingaltheorie geben können.
+
+Wir zeigen nun
+\begin{align*}
+\forall \ep > 0 : P\left[\abs{\frac{1}{n} \sum\limits_{j=1}^n X_j - \E
+X_j} \ge \ep\right] \le \frac{C}{n\ep^2}\tag{1}
+\end{align*}
+und
+\begin{align*}
+\frac{1}{n}\sum\limits_{j=1}^n (X_j-\E X_j) \to 0
+\end{align*}
+im quadratischen Mittel und $\Pfs$. Setze $Y_j \defl X_j-\E X_j$, $Z_n \defl
+\frac{1}{n}\sum\limits_{j=1}^n Y_j$. Mit Hilfe der Markov-Ungleichung erhalten
+wir
+\begin{align*}
+\ep^2 P\left[\abs{Z_n} \ge \ep\right] \le \V(Z_n)
+= \frac{1}{n^2}\V\left(\sum\limits_{j=1}^n Y_j\right)
+\overset{\text{Bienayme}}{=} \frac{1}{n^2}\sum\limits_{j=1}^n\V\left( Y_j\right)
+\le \frac{C}{n}.
+\end{align*}
+Somit folgt (1) und damit
+\begin{align*}
+\frac{1}{n}\sum\limits_{j=1}^n \left(X_j - \E X_j\right) \to 0,\qquad
+\text{im quadratischen Mittel}.
+\end{align*}
+Es verbleibt die $\Pfs$ konvergenz zu zeigen.
+Betrachte dazu
+\begin{align*}
+\sum\limits_{n=1}^\infty P[\abs{Z_{n^2}}\ge \ep] \le
+\frac{C}{\ep^2}\sum\limits_{n=1}^\infty \frac{1}{n^2}.
+\end{align*}
+also konvergiert $Z_{n^2}$ vollständig und insbesondere auch $\Pfs$ gegen $0$
+(mit Satz \ref{prop:8.1}). Sei nun $n\in\N$, setze
+\begin{align*}
+m(n) \defl \max \setdef{m\in\N}{m^2\le n}
+\end{align*}
+dann folgt $m(n)^2 \le n < (m(n)+1)^2$. 
+\begin{align*}
+\abs{Z_n} \le \abs{\frac{1}{n}\sum\limits_{j=1}^{m(n)^2} Y_j} + 
+\underbrace{\abs{\frac{1}{n} \sum\limits_{j=m(n)^2+1}^n Y_j}}_{\defr R_n}
+\end{align*}
+Nun ist $\abs{\frac{1}{n}\sum\limits_{j=1}^{m(n)^2} Y_j} \le
+\abs{\frac{1}{m(n)^2}\sum\limits_{j=1}^{m(n)^2} Y_j} \to 0\Pfs$. Es genügt also
+zu zeigen, dass $R_n\to 0\Pfs$. Sei also $\ep >0$, dann folgt mit der
+Markov-Ungleichung und dem Satz von Bienayme
+\begin{align*}
+\ep^2P\left[\abs{R_n}\ge \ep\right] &\le \V(R_n)
+\le \frac{1}{n^2}\sum\limits_{j=m(n)^2+1}^n \V(Y_j)
+\le \frac{C}{n^2} (n-m(n)^2)\\
+&\le  \frac{C}{n^2} ((m(n)+1)^2-1-m(n)^2)\\
+&=   \frac{C}{n^2} (2m(n)) \le 2C\frac{\sqrt{n}}{n^2}
+= 2C n^{-3/2}.
+\end{align*}
+Da $\sum_{n\ge 0}n^{-3/2}<\infty$, folgt $(R_n)$ konvergiert vollständig gegen
+$0$.\qedhere
+\end{proof}
+
+\begin{prop}[Kolmogorovsches starkes Gesetz der großen Zahlen]
+\label{prop:8.3}
+Für eine unabhängige Folge $(X_n)$ identisch verteilter integrierbarer reeller
+Zufallsvariablen gilt
+\begin{align*}
+\frac{1}{n}\sum\limits_{k=1}^n X_k \to \E X_1,\qquad n\to \infty,\;
+f.s.\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Um die quadratische Integrierbarkeit der Zufallsvariablen zu
+gewährleisten, führen wir gestutzte Zufallsvariablen ein durch
+\begin{align*}
+X_i' \defl X_i\Id_{[\abs{X_i}\le i]}
+\end{align*}
+Insbesondere folgt aus der Unabhängigkeit der $X_n$ auch die Unabhängigkeit der
+$X_n'$. Setze weiterhin
+\begin{align*}
+&S_n' = \sum\limits_{i=1}^n X_i',\quad
+S_n \defl \sum\limits_{i=1}^n X_i,\\
+&k_n \defl \lfloor \th^n\rfloor 
+\end{align*}
+für beliebiges aber fest gewähltes $\th>1$.
+\begin{align*}
+&\ep^2\sum\limits_{n=1}^\infty P\left[ \frac{1}{k_n}\abs{S_{k_n}'-\E S_{k_n}'}
+\right] 
+\le \sum\limits_{n=1}^\infty \frac{1}{k_n^2}\V(S_{k_n}')
+= \sum\limits_{n=1}^\infty \frac{1}{k_n^2} \sum\limits_{k=1}^{k_n} \V(X_k')\\
+&\le \sum\limits_{n=1}^\infty \frac{1}{k_n^2} \sum\limits_{k=1}^{k_n} \E
+((X_k')^2)
+\le 
+\sum\limits_{n=1}^\infty \frac{1}{k_n^2} \sum\limits_{k=1}^{k_n} \E
+(X_k^2\Id_{[\abs{X_k}\le k]})\\
+&\le 
+\sum\limits_{n=1}^\infty \frac{1}{k_n^2} \sum\limits_{k=1}^{k_n} \E
+(X_1^2\Id_{[\abs{X_1}\le k_n]}),
+\end{align*}
+denn da alle Zufallsvariablen dieselbe Verteilung besitzten, ist es
+für den Erwartungswert unerheblich, welche Zufallsvariable speziell ausgewählt
+wird. Aufgrund der Linearität von $\E$ und dem Satz der monotonen Konvergenz
+folgt,
+\begin{align*}
+\le
+\E\left(X_1^2 \sum\limits_{n=1}^\infty \frac{1}{k_n}
+\Id_{[\abs{X_1}\le k_n]}\right).
+\end{align*}
+Setzen wir $n_0 \defl \min\setdef{n\in\N}{\abs{X_1}\le k_n}$, so gilt
+\begin{align*}
+=
+\E\left(X_1^2 \sum\limits_{n=n_0}^\infty \frac{1}{k_n}
+\Id_{[\abs{X_1}\le k_n]}\right).
+\end{align*}
+Außerdem $\abs{X_1}\le k_{n_0} = \lfloor \th^{n_0} \rfloor \le \th^{n_0}$, also
+\begin{align*}
+\sum\limits_{n=n_0}^\infty \frac{1}{k_n}\Id_{[\abs{X_1}\le k_n]}
+\le
+\sum\limits_{n=n_0}^\infty \frac{1}{\lfloor\th^n\rfloor}
+\le \frac{1}{\th^{n_0}}
+\sum\limits_{n=0}^\infty \frac{2}{\th^n}
+= \frac{2}{\th^{n_0}}\frac{1}{1-\frac{1}{\th}}
+\le \frac{2}{\abs{X_1}}\frac{\th}{\th-1},
+\end{align*}
+wobei $\frac{1}{\lfloor\th^{n_0}\rfloor} \le \frac{2}{\th^{n_0}}$, denn es gilt
+allgemein für positive reelle Zahlen  $\lfloor p\rfloor  > \frac{p}{2}$. Also
+erhalten wir für den Erwartungswert,
+\begin{align*}
+\E\left(X_1^2 \sum\limits_{n=n_0}^\infty \frac{1}{k_n}
+\Id_{[\abs{X_1}\le k_n]}\right)
+\le \E \left(X_1^2 \frac{2}{\abs{X_1}}\frac{\th}{\th-1}\right)
+= \frac{2\th}{\th-1}\E \abs{X_1} < \infty,
+\end{align*}
+da $\E\abs{X_n}<\infty$ nach Voraussetzung.
+
+Mit Satz \ref{prop:8.1} folgt
+\begin{align*}
+\frac{1}{k_n}\left(S_{k_n}'-\E S_{k_n}'\right) \to 0,\qquad \Pfs\text{ für }
+n\to\infty
+\end{align*}
+wobei
+\begin{align*}
+\frac{1}{k_n}\E S_{k_n}' = \frac{1}{k_n}\sum\limits_{k=1}^{k_n} \E (X_1
+\Id_{[\abs{X_1}\le k]}).
+\end{align*}
+Mit dem Satz von der dominierten Konvergenz folgt $\E (X_1
+\Id_{[\abs{X_1}\le k]})\to \E X_1$ und damit,
+\begin{align*}
+\frac{1}{k_n}\sum\limits_{k=1}^{k_n} \E (X_1
+\Id_{[\abs{X_1}\le k]})\to \E X
+\end{align*}
+nach dem Satz von Césaro–Stolz bzw. dem Cauchyschen Grenzwertsatz.
+
+Außerdem konvergiert $\dfrac{S_{k_n}}{k_n}\to\E X_1\Pfs$, denn
+\begin{align*}
+\sum\limits_{n=1}^\infty P[X_n=X_n'] &= 
+\sum\limits_{n=1}^\infty P[\abs{X_n}>n] 
+\le
+\sum\limits_{n=1}^\infty \int\limits_{n-1}^n P[\abs{X_n}>t]\dt\\
+&\overset{\text{dom.konv}}{=}
+\int\limits_{0}^\infty P[\abs{X_n}>t]\dt
+=
+\E X_1.
+\end{align*}
+Mit Lemma von Borel-Cantelli folgt dass $X_n$ und $X_n'$ für alle bis auf
+endlich viele $n$ übereinstimmen, damit
+\begin{align*}
+\frac{S_{k_n}-S_{k_n}'}{k_n}\to 0,\qquad \Pfs \text{ für }n\to\infty.
+\end{align*}
+Zusammenfassend erhalten wir also
+\begin{align*}
+\frac{S_{k_n}}{k_n}
+=
+\underbrace{\frac{S_{k_n}-S_{k_n}'}{k_n}}_{\to0\fs}
++
+\underbrace{\frac{S_{k_n}'-\E S_{k_n}'}{k_n}}_{\to 0\fs}
++
+\underbrace{\frac{\E S_{k_n}'}{k_n}}_{\to\E X_1\fs} \to \E X_1\fs
+\end{align*}
+
+Sei zunächst $X_i\ge 0$ für alle $i\in\N$. Dann gilt für alle $i$ mit $k_n\le
+i\le k_{n+1}$,
+\begin{align*}
+\frac{k_n}{k_{n+1}}\frac{S_{k_n}}{k_n}
+\le \frac{k_n S_i}{k_{n+1}k_n}
+\le \frac{S_i}{i}
+\le \frac{S_{k_{n+1}}}{i}
+\le \frac{S_{k_{n+1}}}{k_{n+1}}\frac{k_{n+1}}{k_n}.
+\end{align*}
+\textit{per definitionem} ist 
+\begin{align*}
+\frac{k_n}{k_{n+1}} = \frac{\lfloor \th^n\rfloor}{\lfloor \th^{n+1}\rfloor}
+\ge \frac{\th^n-1}{\th^{n+1}} \to \frac{1}{\th} 
+\end{align*}
+analog erhält man $\frac{k_{n+1}}{k_n}\to \th$. Somit folgt
+\begin{align*}
+\frac{1}{\th}\E X_1 \le \liminf_n \frac{S_n}{n}
+\le \limsup_n \frac{S_n}{n} \le \th \E X_1.
+\end{align*}
+Da $\th>1$ beliebig und obige Gleichung für alle $\th$ gilt, folgt durch den
+Übergang $\th\downarrow 1$,
+\begin{align*}
+\E X_1 = \lim\limits_{n\to\infty} \frac{S_n}{n},\qquad \Pfs\quad n\to \infty.
+\end{align*}
+Sei jetzt $X_i$ reellwertig, mit $X_i = X_i^+-X_i^-$, dann ist
+\begin{align*}
+\frac{1}{n}\sum\limits_{i=1}^n X_i 
+= \frac{1}{n}\sum\limits_{i=1}^n X_i^+ -
+\frac{1}{n}\sum\limits_{i=1}^n X_i^-
+\to \E X_1^+ - \E X_1^- = \E X_1,\quad \Pfs \text{ für }n\to\infty.\qedhere
+\end{align*}
+\end{proof}
+
+
+\begin{bem}[Bemerkungen.]
+\label{bem:8.3}
+\begin{bemenum}
+\item In Satz \ref{prop:8.3} darf die Integrierbarkeitsvoraussetzung nicht
+weggelassen werden.
+\item Die Voraussetzung der Unabhängigkeit in Satz \ref{prop:8.4} kann zur
+Voraussetzung der paarweisen Unabhängigkeit abgeschwächt werden (Etemadi).
+\item In Satz \ref{prop:8.2} kann bei $\sum n^{-2}\V (X_n)(\log n)^2< \infty$
+die Unabhängigkeitsvoraussetzung zur Voraussetzung der paarweisen
+Unkorreliertheit (s.u.) abgeschwächt werden (Rademacher, Menchov).\maphere
+\end{bemenum}
+\end{bem}
+
+\begin{prop}[Satz von Tschebyschev]
+\label{prop:8.4}
+Eine Folge $(X_n)$ quadratisch integrierbarer paarweise unkorrelierter, d.h. es gilt
+\begin{align*}
+\forall j\neq k : \E(X_j-\E X_j)(X_k-\E X_k) = 0,
+\end{align*}
+reeller Zufallsvariablen mit
+\begin{align*}
+n^{-2}\sum\limits_{k=1}^n \V(X_k)\to 0,\qquad n\to\infty,
+\end{align*}
+genügt dem schwachen Gesetz der großen Zahlen.\fishhere
+\end{prop}
+
+\begin{bem}
+\label{bem:8.4}
+Für eine unabhängige Folge $(X_n)$ identisch verteilter reeller
+Zufallsvariablen mit $P[X_1=1]=p$, $P[X_1=0]=1-p$ (festes $p\in[0,1]$) gilt
+\begin{align*}
+\frac{1}{n}\sum\limits_{k=1}^n X_k \to p,\qquad n\to\infty \quad \Pfs \text{ und
+nach Wahrscheinlichkeit}.
+\end{align*}
+Borelsches Gesetz der großen Zahlen bzw. Bernoullisches schwaches Gesetzt der
+großen Zahlen.\maphere
+\end{bem}
+
+Bemerkung \ref{bem:8.4} stellt ein theoretisches Gegenstück zu der
+Erfahrungstatsache dar, dass im Allgemeinen die relative Häufigkeit eines
+Ereignisses bei großer Zahl der unter gleichen Bedingungen unabhängig 
+durchgeführten Zufallsexperimente näherungsweise konstant ist.
+
+Wir betrachten nun zwei Beispiele zu Satz \ref{prop:8.3} und Bemerkung
+\ref{bem:8.4}.
+\begin{bsp}
+Es seien $X_1,X_2,\ldots$ unabhängige identisch verteilte Zufallsvariablen
+$Z_n$ mit existierenden (endlichen) $\E X_1\defr a$ und $\V(X_1) \defr
+\sigma^2$. Aufgrund der beobachteten Realisierungen $x_1,\ldots,x_n$ von $X_1,\ldots,X_n$
+wird $a$ geschätzt durch
+\begin{align*}
+\overline{x}_n \defl \frac{1}{n}\sum\limits_{i=1}^n x_i
+\end{align*}
+das sogenannte \emph{empirische Mittel} und $\sigma^2$ durch
+\begin{align*}
+s_n^2 \defl \frac{1}{n-1}\sum\limits_{i=1}^n (x_i-\overline{x}_n)^2
+\end{align*}
+die sogenannte \emph{empirische Varianz}.
+Für
+\begin{align*}
+\overline{X}_n \defl
+\frac{1}{n}\sum\limits_{i=1}^n X_i,\qquad S_n^2 \defl \frac{1}{n-1}
+\sum\limits_{i=1}^n (X_i-\overline{X}_n)^2
+\end{align*}
+gilt $\E\overline{X}_n=a$, $\E S_n^2 = \sigma^2$ (sogenannte Erwartungstreue der
+Schätzung) und ferner für $n\to \infty$,
+\begin{align*}
+\overline{X}_n\to a\fs,\qquad S_n^2\to \sigma^2 \fs,
+\end{align*}
+sogenannte Konsistzenz der Schätzfolgen.\bsphere
+\begin{proof}
+Wir zeigen $S_n^2\to \sigma^2\Pfs$. Setzen wir $\mu=\E X_1$, so gilt
+\begin{align*}
+S_n^2 &\defl \frac{1}{n-1}\sum\limits_{i=1}^n (X_i-\overline{X}_n)^2
+=
+\frac{n}{n-1}\left(\frac{1}{n}\sum\limits_{i=1}^n
+(X_i-\mu+\mu-\overline{X}_n)^2\right)\\
+&=
+\underbrace{\frac{n}{n-1}}_{\to
+1}\left(\underbrace{\frac{1}{n}\sum\limits_{i=1}^n (X_i-\mu)^2}_{\to
+\sigma^2\Pfs} + \underbrace{\frac{2}{n}\sum\limits_{i=1}^n (X_i-\mu)}_{\to 0
+\Pfs}\underbrace{(\mu-\overline{X}_n)}_{\to 0\fs} +
+\underbrace{\frac{1}{n}\sum\limits_{i=1}^n
+(\mu-\overline{X}_n)^2}_{(\mu-\overline{X}_n)^2\to 0\fs} \right),\\
+&\to \sigma^2\fs\bsphere
+\end{align*}
+\end{proof}
+\end{bsp}
+
+\begin{bsp}
+Für eine Menge von $n$ radioaktiven Atomen mit unabhängigen
+$\exp(\lambda)$-verteilten Lebensdauern (mit Verteilungsfunktion $F$) gebe -
+bei festem $T>0$ - die Zufallsvariable $Z_n$ die zufällige Anzahl der Atome an,
+die von jetzt (Zeitpunkt $0$) an bis zum Zeitpunkt $T$ zerfallen. Die
+Wahrscheinlichkeit, dass ein gewisses Atom im Zeitintervall $[0,T]$ zerfällt,
+ist $p=F(T) = 1-\e^{-\lambda T}$. Nach Bemerkung \ref{bem:8.4} konvergiert mit
+Wahrscheinlichkeit Eins $Z_n/n\to p$ für $n\to\infty$. Wählt man $T$ so, dass
+$F(T) = \frac{1}{2}$, d.h. $T=(\ln 2) / \lambda$ ($T$ sog. Median von
+$\exp(\lambda)$), dann gilt
+\begin{align*}
+\fs\quad \frac{Z_n}{n}\to \frac{1}{2},\qquad n\to\infty.
+\end{align*}
+Dieses $T$ wird als Halbwertszeit des radioaktiven Elements bezeichnet (nach
+$T$ Zeiteinheiten ist i.A. bei großem $n$ ungefähr die Hälfte der Atome
+zerfallen).\bsphere
+\end{bsp}
+
+\begin{bsp}
+Aus der Analysis ist der Satz von Weierstraß bekannt, dass jede stetige
+Funktion $f:\R\to \R$ auf einem kompakten Intervall gleichmäßiger Limes von
+Polynomen ist.
+
+Wir wollen diesen Satz nun unter Verwendung des
+Kolmogorovschen starken Gesetz der großen Zahlen beweisen.
+Dazu verwenden wir Bernstein-Polynome, um stetige Funktionen über einem
+kompakten Intervall zu approximieren.
+
+Sei $f: [0,1]\to\R$ stetig. Die \emph{Bernsteinpolynome $n$-ten Grades} sind
+definiert durch
+\begin{align*}
+f_n(p) = \sum\limits_{k=0}^n
+f\left(\frac{k}{n}\right)\binom{n}{k}p^k(1-p)^{n-k},\qquad p\in[0,1].
+\end{align*}
+Wir versehen also $[0,1]$ mit einem Gitter mit Gitterabstand $\frac{1}{n}$,
+werten $f$ an $\frac{k}{n}$ aus und multiplizieren mit speziellen Gewichten.
+
+Seien $U_1,\ldots,U_n$ unabhängige auf $[0,1]$ identisch gleichverteilte
+Zufallsvariablen. Wähle $p\in[0,1]$ fest und setze
+\begin{align*}
+X_i \defl \Id_{[0,p]}(U_i) = \Id_{U_i\in [0,p]}.
+\end{align*}
+Die $X_i$ sind dann unabhängige und $b(1,p)$-verteilte Zufallsvariablen.
+\begin{align*}
+&\E\left(f\left(\frac{1}{n}\sum\limits_{i=1}^n \Id_{[0,p]}(U_i)\right)\right)
+= 
+\E\left(f\left(\underbrace{\frac{1}{n}\sum\limits_{i=1}^n
+X_i}_{\in\setd{0,1/n,2/n,\ldots,1}}\right)\right)\\
+&= \sum\limits_{k=0}^n f\left(\frac{k}{n}\right)\binom{n}{k}p^k(1-p)^k = f_n(p)
+\end{align*}
+Sei $\ep > 0$ beliebig. Da $f$ auf dem kompakten Intervall $[0,1]$ gleichmäßig
+stetig, existiert ein $\delta>0$, so dass
+\begin{align*}
+\abs{x-y}<\delta \Rightarrow \abs{f(x)-f(y)}<\ep,\qquad \text{für } x,y\in[0,1]. 
+\end{align*}
+Somit gilt
+\begin{align*}
+&\abs{f_n(p)-f(p)} = \abs{\E\left(f\left(\frac{1}{n}\sum\limits_{i=1}^n
+\Id_{[0,p]}(U_i)\right)\right)- f(p) } \\ &=
+\abs{\E\left(f\left(\frac{1}{n}\sum\limits_{i=1}^n
+\Id_{[0,p]}(U_i)\right)- f(p)\right)}
+\le
+\E\abs{f\left(\frac{1}{n}\sum\limits_{i=1}^n
+\Id_{[0,p]}(U_i)\right)- f(p)}
+\end{align*}
+Falls nun $\abs{\frac{1}{n}\sum\limits_{i=0}^n
+\Id_{[0,p]}(U_i)-p}<\delta$, ist der Erwartungswert $<\ep$, andernfalls
+schätzen wir grob durch die Dreiecksungleichung ab,
+\begin{align*}
+&\le \E\abs{\ep+2\norm{f}_\infty\cdot
+\Id_{\left[\abs{\frac{1}{n}\sum\limits_{i=0}^n
+\Id_{[0,p]}(U_i)-p}\ge\delta\right]}}\\
+&= \ep + 2\norm{f}_\infty P\left[\abs{\frac{1}{n}\sum\limits_{i=0}^n
+\Id_{[0,p]}(U_i)-p}\ge\delta\right]
+\le \ep + 2\norm{f}_\infty \frac{\V\left(\Id_{[0,p]}(U_1) \right)}{n\delta^2}\\
+&= \ep  + 2\norm{f}_\infty \frac{p(1-p)}{n\delta^2}
+\le \ep  + 2\norm{f}_\infty \frac{1}{n\delta^2}
+%P\left[\abs{\frac{1}{n}\sum\limits_{i=0}^n \Id_{[0,p]}(U_i)-p}\ge\delta\right]
+\end{align*}
+Somit $f_n\unito f$ gleichmäßig auf $[0,1]$.
+
+Bernstein-Polynome haben sehr angenehme Eigenschaften. Ist beispielsweise $f$
+monoton, so ist auch $f_n$ monoton. Ist $f$ konvex, so ist auch $f_n$ konvex.
+\bsphere
+\end{bsp}

@@ -1,0 +1,764 @@
+\chapter{Unabhängigkeit}
+\label{chap:5}
+
+Es ist eine zentrale Fragestellung der Wahrscheinlichkeitstheorie, inwiefern
+sich zufällige Experimente gegenseitig beeinflussen. In \ref{chap:1.d}
+haben wir bereits die Bedingte Wahrscheinlichkeit definiert und festgestellt,
+dass sich Zufallsexperimente tatsächlich beeinflussen können und damit die
+Wahrscheinlichkeit für das Eintreten eines Ereignises vom Eintreten eines
+vorangegangen Ereignisses abhängen kann.
+
+In diesem Kapitel wollen wir die Eigenschaften von unabhängigen Ereignissen und
+insbesondere unabhängigen Zufallsvariablen studieren. Solche Zufallsvariablen
+haben viele angenehme Eigenschaften und lassen sich besonders ``leicht''
+handhaben ---
+Die wirklich interessanten Experimente sind jedoch gerade
+\textit{nicht} unabhängig.
+
+\clearpage
+
+\section{Unabhängige Ereignisse und Zufallsvariablen}
+\label{chap:5.a}
+
+Wir betrachten einige Beispiele zum Einstieg.
+
+\begin{bsp}
+\textit{Zwei Ausspielungen eines Würfels ``ohne gegenseitige Beeinflussung''}.
+  
+Betrachte dazu einen laplaceschen W-Raum $(\Omega,\AA,P)$ mit
+$\Omega=\setd{1,\ldots,6}^2$ und $\AA=\PP(\Omega)$.
+
+Sei $A$ das Ereignis, dass im ersten Wurf eine 1 erzielt wird, $B$ das
+Ereignis, dass im zweiten Wurf eine gerade Zahl erscheint. Einfaches Abzählen
+ergibt,
+\begin{align*}
+&P(A) = \frac{6}{36} = \frac{1}{6},\\
+&P(B) = \frac{18}{36} = \frac{1}{2}.
+\end{align*}
+Die Wahrscheinlichkeit, dass beide Ereignisse gleichzeitig eintreten ist,
+\begin{align*}
+P(A\cap B) = \frac{3}{36} = \frac{1}{12} = \frac{1}{6}\cdot\frac{1}{2} =
+P(A)\cdot P(B).
+\end{align*}
+Eine solche Situation ($P(A\cap B)=P(A)\cdot P(B)$) ist typisch bei Ereignissen,
+bei denen es physikalisch keine gegenseite Beeinflussung gibt.\bsphere
+\end{bsp}
+
+
+Wir werden den Fall, dass die Wahrscheinlichkeit des gemeinsamen Eintretens mit
+dem Produkt der einzelnen Wahrscheinlichkeiten übereinstimmt als Grundlage für
+die Definition der stochastischen Unabhängigkeit verwenden. 
+Es ist wichtig, zwischen ``stochastisch unabhängig'' und ``physikalisch
+unabhängig'' zu unterscheiden, denn im Allgemeinen lassen sich aus der
+stochastischen Unabhänigkeit keine Rückschlüsse auf die physikalische machen.
+
+Sei $(\Omega,\AA,P)$ ein W-Raum, $A$ und $B\in\AA$ mit $P(B)>0$, dann gilt
+\begin{align*}
+P(A\cap B) = P(A\mid B)P(B).
+\end{align*}
+Falls $A$ von $B$ ``unabhängig'' ist, muss gelten $P(A\mid B)=P(A)$ und damit
+\begin{align*}
+P(A\cap B) = P(A)P(B).
+\end{align*} 
+
+\begin{defn}
+\label{defn:5.1}
+Sei $(\Omega,\AA, P)$ ein W-Raum. Eine Familie $\setdef{A_{i}}
+{i \in I}$ von Ereignissen $A_{i} \in \AA$ heißt \emph{unabhängig}
+(ausführlich: stochastisch unabhängig bzgl. $P$), falls für jede nichtleere
+endliche Menge $K\subset I$ gilt
+\begin{align*}
+P\left(\bigcap_{k\in K }A_{k}\right)
+  = \prod\limits_{k\in K}P(A_{k}).\fishhere
+\end{align*}
+\end{defn}
+
+In dieser Definition werden keine Anforderungen an die Indexmenge $I$ gemacht,
+unendliche (z.B. überabzählbare) Indexmengen sind also durchaus zugelassen.
+
+Im Folgenden sei mit ``unabhängig'' stets stochastisch unabhängig gemeint. Auf
+logische oder physikalische Unabhängigkeit lassen sich aus der stochastischen
+Unabhängigkeit im Allgemeinen keine Rückschlüsse machen.
+
+\begin{defn}
+\label{defn:5.2}
+Sei $(\Omega,  \AA,P)$ ein W-Raum. Eine Familie $\setdef{X_{i}}
+{i\in I}$ von $(\Omega_{i}, \AA_{i})$ - Zufallsvariablen auf $(\Omega, \AA, P)$
+heißt \emph{unabhängig}, wenn gilt: Für jede nichtleere endliche Indexmenge
+$\setd{i_{1},\ldots, i_{n}}\subset I$ und jede Wahl von Mengen
+$A_{i_{\nu}}\in \AA_{i_{\nu}}$ $(\nu = 1,\ldots,n)$ ist
+\begin{align*}
+P\left[ X_{i_{1}} \in A_{i_{1}},\ldots,X_{i_{n}} \in A_{i_{n}}\right] =
+\prod\limits_{\nu =1}^ {n} P\big[X_{i_{\nu}} \in A_{i_{\nu}}\big].
+\end{align*}
+Sprechweise: Unabhängigkeit der Zufallsvariablen statt Unabhängigkeit der Familie der
+Zufallsvariablen.\fishhere
+\end{defn}
+
+Für die Unabhängigkeit von Zufallsvariablen ist es somit nicht notwendig
+explizit zu fordern, dass alle Zufallsvariablen den selben Wertebereich
+teilen. Die Voraussetzung, dass alle auf dem selben W-Raum
+$(\Omega,\AA,P)$ definiert sind, lässt sich jedoch nicht abschwächen.
+
+\begin{lem}
+\label{lem:5.1}
+Eine Familie von Ereignissen ist genau dann unabhängig,
+wenn jede endliche Teilfamilie unabhängig ist. Entsprechendes gilt für
+Zufallsvariablen.\fishhere
+\end{lem}
+\begin{proof}
+Die Aussage folgt direkt aus den Definitionen \ref{defn:5.1} und
+\ref{defn:5.2}.\qedhere
+\end{proof}
+
+\begin{bem}[Bemerkung zu Definition \ref{defn:5.1} bzw. Definition
+\ref{defn:5.2}.]
+\label{bem:5.1}
+Die paarweise Unabhängigkeit impliziert im Allgemeinen
+\textit{nicht} die Unabhängigkeit.\maphere
+\end{bem}
+\begin{proof}[Beweis durch Gegenbeispiel.]
+Betrachte zwei Ausspielungen eines echten Würfels ohne gegenseitige
+Beeinflussung. Dieses Experiment können wir durch einen Laplaceschen W-Raum
+$(\Omega,\AA,P)$ mit $\abs{\Omega}=36$ modellieren.
+
+Sei $A_i$ das Ereignis, dass im $i$-ten Wurf eine ungerade Zahl auftritt
+$P(A_i)=\frac{1}{2}$ und $B$ das Ereignis, dass die Summe der Augenzahlen
+ungerade ist $P(B)=\frac{1}{2}$.
+\begin{align*}
+P(A_1\cap A_2) = \frac{9}{36} = \frac{1}{4},\quad
+P(A_1\cap B) = \frac{9}{36} = \frac{1}{4},\quad
+P(A_2\cap B) = \frac{9}{36} = \frac{1}{4},
+\end{align*}
+somit sind die Ereignisse paarweise unabhängig aber
+\begin{align*}
+P(A_1\cap A_2 \cap B) = P(\varnothing) = 0 \neq
+\frac{1}{2}\frac{1}{2}\frac{1}{2} = \frac{1}{8}.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{bem}
+\label{bem:5.2}
+Sei $(\Omega, \AA,P)$ ein W-Raum und  $A_{i}\in {\cal
+A}$, $i\in I$ Ereignisse, mit (reellen) Zufallsvariablen und
+Indikatorfunktionen $\Id_{A_{i}}$ auf $(\Omega, \AA, P)$.
+\begin{align*}
+\setdef{ A_{i} }{ i\in I } \mbox{ unabhängig } \Leftrightarrow \setdef{\Id
+_{A_{i}}}{ i\in I } \mbox{ unabhängig }.\maphere
+\end{align*}
+\end{bem}
+
+\subsection{Unabhängige Zufallsvariablen}
+
+\begin{prop}
+\label{prop:5.1}
+Gegeben seien $(\Omega_{i}, \AA_{i})$ - Zufallsvariablen $X_{i} $ auf
+einem W-Raum $(\Omega, \AA, P)$ und $g_{i}:(\Omega _{i}, {\cal
+A}_{i}) \to (\Omega'_{i},\AA'_{i})$, $ i\in I$ Abbildungen. Dann gilt:
+\begin{align*}
+\setdef{X_{i}}{i\in I} \mbox{ unabhängig } \Rightarrow \setdef{g_{i}\circ
+X_{i}}{i\in I} \mbox{ unabhängig }\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Aufgrund von Lemma \ref{lem:5.1} genügt es den Beweis auf einer endlichen
+Indexmenge $I=\setd{1,\ldots,n}$ zu führen.
+\begin{align*}
+&P\left[g_1\circ X_1 \in A_1',\ldots,g_n\circ X_n\in A_n'\right]
+=
+P\left[ \forall {i\in\setd{1,\ldots,n}} : X_i\in g_i^{-1}(A_i') \right]\\
+&\quad
+= \prod\limits_{i=1,\ldots,n} P\left[X_i\in g_i^{-1}(A_i')\right] = 
+\prod\limits_{i=1,\ldots,n} P\left[g_i\circ X_i \in A_i'\right],
+\end{align*}
+da die $X_i$ nach Voraussetzung unabhängig sind.\qedhere
+\end{proof}
+
+Sind also die Zufallsvariablen $\setd{X_i}$ unabhängig, so sind es
+insbesondere auch $\setd{X_i^2}$, $\setd{\sqrt{X_i}}$, \ldots
+
+\begin{bsp}
+Betrachte erneut zwei Ausspielungen eines echten Würfels ohne gegenseitige
+Beeinflussung mit W-Raum $(\Omega,\AA,P)$.
+
+Sei $X_{1},X_2$ die Augenzahl im 1. bzw. 2. Wurf. Da $\setd{X_1,X_2}$
+unabhängig, ist auch $\setd{X_1^2,X_2^3}$ unabhängig.\bsphere
+\end{bsp}
+
+\begin{prop}
+\label{prop:5.2}
+Sei eine unabhängige Familie $\setdef{X_{i}}{i\in I}$ reeller
+Zufallsvariablen auf einem W-Raum $(\Omega, \AA, P)$ und eine Zerlegung
+$I=\sum_{j\in J} I_{j} $ mit $|I_{j}| < \infty$ gegeben.
+Das $|I_{j}|$-Tupel $\setdef{X_{k}}{k\in I_{j}}$ sei mit $Y_{j}$ bezeichnet für
+$j\in J$.
+\begin{propenum}
+\item
+Die Familie $\setdef{Y_{j}}{j\in J}$ ist unabhängig.
+\item
+Sind Abbildungen $g_{j} :(\R^{\abs{I_{j}}}, {\BB}_{\abs{
+I_{j}}} )\to (\R, {\BB})$, $ j\in J$, gegeben,
+so ist die Familie $\setdef{g_{j} \circ Y_{j}}{j\in J}$ unabhängig.\fishhere
+\end{propenum}
+\end{prop}
+\begin{proof}
+\begin{proofenum}
+  \item \textit{Beweisidee}. Betrachte den Spezialfall $Y_1=X_1$,
+  $Y_2=(X_2,X_3)$. Nach Annahme gilt, dass die $X_i$ unabhängige reelle
+  Zufallsvariablen sind. Zu zeigen ist nun für $B_1\in\BB, B_2\in\BB_2$
+\begin{align*}
+P\left[Y_1 \in B_1,\ Y_2\in B_2\right] = P[Y_1\in B_1]\cdot P[Y_2\in B_2].
+\end{align*}
+Dabei genügt es nach Satz \ref{prop:1.4}, die Aussage auf Intervallen
+$I_1\in\BB_1$ bzw. Rechtecken $I_2\times I_3\in\BB_2$ nachzuweisen. Also
+\begin{align*}
+& P\left[X_1\in I_1, (X_2,X_3)\in I_2\times I_3\right]
+= P\left[X_1\in I_1, X_2\in I_2, X_3\in I_3 \right]\\
+&\quad= P\left[X_1\in I_1\right]P\left[X_2\in I_2, X_3\in I_3 \right]\\
+&\quad= P\left[X_1\in I_1\right]P\left[(X_2,X_3)\in I_2\times I_3\right].
+\end{align*}
+\item Anwendung von Satz \ref{prop:5.1}.\qedhere
+\end{proofenum}
+\end{proof}
+ 
+\begin{bem}
+\label{bem:5.3}
+Satz \ref{prop:5.2} lässt sich auf $(\Omega_{i}, \AA_{i})$ - Zufallsvariablen
+und Abbildungen $ g_{j}: \bigotimes_{i\in I_{j}}(\Omega_{i},
+\AA_{i})\to (\Omega'_{j}, \AA'_{j})$ verallgemeinern.\maphere
+\end{bem}
+
+\begin{prop}
+\label{prop:5.3}
+Seien $X_{i}$ $(i=1,\ldots,n)$ reelle Zufallsvariablen auf einem W-Raum
+$(\Omega, \AA,P)$ mit Verteilungsfunktionen $F_{i}$. Der Zufallsvektor
+$X\defl (X_{1},\ldots ,X_{n})$ habe die $n$-dimensionale Verteilungsfunktion\ F.\\[-7mm]
+\begin{propenum}
+\item
+$\setd{X_{1},\ldots ,X_{n}}$ ist genau dann unabhängig, wenn gilt
+\begin{align*}
+\forall {(x_{1},\ldots, x_{n})\in \R^ {n}} : F(x_{1},\ldots, x_{n}) =
+\prod\limits^ {n}_{i=1} F_{i}(x_{i})\tag{*}
+\end{align*}
+\item
+Existieren  zu $F_{i}$ $(i=1,\ldots,n)$ bzw. $F$, Dichten $f_{i}$ bzw.\ $f$,
+dann gilt
+\begin{align*}
+\text{(*)}
+\Leftrightarrow 
+f(x_{1},\ldots,x_{n})=\prod\limits_{i=1}^ {n} f_{i}(x_{i})
+\text{ für $\lambda$-fast alle }(x_{1},\ldots, x_{n}) \in
+\R^n.\fishhere
+\end{align*}
+\end{propenum}
+\end{prop}
+\begin{proof}
+\begin{proofenum}
+  \item Seien $\setd{X_1,\ldots,X_n}$ unabhängig, so ist 
+  Definition \ref{defn:5.2} äquivalent zu
+\begin{align*}
+&\Leftrightarrow \forall B_1,\ldots,B_n\in\BB\quad:  &&P\left[X_1\in
+B_1,\ldots,X_n\in B_n\right]\\ &&&\quad = P[X_1\in B_1]\cdots P[X_n\in B_n],\\
+&\Leftrightarrow
+\forall x_1,\ldots,x_n\in \R\quad: && P\left[X_1\le x_1,\ldots,X_n\le x_n\right]
+\\ &&&\quad = P[X_1\le x_1]\cdots P[X_n\le x_n]\\
+&\Leftrightarrow
+\forall x_1,\ldots,x_n\in \R\quad: && F(x_1,\ldots,x_n) = F_1(x_1)\ldots
+F_n(x_n).\qedhere
+\end{align*}
+\end{proofenum}
+\end{proof}
+
+Unabhänige Zufallsvariablen haben somit die angenehme Eigenschaft, dass die
+\emph{gemeinsame Dichte} (die Dichte der gemeinsamen Verteilung) dem Produkt
+der \emph{Randverteilungsdichten} (der Dichten der Randverteilungen) entspricht.
+Insbesondere ist für unabhänige Zufallsvariablen die gemeinsame Verteilung
+\textit{eindeutig} durch die Randverteilungen bestimmt.
+
+\begin{bsp}
+Seien $X,Y$ unabhängig, wobei $X$ $\exp(\lambda)$ und $Y$ $\exp(\tau)$
+verteilt, so besitzen sie die Dichten
+\begin{align*}
+f_X(x) = \lambda \e^{-\lambda x},\qquad
+f_Y(y) = \tau \e^{-\tau x}.
+\end{align*}
+Die gemeinsame Dichte ist nach Satz \ref{prop:5.3} gegeben durch
+\begin{align*}
+f(x,y) = \lambda\tau \e^{-\lambda x}\e^{-\tau y}.
+\end{align*}
+Betrachten wir andererseits die gemeinsame Verteilung, so gilt
+\begin{align*}
+F(s,t) = P[X\le s, Y\le t] \overset{!}{=} P[X\le s]P[Y\le t]
+\end{align*}
+da $X$ und $Y$ unabhängig. Weiterhin ist
+\begin{align*}
+P[X\le s]P[Y\le t] &= F_X(s)F_Y(t) = 
+\left(\int_0^s \lambda \e^{-\lambda x}\dx\right)
+\left(\int_0^t \tau \e^{-\tau y}\dy\right)\\
+&= 
+\int_0^s \int_0^t \underbrace{ \lambda\tau \e^{-\lambda x}\e^{-\tau
+y}}_{f(x,y)}\dx\dy.\bsphere
+\end{align*}
+\end{bsp}
+
+\begin{prop}
+\label{prop:5.4}
+Seien $X_{1},\ldots, X_{n}$ unabhängige reelle Zufallsvariablen auf einem
+W-Raum $(\Omega, \AA,P)$ mit endlichen Erwartungswerten. Dann existiert
+\begin{align*}
+\E(X_{1}\cdot \ldots\cdot X_{n})= \E X_{1} \cdot \ldots \cdot \E X_{n}.
+\end{align*}
+--- Entsprechendes gilt für komplexe Zufallsvariablen, wobei wir $\C$ mit dem
+$\R^2$ identifizieren und komplexe Zufallsvariablen als $X_{k}:(\Omega,
+\AA)\to (\R^ {2}, {\cal B}_{2})$ mit
+\begin{align*}
+\E X_{k}\defl \E \mbox{ Re } X_{k}+i\E\mbox{ Im } X_{k} \quad
+(k=1,\ldots,n).\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Wir beschränken uns zunächst auf reelle Zufallsvariablen. Mit Satz
+$\ref{prop:5.2}$ ist eine Reduktion auf den Fall $n=2$ möglich. Zu zeigen ist
+also, dass $\E (X_1 X_2) = (\E X_1)(\E X_2)$.
+
+Ohne Einschränkung sind $X_1,X_2\ge 0$, ansonsten betrachten wir eine Zerlegung
+in $X_1=X_{1,+}-X_{1,-}$. Mit Hilfe des des Satzes von der monotonen
+Konvergenz können wir uns auf einfache Funktionen der Form
+\begin{align*}
+x\mapsto  \sum\limits_{j=1}^n \lambda_j \Id_{A_j}(x)
+\end{align*}
+zurückziehen. Wir beweisen die Aussage nun für Indikatorfunktionen $X_1 =
+\Id_{A_1}$, $X_2=\Id_{A_2}$ mit $A_1,A_2\in\AA$.
+\begin{align*}
+\E (X_1 X_2) &= \E(\Id_{A_1}\Id_{A_2}) = \E (\Id_{A_1\cap A_2}) = P(A_1\cap
+A_2) = P(\Id_{A_1}=1, \Id_{A_2}=1)\\ & = P(\Id_{A_1}=1)P(\Id_{A_2}=1)
+= P(A_1)P(A_2)  = (\E \Id_{A_1})(\E \Id_{A_2}) \\ &= (\E X_1)(\E X_2).\qedhere  
+\end{align*}
+\end{proof}
+
+Der Erwartungswert ist somit linear und vertauscht mit der Multiplikation.
+
+\begin{prop}[Satz von Bienaymé]
+\label{prop:5.5}
+Seien $X_{1}, \ldots, X_{n}$ paarweise unabhängige reelle Zufallsvariablen mit
+endlichen Erwartungswerten. Dann gilt
+\begin{align*}
+\V\left( \sum^ {n}_{j=1}X_{j}\right )=\sum^ {n}_{j=1} \V(X_{j})\, .\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Addieren wir zum Erwartungswert eine Konstante, ändert sich die Varianz nicht,
+wir können also ohne Einschränkung annehmen $\E X_j=0$ ($j=1,\ldots,n$).
+\begin{align*}
+\V\left(\sum\limits_{j=1}^n X_j\right)
+&= \E\left(\sum_{j=1}^n X_j\right)^2
+= \sum\limits_{i=1}^n \E X_i^2 + 2\sum\limits_{i<j} \E(X_iX_j)\\
+&=\sum\limits_{i=1}^n \E X_i^2 + 2\underbrace{\sum\limits_{i<j}
+\E(X_i)\E(X_j)}_{=0} = \sum\limits_{i=1}^n \E X_i^2
+= \sum\limits_{i=1}^n \V X_i.\qedhere
+\end{align*}
+\end{proof}
+
+Für unabhängige Zufallsvariablen vertauscht die Varianz mit \textit{endlichen}
+Summen, wobei für reelle Konstanten $a,b\in\R$ und eine Zufallsvariable $X$ gilt
+\begin{align*}
+\V(aX +b) = a^2\V(X).
+\end{align*}
+Dies ist kein Widerspruch, denn setzen wir $Y\equiv b$, so ist $Y$
+Zufallsvariable und $\E Y = b$. Somit ist $\V Y = \E Y^2 - (\E Y)^2 = b^2 - b^2
+= 0$, also
+\begin{align*}
+\V(aX +b) = \V(aX+Y) = \V(aX)+\V(Y) = a^2\V(X).
+\end{align*}
+
+\begin{bem}
+\label{bem:5.4}
+In Satz \ref{prop:5.5} genügt statt der Unabhängigkeit von
+$\setd{X_{1},\ldots,X_{n}}$ die sog. \emph{paarweise Unkorreliertheit} zu
+fordern, d.h.
+\begin{align*}
+\forall{j\neq k} : \E((X_{j}-\E X_{j}) (X_{k}-\E X _{k}))=0.
+\end{align*}
+Dies ist tatsächlich eine schwächere Voraussetzung, denn sind $X$ und $Y$
+unabhängig, so gilt
+\begin{align*}
+\E((X-\E X)(Y-\E Y)) &= \E(X\cdot Y - (\E X)Y- (\E Y)X + (\E X)(\E Y))\\
+&= \E(X\cdot Y) - (\E X)(\E Y) - (\E Y)(\E X) + (\E X)(\E Y))\\
+&= \E(X)(\E Y) - (\E X)(\E Y) = 0.\maphere
+\end{align*}
+\end{bem}
+
+\subsection{Faltungen}
+
+Sind $X, Y$ zwei unabhängige reelle Zufallsvariablen auf einem
+W-Raum $(\Omega, \AA, P)$ mit Verteilungen $P_{X}, P_{Y}$, so ist nach
+Satz \ref{prop:5.3} und Satz \ref{prop:2.1} die Verteilung $P_{(X,Y)}$ des
+$2$-dimensionalen Zufallsvektors durch $P_X$ und $P_Y$ eindeutig festgelegt.
+
+Setzen wir $g : (x,y)\mapsto x+y$, so ist $g$ messbar und damit auch
+die Verteilung $P_{X+Y}=P_{g\circ(X,Y)}$ von $X+Y$ eindeutig durch $P_X$ und
+$P_Y$ festgelegt.
+
+\textit{Wie ermittelt man nun diese Verteilung?} 
+
+\begin{defn}
+\label{defn:5.3}
+Sind $X, Y$ zwei unabhängige reelle Zufallsvariablen auf einem
+W-Raum $(\Omega, \AA, P)$ mit Verteilungen $P_{X}, P_{Y}$, so wird die
+Verteilung $P_{X+Y} \defr P_{X} \ast P_{Y}$ der Zufallsvariable $X+Y$ als
+\emph{Faltung} von $P_{X}$ und $P_{Y}$ bezeichnet.\fishhere
+\end{defn}
+
+\begin{bem}
+\label{bem:5.5}
+Die Faltungsoperation ist kommutativ und assoziativ.\maphere
+\end{bem}
+
+\begin{prop}
+\label{prop:5.6}
+Seien $X,Y$ zwei unabhängige reelle Zufallsvariablen.\\[-7mm]
+\begin{propenum}
+\item
+Besitzen $X$ und $Y$ Dichten $f$ bzw. $g$, so besitzt $X+Y$ eine [als Faltung
+von $f$ und $g$ bezeichnete] Dichte $h$ mit
+\begin{align*}
+h(t) =\int_{\R}f(t-y)g(y)\dy =
+\int_{\R}g(t-x)f(x) \dx,\quad t \in \R.
+\end{align*}
+\item
+Besitzen $X$ und $Y$ Zähldichten $(p_{k})_{k\in \mathbb{N}_{0}}$ bzw.
+$(q_{k})_{k\in \mathbb{N}_{0}}$, so besitzt $X+Y$ eine [als Faltung von
+$(p_{k})$ und $(q_{k})$ bezeichnete] Zähldichte $(r_{k})_{k\in \mathbb{N}_{0}}$
+mit
+\begin{align*}
+r_{k}=\sum_{j=0}^ {k} p_{k-j}q_{j}=\sum\limits^ {k}_{i=0}q_{k-i}p_{i}\, , \;
+k\in \mathbb{N}_{0}\, .\fishhere
+\end{align*}
+\end{propenum}
+\end{prop}
+
+%TODO: Faltungsbild
+Den Beweis verschieben wir auf das nächste Kapitel, denn mit Hilfe der
+charakteristischen Funktionen werden wir über die für einen einfachen Beweis
+nötigen Mittel verfügen.
+
+
+\begin{bsp}
+Sei $X_1$ eine $b(n_1,p)$-verteilte und $X_2$ eine $b(n_2,p)$-verteilte
+Zufallsvariable. Sind $X_1$ und $X_2$ unabhängig, dann ist $X_1+X_2$ eine
+$b(n_1+n_2,p)$-verteilte Zufallsvariable.
+
+\begin{proof}[Einfacher Beweis.]
+Betrachte $n_1+n_2$ Bernoulli-Versuche mit jeweiliger Erfolgswahrscheinlichkeit
+$p$. Sei nun $Y_1$ die Zufallsvariable, die die
+Anzahl der Erfolge der ersten $n_1$ Versuche angibt und $Y_2$ die
+Zufallsvariable, die die Anzahl der Erfolge in den letzten $n_2$ Versuchen
+angibt. Somit sind $Y_1$ und $Y_2$ unabhängig und $Y_1+Y_2$ gibt die Anzahl der
+Erfolge in $n_1+n_2$ Bernoulli-Versuchen an.
+
+Scharfes Hinsehen liefert $P_{X_1}=P_{Y_1}$ und $P_{X_2}=P_{Y_2}$, dann gilt
+auch
+\begin{align*}
+P_{X_1+X_2}=P_{Y_1+Y_2}=b(n_1+n_2,p).\qedhere
+\end{align*}
+Somit folgt für unabhängige Zufallsvariablen $X_1,\ldots,X_n$, die
+$b(1,p)$-verteilt sind, dass
+$X_1+\ldots+X_n$ eine $b(n,p)$-verteilte Zufallsvariable ist.\bsphere
+\end{proof}
+\end{bsp}
+
+\begin{bsp}
+Wir können jetzt einen einfachen Beweis dafür geben, dass eine
+$b(n,p)$-verteilte Zufallsvariable die Varianz $np(1-p)$ besitzt. Ohne
+Einschränkung lässt sich diese Zufallsvariable als Summe von $n$ unabhängigen
+$b(1,p)$-verteilten Zufallsvariablen $X_1,\ldots,X_n$ darstellen,
+\begin{align*}
+\V(X_1+\ldots+X_n) \overset{\ref{prop:5.5}}{=} n\V(X_1) = np(1-p),
+\end{align*}
+da $\V(X_1) = \E X_1^2 - (\E X_1)^2 = 0^2\cdot (1-p) + 1^2\cdot p - p^2 =
+p(1-p)$.\bsphere
+\end{bsp}
+
+Die Unabhängigkeit der Zufallsvariablen ist für die Aussage des Satzes
+\ref{prop:5.6} notwendig, denn er basiert darauf, dass für unabhängige
+Zufallsvariablen die gemeinsame Dichte das Produkt der Randverteilungsdichten ist. Für
+allgemeine (nicht unabhängige) Zufallsvariablen wird diese Aussage und damit der
+Satz falsch.
+
+
+\begin{bem}[Bemerkung (Satz von Andersen und Jessen).]
+\label{bem:5.6}
+Gegeben seien Messräume $(\Omega_{i}, \AA_{i})$ und
+W-Maße $Q_{i}$ auf $\AA_{i}$, $i\in I$. Dann existiert ein W-Raum $(\Omega,
+{\cal A }, P)$ und $(\Omega_{i}, \AA_{i})$-Zufallsvariablen $X_{i}$ auf $(\Omega,
+\AA, P)$, $i \in I$, mit Unabhängigkeit von $\setdef{X_{i}}{i \in I}$ und
+$P_{X_{i}}=Q_{i}$.\maphere
+\end{bem}
+
+\section{Null-Eins-Gesetz}
+
+In Kapitel \ref{chap:1.b} haben wir das 1. Lemma von Borel und Cantelli
+bewiesen, welches für einen W-Raum $(\Omega,\AA,P)$ und $A_n\in\AA$ die Aussage
+macht
+\begin{align*}
+\sum\limits_{n=1}^n P(A_n)<\infty\Rightarrow P(\limsup A_n) = 0.
+\end{align*}
+
+Das 2. Lemma von Borel und Cantelli ist für unabhängige Ereignisse 
+das Gegenstück zu dieser Aussage.
+
+\begin{prop}[2.\ Lemma von Borel und Cantelli]
+\label{prop:5.7}
+Sei $(\Omega, \AA,P)$ ein W-Raum.
+Die Familie \\$\setdef{A_{n}}{n \in \N}$ von Ereignissen $(\in \AA)$
+sei unabhängig. Dann gilt:
+\begin{align*}
+\sum\limits_{n=1}^ {\infty} P(A_{n}) = \infty
+\Rightarrow
+P(\limsup A_{n})= 1.
+\end{align*}
+In diesem Fall tritt $A_n$ P-f.s. unendlich oft auf.\fishhere
+\end{prop}
+\begin{proof}
+Sei $B\defl\limsup_n A_n \defl \bigcap_{n=1}^\infty \bigcup_{k\ge n} A_k$. Zu zeigen
+ist nun, dass $P(B) = 1$, d.h. $P(B^c) = 0$. Mit den De-Morganschen Regeln folgt,
+\begin{align*}
+P(B^c) = P\left(\bigcup_{n=1}^\infty\bigcap_{k\ge n} A_k^c \right).
+\end{align*}
+Aufgrund der $\sigma$-Additivität genügt es nun zu zeigen, dass die Mengen
+$\bigcap_{k\ge n} A_k^c$ das $P$-Maß Null haben.
+
+Sei also $n\in\N$ fest. 
+\begin{align*}
+\bigcap_{k=n}^N A_k^c \downarrow \bigcap_{k\ge n} A_k^c,\qquad N\to\infty.
+\end{align*}
+Somit genügt es wegen der Stetigkeit der W-Maße von oben zu zeigen, dass
+\begin{align*}
+P\left(\bigcap_{k=n}^N A_k^c\right) \downarrow 0.
+\end{align*}
+Aufgrund der Unabhängigkeit der $A_1,A_2,\ldots$ gilt
+\begin{align*}
+P\left(\bigcap_{k=n}^N A_k^c\right) 
+= \prod\limits_{k=n}^N P\left(A_k^c\right)
+= \prod\limits_{k=n}^N (1-P\left(A_k\right)).
+\end{align*}
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-1.7,-1.5)(2.7,3.2)
+
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-1.5,-1.3)(2.5,3)[\color{gdarkgray}$x$,-90][,0]
+
+\psplot[linewidth=1.2pt,%
+	     linecolor=darkblue,%
+	     algebraic=true]%
+	     {-1.5}{2}{%
+1-x %
+}
+\psplot[linewidth=1.2pt,%
+	     linecolor=purple,%
+	     algebraic=true]%
+	     {-1}{2.2}{%
+(2.71828)^(-x) %
+}
+
+\rput(2,0.6){\color{purple}$\e^{-x}$}
+\rput(1,-0.8){\color{darkblue}$1-x$}
+\end{pspicture}
+\caption{$\e^{-x}$ mit Tangente $1-x$ in $(0,1)$.}
+\end{figure}
+
+Eine geometrische Überlegung zeigt $1-x\le \e^{-x}$ (siehe Skizze), also gilt
+auch $1-P\left(A_k\right) \le \e^{-P(A_k)}$ und somit
+\begin{align*}
+P\left(\bigcap_{k=n}^N A_k^c\right)  \le \e^{-\sum\limits_{k=n}^N P(A_k)}  \to
+0,\qquad N\to\infty.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{corn}
+Sind die Ereignisse $A_1,A_2,\ldots$ unabhängig, gilt
+\begin{align*}
+P(\limsup A_n) = 0\text{ oder }1,
+\end{align*}
+abhängig davon ob
+\begin{align*}
+\sum\limits_{n\ge 1} P(A_n) < \infty\text{ oder }
+\sum\limits_{n\ge 1} P(A_n) = \infty.\fishhere 
+\end{align*}
+\end{corn}
+
+
+Die Voraussetzung der Unabhängigkeit der $(A_n)$ im 2. Lemma von Borel-Cantelli
+ist notwendig, damit die Aussage gilt, wie folgendes Beispiel zeigt.
+\begin{bsp}
+Sei $A\in\AA$ mit $P(A) =\frac{1}{2}$ und $\forall n\in\N : A_n = A$. Dann gilt
+$\limsup A_n = A$ und $\sum_{n\ge 1} P(A_n) = \infty$. Dennoch ist
+\begin{align*}
+P\left(\limsup A_N\right) = P(A) = \frac{1}{2}.\bsphere
+\end{align*}
+\end{bsp}
+\begin{bsp}
+Betrachte eine unabhängige Folge von Versuchen $A_n$ mit
+Misserfolgswahrscheinlichkeit $\frac{1}{n}$. Da
+\begin{align*}
+\sum_{n\ge 1}P\left(A_n\right) = \infty,
+\end{align*}
+folgt, dass die Wahrscheinlichkeit für unendlich viele Misserfolge gleich $1$
+ist (obwohl $P(A_n)\to 0$).\bsphere
+\end{bsp}
+
+\begin{defn}
+\label{defn:5.4}
+Sei $(\Omega, \AA)$ ein Messraum und $\AA_{n} \subset \AA$  $\sigma$-Algebren
+für $n\in \N$. Mit
+\begin{align*}
+\TT_{n} \defl \FF\left({\bigcup^
+{\infty}_{k=n}} \AA_{k}\right)
+\end{align*}
+bezeichnen wir die von $\AA_{n}, {\AA}_{n+1}, \ldots $ erzeugte
+$\sigma$-Algebra.
+\begin{align*}
+\TT_{\infty}\defl {\bigcap^ {\infty}_{n=1}} {\TT}_{n}
+\end{align*}
+heißt die $\sigma$-Algebra der \emph{terminalen Ereignisse (tail events)}
+der Folge $(\AA_{n})$.\fishhere
+\end{defn}
+
+\begin{bsp}
+Seien $X_{n}: (\Omega, \AA)\to (\R, {\BB})$ und
+$\AA_{n} \defl {\FF}(X_{n}) \defl X^ {-1}_{n}({\BB})$ für $n\in\N$.
+$\TT_n$ ist somit die von den Ereignissen, die lediglich von $X_n$,
+$X_{n+1}$, \ldots\ abhängen, erzeugte $\sigma$-Algebra.
+\begin{bspenum}
+\item
+$\left[(X_{n}) \text{ konvergiert}\right]\in {\TT}_{\infty}$, denn es gilt
+\begin{align*}
+\left[(X_{n}) \text{ konvergiert}\right] &=
+\left[\lim_{n\to\infty} X_{n} = X\in \R\right]
+=
+\left[\lim_{n\to\infty} \abs{X_{n} - X} = 0 \right]\\
+&=
+\left[\forall \ep > 0\exists N\in\N \forall n\ge N : \abs{X_{n} - X} <\ep
+\right]
+\end{align*}
+$\Q$ liegt dicht in $\R$, wir können uns also für die Wahl von $\ep$ auf $\Q$
+zurückziehen,
+\begin{align*}
+\left[\forall \ep\in\Q > 0\exists N\in\N \forall n\ge N : \abs{X_{n} - X}
+<\ep\right]
+\end{align*}
+da alle $\ep >1$ uninteressant sind, können wir auch schreiben
+\begin{align*}
+&\left[\forall k\in\N \exists N\in\N \forall n\ge N : \abs{X_{n} - X}
+<\frac{1}{k}\right]\\
+&= 
+\bigcap_{k\in\N}
+\left[\exists N\in\N \forall n\ge N : \abs{X_{n} - X}
+<\frac{1}{k}\right]
+\end{align*}
+und da es auf endlich viele $N$ nicht ankommt,
+\begin{align*}
+=&\bigcap_{k\in\N}\bigcup_{N\ge k}
+\left[\forall n\ge N : \abs{X_{n} - X} <\frac{1}{k}\right]\\
+=&\bigcap_{k\in\N}\underbrace{\bigcup_{N\ge k}
+\left[\sup_{n\ge N} \abs{X_{n} - X} <\frac{1}{k}\right]}_{\in
+\TT_k}.
+\end{align*}
+Also handelt es sich um ein terminales Ereignis.
+\item
+$\left[\sum_n X_{n}\text{ konvergiert}\right]\in {\TT}_{\infty}$, denn
+\begin{align*}
+\left[\sum_n X_{n}\text{ konvergiert}\right] = 
+\left[\sum_{n\ge k} X_{n}\text{ konvergiert}\right],\quad \forall k\in\N
+\end{align*}
+da es auf endlich viele nicht ankommt also $\left[\sum_{n} X_{n}\text{
+konvergiert}\right]\in T_k$ für $k\in\N$.\bsphere
+\end{bspenum}
+\end{bsp}
+\begin{bsp}
+Sei $(\Omega, {\cal A })$ ein Messraum, $A_{n} \in \AA$ Ereignisse $(n \in
+\N)$ und weiterhin\\
+$\AA_{n}\defl \setd{\emptyset, A_{n}, A_{n}^ {c},\Omega}$ $(n\in
+\N)$.
+\begin{align*}
+&\limsup\limits_{n\to \infty} A_{n} \defl \bigcap^{\infty}_{n=1}
+\bigcup^ {\infty}_{k=n}  A_{k}= \setdef{\omega \in
+\Omega}{\omega \in A_{n}\text{ für unendliche viele }n} \in {\TT}_{\infty},\\
+&\liminf\limits_{n\to \infty} A_{n} \defl \bigcup\limits^{\infty}_{n=1}
+\bigcap^ {\infty}_{k=n} A_{k} = \setdef{ \omega \in
+\Omega}{\omega \in A_{n}\text{ von einem Index an}} \in {\TT}_{\infty}.\bsphere
+\end{align*}
+\end{bsp}
+
+\begin{prop}[Null-Eins-Gesetz von Kolmogorov]
+\label{prop:5.8}
+Sei $(\Omega,\AA, P)$ ein W-Raum und $(\AA_{n})$ eine unabhängige Folge
+von $\sigma$-Algebren $\AA_{n} \subset \AA$.
+Dann gilt für jedes terminale Ereignis $A$ von $(\AA_{n})$ entweder
+$P(A)=0$ oder $P(A) = 1$.\fishhere
+\end{prop}
+
+Für den Beweis benötigen wir das folgende Resultat.
+\begin{lemn}
+Seien $\EE_1$ und $\EE_2$ \emph{schnittstabile} Mengensysteme von Ereignissen,
+d.h.
+\begin{align*}
+A,B\in \EE_{1},\EE_{2}\Rightarrow A\cap B\in \EE_{1},\EE_{2}.
+\end{align*}
+Sind $\EE_1$ und $\EE_2$ unabhängig, so sind es auch $\FF(\EE_1)$ und
+$\FF(\EE_2)$.\fishhere
+\end{lemn}
+\begin{proof}
+Den Beweis findet man z.B. in [Wengenroth].\qedhere
+\end{proof}
+
+\begin{proof}[Beweis von Satz \ref{prop:5.8}.]
+Sei also $A\in\TT_\infty$. Es genügt zu zeigen, dass $A$ von sich selbst
+unabhängig ist, d.h.
+\begin{align*}
+P(A\cap A) = P(A)P(A),
+\end{align*}
+denn dann ist $P(A)=0$ oder $1$. Betrachte dazu die Mengen
+\begin{align*}
+&\TT_{n+1}=\FF\left(\bigcup_{k\ge n+1} \AA_k\right),\\
+&\DD_n\defl\FF\left(\bigcup_{k\le n} \AA_k\right),
+\end{align*}
+und wende das vorige Lemma an, so sind $\TT_{n+1}$ und $\DD_n$ unabhängig.
+
+Weiterhin sind aus dem selben Grund $\TT_{\infty}$ und $\DD_n$ unabhängig für
+alle $n\in\N$. Daher ist auch
+\begin{align*}
+\GG =\FF\left(\bigcup_{n\in\N} \DD_n\right)
+\end{align*}
+unabhängig von $\TT_{\infty}$, wobei gerade $\GG = \TT_1 \supset \TT_{\infty}$.
+Somit ist $\TT_{\infty}$ unabhängig von jeder Teilmenge von $\TT_1$
+insbesondere von sich selbst. Somit folgt die Behauptung.\qedhere
+\end{proof}
+
+Wir betrachten nun einige Anwendungen des 0-1-Gesetzes.
+\begin{bsp}
+Sei $\setdef{A_n}{n\in\N}$ unabhängig, $\AA_n \defl \setd{\varnothing, A_n,
+A_n^c,\Omega}$, somit sind
+\begin{align*}
+\AA_1, \AA_2, \ldots
+\end{align*} 
+unabhängig. Mit dem 0-1-Gesetz gilt daher,
+\begin{align*}
+P\left(\underbrace{\limsup A_n}_{\in\TT_\infty}\right) = 0 \text{ oder } 1.
+\end{align*}
+
+Diese Aussage erhalten wir auch mit dem 1. und 2. Lemma von Borel und Cantelli.
+Insofern kann man das 0-1-Gesetz als Verallgemeinerung dieser Lemmata
+betrachten. Die Aussagen von Borel und Cantelli liefern jedoch darüber hinaus
+noch ein Kriterium, wann die Voraussetzungen des 0-1-Gesetzes erfüllt
+sind.\bsphere
+\end{bsp}
+\begin{bsp}
+Sei $\setdef{X_n}{n\in\N}$ eine Folge reeller unabhängiger Zufallsvariablen,
+dann gilt
+\begin{align*}
+&P\left[ (X_n) \text{ konvergiert} \right] = 0\text{ oder 1},\\
+&P\left[ \sum_n X_n \text{ konvergiert} \right] = 0\text{ oder 1}.\bsphere
+\end{align*}
+\end{bsp}

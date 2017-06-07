@@ -1,0 +1,1488 @@
+\chapter{Wahrscheinlichkeitsräume}
+\label{chap:1}
+
+% =============================================================
+%                                   Algebren, Inhalte und Maße
+% =============================================================
+\section{Algebren, Inhalte und Maße}
+\label{chap:1.a}
+
+Ziel dieses Abschnittes ist es, Abbildungen $\mu$ zu definieren, die einer
+Teilmenge eines Raumes $\Omega$ ein ``Maß'' zuordnen,
+\begin{align*}
+\mu: \PP(\Omega)\to\R.
+\end{align*}
+Gehen wir von $\Omega=\R$ aus und betrachten zunächst nur Intervalle als
+Teilmengen, so ist es nur natürlich diesen auch ihre Länge als ``Maß''
+zuzuordnen,
+\begin{align*}
+\mu((a,b]) = b-a.
+\end{align*}
+G. Vitali\footnote{Giuseppe Vitali (* 26. August 1875 in Ravenna; † 29. Februar
+1932 in Bologna) war ein italienischer Mathematiker.} hat jedoch bereits 1905
+gezeigt, dass es nicht möglich ist, ein solches ``Maß'' dann für alle
+Teilmengen von $\R$, d.h. auf der Potenzmenge $\PP(\R)$ zu definieren, es ist
+also notwendig sich lediglich auf eine Teilmenge von $\PP(\R)$ zurückzuziehen,
+d.h. man kann auch nur bestimmen Teilmengen von $\R$ mit einem solchen Maß
+``vermessen''.
+\clearpage
+
+In der Wahrscheinlichkeitstheorie werden üblicherweise als Definitionsbereich
+von Maßen sogenannte $\sigma$-Algebren betrachtet. 
+
+\begin{defn}
+\label{defn:1.1}
+Sei $\Omega$ eine nichtleere Menge. Ein System $\AA$ von Teilmengen von
+$\Omega$ heißt \emph{Algebra}, wenn
+\begin{defnenum}
+  \item $\varnothing\in\AA$,
+  \item $A\in \AA \Rightarrow \Omega\setminus A\in\AA$,
+  \item $A,B\in\AA \Rightarrow A\cup B\in\AA$\\
+  \qquad oder äquivalent\\
+  $A_1,\ldots,A_m\in \AA \Rightarrow \bigcup_{i=1}^m A_i \in\AA$.
+\end{defnenum}
+das System $\AA$ heißt \emph{$\sigma$-Algebra}, falls zusätzlich gilt,
+\begin{enumerate}
+  \item[3.*)] $A_n\in\AA$ für $n\in\N$ $\Rightarrow
+  \bigcup_{n=1}^\infty A_n\in\AA$.\fishhere
+\end{enumerate}
+\end{defn}
+
+Diese Definition einer Algebra ist nicht mit der aus der Vorlesung ``Algebra''
+zu verwechseln. Dennoch existieren Parallelen. Vereinigung und Schnittbildung
+könnte man als Addition und Multiplikation betrachten, das Komplement als
+Inverses und die leere Menge als Identität.
+
+\begin{bem}
+Ist $\AA$ $\sigma$-Algebra, so ist $\AA$ auch auch eine Algebra.\maphere
+\end{bem}
+
+Wie wir noch sehen werden, besitzen Algebren  zahlreiche angenehme
+Eigenschaften. Durch die Forderung dass Komplemente und Vereinigungen
+enthalten sind, ergibt sich beispielsweise automatisch, dass auch Schnitte und
+Differenzen enthalten sind.
+
+\begin{lem}
+\label{lem:1.1}
+\begin{propenum}
+  \item Sei $\AA$ eine Algebra, so gilt
+\begin{align*}
+&A_1,\ldots,A_m\in\AA \Rightarrow \bigcap_{n=1}^m A_n\in\AA.\\
+&A,B\in\AA \Rightarrow A\setminus B \in\AA.
+\end{align*}
+\item Sei $\AA$ eine $\sigma$-Algebra, so gilt außerdem
+\begin{align*}
+A_n\in\AA \text{ für }n\in\N \Rightarrow \bigcap_{n=1}^\infty
+A_n\in\AA.\fishhere
+\end{align*}
+\end{propenum}
+\end{lem}
+Eine Algebra (bzw. $\sigma$-Algebra) enthält somit stets $\varnothing$
+und $\Omega$ und ist abgeschlossen gegenüber endlich (bzw. abzählbar) vielen
+üblichen Mengenoperationen.
+\begin{proof}
+\begin{proofenum}
+  \item Definition \ref{defn:1.1} besagt, $A_1,\ldots,A_m \in \AA\Rightarrow
+  A_1^c,\ldots,A_m^c\in \AA$. Mit den Regeln von De-Morgan folgt,
+\begin{align*}
+\left(\bigcap_{n=1}^m A_n \right)^c = \bigcup_{n=1}^m A_n^c \in \AA,
+\end{align*}
+d.h. $\bigcap_{n=1}^m A_n\in\AA$.
+\item Seien $A,B\in \AA$. Man sieht leicht, dass $A\setminus B = A\cap B^c$ und
+daher ist auch $A\setminus B\in\AA$ als Schnitt von $A$ und $B^c$.\qedhere
+\end{proofenum}
+\end{proof}
+
+\begin{defn}
+\label{defn:1.2}
+Sei $\Omega $ eine nichtleere Menge und $\AA$ eine $\sigma$-Algebra in $\Omega$.
+Das Paar ($\Omega,\AA$) heißt \emph{Messraum (mesurable space)}; die Elemente
+$\in \AA$ heißen $\AA$-\emph{messbare} Mengen.\\
+Entsprechendes gilt für $\sigma$-Algebra.\fishhere
+\end{defn}
+
+Man startet bei der Definition von Abbildungen auf Messräumen oft nur
+auf Teilmengen - wie z.B. den Intervallen in $\R$ - und dehnt anschließend den
+Definitionsbereich aus. Für diese Vorgehensweise sind folgende Ergebnisse
+zentral.
+
+\begin{lem}
+\label{lem:1.2}
+\begin{propenum}
+  \item Seien $\AA_\alpha$ Algebren in $\Omega$,  $\alpha\in \II$ und $\II$
+  beliebige Indexmenge, so ist $\bigcap_{\alpha\in\II} \AA_\alpha$ eine Algebra
+  in $\Omega$.
+  \item Sei $\CC\subseteq \PP(\Omega)$ ein Mengensystem in $\Omega$,
+  so es existiert eine kleinste $\CC$ enthaltende Algebra.\fishhere
+\end{propenum}
+\end{lem}
+\begin{proof}
+\begin{proofenum}
+\item
+Wir führen den Beweis für $\sigma$-Algebren; der für Algebren wird analog
+geführt.
+
+  $\AA_\alpha$ sei für jedes $\alpha\in\II$ eine $\sigma$-Algebra in
+  $\Omega$. Also ist auch $\varnothing\in \bigcap_{\alpha\in \II} \AA_\alpha$,
+  da $\varnothing\in \AA_\alpha$ für alle $\alpha\in\II$. Weiterhin gilt
+\begin{align*}
+A\in \bigcap_{\alpha\in\II} \AA_\alpha &\Leftrightarrow \forall \alpha\in\II :
+A\in \AA_\alpha \Rightarrow \forall \alpha\in\II : A^c\in\AA_\alpha\\
+&\Leftrightarrow A^c\in \bigcap_{\alpha\in\II} \AA_\alpha,
+\end{align*}
+sowie
+\begin{align*}
+A_1,A_2,\ldots \in \bigcap_{\alpha\in\II} \AA_\alpha &
+\Leftrightarrow \forall \alpha\in \II : A_1,A_2,\ldots\in \AA_\alpha \\
+&\Rightarrow \forall \alpha\in\II : \bigcup_{n=1}^\infty A_n \in \AA_\alpha 
+\Leftrightarrow \bigcup_{n=1}^\infty A_n \in \bigcap_{\alpha\in\II} \AA_\alpha.
+\end{align*}
+\item Betrachte alle Obermengen von $\CC$, die Algebren sind,
+  und bilde den Schnitt,
+\begin{align*}
+\bigcap_{\atop{\AA_\alpha\text{ Algebra}}{\CC\subseteq\AA_\alpha}} \AA_\alpha
+\end{align*}
+Aus a) folgt, dass der Schnitt eine Algebra ist. Der Schnitt ist dann
+auch \textit{per definitionem} die kleinste $\sigma$-Algebra, die $\CC$
+enthält.\qedhere
+\end{proofenum}
+\end{proof}
+
+\begin{defn}
+\label{defn:1.3}
+Sei $\CC$ ein Mengensystem in $\Omega$. Die kleinste der $\CC$ enthaltenden
+Algebren heißt die \emph{von $\CC$ erzeugte Algebra}; $\CC$ heißt ein
+\emph{Erzeugersystem} dieser Algebra.\\
+Entsprechendes gilt für $\sigma$-Algebren.\\
+Wir bezeichnen die von $\CC$ erzeugte Algebra mit $\FF(\CC)$.\fishhere
+\end{defn}
+
+Das Konzept des Erzeugersystems ermöglicht es uns, Eigenschaften nur auf dem
+Erzeugersystem nachzuweisen, was oft einfacher ist, und diese Eigenschaften
+auf die erzeugte Algebra zu übertragen.
+
+Im $\R^n$ bilden die offenen Teilmengen ein wichtiges Mengensystem, die sie
+die Topologie erzeugen und somit Metrik, Norm, Konvergenz, Differenziation,
+etc. charakterisieren. Folgende Definition ist daher für alles Weitere zentral.
+
+\begin{defn}
+\label{defn:1.4}
+Sei $\OO_n$ das System der offenen Mengen des Euklidischen Raumes $\R^n$.
+Setze $\BB_n \defl \FF(\OO_n)$. $\BB_n$ wird als $\sigma$-Algebra der
+\emph{Borelschen Mengen in $\R^n$} bezeichnet. $\BB\defl \BB_1$.\fishhere
+\end{defn}
+
+$\BB_n$ enthält alle abgeschlossenen, alle kompakten und alle höchstens
+abzählbaren Mengen in $\R^n$. Es gilt dennoch tatsächlich $\BB_n\subsetneq
+\PP(\R^n)$, der Beweis benötigt jedoch die Annahme des Auswahlaxioms.
+
+Die Borelschen Mengen bilden die grundlegenden Mengen, mit denen wir uns
+beschäftigen. Wenn wir auf dem $\R^n$ arbeiten, enthält also $\BB_n$ alle ``für
+uns interessanten'' Mengen.
+
+%TODO: Bild der halboffenen Mengen in \R und \R^2.
+
+Um das Konzept des Erzeugersystem ausnutzen können, verwenden wir
+das System $J_n$ der halboffenen Intervalle (bzw. Rechtecke)
+\begin{align*}
+(a,b]\defl\setdef{(x_1,\ldots,x_n)\in\R^n}{a_i < x_i\le b_i,\; i=1,\ldots,n}
+\end{align*}
+in $\R^n$, wobei $a=(a_1,\ldots,a_n)$, $b=(b_1,\ldots,b_n)\in\R^n$ mit $a_i <
+b_i$, oder auch das System der offenen Intervalle, der abgeschlossenen
+Intervalle, der Intervalle $(-\infty,a]$ oder der Intervalle $(-\infty,a)$.
+
+\begin{prop}
+\label{prop:1.1}
+Das System $J_n$ ist ein Erzeugersystem von $\BB_n$.\fishhere
+\end{prop}
+\begin{proof}
+\textit{per definitionem} gilt
+$(a,b] \defl \setdef{(x_1,\ldots,x_n)\in\R^n}{a_i < x_i\le b_i,\;
+i=1,\ldots,n}$. Nun lässt sich jedes offene Intervall als abzählbare
+Vereinigung halboffener Intervalle darstellen,
+\begin{align*}
+(a,b) &= \bigcup_{k\in\N} \left(a,b-\frac{1}{k}\right] \\ &=
+\bigcup_{k\in\N} \setdef{(x_1,\ldots,x_n)\in\R^n}{a_i< x_i \le  b_i-\frac{1}{k}}
+\in \BB_n.
+\end{align*}
+Ferner lässt sich jede offene Menge in $\R^n$ als \textit{abzählbare}
+Vereinigung von offenen Intervallen mit rationalen Randpunkten
+darstellen.\qedhere
+\end{proof}
+
+Wir haben nun die notwendigen Vorbereitungen getroffen um ein Maß zu
+definieren.
+
+\begin{defn}
+\label{defn:1.5}
+Sei $\CC$ ein Mengensystem in $\Omega $ mit
+$\varnothing \in \CC$. Eine Mengenfunktion 
+\begin{align*}
+\mu : \CC \to
+\overline{\R} \defl \R \cup \{+ \infty, - \infty\}
+\end{align*}
+heißt (mit den Konventionen
+$a+\infty = \infty$ $(a \in \R)$, $\infty + \infty = \infty $ usw.)
+\begin{defnenum}
+\item ein \emph{Inhalt (content)} auf $\CC$, wenn
+\begin{defnpropenum}
+\item $\mu$ ist nulltreu, d.h. $\mu(\varnothing) = 0$,
+\item $\mu$ ist positiv, d.h. $\forall A \in \CC : \mu
+  (A) \geq 0 $,
+\item $\mu $ ist additiv, d.h. für paarweise disjunkte $ A_{n} \in
+{\CC}$ mit $n=1,2,\ldots,m$ und $\sum^{m}_{n=1} A_{n}\in \CC$
+ gilt\footnote{
+$A+B$ bzw. $\sum_{n=1}^m A_n$ steht für die disjunkte
+Vereinigung von $A$ und $B$ bzw. der $A_n$. Wir fordern bei der Verwendung von
+$+$ und $\sum$ implizit, dass $A$ und $B$ bzw. die $A_n$ disjunkt sind.
+}
+\begin{align*}
+\mu\left(\sum^{m}_{n=1} A_{n}\right) = \sum^{m}_{n=1} \mu(A_{n}).
+\end{align*}
+\end{defnpropenum}
+\item
+ein \emph{Maß (measure)} auf $\CC$, wenn
+\begin{defnpropenum}
+\item $\mu$ ist nulltreu, d.h. $\mu (\varnothing)= 0$,
+\item $\mu$ ist positiv, d.h. $\forall A \in \CC : \mu
+  (A) \geq 0 $,
+\item $\mu $ ist $\sigma$-additiv, d.h. für paarweise disjunkte $ A_{n}
+\in \CC$ mit $n\in\N$ und $\sum^{\infty}_{n=1} A_{n}\in \CC$
+  gilt
+\begin{align*}
+\mu \left(\sum^{\infty}_{n=1} A_{n}\right) = \sum^{\infty}_{n=1}\mu(A_{n}).
+\end{align*}
+\end{defnpropenum}
+\end{defnenum}
+Ist $\AA$ eine $\sigma$-Algebra in $\Omega$, $\mu $
+ein Maß auf $\AA$, so heißt $(\Omega, \AA, \mu )$ ein \emph{Maßraum
+(measure space)}.\fishhere
+\end{defn}
+Offensichtlich ist jedes Maß ein Inhalt.
+
+``Natürliche'' Definitionsbereiche für Inhalt und Maß sind Algebren
+bzw. $\sigma$-Algebren. In diesem Fall können wir auch auf die Voraussetzung
+$\sum^{m}_{n=1}A_{n} \in {\CC}$ bzw. $\sum^{\infty}_{n=1} A_{n} \in {\CC}$)
+verzichten. Häufig werden wir nur diese Definitionsbereiche verwenden.
+
+In der Wahrscheinlichkeitstheorie arbeiten wir häufig auf abzählbaren
+Messräumen wie z.B. $\N$ dann lassen sich alle Teilmengen messen, indem wir
+ihnen als Maß die Anzahl ihrer Elemente zuordnen.
+
+\begin{defn}
+\label{defn:1.6}
+Sei $(\Omega, \AA)$ ein Messraum und $Z =\setd{z_{1}, z_{2},
+\ldots}$ eine höchstens abzählbare Teilmenge von $\Omega $, so heißt
+\begin{align*}
+\mu: \AA\to \overline{\R}, \text{ mit } \mu (A)\defl \text{Anzahl der Elemente
+in } A\cap Z,\quad A \in \AA,
+\end{align*}
+ ein \emph{abzählendes Maß (counting measure)}.\fishhere
+\end{defn}
+
+\begin{bem}
+\label{bem:1.2} Sei $\AA$ Algebra in $\Omega$, $\mu $ endlicher Inhalt auf
+$\AA$, ferner $A,B \in \AA$ und $ A \subset B$, so gilt
+\begin{align*}
+\mu(B\setminus A) = \mu (B) - \mu(A).
+\end{align*}
+Diese Eigenschaft nennt sich \emph{Subtraktivität}.\maphere
+\end{bem}
+\begin{proof}
+Da $B=A+B\setminus A$, gilt $\mu(B) = \mu(A) + \mu(B\setminus A)$.\qedhere
+\end{proof}
+
+\clearpage
+% =============================================================
+%                            Wahrscheinlichkeitsräume und -maße
+% =============================================================
+\section{Wahrscheinlichkeiträume und -maße}
+\label{chap:1.b}
+
+\begin{defn}
+\label{defn:1.7}
+Sei $\AA$ eine $\sigma$-Algebra in $\Omega $.  Eine
+Abbildung $P: \AA \to \R$ heißt ein \emph{Wahrscheinlichkeitsmaß
+(W-Maß)} auf $\AA$, wenn
+\begin{defnpropenum}
+\item $P$ nulltreu, d.h. $P(\varnothing) = 0$,
+\item $P$ positiv, d.h.\ $P(A) \geq 0$,
+\item $P$ $\sigma$-additiv, d.h.\ für alle paarweise disjunkte $A_{n} \in
+  \AA$\; $(n=1,2, \ldots )$ gilt
+\begin{align*}
+P\left(\sum^{\infty}_{n=1} A_{n}\right) = \sum^{\infty}_{n=1} P(A_{n}),
+\end{align*}
+\item $P$ normiert, d.h.\ $P(\Omega)= 1$.
+\end{defnpropenum}
+$(\Omega, \AA,P)$ heißt dann ein \emph{Wahrscheinlichkeitsraum (W-Raum)
+(probability space)}.
+
+Ist $(\Omega, \AA,P)$ ein W-Raum, so bezeichnet man die Grundmenge
+$\Omega$ auch als \emph{Merkmalraum, Stichprobenraum (sample space)}, die Mengen
+$A\in \AA$ als \emph{Ereignisse}, $P(A)$ als \emph{Wahrscheinlichkeit von $A$}
+und die Elemente $\omega \in \Omega$ bzw.\ die 1-Punkt-Mengen $\{\omega \}
+\subset \Omega $ (nicht notwendig $\in \AA$) als \emph{Elementarereignisse (auch
+Realisierungen)}.
+
+Ein W-Raum ist ein normierter Maßraum.\fishhere
+\end{defn}
+
+Ein Wahrscheinlichkeitsmaß, ist also ein normiertes Maß auf $(\Omega,\AA)$ mit
+Wertebereich $\R$ anstatt $\RA$.
+
+Bei der Definition eines Wahrscheinlichkeitsmaßes, ergeben sich Nulltreue,
+Positivität und Normiertheit ganz intuitiv. In der Vergangenheit wurde lange
+darüber diskutiert, ob es notwendig ist, die $\sigma$-Additivität für Ereignisse zu fordern. Es
+hat sich jedoch herausgestellt, dass dies durchaus sinnvoll und notwendig ist.
+
+Damit haben wir die Axiome der Wahrscheinlichkeitstheorie formuliert und alles
+Folgende wird auf diesen Axiomen aufbauen. Nun stellt sich natürlich die
+Frage, ob diese Definition einer ``Wahrscheinlichkeit'' mit unserer
+Alltagserfahrung übereinstimmt. Im Laufe der Vorlesung werden wir feststellen,
+dass dieses ``Modell'' in vielen Fällen eine sehr gute Approximation der
+Wirklichkeit darstellt.
+
+\textit{Zur Motivation des Wahrscheinlichkeitsraumes.} Wir suchen nach einem
+alternativen Weg, eine Wahrscheinlichkeit einzuführen. Sei dazu $h_n(A)$ die
+absolute Häufigkeit des Eintretens eines Ereignisses $A$ (z.B. Würfeln einer
+``6'' bei $n$ Würfen) und $H_n(A) = \frac{h_n(A)}{n}$ die relative Häufigkeit
+des Auftretens von Ereignis $A$.\\ Offensichtlich gilt für jedes $A$ und jedes
+$n$:
+\begin{align*}
+0\le H_n(A) \le 1,\quad  H_n(\Omega) = 1,\quad  H_n(\varnothing) = 0.
+\end{align*}
+Für zwei disjunkte Ereignisse $A_1,A_2$ gilt weiterhin
+\begin{align*}
+H_n(A_1+A_2) = H_n(A_1)+H_n(A_2).
+\end{align*}
+$H_n$ verfügt also über alle Eigenschafen eines Wahrscheinlichkeistmaßes.
+
+Führt man das (Würfel)-Experiment hinreichend oft durch, kann man das
+``\emph{Empirische Gesetz der großen Zahlen}'' vermuten:
+\begin{align*}
+&\lim\limits_{n\to\infty} H_n(A)\quad\text{existiert}.  
+\end{align*}
+Im Fall der Existenz kann man dem Ereignis $A$ den obigen Grenzwert als
+Wahrscheinlichkeit zuordnen (R.v. Mises 1919\footnote{
+Richard Edler von Mises (* 19. April 1883 in Lemberg, Österreich-Ungarn, heute
+Lwiw, Ukraine; † 14. Juli 1953 in Boston, Massachusetts) war ein
+österreichischer Mathematiker.
+}),
+\begin{align*}
+P(A) = \lim\limits_{n\to\infty} H_n(A).
+\end{align*}
+Dieser Grenzwert muss aber nicht für alle
+möglichen Folgen von Versuchsergebnissen existieren - es lässt sich nicht
+ausschließen, dass man in einer Versuchsfolge ausschließlich 6er würfelt.
+
+Die endgültige, axiomatische Formulierung der Wahrschienlichkeitstheorie, wie
+wir sie eben eingeführt haben, hat 1933 mit dem Werk ``Grundbegriffe der
+Wahrscheinlichkeitsrechnung'' von Kolmogorov\footnote{
+Andrei Nikolajewitsch Kolmogorow (* 25. April 1903
+in Tambow; † 20. Oktober 1987 in Moskau) war einer der bedeutendsten
+Mathematiker des 20. Jahrhunderts. 
+Kolmogorow leistete wesentliche Beiträge auf den Gebieten der
+Wahrscheinlichkeitstheorie und der Topologie, er gilt als der Gründer der
+Algorithmischen Komplexitätstheorie. Seine bekannteste mathematische Leistung
+war die Axiomatisierung der Wahrscheinlichkeitstheorie.}
+seinen Abschluss gefunden. Der axiomatische Ansatz hat sich bisher als der erfolgreichste erwiesen. Wir zahlen aber einen Preis, denn dieser Ansatz erklärt nicht, was Wahrscheinlichkeit eigentlich
+bedeutet.
+
+\subsection{Binomialverteilung}
+
+Oft sind nur endlich viele Elementarereignisse möglich und alle diese treten
+mit der gleichen Wahrscheinlichkeit ein. Wir sprechen in diesem Fall von einem
+Laplace-Experiment.
+\begin{defnn}
+Ein W-Raum $(\Omega, \AA,P)$ mit
+$\Omega $ endlich, $\AA = {\cal P} (\Omega )$ und
+\begin{align*}
+P(\{\omega \}) = \frac{1}{|\Omega |},\qquad \omega \in \Omega,\quad
+|\Omega | = \text{ Anzahl der Elemente in }\Omega,
+\end{align*}
+heißt \emph{Laplacescher W-Raum}:
+\begin{align*}
+\text{Für $A \in \AA$ gilt $P(A)= \frac{|A|}{|\Omega|}=
+\frac{\mbox{Anzahl der ``günstigen'' Fälle}}
+{\mbox{Anzahl der ``möglichen'' Fälle}}$}.\fishhere
+\end{align*}
+\end{defnn}
+
+\begin{bsp}
+\label{bsp:1.1:1}
+Seien $n\in\N$, $p\in[0,1]$ fest. Betrachte $n$ gleichartige Experimente ohne
+gegenseitige Beeinflussung mit den möglichen Ausgängen
+\begin{align*}
+\text{0 (``Misserfolg'', ``Kopf'') und 1
+(``Erfolg'', ``Zahl'')}
+\end{align*}
+mit jeweiliger Erfolgswahrscheinlichkeit $p$.
+Dies bezeichnet man auch als $n$-Tupel von
+Bernoulli-Versuchen.\footnote{Jakob I. Bernoulli (* 6. Januar 1655 in Basel; †
+16. August 1705 ebenda) war ein Schweizer Mathematiker und Physiker.}
+\bsphere
+\end{bsp}
+
+\textit{Wie groß ist die Wahrscheinlichkeit in $n$ Bernoulli-Versuchen genau
+$k$, wobei $k\in\setd{0,1,\ldots,n}$. Erfolge zu erhalten?}
+
+Dieses Experiment entspricht der Platzierung von $k$ Kugeln auf $n$ Plätzen ohne
+Mehrfachbelegung eines Platzes.
+\begin{figure}[H]
+\begin{tabular}{l|l}
+\textbf{Experiment} & \textbf{Wahrscheinlichkeit}\\\hline
+$\underbrace{1\; \ldots\; 1}_{k} \underbrace{0\;\ldots\; 0}_{n-k}$ & 
+$p\cdots p \cdot (1-p)\cdots (1-p) = p^k(1-p)^{n-k}$\\
+$0\; 1\; 1 \ldots 1\; 0 \ldots 0$ & 
+$(1-p)p\cdots p(1-p)\cdots (1-p) = p^k(1-p)^{n-k}$.
+\end{tabular}
+\end{figure}
+Die Reihenfolge der Erfolge und Miserfolge ist unerheblich für die
+Wahrscheinlichkeit. Das Experiment besitzt genau
+\begin{align*}
+\binom{n}{k} = \dfrac{n!}{k!(n-k)!}
+\end{align*}
+mögliche Ausgänge. Aufsummation liefert die Gesamtwahrscheinlichkeit,
+\begin{align*}
+W = \binom{n}{k} p^k(1-p)^{n-k} \defr b(n,p;k),
+\end{align*}
+wobei $\binom{n}{k} = 0$, falls
+$k\notin\setd{0,1,\ldots,n}$.
+\begin{defnn}
+Durch $P(\setd{k}) \defl b(n,p;k)$ für $k\in\N_0$ ist ein W-Maß auf $\BB$
+definiert, wobei für $A\subseteq \N_0$,
+\begin{align*}
+P(A) = \sum\limits_{k\in\N_0\cap A} b(n,p;k) \defl \sum\limits_{k\in\N_0\cap A}
+\binom{n}{k} p^k(1-p)^{n-k}.
+\end{align*}
+$P$ ist ein W-Maß und heißt \emph{Binomialverteilung} $b(n,p)$ mit Parameteren
+$n\in\N$ und $p\in[0,1]$.\fishhere
+\end{defnn}
+
+\begin{bsp}
+\label{bsp:1.2}
+500g Teig und 36 Rosinen seien rein zufällig verteilt. Daraus
+werden 10 Brötchen mit je 50g Teil geformt. Greife ein Brötchen heraus.
+
+\textit{Wie groß ist die Wahrscheinlichkeit, dass dieses
+Brötchen 2 oder mehr Rosinen enthält?}
+
+Rosine Nr. 1-36 ist unabhängig von den anderen mit Wahrscheinlichkeit
+$p=\frac{1}{10}$ im betrachteten Brötchen. Es handelt sich also um 36
+Bernoulli Versuche mit jeweiliger Erfolgswahrscheinlichkeit $p=\frac{1}{10}$. 
+\begin{align*}
+P(A) &= \sum\limits_{k=2}^{36} b(n,p;k) = \sum\limits_{k=2}^{36}
+\binom{36}{k}\frac{1}{10^k}\left(1-\frac{1}{10}\right)^{36-k} \\
+&=1-b\left(36,\frac{1}{10};0\right) - b\left(36,\frac{1}{10};1\right) \approx
+0.89.\bsphere
+\end{align*}
+\end{bsp}
+
+Wir wollen das Beispiel der Binomialverteilung nun dahingehend verallgemeinern,
+dass wir die Menge $\Omega$ auf die ganze reelle Achse erweitern.
+
+\begin{defnn}
+Sei $\Omega=\R$, $\AA = \BB$ und 
+$(p_k)_{k\in\N_0}$ eine reelle Zahlenfolge mit
+\begin{align*}
+0\le p_k \le 1\quad \text{ für } k\in\N_0,\qquad \sum\limits_{k\in\N_0} p_k = 1.
+\end{align*}
+$(p_k)$ bezeichnet man als \emph{Zähldichte}. Durch $P(\setd{k}) = p_k, \forall
+k\in\N_0$ also
+\begin{align*}
+P(A) = \sum\limits_{k\in A\cap \N_0} p_k,\qquad A\in\BB.
+\end{align*}
+wird ein W-Maß auf $\BB$ definiert.
+$P$ ist auf $\N_0$ \emph{konzentriert}, d.h. $P(\N_0)=1$ und besitzt die
+Zähldichte $(p_k)_{k\in\N_0}$.\fishhere
+\end{defnn}
+\begin{proof}
+Nulltreue, Positivität und Normiertheit sind klar. Wir weisen nun die
+$\sigma$-Additivität nach: Seien $A_n$ für $n\in\N$ paarweise disjunkt. Ohne
+Einschränkung können wir davon ausgehen, dass $A_n\subseteq\N$, es gilt also,
+\begin{align*}
+P\left(\sum\limits_{n=1}^\infty A_n\right) = \sum\limits_{k\in \sum_n A_n} p_k.
+\end{align*}
+Da die Reihe absolut konvergent ist, dürfen wir den großen Umordnungssatz
+aus der Analysis anwenden, und die Reihenglieder umgruppieren,
+\begin{align*}
+\ldots = \sum\limits_{n=1}^\infty \underbrace{\sum\limits_{k\in A_n} p_k}_{\defl
+P(A_n)} = \sum_{n=1}^\infty P(A_n).\qedhere
+\end{align*}
+\end{proof}
+
+Für Beispiel \ref{bsp:1.1:1} gilt $(b(n,p;k))_{k\in\N_0} = (p_k)_{k\in\N_0}$.
+
+\subsection{Poissonverteilung}
+
+Seien nun $p_n\in (0,1)$ mit $n\cdot p_n\to \lambda\in(0,1)$ für $n\to\infty$,
+so ist
+\begin{align*}
+b(n,p_n;k) &= \binom{n}{k} p_n^k(1-p_n)^{n-k} \\ &= \frac{n(n-1)\cdots
+(n-k+1)}{k!} p_n^k (1-p_n)^{n-k} \\&
+= \frac{n(n-1)\cdots(n-k+1)}{k!}p_n^k \cdot 
+(1-p_n)^{-k}\left[(1-p_n)^{1/p_n}\right]^{np_n}
+\end{align*}
+Für den Grenzübergang $n\to\infty$ gilt,
+\begin{align*}
+&\frac{n(n-1)\cdots(n-k+1)}{k!}p_n^k \to \frac{\lambda^k}{k!},\\
+&(1-p_n)^{-k} \to 1,\\
+&(1-p_n)^{1/p_n} \to \e^{-1}.
+\end{align*}
+Wir erhalten also insgesamt,
+\begin{align*}
+b(n,p_n;k) \overset{n\to\infty}{\to}
+\frac{\lambda^k}{k!}\e^{-\lambda}\defr\pi(\lambda;k).
+\end{align*}
+$\pi(\lambda;k)$ definiert eine Zähldichte, denn
+\begin{align*}
+\sum\limits_{k\in\N_0} \pi(\lambda;k)
+= \e^{-\lambda}\underbrace{\sum\limits_{k=0}^\infty
+\frac{\lambda^k}{k!}}_{\defl\e^\lambda} = 1.
+\end{align*}
+\begin{defn}
+Das zu $\pi(\lambda;k)$ gehörige W-Maß $\pi(\lambda)$ auf $\BB$ ist gegeben
+durch,
+\begin{align*}
+\pi(\lambda)(\setd{k}) \defl \pi(\lambda;k)
+\end{align*}
+und heißt \emph{Poisson-Verteilung}\footnote{Siméon-Denis Poisson (* 21. Juni
+1781 in Pithiviers (Département Loiret); † 25. April 1840 in Paris) war ein
+französischer Physiker und Mathematiker.} mit Parameter $\lambda$.\fishhere
+\end{defn}
+
+Die Poission-Verteilung hat sehr viele angenehme Eigenschaften, insbesondere
+ist sie numerisch gut handhabbar. Daher approximiert man oft eine
+Binomialverteilung durch eine Poissonverteilung. Die Approximation ist gut für
+$p$ ``klein'' und $n$ ``groß''.
+
+\begin{bsp}
+\label{bsp:1.3}
+\textit{Eine Anwendung zu Beispiel \ref{bsp:1.2}.}
+Gegeben seien $m$ gleichgroße mehrfach besetzbare Zellen. 
+\begin{figure}[H]
+\centering
+\begin{pspicture}(0,-0.62)(4.98,0.6)
+\psline(0.02,0.46)(3.62,0.46)
+\psline(0.0,0.58)(0.0,0.34)
+\psline(0.42,0.58)(0.42,0.34)
+\psline(0.82,0.58)(0.82,0.34)
+\psline(1.22,0.58)(1.22,0.34)
+\psline(1.62,0.58)(1.62,0.34)
+\psline(2.02,0.58)(2.02,0.34)
+\psline[linecolor=darkblue](2.42,0.58)(2.42,0.34)
+\psline[linecolor=darkblue](2.82,0.58)(2.82,0.34)
+\psline[linecolor=darkblue](2.42,0.46)(2.82,0.46)
+\psline(3.22,0.58)(3.22,0.34)
+\psline(3.62,0.58)(3.62,0.34)
+\psline[linecolor=darkblue]{<-}(2.62,0.34)(2.98,-0.26)
+\rput(3.44,-0.395){\color{gdarkgray}vorgegebene Zelle Z}
+\end{pspicture} 
+\caption{Zur Anwendung von \ref{bsp:1.2}.}
+\end{figure}
+
+$n$ Teilchen seien rein zufällig auf die Zellen verteilt. Die
+Wahrscheinlichkeit, dass Teilchen Nr. 1 in Zelle $Z$ landet, ist
+$\frac{1}{m}$. Also ist die Wahrscheinlichkeit, dass $k$ Teilchen in $Z$ landen
+$b(n,\frac{1}{m};k)$. Die ``Belegungsintensität'' ist $\frac{n}{m}$.
+
+Für $n\to\infty$ und $m\to\infty$ gelte $\frac{n}{m}\to\lambda\in(0,\infty)$.
+In der Grenze ist die Wahrscheinlichkeit, dass genau $k\in\N_0$ Teilchen in der
+Zelle $Z$ landen gegeben durch $\pi(\lambda;k)$. Damit können wir das Beispiel
+\ref{bsp:1.2} wieder aufgreifen.
+
+Betrachte eine große Anzahl von Rosinen in einer großen Teigmenge. Teile den
+Teig in $m$ gleichgroße Brötchen auf, mit $\lambda\defl\frac{n}{m}$. Nehmen wir
+nun ein Brötchen heraus, so ist die Wahrscheinlichkeit, dass es genau $k$
+Rosinen enthält
+\begin{align*}
+\approx \e^{-\lambda}\frac{\lambda^k}{k!}.
+\end{align*}
+Im Zahlenbeispiel $n=36$, $m=10$, $\lambda=3.6$ gilt
+\begin{align*}
+\sum\limits_{k=2}^{36} \e^{-\lambda} \frac{\lambda^k}{k!} \approx
+1-\e^{-\lambda}-\lambda \e^{-\lambda} \approx 0.874,\quad \text{statt
+}0.89.\bsphere
+\end{align*}
+\end{bsp}
+
+\subsection{Weitere Eigenschaften von Wahrscheinlichkeitsmaßen}
+
+Die reellen Zahlen $\R$ sind geordnet und für ``monoton
+fallende'' bzw. ``monoton steigende'' Folgen wissen wir, dass ein eigentlicher
+oder uneigentlicher Grenzwert existiert. Ein Mengensystem lässt sich durch
+``$\subseteq$'' oder ``$\supseteq$'' halbordnen, somit lässt sich der
+Monotoniebegriff in gewisser Weise übertragen.
+
+\begin{defnn}
+Die Konvergenz \emph{von unten} bzw. \emph{von oben} ist für die Mengen $A$ und
+$A_{n}$ $(n=1,2,\ldots )$ folgendermaßen definiert:
+\begin{align*}
+&A_{n}\uparrow A:A_{1} \subset A_{2} \subset A_{3} \subset \ldots , \;
+\bigcup^{\infty}_{n=1} A_{n} = A,\\
+&A_{n} \downarrow A: A_{1} \supset A_{2} \supset A_{3} \supset \ldots ,\;
+\bigcap^{\infty}_{n=1} A_{n} = A.\fishhere
+\end{align*}
+\end{defnn}
+
+Da wir nun über eine Art Konvergenzbegriff für Mengen verfügen, lässt sich nach
+der Stetigkeit von Abbildungen von Mengensystemen in die reellen Zahlen fragen.
+Natürlich handelt es sich hierbei nicht um Konvergenz und Stetigkeit im Sinne
+der Analysis, denn wir haben auf $\AA$ keine Norm zur Verfügung.
+
+\begin{prop}
+\label{prop:1.2}
+Sei $\AA$ eine Algebra in $\Omega $, $\mu$ ein \textit{endlicher} (d.h. $\mu
+(\Omega) < \infty $) Inhalt auf $\AA$.  Dann sind die folgenden Aussagen
+äquivalent:
+\begin{propenum}
+\item
+\label{prop:1.2:1}
+$\mu$ ist $\sigma $-additiv
+\item
+\label{prop:1.2:2}
+$\mu$ ist stetig von unten,\\
+d.h. $[A_{n} \in \AA$, $A_{n} \uparrow A \in \AA \Rightarrow
+\mu (A_{n}) \to \mu (A) ]$
+\item
+\label{prop:1.2:3}
+$\mu $ ist stetig von oben, \\
+d.h. $[A_{n} \in \AA$, $ A_{n} \downarrow A \in \AA \Rightarrow
+\mu (A_{n}) \to \mu (A) ] $
+\item
+\label{prop:1.2:4}
+$\mu$ ist $\varnothing$-stetig, \\
+d.h. $[A_{n} \in \AA$, $ A_{n} \downarrow \varnothing \Rightarrow
+\mu (A_{n} )\to 0]\, .$
+\end{propenum}
+Auch ohne die Voraussetzung der Endlichkeit von $\mu $ gilt a)
+$\Longleftrightarrow $ b).\fishhere
+\end{prop}
+
+\begin{proof}
+\ref{prop:1.2:1}$\Rightarrow$\ref{prop:1.2:2}: Sei $A_n = A_1+A_2\setminus A_1
++ \ldots + A_n\setminus A_{n-1}$ und $A=A_1+\sum\limits_{k=2}^\infty
+A_{k}\setminus A_{k-1}$. Wir verwenden die Additivität von $\mu$ und erhalten
+somit,
+\begin{align*} 
+\mu\left(A_n\right) &= \mu(A_1) + \mu(A_2\setminus A_1) + \ldots +
+\mu(A_n\setminus A_{n-1})\\
+&= \mu(A_1) + \sum\limits_{k=2}^n \mu(A_k\setminus A_{k-1})
+ \overset{n\to\infty}{\to} \mu(A_1) + \sum\limits_{k=2}^\infty \mu(A_k\setminus
+ A_{k-1}) = \mu(A).
+\end{align*}
+Die übrigen Implikationen folgen analog.\qedhere
+\end{proof}
+
+Da Wahrscheinlichkeitsräume \textit{per definitionem} endlich sind, ist Satz
+\ref{prop:1.2} dort stets anwendbar. Insbesondere ist jedes W-Maß stetig.
+
+\begin{lem}
+\label{lem:1.3}
+Sei $\AA$ eine Algebra in $\Omega $, $\mu$ ein Inhalt auf
+$\AA$.
+\begin{propenum}
+\item\label{lem:1.3:1} $\mu $ ist monoton, \\ d.h. $[A,B \in \AA$, $A \subset B
+  \Rightarrow \mu (A) \leq \mu (B) ]\, .$
+\item\label{lem:1.3:2} $\mu$ ist subadditiv, \\ d.h. $[A_{1}, \ldots , A_{m}
+\in \AA \Rightarrow \mu ( \bigcup^{m}_{n=1}A_{n}) \leq
+  \sum\limits^{m}_{n=1} \mu (A_{n})]\, .$
+\item\label{lem:1.3:3}
+Ist $\mu$ ein Maß, dann ist $\mu$ sogar $\sigma$-subadditiv, \\
+d.h. $[A_{n} \in \AA$ für $n\in\N$, $
+\bigcup^{\infty}_{n=1}A_{n}\in \AA \Rightarrow
+\mu ( \bigcup^{\infty}_{n=1} A_{n}) \leq
+\sum\limits^{\infty}_{n=1} \mu (A_{n})]\, .$\fishhere
+\end{propenum}
+\end{lem}
+\begin{proof}
+\ref{lem:1.3:1}: Seien $A,B\in\AA$ und $A\subseteq B$. Nun gilt
+$B=A+B\setminus A$, also
+\begin{align*}
+&\mu(B) = \mu(A)+\underbrace{\mu(B\setminus A)}_{\ge 0},\\
+\Rightarrow &\mu(A)\le \mu(B).
+\end{align*}
+\ref{lem:1.3:2}: Wir untersuchen den Spezialfall $n=2$. Seien $A_1,A_2\in\AA$,
+so ist
+\begin{align*}
+\mu(A_1\cup A_2) &= \mu(A_1+A_2\setminus A_1) = \mu(A_1) +
+\underbrace{\mu(A_2\setminus A_1)}_{\le\mu(A_2)}
+\\ &\le \mu(A_1)+\mu(A_2).
+\end{align*}
+Der allgemeine Fall folgt durch Induktion.
+
+\noindent\ref{lem:1.3:3}: Für $N\in\N$ gilt,
+\begin{align*}
+\mu(A_1\cup \ldots \cup A_N) \le \sum\limits_{n=1}^N \mu(A_n) \le
+\sum\limits_{n=1}^\infty \mu(A_n).
+\end{align*}
+Beim Grenzübergang für $N\to\infty$ erhalten wir so,
+\begin{align*}
+&\mu(A_1\cup \ldots \cup A_N) \to \mu\left(\bigcup_{n=1}^\infty A_n\right),
+\end{align*}
+und die Behauptung folgt.\qedhere
+\end{proof}
+
+W-Maße sind also $\sigma$-additiv, $\sigma$-subadditiv, monoton und stetig.
+Diese Eigenschaften sind zwar unscheinbar, es lassen sich damit aber sehr
+starke Aussagen beweisen, wie wir gleich sehen werden.
+
+Erinnern wir uns aber zunächst an den \textit{limes superior} einer reellen
+Zahlenfolge $(a_n)$,
+\begin{align*}
+\limsup\limits_{n\to\infty} a_n \defl
+\inf\limits_{n\in\N}\sup\limits_{k\ge n} a_k.
+\end{align*}
+Wir können nun diese Definitionen auf Mengen übertragen.
+\begin{defnn}
+Sei $(\Omega,\AA,P)$ ein W-Raum, $A_n\in\AA$ für $n\in\N$
+\begin{align*}
+\limsup\limits_{n\to\infty} A_n= \bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_k
+&\defl \setdef{\omega\in\Omega}{\text{es ex. unendlich viele $n$ mit
+$\omega\in A_n$}}\\
+&= \text{``Ereignis, dass unendlich viele $A_n$ eintreten''}.\fishhere
+\end{align*}
+\end{defnn}
+
+\begin{prop}[1.\ Lemma von Borel und Cantelli]
+\label{prop:1.3}
+Sei $(\Omega, \AA, P)$ ein W-Raum und $A_{n}\in\AA$ für $n \in \N$,
+dann gilt
+\begin{align*}
+\sum\limits^{\infty}_{n=1} P(A_{n}) < \infty \quad \Longrightarrow \quad & P
+(\limsup A_{n}) = 0,
+\end{align*}
+d.h.$\Pfs$ gilt: $A_{n} $ tritt nur endlich oft auf.\fishhere
+\end{prop}
+
+\begin{bsp}
+\textit{Lernen durch Erfahrung}, d.h. je öfter man eine Tätigkeit durchführt, je
+kleiner ist die Wahrscheinlichkeit, dass ein Fehler auftritt.\\ Betrachte eine
+Folge von Aufgaben. Ein Misserfolg in der $n$-ten Aufgabe tritt mit der
+Wahrscheinlichkeit
+\begin{align*}
+P(A_n) = \frac{1}{n^2}
+\end{align*}
+auf. Es gilt dann
+\begin{align*}
+&\sum\limits_{n=1}^\infty P(A_n) = \sum\limits_{n=1}^\infty \frac{1}{n^2} <
+\infty.
+\end{align*}
+$\overset{\ref{prop:1.3}}{\Rightarrow}$ Mit Wahrscheinlichkeit 1 wird von
+einem zufälligen Index $n$ an \textit{jede} Aufgabe immer richtig
+gelöst.\bsphere
+\end{bsp}
+\begin{proof}[Beweis des 1. Lemma von Borel und Cantelli.]
+Sei $B\defl\limsup_n A_n$, d.h.
+\begin{align*}
+B = \bigcap_{n=1}^\infty \bigcup_{k\ge n} A_k.
+\end{align*}
+Offensichtlich gilt $\bigcup_{k\ge n} A_k \downarrow B$. Aufgrund der Monotonie
+von $P$ gilt somit,
+\begin{align*}
+P(B) \le P\left(\bigcup_{k\ge n} A_k \right) \le \sum\limits_{k=n}^\infty
+P(A_k) \to 0,
+\end{align*}
+da die Reihe nach Voraussetzung konvergent ist. Also ist $P(B)=0$.\qedhere
+\end{proof}
+
+\subsection{Fortsetzung von Wahrscheinlichkeitsmaßen}
+
+Bisher haben wir ausschließlich mit Maßen gearbeitet, die auf $\N_0$
+konzentiert sind, d.h. $P(\N_0) = 1$. Unser Ziel ist es jedoch ein Maß auf
+$\BB_n$ zu definieren, das jedem Intervall (Rechteck) seinen
+elementargeometrischen Inhalt zuordnet. 
+
+Betrachten wir wieder das Erzeugersystem $J_n$ der halboffenen Intervalle,
+so bildet dieses einen Halbring.
+\begin{defnn}
+$h\subseteq \PP(\Omega)$ heißt \emph{Halbring} über $\Omega$, falls
+\begin{defnenum}
+  \item $\varnothing\in h$,
+  \item $A,B\in h \Rightarrow A\cap B\in h$,
+  \item $A,B\in h$, $A\subseteq B \Rightarrow \exists k\in\N: C_1,\ldots,C_k\in
+  h : B\setminus A = \sum_{i=1}^k C_i$.\fishhere
+\end{defnenum} 
+\end{defnn}
+Auf dem Halbring $J_n$ können wir das gesuchte Maß definieren durch,
+\begin{align*}
+\mu: J_n \to\R,\quad 
+(a_i,b_i] \mapsto \mu((a_i,b_i]) = \prod\limits_{i=1}^n (b_i-a_i).
+\end{align*}
+Mit Hilfe des folgenden Satzes können wir $\mu$ \textit{eindeutig} auf $\BB_n$
+fortsetzen.
+\begin{prop}[Fortsetzungs- und Eindeutigkeitssatz]
+\label{prop:1.4}
+Sei $\mu$ ein Maß auf einem Halbring $h$ über $\Omega$, so besitzt
+$\mu$ eine Fortsezung $\mu^*$ zu einem Maß auf $\FF(h)$.
+\\
+Gilt außerdem $\Omega = \bigcup_{i=1}^\infty A_i$ mit $\mu(A_i)<\infty$, so ist
+$\mu^*$ eindeutig.\fishhere
+\end{prop}
+\begin{proof}
+Siehe Elstrodt, Kap. III, $\mathsection\mathsection$ 4.5.\qedhere
+\end{proof}
+
+Insbesondere lassen sich auf Halbringen bzw. Algebren über W-Räumen definierte
+Maße immer eindeutig fortsetzen, da hier bereits $\mu(\Omega)<\infty$.
+
+\begin{bem}
+\label{bem:1.3}
+$\mu^*$ in Satz \ref{prop:1.4} ist für $A\in\FF(\AA)$ gegeben durch
+\begin{align*}
+\mu^*(A) = \inf \setdef{ \sum\limits^{\infty }_{n=1} \mu(B_{n})}{B_{n} \in
+\AA \; \; (n=1,2,\ldots ) \mbox{ mit } A \subset \bigcup\limits_{n}
+B_{n}}.\maphere
+\end{align*}
+\end{bem}
+
+\begin{bem}
+\label{bem:1.4}
+Es ist im Allgemeinen nicht möglich, $\mu$ von $\AA$ auf ${\PP}(\Omega)$
+fortzusetzen. H. Lebesque\footnote{
+Henri Léon Lebesgue (* 28. Juni 1875 in Beauvais; † 26.
+Juli 1941 in Paris) war ein französischer Mathematiker.
+}
+hat sogar bewiesen, dass es unter Annahme des
+Auswahlaxioms nicht möglich ist, ein Maß auf $\PP([0,1])$ fortzusetzen. Ist
+$\Omega$ jedoch abzählbar, so kann $P$ stets auf die Potenzmenge fortgesetzt
+werden.\maphere
+\end{bem}
+
+\begin{prop}[Korollar]
+\label{prop:1.5}
+Es gibt genau ein Maß $\lambda$ auf $\BB_n$, das jedem
+beschränkten (nach rechts halboffenen) Intervall in $\R^n$ seinen
+elementargeometrischen Inhalt zuordnet.\fishhere
+\end{prop}
+
+\begin{defn}
+\label{defn:1.8}
+Das Maß $\lambda$ in Korollar \ref{prop:1.5} heißt \emph{Lebesgue--Borel--Maß
+(L-B-Maß)} in $\R^n$.\fishhere
+\end{defn}
+
+\begin{bsp}
+\label{bsp:1.5}
+\textit{Rein zufälliges Herausgreifen eines Punktes aus dem Intervall $[0,1]$}.
+
+Sei $\Omega=[0,1]$, $\AA\defl[0,1]\cap\BB\defl\setdef{B\cap[0,1]}{B\in\BB}$.
+Das W-Maß $P$ auf $\AA$ soll jedem Intervall in $[0,1]$ seine elementare Länge
+zuordnen. Also ist
+\begin{align*}
+P=\lambda\big|_{[0,1]\cap\BB}
+\end{align*}
+eine Restriktion von $\lambda$ auf $[0,1]\cap\BB$.\bsphere
+\end{bsp}
+
+Das $\lambda$-Maß hat die Eigenschaft, dass nicht nur die leere Menge
+sondern auch jede höchstens abzählbare Menge das Maß Null hat. Eine Menge
+$N\subseteq \Omega$ mit $\mu(N)=0$ nennt man \emph{Nullmenge}.
+
+Oft kann man Eigenschaften nicht auf ganz $\Omega$ nachweisen aber auf
+$\Omega$ bis auf eine Nullmenge. Solche Eigenschaften treten vor allem in der
+Maßtheorie auf und sind daher auch in der Wahrscheinlichkeitstheorie von großer
+Bedeutung.
+
+\begin{defnn}
+Sei Maßraum $(\Omega, \AA, \mu )$, W-Raum $(\Omega, {\AA},P)$. Eine Aussage
+gilt
+\begin{defnenum}
+  \item \emph{$\mu$-fast überall} ($\mu$-f.ü.) in $\Omega$ bzw. \emph{$P$-fast
+sicher} ($P$-f.s.) in $\Omega$, falls sie überall bis auf einer Menge $\in
+{\AA}$ vom $\mu$-Maß bzw.\ $P$-Maß Null [oder eine Teilmenge hiervon] gilt.
+\item \emph{$L$-fast überall} ($L$-f.ü.) in $\R^{n}$ \ldots, wenn sie
+überall bis auf einer Menge $\in \BB_{n}$ vom L-B-Maß Null [oder eine Teilmenge
+hiervon] gilt.\fishhere   
+\end{defnenum}
+\end{defnn}
+
+\clearpage
+% =============================================================
+%                                   Verteilungsfunktionen
+% =============================================================
+\section{Verteilungsfunktionen}
+\label{chap:1.c}
+
+
+W-Maße sind Abbildungen der Art
+\begin{align*}
+P : \sigma\subseteq \PP(\Omega) \to \R.
+\end{align*}
+Ihr Definitionsbereich ist somit ein Mengensystem. Wir konnten einige
+elementare Eigenschaften wie Stetigkeit und Monotonie aus der reellen Analysis
+auf diese Abbildungen übertragen, dennoch lassen sie sich nicht immer so leicht
+handhaben wie Funktionen.
+
+Betrachten wir nun ein W-Maß auf $\BB$, so ist durch folgende Vorschrift eine
+Funktion gegeben
+\begin{align*}
+F: \R\to\R,\quad F(x) \defl P((-\infty,x]),\quad x\in\R.
+\end{align*}
+$F$ wird als die zu $P$ gehörende \emph{Verteilungsfunktion (Verteilungsfunktion)} bezeichnet.
+Verteilungsfunktionen auf $\R$ lassen sich in der Regel viel leichter handhaben
+als Maße auf $\BB$.
+
+In diesem Abschnitt werden wir zeigen, dass eine Bijektion zwischen Maßen und
+Verteilungsfunktionen auf einem W-Raum existiert, wir also jedem Maß eine
+Verteilungsfunktion zuordnen können und umgekehrt. Durch die
+Verteilungsfunktionen werden die Maße ``greifbar''.
+
+\clearpage
+
+\begin{bsp}
+\label{bsp:1.6}
+\begin{bspenum}
+  \item Würfeln mit Wahrscheinlichkeiten $\underbrace{p_1}_{\ge
+  0},\ldots,\underbrace{p_6}_{\ge 0}$ für die Augenzahlen $1,\ldots,6$ wobei
+  $p_1+\ldots+p_6 =1$.
+  
+Als zugehörigen Wahrscheinlichkeitsraum wählen wir $\Omega=\R$ mit $\AA=\BB$.
+Das W-Maß auf $\BB$ erfüllt $P(\setd{1})=p_1,\ldots,P(\setd{6}) = p_6$.
+
+Zur Verteilungsfunktion betrachte die Skizze. 
+\item Betrachte erneut Beispiel \ref{bsp:1.5}:
+Sei $(\Omega,\AA,P) =
+([0,1],[0,1]\cap\BB, \lambda\big|_{[0,1]\cap\BB})$ abgewandelt zu
+$(\Omega,\AA,P)=(\R,\BB,P)$. Das Lebesgue-Maß ist nur dann ein
+Wahrscheinlichkeitsmaß, wenn man den zugrundeliegenden Raum auf ein Intervall
+der Länge Eins einschränkt.
+
+Wir setzten daher $P(B)\defl\lambda([0,1]\cap B)$. Die zugehörige
+Verteilungsfunktion ist dann gegeben durch,
+\begin{align*}
+F(x) = \begin{cases}
+       0,& x\le 0,\\
+       x, & x\in(0,1),\\
+       1, & x\ge 1.\bsphere
+       \end{cases}
+\end{align*}
+
+\begin{figure}[htpb]
+\centering
+\begin{pspicture}(-0.4,-1.25)(5.36,1.4)
+\psline{->}(0.34,-0.75)(5.02,-0.75)
+\psline{->}(1.54,-0.95)(1.54,1.35)
+
+\psline(1.94,-0.63)(1.94,-0.87)
+\psline(2.34,-0.63)(2.34,-0.87)
+\psline(2.74,-0.63)(2.74,-0.87)
+\psline(3.14,-0.63)(3.14,-0.87)
+\psline(3.54,-0.63)(3.54,-0.87)
+\psline(3.94,-0.63)(3.94,-0.87)
+
+\psline(1.42,1.05)(1.66,1.05)
+\psline[linecolor=darkblue](0.36,-0.75)(1.92,-0.75)
+\psline[linecolor=darkblue]{*-}(1.94,-0.45)(2.34,-0.45)
+\psline[linecolor=darkblue]{*-}(2.34,-0.15)(2.74,-0.15)
+\psline[linecolor=darkblue]{*-}(2.74,0.15)(3.14,0.15)
+\psline[linecolor=darkblue]{*-}(3.14,0.45)(3.54,0.45)
+\psline[linecolor=darkblue]{*-}(3.54,0.73)(3.94,0.73)
+\psline[linecolor=darkblue]{*-}(3.92,1.05)(5.34,1.05)
+
+\psline(1.62,-0.45)(1.46,-0.45)
+\psline(1.62,-0.15)(1.46,-0.15)
+\psline(1.62,0.73)(1.46,0.73)
+
+\rput(1.19,1.05){\color{gdarkgray}1}
+
+\rput[r](1.4,-0.45){\color{gdarkgray}\small$p_1$}
+\rput[r](1.4,-0.1){\color{gdarkgray}\small$p_1+p_2$}
+\rput[r](1.4,0.67){\color{gdarkgray}\small$p_1+...+p_5$}
+
+\rput(1.94,-1.045){\color{gdarkgray}1}
+\rput(2.34,-1.045){\color{gdarkgray}2}
+\rput(2.74,-1.045){\color{gdarkgray}3}
+\rput(3.14,-1.045){\color{gdarkgray}4}
+\rput(3.54,-1.045){\color{gdarkgray}5}
+\rput(3.94,-1.045){\color{gdarkgray}6}
+
+\end{pspicture}
+\quad
+\begin{pspicture}(-0.1,-1.43)(4.22,1.43)
+\psline{->}(0.68,-1.17)(0.68,1.25)
+\psline{->}(0.06,-0.97)(4.1,-0.95)
+\psline[linecolor=darkblue](0.26,-0.97)(0.68,-0.97)
+\psline[linecolor=darkblue](0.68,-0.97)(2.08,0.63)
+\psline[linecolor=darkblue](2.08,0.63)(3.88,0.63)
+\psline(2.08,-0.87)(2.08,-1.05)
+\psline(0.6,0.63)(0.76,0.63)
+
+\rput(0.5,0.63){\color{gdarkgray}1}
+\rput(2.08,-1.285){\color{gdarkgray}1}
+\rput(4.09,-1.125){\color{gdarkgray}$x$}
+\rput(0.31,1.235){\color{gdarkgray}$F(x)$}
+\end{pspicture} 
+\caption{Verteilungsfunktionen zum Würfelexperiment und zu Beispiel
+\ref{bsp:1.5}}
+\end{figure}
+\end{bspenum}
+\end{bsp}
+
+\begin{defn}
+\label{defn:1.9}
+Eine Funktion $F: \R \to \R$,
+die monoton wachsend (im Sinne von nicht fallend) und rechtsseitig stetig
+ist mit
+\begin{align*}
+\lim\limits_{x\to - \infty} F(x) =0, \qquad \lim\limits_{x \to + \infty} F(x)
+= 1,
+\end{align*}
+heißt (eindimensionale) \emph{Verteilungsfunktion (Verteilungsfunktion)}.\fishhere
+\end{defn}
+
+Der folgende Satz stellt nun eine eindeutige Beziehung zwischen einem Maß auf
+$\BB$ und einer eindimensionalen Verteilungsfunktion her.
+
+\begin{prop}
+\label{prop:1.6}
+Zu jedem W-Maß $P$ auf $\BB$ gibt es genau eine Verteilungsfunktion
+$F: \R \to \R$, so dass gilt
+\begin{align*}
+F(b) -F(a) = P ((a,b]), \; \; a \leq b, \; \; a,b \in \R\tag{*}
+\end{align*}
+gilt, und umgekehrt. Es existiert also eine Bijektion $P
+\longleftrightarrow F$.\fishhere
+\end{prop}
+
+\begin{proof}
+Wir wählen für die Verteilungsfunktion den Ansatz,
+\begin{align*}
+F(x)\defl P((-\infty,x]),\qquad x\in\R.
+\end{align*}
+ \begin{enumerate}[label=\arabic{*}.),leftmargin=17pt]
+  \item Die (*)-Bedingung ist erfüllt, denn es gilt für $a,b\in\R$ mit $a<b$,
+\begin{align*}
+P((a,b]) = P((-\infty,b]\setminus(-\infty,a]) = P((-\infty,b])-P((-\infty,a]).
+\end{align*}
+  \item $F$ ist monoton steigend, denn $P$ ist monoton.
+  \item $F$ ist rechtsstetig, denn für $x_n\downarrow x$ folgt
+  $(-\infty,x_n]\downarrow (-\infty,x]$. Somit gilt nach Satz \ref{prop:1.2},
+\begin{align*}
+F(x_n)=P((-\infty,x_n]) \downarrow P((-\infty,x])=F(x).
+\end{align*}
+\item$F(x)\to 0$ für $x\to -\infty$, denn
+\begin{align*}
+x_n\downarrow -\infty \Rightarrow (-\infty,x_n]\downarrow \varnothing.
+\end{align*}
+Mit Satz \ref{prop:1.2} folgt daraus,
+\begin{align*}
+F(x_n)=P((-\infty,x_n]) \downarrow P(\varnothing) = 0.
+\end{align*}
+\item $F(x)\to 1$ für $x\to\infty$, denn
+\begin{align*}
+x_n\to \infty \Rightarrow (-\infty,x_n)\uparrow \R.
+\end{align*}
+Ebenfalls mit Satz \ref{prop:1.2} folgt
+\begin{align*}
+F(x_n)=P((-\infty,x_n])\to P(\R) = 1.
+\end{align*}
+\item \textit{Eindeutigkeit}. Seien $F,F^*$ zwei Verteilungsfunktion gemäß der
+(*)-Bedingung in Satz \ref{prop:1.6}. Dann unterscheiden sich $F$ und $F^*$
+lediglich um eine Konstante, d.h.
+\begin{align*}
+F^* = F + c.
+\end{align*}
+Nun gilt aber $F^*(x)$, $F(x)\to 1$ für $x\to+\infty$, also $c=0$, d.h.
+$F=F^*$.\qedhere
+\end{enumerate}
+\end{proof}
+
+Wir betrachten nun zwei sehr wichtige Verteilungsfunktionen als Beispiele.
+\begin{bsp}
+\label{bsp:1.7}
+Die Funktion
+$\Phi :\R \to [0,1] $ mit
+\begin{align*}
+\Phi (x) \defl \frac{1}{\sqrt{2 \pi }} \int\limits^{x}_{-\infty }
+\underbrace{\e^{-\frac{t^{2}}{2}}}_{\ph(t)} dt, \; \; x \in \R,
+\end{align*}
+ist eine Verteilungsfunktion, denn $\Phi$ ist streng monoton, da $\ph > 0$, die
+Rechtsstetigkeit folgt aus der Stetigkeit des Integrals. $F(x)\to 0$ für
+$x\to-\infty$ ist offensichtlich, einzig $F(x)\to 1$ für $x\to\infty$
+muss man explizit nachrechnen (Funktionentheorie).
+
+Der Integrand $\ph(t)$ heißt übrigens Gaußsche Glockenkurve und das zu $\Phi$
+gehörige W-Maß auf $\BB$, \emph{standardisierte Normverteilung $N(0,1)$}.
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-2.8,-1)(2.8,3)
+
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-2.7,-0.5)(2.7,2.5)[\color{gdarkgray}$t$,-90][\color{gdarkgray}$\ph(t)$,0]
+
+\psplot[linewidth=1.2pt,%
+	     linecolor=darkblue,%
+	     algebraic=true]%
+	     {-2.5}{2.5}{2*(2.71828)^(-(3/2.5*x)^2/2)}
+
+\rput(1.4,1.4){\color{gdarkgray}$\ph$}
+\end{pspicture}
+\begin{pspicture}(-2.8,-1)(2.8,3)
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-2.7,-0.5)(2.7,2.5)[\color{gdarkgray}$t$,-90][\color{gdarkgray}$\Phi(t)$,0]
+
+ \psplot[linewidth=1.2pt,%
+	     linecolor=darkblue,%
+	     algebraic=true]%
+	     {-2.5}{2.5}{%
+2*(0.5 + 0.3989422804014327*x -% 
+ 0.06649038006690544*x^3 + %
+ 0.009973557010035819*x^5 - %
+ 0.0011873282154804543*x^7 + %
+ 0.00011543468761615529*x^9 -%
+ 0.000009444656259503615*x^11 + %
+ 0.0000006659693516316651*x^13 -% 
+ 0.00000004122667414862689*x^15)%
+ }
+\rput(2.1,2.2){\color{gdarkgray}$\Phi$}
+\end{pspicture}
+\caption{Gaußsche Glockenkurve und standardisierte Normalverteilung}
+\end{figure}
+
+Eine Verallgemeinerung davon ist die \emph{Normalverteilung (Gauß-Verteilung)
+$N(a,\sigma^2)$}, mit $a\in\R$ und $\sigma > 0$. $N(a,\sigma^2)$ ist ein W-Maß
+auf $\BB$ mit Verteilungsfunktion
+\begin{align*}
+F(x) \defl \frac{1}{\sqrt{2\pi}}
+\int\limits^{x}_{-\infty}\e^{-\frac{(t-a)^{2}}{2 \sigma^{2}}}\dt,\qquad x \in
+\R.
+\end{align*}
+Diese Funktion ergibt sich mittels Substitution aus der Verteilungsfunktion von
+$N(0,1)$, alle Eigenschaften übertragen sich daher entsprechen.\bsphere
+\end{bsp}
+\begin{bsp}
+Wähle $\lambda > 0$ fest, so ist eine Verteilungsfunktion gegeben durch,
+\begin{align*}
+F: \R\to\R,\quad F(x) =
+\begin{cases}
+0, & x\le 0\\
+1-\e^{-\lambda x}, & x > 0.
+\end{cases}
+\end{align*}
+\begin{figure}[!htbp]
+\centering
+\begin{pspicture}(-1.8,-0.8)(4.2,2.2)
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-1.5,-0.5)(4,2)[\color{gdarkgray}$x$,-90][\color{gdarkgray}$F(x)$,0]
+
+\psline[linewidth=1.2pt,linecolor=darkblue](-1,0)(0,0)
+
+\psline[linewidth=1.2pt,linestyle=dotted](0,1)(3.5,1)
+
+\psplot[linewidth=1.2pt,%
+	     linecolor=darkblue,%
+	     algebraic=true]%
+	     {0}{3.5}{1-(2.71828)^(-x)}
+	     
+\psyTick(1){\color{gdarkgray}1}
+
+\end{pspicture}
+\caption{Verteilungsfunktion der Exponentialverteilung.}
+\end{figure}
+
+Das zugehörige W-Maß heißt \emph{Exponentialverteilung} mit Parameter
+$\lambda$ (kurz $\exp(\lambda)$).\bsphere
+\end{bsp}
+
+\begin{bem}
+\label{bem:1.5}
+Definition \ref{defn:1.9} und Satz \ref{prop:1.6} lassen sich auf $\BB_{n}$
+und $\R^{n}$ als Definitionsbereiche von $P$ bzw. $F$ 
+anstatt $\BB$ bzw. $\R$ verallgemeinern. Dabei ist die Verteilungsfunktion $F$
+zu einem W-Maß $P$ auf $\BB_{n}$ gegeben durch
+\begin{align*}
+F(x_{1}, \ldots ,x_{n})= P(\{(u_{1}, \ldots , u_{n})\in \R^{n}\mid
+u_{1}\leq x_{1},\ldots, u_{n} \leq x_{n}\} )
+\end{align*}
+ für $ (x_{1}, \ldots, x_{n})
+\in \R^{n}$.\maphere
+\end{bem}
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(0,-1.27)(8.5,2.15)
+\psframe[linestyle=none,fillcolor=glightgray,fillstyle=solid](3.1,1.13)(0,-1.26)
+
+\psline{->}(2.12,-1.26)(2.1,1.93)
+\psline{->}(0.0,0.51)(4.04,0.53)
+
+\psline[linecolor=darkblue](0,1.13)(3.1,1.13)(3.1,-1.26)
+
+\rput(2.57,1.955){\color{gdarkgray}$\R^2$}
+
+\rput(4.1,1.3){\color{gdarkgray}$x=(x_1,x_2)$}
+
+\rput[l](3.2,-1.025){\color{gdarkgray}$\setdef{(u1,u2)\in\R^2}{u_1\le x_1,
+u_2\le x_2}$}
+
+\rput(1.88,1.3){\color{gdarkgray}$x_2$}
+
+\rput(3.36,0.32){\color{gdarkgray}$x_1$}
+\end{pspicture} 
+\caption{Zur Verallgemeinerung der Verteilungsfunktion.}
+\end{figure}
+
+\clearpage
+% =============================================================
+%                                   Bedingte Wahrscheinlichkeiten
+% =============================================================
+\section{Bedingte Wahrscheinlichkeiten}
+\label{chap:1.d}
+
+Wenn wir beim Durchführen eines Zufallsexperiments wissen, dass bereits
+Ereignis $A$ eingetreten ist, so ändert sich die Wahrscheinlichkeit dafür, dass
+auch noch $B$ eintritt. Für diese Wahrscheinlichkeit schreiben wir
+\begin{align*}
+P(B\mid A).
+\end{align*}
+$P(B\mid A)$ ist die bedingte Wahrscheinlichkeit, dass unter der Voraussetzung,
+dass $A$ eingetreten ist, nun $B$ eintritt.
+
+Bedingte Wahrscheinlichkeiten spielen in vielen aktuellen Fragestellungen der
+Wahrscheinlichkeitstheorie eine zentrale Rolle. Beispielsweise in der
+Finanzmathematik, denn es ist offensichtlich, dass der nächste Aktienkurs
+von allen vorherigen abhängt.
+
+
+\begin{bsp}
+Unter Studenten einer Vorlesung wird eine Umfrage gemacht.
+\begin{figure}[H]
+\begin{tabular}{l|c|c}
+ & m & w\\\hline
+ Sport & 12 & 18\\
+ Kein Sport & 16 & 20
+\end{tabular}
+\caption{Ergebnis der Umfrage.}
+\end{figure}
+Wir nummerieren die Personen so, dass Nr. 1-12 die Sport-treibenden Frauen, 
+13-30 die Sport-treibenden Männer, 31-46 die nicht Sport-treibenden Frauen und
+47-66 die nicht Sport-treibenden Männer sind.
+
+Nun modelieren wir einen W-Raum für die rein zufällige Auswahl einer Person,
+\begin{align*}
+\Omega = \setd{1,\ldots,66},\quad \AA = \PP(\Omega),\quad P(\setd{\omega}) =
+\frac{1}{66}.
+\end{align*}
+Ereignis $A\defl\setd{1,\ldots,12,31,\ldots,46}$, die ausgewählte Persion ist
+weiblich,\\
+Ereignis $B\defl\setd{1,\ldots,30}$, die ausgewählte Person treibt Sport.
+
+Es sei bekannt, dass die ausgewählte Person Sport treibt. 
+\textit{Wie groß ist die Wahrscheinlichkeit, dass die ausgewählte Person eine
+Frau ist?} Abzählen der Elemente in $\Omega$ ergibt,
+\begin{align*}
+\frac{12}{30} = \frac{2}{5}. 
+\end{align*}
+Andererseits erhalten wir durch
+\begin{align*}
+\frac{P(A\cap B)}{P(B)} = \frac{\frac{12}{66}}{\frac{30}{66}} = \frac{2}{5}
+\end{align*}
+dasselbe Ergebnis. Wir verwenden dies nun zur Definition der bedingten
+Wahrscheinlichkeit.\bsphere
+\end{bsp}
+
+\begin{defn}
+\label{defn:1.10}
+Es sei $(\Omega, \AA, P)$ ein W-Raum, $A \in {\cal
+A}$, $B \in \AA$ mit $P(B) >0$.
+Dann heißt
+\begin{align*}
+P(A\mid B)\defl \frac{P(A\cap B)}{P(B)}
+\end{align*}
+die \emph{bedingte Wahrscheinlichkeit (conditional probability)} von $A$ unter
+der Bedingung~$B$.\fishhere
+\end{defn}
+
+Es folgen einige elemenatre Eigenschaften der bedingten Wahrscheinlichkeit.
+\begin{prop}
+\label{prop:1.7}
+Sei $(\Omega, \AA, P)$ ein W-Raum.
+\begin{propenum}
+\item
+Bei festem $B \in \AA$ mit $P(B) > 0 $ ist $P(\cdot\mid B)$ ein W-Maß auf
+$\AA$, das auf $B$ konzentriert ist [d.h. $P(B\mid B) =1$].
+\item
+Für $A,B \in \AA$ mit $P(A) > 0$, $P(B) > 0$ gilt
+\begin{align*}
+P(A\mid B)= P(B\mid A)\cdot \frac{P(A)}{P(B)}.
+\end{align*}
+\item Für $A_{n} \in \AA$ $(n=1, \ldots ,m)$ mit
+  $P(\bigcap^{m-1}_{n=1}A_{n})>0$ gilt
+\begin{align*}
+P\left(\bigcap^{m}_{n=1}A_{n}\right) = &P(A_{1}) \cdot P(A_{2}\mid A_{1})\cdot
+P(A_{3}\mid A_{1}\cap A_{2}) \cdot \\ & \ldots \cdot
+P\left(A_{m}\mid \bigcap\limits^{m-1}_{n=1}A_{n}\right).\fishhere
+\end{align*}
+\end{propenum}
+\end{prop}
+
+\begin{proof}
+\begin{proofenum}
+  \item Der Beweis ist eine leichte Übungsaufgabe.
+  \item Betrachte die rechte Seite,
+\begin{align*}
+P(B\mid A)\cdot \frac{P(A)}{P(B)} = \frac{P(A\cap B)}{P(A)}\frac{P(A)}{P(B)}
+=\frac{P(A\cap B)}{P(B)} \defr P(A|B).
+\end{align*}
+\item Vollständige Induktion. Für $n=2$
+\begin{align*}
+P(A_1\cap A_2) = P(A_1)P(A_2|A_1).
+\end{align*}
+Der Induktionsschulss ist eine leichte Übung.\qedhere
+\end{proofenum}
+\end{proof}
+ 
+\begin{prop}
+\label{prop:1.8}
+Sei $(\Omega, \AA, P)$ ein W-Raum, $\setdef{B_{n}}{n \in I}$ eine höchstens
+abzählbare Familie paarweise disjunkter Ereignisse $B_{n} \in \AA$ mit
+$P(B_{n}) > 0 \; (n \in I)$ und $\sum\limits_{n \in I} B_{n} = \Omega $. Dann
+gilt für $A\in\AA$
+\begin{propenum}
+\item die \emph{Formel von der totalen Wahrscheinlichkeit}
+\begin{align*}
+P(A) = \sum\limits_{n \in I} P(B_{n})P(A\mid B_{n}).
+\end{align*}
+\item falls $P(A)>0$ die \emph{Formel von Bayes}
+\begin{align*}
+P(B_{k}\mid A)= {\displaystyle\frac{P(B_{k})\cdot P(A\mid B_{k})}
+  {\sum\limits_{n\in I} P(B_{n})P(A\mid B_{n})}},\qquad k \in I.\fishhere
+\end{align*}
+\end{propenum}
+\end{prop}
+Mit der Formel von der totalen Wahrscheinlichkeit kann man somit mit bedingten
+Wahrscheinlichkeiten auf die Wahrscheinlichkeit für ein bestimmtes
+Ereignis rückschließen. Die Formel von Bayes hingegen erlaubt es die Bedingung
+der Bedingten Wahrscheinlichkeit umzukehren.
+
+\begin{proof}
+\begin{proofenum}
+  \item $A=A\cap \Omega = \sum\limits_{n\in I} (A\cap B_n)$. Weiterhin gilt
+  aufgrund der $\sigma$-Additivität,
+\begin{align*}
+P(A) = \sum\limits_{n\in I} P(A\cap B_n) = \sum\limits_{n\in I}
+P(B_n)P(A\mid B_n).
+\end{align*}
+\item Satz \ref{prop:1.7} besagt, $P(B_k) = P(A|B_k)\frac{P(B_k)}{P(A)}$. Die
+Behauptung folgt nun unter Verwendung des Teils a).\qedhere
+\end{proofenum}
+\end{proof}
+
+\begin{bsp}
+\label{bsp:1.7}
+\textit{Zur Veranschaulichung des Satzes \ref{prop:1.8}}. Betrachte einen Weg
+von $0$ über $b_1$ oder $b_2$ oder $b_3$ oder \ldots nach $a$ oder
+$\overline{a}$. [$a$ könnte z.B. für das Auftreten von Krebs,
+$\overline{a}$ für das Nichtauftreten von Krebs, $b_1$ für Rauchen, $b_2$
+für das Ausgesetzsein von giftigen Dämpfen, $b_3$\ \ldots stehen].
+
+\begin{figure}[!htbp]
+\centering
+\begin{pspicture}(0,-1.77)(5.68,1.79)
+
+\psbezier[linecolor=darkblue](0.2,0.61)(0.94,1.39)(1.48,1.53)(2.92,1.41)
+\psbezier[linecolor=purple](0.22,0.61)(0.94,0.11)(1.78,-0.09)(2.88,0.19)
+\psbezier[linecolor=yellow](0.2,0.61)(0.16,-0.91)(1.44,-1.09)(2.86,-1.03)
+\psbezier[linecolor=darkblue](2.92,1.41)(3.58,1.75)(4.94,1.63)(5.32,1.09)
+\psbezier[linecolor=darkblue](2.92,1.41)(2.88,0.23)(3.84,-0.19)(5.24,-0.09)
+\psbezier[linecolor=purple](2.92,0.19)(3.32,-0.21)(4.24,-0.35)(5.22,-0.09)
+\psbezier[linecolor=purple](2.9,0.19)(3.8,-0.07)(5.34,0.31)(5.34,1.11)
+\psbezier[linecolor=yellow](2.86,-1.03)(4.0,-1.75)(5.0,-1.31)(5.24,-0.09)
+\psbezier[linecolor=yellow](2.86,-1.03)(4.58,-1.13)(5.34,0.29)(5.34,1.09)
+
+\psdots(0.22,0.61)
+\psdots(2.92,1.43)
+\psdots(2.9,0.19)
+\psdots(2.86,-1.03)
+\psdots(5.34,1.11)
+\psdots(5.24,-0.09)
+
+\rput(0.09,0.775){\color{gdarkgray}$0$}
+
+\rput(5.56,1.215){\color{gdarkgray}$a$}
+\rput(5.48,-0.165){\color{gdarkgray}$\overline{a}$}
+
+\rput(3.17,1.275){\color{gdarkgray}$b_1$}
+\rput(2.85,-0.065){\color{gdarkgray}$b_2$}
+\rput(2.8,-1.265){\color{gdarkgray}$b_3$}
+
+\rput(1.07,1.595){\color{darkblue}$P(B_1)$}
+\rput(1.73,0.295){\color{purple}$P(B_2)$}
+\rput(1.09,-1.125){\color{yellow}$P(B_3)$}
+\end{pspicture} 
+\caption{Wegediagramm.}
+\end{figure}
+
+An jeder Verzweigung $b_1$, $b_2$, $b_3$, \ldots wird ein Zufallsexperiment
+durchgeführt. Das Ereignis $B_k$ sei definiert durch, dass der Weg über $b_k$
+führt.
+
+Die Formel von der totale Wahrscheinlichkeit ergibt,
+\begin{align*}
+P(A) = \sum_n P(A|B_n) P(B_n).
+\end{align*}
+\textit{Deutung}. Betrachte $B_1,B_2,\ldots$ als ``Ursachen'' und $A$ als
+``Wirkung''.
+\begin{align*}
+P(B_k)\text{ bezeichnet man als sog. ``\emph{a priori} Wahrsch.'' von }B_k.
+\end{align*}
+Nun stehe $A$ durch Erfahrung zur Verfügung.
+\begin{align*}
+P(B_k|A)\text{ bezeichnet man als sog. ``\emph{a posteriori} Wahrsch.'' von
+}B_k.
+\end{align*}
+$P(B_k|A)$ ist die Wahrscheinlichkeit, dass der Weg über $b_k$ verlaufen ist,
+wobei bereits bekannt sei, dass die Ankunft in $a$ (= Ereignis $A$)
+stattgefunden hat.
+
+Die Formel von Bayes erlaubt also den Rückschluss von einer Wirkung auf ihre
+Ursache - zumindest in einem Wahrscheinlichkeitstheoretischen Sinne.
+
+\textit{Anwendung}. Ein Arzt beobachtet das Symptom $a$, welches ausschließlich
+die Ursachen $b_1$, $b_2$, \ldots haben kann. Gesucht ist $P(B_k|A)$, die
+Wahrscheinlichkeit für die jeweilige Ursache unter Berücksichtigung des
+Eintretens von $a$.\bsphere
+\end{bsp}
+\begin{bsp}
+\textit{Betrieb mit einer Alarmanalge}. Bekannt seien folgende Daten:
+\begin{itemize}[label=-]
+  \item Bei Einbruch erfolgt Alarm mit Wahrscheinlichkeit 0.99,
+  \item bei Nichteinbruch mit Wahrscheinlichkeit 0.005.
+  \item Die Einbruchswahrscheinlichkeit ist 0.001. 
+\end{itemize}
+ 
+Gesucht ist nun die Wahrscheinlichkeit, dass bei einem Alarm auch tatsächlich
+ein Einbruch stattfindet. Übertragen wir dies auf unser Modell, so erhalten
+wir folgendes Schema:
+\begin{figure}[H]
+\begin{tabular}{l|l}
+\textbf{Ereignis} & \textbf{Beschreibung}\\\hline
+$E$ & Einbruch\\
+$\e^c$ & kein Einbruch\\
+$A$ & Alarm\\
+$A^c$ & kein Alarm
+\end{tabular}
+\end{figure}
+Die Wahrscheinlichkeiten der einzelnen Ereignisse sind,
+\begin{align*}
+P(A|E) = 0.99,\quad P(A|\e^c) = 0.005,\quad P(E) = 0.001.
+\end{align*}
+
+Gesucht ist $P(E|A)$. Mit dem Satz von Bayes erhalten wir,
+\begin{align*}
+P(E|A) &= \frac{P(A|E)P(E)}{P(A|E)P(E)+P(A|\e^c)P(\e^c)}
+= \frac{0.99\cdot 0.001}{0.99\cdot 0.001+0.005\cdot 0.999}
+\\ 
+&= \frac{22}{133} \approx 0.165.
+\end{align*}
+D.h. die Wahrscheinlichkeit, dass bei Auslösung eines Alarms,
+auch tatsächlich ein Einbruch stattfindet, beträgt lediglich 16.5\%.
+
+Die Wahrscheinlichkeit für einen Alarm ist nach der Formel von der totalen
+Wahrscheinlichkeit
+\begin{align*}
+P(A) = P(A|E)P(E)+P(A|\e^c)P(\e^c) = 0.006.\bsphere
+\end{align*}
+\end{bsp}

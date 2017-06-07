@@ -1,0 +1,732 @@
+\chapter{Zufallsvariablen und Verteilungen}
+
+\section{Meßbare Abbildungen und Zufallsvariablen}
+
+Wir betrachten folgende Zufallsexperimente:
+\begin{defnenum}
+  \item Zufällige Anzahl der Erfolge bei $n$ Bernoulli-Versuchen.
+  \item Zufällige Anzahl der an einem Schalter in einem bestimmten
+  Zeitintervall $[0,T]$ eintreffenden Kunden.
+  \item  Zufällige Wartezeit (von $0$ an gemessen) bis zum Eintreffen des
+  nächsten Kunden.
+  \item Zufälliger Abstand eines aus dem Intervall $[-1/2,1/2]$
+  herausgegriffenen Punktes von $0$.
+  \item Zufällige Lage eines Partikels im $\R^3$ zu einem bestimmten Zeitpunkt.
+\end{defnenum}
+
+Die zufälligen Größen können durch sogenannte ``Zufallsvariablen''
+modelliert werden.
+
+\begin{bsp}
+\label{bsp:3.1}
+Zu 4.): Betrachte den W-Raum $(\Omega,\AA,P)$ mit $\Omega = [-1/2,1/2]$,
+$\AA=\BB\cap\Omega$ und $P=\lambda\big|_{\AA}$ (Restriktion
+des LB-Maßes auf Mengen aus $\AA$). Ein Punkt $\omega\in\Omega$ hat Abstand
+$Y(\omega)\defl\abs{\omega}$ von Null. $Y$ nennen wir Zufallsvariable.
+
+Die Wahrscheinlichkeit, dass $Y\le x$ mit $x\in[0,1/2]$ fest, ist gegeben durch
+\begin{align*}
+P[Y\le x] \defl P\left(\setdef{\omega\in \Omega}{Y(\omega)\le x} \right)
+= [-x,x]\in \AA.
+\end{align*}
+Allgemeiner ist die Wahrscheinlichkeit, dass $Y\in B$ für $B\in\BB$, gegeben
+durch
+\begin{align*}
+P[Y\in B] \defl P\left(\setdef{\omega\in\Omega}{Y(\omega)\in B}\right).
+\end{align*}
+Damit $P[Y\in B]$ überhaupt definiert ist, muss $[Y\in B]$ eine messbare Menge
+sein, d.h. im Definitionsbereich von $P$ liegen. Im Folgenden
+erarbeiten wir die notwendigen Vorraussetzungen, dass dem so ist.\bsphere
+\end{bsp}
+
+\begin{defn}
+\label{defn:3.1}
+Seien $\Omega$, $\Omega '$ zwei nichtleere Mengen, $A' \subset
+\Omega '$ und $X: \Omega \to \Omega '$ eine Abbildung. Die Menge
+\begin{align*}
+\setdef{\omega \in \Omega}{X(\omega ) \in A'} \defr X^{-1} (A')\defr [X \in
+A']
+\end{align*}
+(in $\Omega $) heißt das \emph{Urbild} von $A'$ bezüglich der Abbildung $X$; 
+die somit
+definierte Abbildung $X^{-1}:{\cal P} (\Omega ') \to {\cal P} (\Omega )$ heißt
+\emph{Urbildfunktion} (zu unterscheiden von einer inversen Funktion!).\fishhere
+\end{defn}
+
+In vielen Fällen untersuchen wir nicht nur einzelne Mengen sondern ganze
+Mengensysteme und verwenden daher folgende Bezeichnung als Abkürzung.
+
+\begin{bemn}[Bezeichnung.]
+Sei $X: \Omega \to \Omega '$ und ${\cal C}'$ Mengensystem in
+$\Omega '$. So ist
+\begin{align*}
+X^{-1}({\cal C}') \defl \setdef{ X^{-1} (A ')}{ A' \in {\cal C}'},
+\end{align*}
+wobei $X^{-1}({\CC}')$ ist ein Mengensystem in $\Omega$ ist.\maphere 
+\end{bemn}
+
+Um zu klären, unter welchen Voraussetzungen $[X\in B]$ messbar ist, wenn $B$
+messbar ist, müssen wir untersuchen, wie sich die Urbildfunktion $X^{-1}$ auf
+$\sigma$-Algebren im Bildraum auswirkt.
+
+\begin{prop}
+\label{prop:3.1}
+Sei $X:\Omega \to \Omega' $.
+\begin{propenum}
+\item\label{prop:3.1:1}
+$X^{-1}$ und Mengenoperationen $\cup$, $\sum$, $\cap$, $^{c}$, $\backslash$
+sind vertauschbar.\\
+z.B. ist $X^{-1}\left(\bigcup\limits_{\alpha \in I} A'_{\alpha}\right) =
+\bigcup\limits_{\alpha \in I} X^{-1}(A'_{\alpha})\qquad$ für $A'_{\alpha}\subset
+\Omega ', \alpha \in $ Indexbereich $I$.
+\item\label{prop:3.1:2}
+$X^{-1}(\emptyset) = \emptyset; \quad X^{-1}(\Omega ') = \Omega$.\\ 
+$A' \subset B'\subset \Omega ' \Longrightarrow X^{-1} (A') \subset X^{-1}(B')$.
+\item\label{prop:3.1:3}
+Ist $\AA'$ $\sigma$-Algebra in $\Omega '$, so ist $X^{-1}(\AA') $
+$\sigma$-Algebra in $\Omega$.
+\item\label{prop:3.1:4}
+${\CC}'\subset {\cal P}(\Omega') \Longrightarrow X^{-1} ({\cal F}_{\Omega' }
+({\CC}')) = {\cal F}_{\Omega}(X^{-1}({\CC}'))$.\fishhere
+\end{propenum}
+\end{prop}
+\begin{proof}
+\ref{prop:3.1:1}-\ref{prop:3.1:4}: Der Beweis sei als Übungsaufgabe
+überlassen.\qedhere
+\end{proof}
+
+Sei $X:(\Omega,\AA)\to (\Omega',\AA')$, so ist $X^{-1}(\AA')$ stets eine
+$\sigma$-Algebra. Damit die Urbilder messbarer Mengen auch tatsächlich messbar
+sind, müssen wir also fordern, dass $X^{-1}(\AA')\subseteq \AA$.
+
+\begin{defn}
+\label{3.2}
+Seien $(\Omega ,\AA)$, $(\Omega ', \AA')$ Messräume.
+Die Abbildung $X:\Omega \to \Omega '$ heißt $\AA$-${\cal A'}$-messbar
+[kurz: \emph{messbar}; measurable], wenn gilt:
+\begin{align*}
+\forall {A' \in \AA'} : X^{-1}(A') \in \AA,
+\quad \text{d.h. } X^{-1}(\AA') \subseteq \AA,
+\end{align*}
+d.h. Urbilder von messbaren Mengen in $\Omega '$ sind messbare Mengen in
+$\Omega $.\\
+ In diesem Falle verwenden wir die Schreibweise $X$: $(\Omega, \AA) \to (\Omega
+ ', \AA')$.\fishhere
+\end{defn}
+
+Wie wir noch sehen werden, ist die Messbarkeit einer Abbildung eine
+\textit{wesentlich} schwächere Voraussetzung als beispielsweise Stetigkeit oder
+gar Differenzierbarkeit. Es erfordert sogar einiges an Aufwand, eine nicht
+messbare Abbildung zu konstruieren.
+
+\begin{bem}
+\label{bem:3.1}
+In Satz \ref{prop:3.1} \ref{prop:3.1:3} ist $X^{-1}(\AA')$ die kleinste der
+$\sigma$-Algebren $\AA$ in $\Omega$ mit $\AA$-$\AA'$-Messbarkeit
+von $X$.\maphere
+\end{bem}
+
+Wir fassen nun alle nötigen Vorraussetzungen in der folgenden Definition
+zusammen.
+
+\begin{defn}
+\label{defn:3.3}
+Sei $(\Omega, \AA, P)$ ein W-Raum, $(\Omega ', {\cal
+A}')$ ein Messraum. Die Abbildung
+\begin{align*}
+X:(\Omega , \AA) \to (\Omega ', \AA')
+\end{align*}
+heißt \emph{Zufallsvariable $(ZV)$} auf $(\Omega, \AA,P)$
+[mit Zustandsraum $\Omega '$] (ausführlich: $(\Omega ', \AA')$-Zufallsvariable auf
+$(\Omega, \AA, P)$; random variable).
+
+\begin{defnenum}
+  \item $X: (\Omega,\AA) \to (\R, {\cal B})$ heißt \emph{reelle Zufallsvariable} 
+(oft auch nur ZV).
+\item $X: (\Omega, \AA) \to (\overline{\R}, \overline{\cal B})$ heißt 
+\emph{ erweitert-reelle Zufallsvariable}.
+\item $X: (\Omega, \AA) \to (\R^{n}, {\cal B}_{n})$ heißt 
+\emph{$n$-dimensionaler Zufallsvektor}.
+\item $X(\omega)$ für ein $\omega \in \Omega $ heißt eine \emph{Realisierung}
+der Zufallsvariable $X$.   
+\end{defnenum}
+Bezeichnung. $\overline{\BB}\defl \setdef{B, B \cup \{+ \infty \}, B \cup \{
+-\infty \},  B\cup \{- \infty , + \infty \}}{B \in {\BB}}$.\fishhere
+\end{defn}
+
+Zufallsvariablen ermöglichen es uns für ein Experiment lediglich einmal einen
+W-Raum $(\Omega,\AA,P)$ zu modellieren und dann für jeden Aspekt, der uns
+interessiert, eine Zufallsvariable zu konstruieren. $X(\omega)$ kann man als
+Messung interpretieren, $X(\omega)$ ist der von $\omega$ abhängige Messwert.
+
+Außerdem lassen sich Zufallsvariablen verknüpfen, wir können sie addieren,
+multiplizieren, hintereinanderausführen, \ldots
+
+Messbarkeit für alle Elemente der Bild-$\sigma$-Algebra nachzuweisen, kann sich
+als äußert delikat herausstellen. Der folgende Satz besagt jedoch, dass
+es genügt sich auf ein Erzeugersystem der Bild-$\sigma$-Algebra
+zurückzuziehen.
+
+\begin{prop}
+\label{prop:3.2}
+Seien $(\Omega, \AA)$, $(\Omega ', {\cal A '})$ Messräume, $ X:
+\Omega \to \Omega '$ und ${\EE}'$ Erzeugersystem  von $\AA'$.
+Dann ist $X$ genau dann messbar, wenn
+\begin{align*}
+\forall M\in {\EE}' : X^{-1}(M)\in \AA,\qquad
+\text{d.h. } X^{-1}({\EE}') \subseteq \AA.\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+$\Rightarrow$: Gilt \textit{per definitionem}.\\
+$\Leftarrow$: Sei $X^{-1}(\EE')\subseteq \AA $, zu zeigen ist nun, dass
+$X^{-1}(\AA')\subseteq \AA$. Es gilt
+\begin{align*}
+X^{-1}(\AA') = X^{-1}(\FF_{\Omega'}(\EE')) = \FF_\Omega(X^{-1}(\EE')) \subseteq
+\AA,
+\end{align*}
+denn $X^{-1}(\EE')\subseteq \AA$ und $\FF_\Omega(X^{-1}(\EE'))$ ist die
+kleinste $\sigma$-Algebra, die $X^{-1}(\EE')$ enthält und $\AA$ ist
+$\sigma$-Algebra.\qedhere
+\end{proof}
+ 
+Ein einfaches aber äußerst nützliches Korollar ergibt sich, wenn wir uns auf
+reellwertige messbare Abbildungen beschränken.
+\begin{prop}[Korollar]
+\label{prop:3.3}
+Sei $(\Omega, \AA)$ ein Messraum und $X: \Omega \to \overline{\R}$
+Abbildung. Dann sind folgende Aussagen äquivalent:
+\begin{equivenum}
+  \item $X$ $\AA$-$\overline{\BB}$-messbar.
+  \item $\forall \alpha \in \R : [X \leq \alpha] \in \AA$.
+  \item $\forall \alpha \in \R : [X < \alpha] \in \AA$.
+  \item $\forall \alpha \in \R : [X \ge \alpha] \in \AA$.\fishhere
+\end{equivenum}
+\end{prop}
+\begin{proof}
+Wird geführt mit Satz \ref{prop:3.2} und der Tatsache, dass
+$\setdef{(-\infty,\alpha]}{\alpha\in\R}$ ein Erzeugersystem von
+$\overline{\BB}$ ist.\qedhere
+\end{proof}
+
+Insbesondere sind somit die Mengen $[X\le \alpha]$, $[X<\alpha]$, \ldots\ für
+jede reelle Zufallsvariable $X$ messbar.
+
+\begin{cor}
+\label{cor:3.1}
+Für zwei Abbildungen $X,Y : (\Omega, \AA)\to
+(\overline{\R}, \overline{\BB})$ gilt
+\begin{align*}
+[X< Y], \quad 
+[X\leq Y], \quad 
+[X = Y], \quad 
+[X \neq Y] \in \AA,
+\end{align*}
+wobei $[X<Y]\defl \setdef{\omega \in \Omega}{X(\omega) < Y(\omega )}$.\fishhere
+\end{cor}
+\begin{proof}
+Nach dem Prinzip von Archimedes gilt
+$[X<Y]=\bigcup_{\alpha\in\R} [X<\alpha < Y]$. Außerdem ist
+\begin{align*}
+\bigcup_{\alpha\in\R} [X<\alpha < Y] = \bigcup_{\alpha\in\Q} [X<\alpha <
+Y] = \bigcup_{\alpha\in\Q} [X<\alpha] \cap [Y\le \alpha]^c.
+\end{align*}
+Für jedes $\alpha\in\Q$ ist $[X<\alpha] \cap [Y\le \alpha]^c$ messbar und die abzählbare
+Vereinigung messbarer Mengen ist messbar.
+
+Die übrigen Fälle folgen sofort, denn
+\begin{align*}
+&[X\le Y] = [X>Y]^c \in \AA,\\
+&[X=Y] = [X\le Y]\cap [X\ge Y]\in \AA\\
+&[X\neq Y] = [X=Y]^c \in \AA.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{prop}
+\label{prop:3.4}
+Sei $\varnothing \neq A \subset \R^{m}$ und $A \cap {\BB}_{m} \defl
+\setdef{A \cap B}{B\in {\BB}_{m}}$. Jede stetige Abbildung $g: A \to
+\R^{n}$ ist $A \cap {\BB}_{m}$-${\BB}_{n}$-messbar.\fishhere
+\end{prop}
+\begin{proof}
+$\OO_n$, das System der offenen Mengen auf $\R^n$, ist ein
+Erzeugersystem von $\BB_n$. Nach \ref{prop:3.2} genügt es  zu
+zeigen, dass
+\begin{align*}
+g^{-1}(\OO_n) \subseteq A\cap\BB_m.
+\end{align*} 
+$g$ ist stetig, daher sind die Urbilder offener Mengen offene Mengen
+$\cap\; A$.\qedhere
+\end{proof}
+
+Für Abbildungen $\R^m\opento\R^n$ ist somit Messbarkeit eine \textit{wesentlich}
+schwächere Voraussetzung als Stetigkeit.
+\begin{bsp}
+Die \emph{Dirichletfunktion} $f: \R\to\R$ gegeben durch,
+\begin{align*}
+f(x) = 
+\begin{cases}
+1, & x\in\Q,\\
+0, & x\in\R\setminus\Q,
+\end{cases}
+\end{align*}
+ist messbar aber sicher \textit{nicht} stetig.\bsphere
+\end{bsp}
+
+\begin{prop}
+\label{prop:3.5}
+Seien $X: (\Omega_{1}, \AA_{1}) \to (\Omega _{2}, \AA_{2})$,
+$Y:(\Omega _{2}, \AA_{2}) \to (\Omega _{3}, \AA_{3})$.
+Die zusammengesetzte Abbildung $Y \circ X: \Omega _{1} \to \Omega _{3}$ ist dann
+$\AA_{1}$-$\AA_{3}$-messbar.\fishhere
+\end{prop}
+\begin{proof}
+Offensichtlich gilt $(Y\circ X)^{-1}(\AA_3) = X^{-1}\circ Y^{-1}(\AA_3) 
+\subseteq \AA_1$.\qedhere
+\end{proof}
+
+\begin{cor}
+\label{cor:3.2}
+Für $X: (\Omega , \AA)\to (\R^{m}, {\BB}_{m})$ und
+eine stetige Abbildung $g: \R^{m} \to \R^{n}$ ist $g \circ X: \Omega \to \R^{n}$
+ $\AA$-${\BB}_{n}$-messbar.\fishhere
+\end{cor}
+
+Insbesondere ist die Komposition von Zufallsvariablen bzw. von
+Zufallsvariablen mit stetigen Funktionen wieder eine Zufallsvariable.  Für eine
+reelle Zufallsvariable $X$ sind somit auch $\abs{X}$, $X^2$, $\sqrt{\abs{X}}$,
+\ldots\ Zufallsvariablen.
+
+\begin{prop}
+\label{prop:3.6}
+Sei $(\Omega , \AA)$ Messraum.
+\begin{propenum}
+\item
+  Seien $X_{n} :(\Omega , \AA) \to (\R , {\BB})$ für $n = 1, \ldots, m$. Dann
+  ist
+\begin{align*}
+ Y: \Omega \to \R^{m},\; \omega\mapsto Y(\omega)\defl (X_{1} (\omega )),
+  \ldots , X_{m}(\omega )),\qquad \omega\in\Omega,
+\end{align*}
+$\AA$-${\cal B}_{m}$-messbar. Für $g: (\R^{m},
+{\BB}_{m}) \to (\R, {\BB})$ ist
+\begin{align*}
+g \circ Y: \Omega \to \R
+\end{align*}
+$\AA$-${\BB}$-messbar.
+\item
+Seien $X_{1,2}: (\Omega, \AA) \to (\R, {\BB})$.
+Dann sind auch die Abbildungen
+\begin{defnpropenum}
+  \item $\alpha X_{1} + \beta X_{2} \quad (\alpha , \beta \in \R)'$,
+  \item $X_{1}X_{2}$,
+  \item $\dfrac{X_{1}}{X_{2}}$ (falls existent)   
+\end{defnpropenum}
+$\AA$-$\BB$-messbar.\fishhere
+\end{propenum}
+\end{prop}
+\begin{proof}
+\begin{proofenum}
+\item Ein Erzeugersystem $\CC$ von $\BB_m$ ist gegeben durch
+\begin{align*}
+(-\infty,\alpha_1]\times \ldots \times (-\infty,\alpha_m],
+\end{align*}
+wobei $(\alpha_1,\ldots,\alpha_m)\in\R^m$.
+\begin{figure}[!htbp]
+\centering
+\begin{pspicture}(0,-2.13)(6,2.15)
+\psframe[linestyle=none,fillcolor=glightgray,fillstyle=solid](3.1,1.13)(0,-2.13)
+
+\psline{->}(2.12,-2.13)(2.1,1.93)
+\psline{->}(0.0,0.51)(4.04,0.53)
+
+\psline[linecolor=darkblue](0,1.13)(3.1,1.13)(3.1,-2.13)
+
+\rput(2.57,1.955){\color{gdarkgray}$\R^2$}
+
+\rput(4.1,1.3){\color{gdarkgray}$(\alpha_1,\alpha_2)$}
+
+\rput(1.88,1.3){\color{gdarkgray}$\alpha_2$}
+
+\rput(3.36,0.32){\color{gdarkgray}$\alpha_1$}
+\end{pspicture}
+\caption{Erzeuger der $\BB_n$.}
+\end{figure}
+Es genügt zu zeigen, dass $Y^{-1}(\CC)\subseteq \AA$.
+Nun gilt
+\begin{align*}
+&Y^{-1}\left((-\infty,\alpha_1]\times \ldots \times (-\infty,\alpha_m]
+\right)\\
+&\qquad = \setdef{\omega\in \Omega}{x_1(\omega) \le \alpha_1, \ldots,
+X_m(\omega) \le \alpha_m} \\
+&\qquad = [X_1\le \alpha_1]\cap \ldots \cap [X_m\le
+\alpha_m]\in \AA.\qedhere
+\end{align*}
+\item Die Messbarkeit folgt mit Korollar \ref{cor:3.2} und der Stetigkeit von
+Summen- und Produktabbildung $(x,y)\mapsto x+y$, $(x,y)\mapsto x\cdot
+y$.\qedhere
+\end{proofenum}
+\end{proof}
+
+Eine Abbildung $X:\Omega\to \R^n$ ist also genau dann messbar, wenn jede
+Komponente $X_n:\Omega\to\R$ messbar ist. Insbesondere sind Produkte und
+Summen von Zufallsvariablen stets messbar.
+
+\begin{prop}
+\label{prop:3.7}
+Sei  $(\Omega, \AA)$ Messraum, $X_{n} : (\Omega, \AA) \to
+(\overline{\R}, \overline{\BB})$ für $n= 1,2, \ldots$.
+Dann sind
+\begin{defnpropenum}
+  \item $\inf\limits_{n} X_{n}$,
+  \item $\sup\limits_{n} X_{n}$,
+  \item $\limsup\limits_{n} X_{n}$,
+  \item $\liminf \limits_{n} X_{n}$,
+  \item $\lim\limits_{n} X_{n}$ (falls existent)
+\end{defnpropenum}
+$\AA$-$\overline{\BB}$-messbar.\fishhere
+\end{prop}
+\begin{proof}
+\begin{proofenumarabicbr}
+  \item $\forall\alpha\in\R : [\inf X_n < \alpha] = \bigcup_{n\in\N} [X_n <
+  \alpha] \in \AA$, d.h. $\inf X_n$ ist $\AA$-$\overline{\BB}$-messbar.
+  \item $\sup=-\inf(-X_n)$ ist $\AA$-$\overline{\BB}$-messbar.
+  \item $\limsup X_n = \inf_n \sup_{k\ge n} X_k$ 
+ ist $\AA$-$\overline{\BB}$-messbar.
+ \item $\liminf X_n = \sup_n \inf_{k\ge n} X_k$ ist
+ $\AA$-$\overline{\BB}$-messbar.
+ \item $\lim X_n = \limsup X_n$, falls $\lim_n X_n$ existiert.\qedhere
+\end{proofenumarabicbr}
+\end{proof}
+
+Da Messbarkeit eine so schwache Voraussetzung ist, ist sie auch ein sehr
+stabiler Begriff, da sie auch unter Grenzwertbildung und Komposition erhalten
+bleibt. Probleme treten erst bei überabzählbar vielen Operationen auf.
+
+\clearpage
+\section{Bildmaße und Verteilungen}
+
+In diesem Abschnitt werden wir eine Beziehung zwischen
+Zufallsvariablen und Maßen herstellen. Jeder Zufallsvariablen
+\begin{align*}
+X:(\Omega,\AA,P)\to (\Omega',\AA')
+\end{align*}
+lässt sich eindeutig ein Maß
+\begin{align*}
+P_X : \AA' \to \R,\quad A'\mapsto P_X(A) \defl P(X^{-1}(A)) 
+\end{align*}
+das sogenannte \emph{Bildmaß} zuordnen. Die Verteilungsfunktion des
+Bildmaßes
+\begin{align*}
+F(t) = P_X((-\infty,t])
+\end{align*}
+nennen wir auch \emph{Verteilungsfunktion von $X$}. $F$ lässt sich oft leichter
+handhaben als $X$, und aus den Eigenschaften von $F$ lassen sich Rückschlüsse
+auf $X$ machen.
+
+Analog lässt sich zu jedem Maß
+\begin{align*}
+\mu:\AA'\to\R
+\end{align*}
+über $\Omega'$ eine Zufallsvariable
+\begin{align*}
+Y: (\Omega,\AA,Q)\to (\Omega',\AA')
+\end{align*}
+finden, so dass $P_Y=\mu$. 
+
+\clearpage
+
+Zunächst ist natürlich zu klären, ob das Bildmaß überhaupt ein Maß ist.
+
+\begin{prop}
+\label{prop:3.8}
+Seien $(\Omega, \AA)$ und $ (\Omega ', \AA')$ Messräume und
+ $X:(\Omega, \AA) \to (\Omega ', \AA')$ eine Abbildung. Sei $\mu$ ein
+Maß auf $\AA$. Durch
+\begin{align*}
+\mu_{X}(A') & \defl  \mu(X^{-1}(A')) \\
+              & =   \mu \left(\setdef{\omega \in \Omega}{X(\omega ) \in
+              A'}\right) \defr \mu [ X \in A']; \quad A' \in \AA'
+\end{align*}
+wird ein Maß (das sogenannte \emph{Bildmaß}) $\mu _{X}$ auf $\AA'$
+definiert.\\
+Ist $\mu $ ein W-Maß auf $\AA$, dann ist $\mu _{X}$ ebenfalls ein W-Maß auf
+$\AA'$.\fishhere
+\end{prop}
+\begin{proof}
+\begin{proofenumroman}
+  \item $\mu_X \ge 0$ ist klar.
+  \item $\mu_X(\varnothing) = \mu(X^{-1}(\varnothing)) = \mu(\varnothing) = 0$.
+  \item Seien $A_1',A_2',\ldots\in\AA'$ paarweise disjunkt, so gilt
+\begin{align*}
+\mu_X\left(\sum\limits_{i\ge 1} A_i'\right) &= 
+\mu\left(X^{-1}\left(\sum\limits_{i\ge 1} A_i'\right)\right)
+= \mu\left(\sum\limits_{i\ge 1}\left(X^{-1}(A_i')\right)\right)\\
+&= \sum\limits_{i\ge 1}\mu\left(X^{-1}(A_i')\right).
+\end{align*}
+\item Sei $\mu$ ein Wahrscheinlichkeitsmaß so ist
+\begin{align*}
+\mu_X(\Omega') = \mu(X^{-1}(\Omega')) = \mu(\Omega) = 1.\qedhere
+\end{align*}
+\end{proofenumroman}
+\end{proof}
+
+Es genügt also, dass $X$ messbar ist, damit $P_X$ tatsächlich ein Maß ist.
+Insbesondere ist für jede Zufallsvariable $P_X$ ein Maß.
+
+\begin{defn}
+\label{defn:3.4}
+Sei $X$ eine $(\Omega ', \AA')$-Zufallsvariable auf dem W-Raum
+$(\Omega, \AA, P)$.
+Das W-Maß $P_{X}$ im Bild-W-Raum $(\Omega ', \AA', P_{X})$ heißt
+\emph{Verteilung} der Zufallsvariable $X$.\\
+Sprechweise:
+\begin{itemize}[label=-]
+  \item Die Zufallsvariable $X$ liegt in $A'\in \AA'$.
+  \item $X$ nimmt Werte in $A' \in \AA'$ an mit Wahrscheinlichkeit $P_{X}(A') =
+  P[X \in A']$.
+  \item Wenn $P[X \in A'] = 1$, sagt man $X$ liegt $P$-fast sicher
+  ($P$-f.s.) in $A'$.\fishhere
+\end{itemize}
+\end{defn}
+
+Betrachten wir die Verteilung $P_X$ einer reellen Zufallsvariablen $X$, so
+besitzt diese eine Verteilungsfunktion
+\begin{align*}
+F(t) = P_X((-\infty,t]) = P(X^{-1}(-\infty,t]).
+\end{align*}
+Da es sich bei der Verteilungsfunktion um eine reelle Funktion
+handelt, kann man oft viel leichter mit ihr Rechnen, als mit der
+Zufallsvariablen selbst.
+
+Die Eigenschaften der Verteilungsfunktion charakterisieren die Zufallsvariable,
+man klassifiziert Zufallsvariablen daher nach Verteilung (binomial-, poisson-~,
+exponentialverteilt, \ldots).
+
+\begin{defnn}
+Besitzen zwei Zufallsvariaben dieselbe Verteilung (also dieselbe
+Verteilungsfunktion) heißen sie \emph{gleichverteilt}.\fishhere
+\end{defnn}
+
+\begin{bsp}
+Wir betrachten $n$ Bernoulli-Versuche mit jeweiliger Erfolgswahrscheinlichkeit
+$p$. $\Omega$ besteht aus der Menge der Elementarereignisse $\omega$ $(=$
+$n$-Tupel aus Nullen und Einsen$)$, $\AA=\PP(\Omega)$.
+
+Das Wahrscheinlichkeitsmaß $P$ auf $\AA$ ist gegeben durch
+\begin{align*}
+P(\setd{\omega}) = p^k(1-p)^{n-k},
+\end{align*}
+falls $\omega$ aus $k$ Einsen und $n-k$ Nullen besteht.
+
+Wir definieren uns eine Zufallsvariable $X$ durch:
+\begin{align*}
+X: \Omega \to \R,\quad X(\omega) = \text{Anzahl der Einsen in $\omega$}.
+\end{align*}
+$X$ ist $\AA-\BB$-messbar, denn $X^{-1}(\BB)\subseteq \PP(\Omega) = \AA$.
+
+$X : (\Omega,\AA,P)\to(\R,\BB)$ gibt also die zufällige Anzahl der Erfolge in
+$n$ Bernoulli-Versuchen an.
+
+Das Bildmaß zu $X$ ist gegeben durch
+\begin{align*}
+P_X(\setd{k}) = P[X=k] = \binom{n}{k}p^k(1-p)^{n-k} \defr b(n,p;k).
+\end{align*}
+Um das Bildmaß auf allgemeine Mengen in $\BB$ fortzusetzen, setzen wir zu
+$B\in\BB$
+\begin{align*}
+P_X(B) = \sum\limits_{k\in\N_0\cap B} b(n,p;k).
+\end{align*}
+$P_X$ ist die sogenannte \emph{Binominalverteilung} $b(n,p)$. $X$ ist
+$b(n,p)$-verteilt.\bsphere
+\end{bsp}
+
+\begin{bem}
+\label{bem:3.2}
+Seien $(\Omega, \AA, P)$ ein W-Raum und
+$(\Omega ', \AA')$, $(\Omega '', \AA'')$  Messräume.
+Seien
+$X: (\Omega , \AA) \to (\Omega ', \AA')$ und $Y: (\Omega ', \AA')\to
+(\Omega '', \AA'')$, dann gilt
+\begin{align*}
+P_{Y \circ X} = (P_{X})_{Y}.\maphere
+\end{align*}
+\end{bem}
+\begin{proof}
+$Y\circ X$ ist wieder messbar. Für $A''\in\AA''$ gilt somit,
+\begin{align*}
+P_{Y\circ X}(A'') &= P((Y\circ X)^{-1}(A'')) =
+P(X^{-1}(Y^{-1}(A''))) \\ &= P_X(Y^{-1}(A'') = (P_X)_Y(A'').\qedhere
+\end{align*}
+\end{proof}
+
+\subsection{Produktmessräume}
+
+Betrachten wir die Vektorräume $\R^n$ und $\R^m$, so können wir diese durch das
+karthesische Produkt verknüpfen zu $V=\R^n\times \R^m$. $V$ ist dann wieder
+ein Vektorraum und jedes Element $v\in V$ lässt sich darstellen als
+$v=(x,y)$, wobei $x\in\R^n$ und $y\in\R^m$.
+
+Eine solche Verknüpfung lässt sich auch für Messräume definieren.
+
+\begin{defn}
+\label{defn:3.5}
+Seien $(\Omega _{i}, \AA_{i})$ Messräume für $i= 1, \ldots ,n$.
+Die \emph{Produkt-$\sigma$-Algebra}
+$\bigotimes^{n}_{i=1} \AA_{i} $ wird definiert als die von dem
+Mengensystem
+\begin{align*}
+\setdef{
+\prod\limits^{n}_{i=1}A_{i}
+}{
+A_{i} \in \AA_{i},\quad  i= 1, \ldots ,n}
+\end{align*}
+erzeugte $\sigma$-Algebra.\\
+$\bigotimes^{n}_{i=1}(\Omega _{i}, \AA_{i}) \defl
+\left(\prod\limits^{n}_{i=1} \Omega _{i},\,
+\bigotimes^{n}_{i=1} \AA_{i}\right)$
+heißt \emph{Produkt-Messraum}.\fishhere
+\end{defn}
+
+Man bildet also das karthesische Produkt der $\Omega_i$ und die
+Produkt-$\sigma$-Algebra der $\AA_i$ und erhält so wieder einen Messraum
+$\bigotimes_{i=1}^n (\Omega_i,\AA_i)$.
+
+\begin{bsp}
+$(\R^n\times\R^m$, ${\BB}_{n} \bigotimes {\BB}_{m}) =
+(\R^{n+m},{\BB}_{n+m})$.\bsphere
+\end{bsp}
+
+\begin{bem}
+\label{bem:3.3}
+Sei $X_{i}: (\Omega , \AA) \to (\Omega _{i},
+\AA_{i})$ messbar für $i=1, \ldots , n$. Die Abbildung
+\begin{align*}
+X: \Omega \to \prod^{n}_{i=1} \Omega _{i}
+\end{align*}
+mit
+\begin{align*}
+X(\omega )\defl (X_{1} (\omega ), \ldots , X_{n}(\omega )), \qquad \omega \in
+\Omega
+\end{align*}
+ist dann $\AA$-$\bigotimes^{n}_{i=1}\AA_{i}$-messbar.\maphere
+\end{bem}
+\begin{proof}
+Betrachte ein Erzeugendensystem von $\bigotimes_{i=1}^n A_i$, z.B. die Quader
+\begin{align*}
+\CC = \setdef{\prod\limits_{i=1}^n A_i}{A_i\in\AA_i}.
+\end{align*}
+Der Beweis wird dann wie im eindimensionalen Fall geführt.\qedhere
+\end{proof}
+
+Insbesondere ist eine Abbildung
+\begin{align*}
+X: \Omega\to\R^n,\qquad \omega\mapsto (x_1,\ldots,x_n)
+\end{align*}
+genau dann messbar, wenn es jede Komponete $X_i:\Omega\to \R$ ist.
+
+\begin{bem}
+\label{bem:3.4}
+Seien $(\Omega _{i}, \AA_{i})$ Messräume für $i=1,\ldots ,n$. Ein W-Maß auf
+$\bigotimes^{n}_{i=1} \AA_{i}$ ist eindeutig festgelegt durch seine Werte
+auf dem Mengensystem
+\begin{align*}
+\setdef{\prod\limits^{n}_{i=1} A_{i}}{A_{i}
+\in \AA_{i},\;i=1, \ldots ,n}.\maphere
+\end{align*}
+\end{bem}
+\begin{proof}
+Fortsetzungs- und Eindeutigkeitssatz \ref{prop:1.4} mit der $\sigma$-Algebra
+gegeben durch die endliche Summe von Quadern der Form
+\begin{align*}
+\prod\limits_{i=1}^n A_i,\qquad A_i\in\AA_i.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{defn}
+\label{defn:3.6}
+Seien $X_{i}: (\Omega,\AA,P)\to(\Omega _{i}, \AA_{i})$ Zufallsvariablen für
+$i=1, \ldots ,n$ und $X\defl (X_{1},
+\ldots, X_{n})$ Zufallsvariable auf $(\Omega, \AA, P)$.
+
+\begin{defnenum}
+  \item Die Verteilung $P_{X}$ der Zufallsvariablen $X$  - erklärt durch
+\begin{align*}
+P_{X} (A) \defl P\left[(X_{1}, \ldots , X_{n}) \in A \right]
+\end{align*}
+für $A \in \bigotimes^{n}_{i=1} \AA_{i}$ oder auch nur für
+$A= \prod\limits^{n}_{i=1} A_{i} \; (A_{i} \in \AA_i, \; i=
+1, \ldots ,n)$ - heißt die \emph{gemeinsame Verteilung} der Zufallsvariablen $X_{i}$.
+\item
+Die Verteilungen ${P_{X_{i}}}$ - erklärt durch
+\begin{align*}
+P_{X_{i}}(A_{i}) &\defl P[X_{i} \in A_{i}] \\ &= P[X \in \Omega_{1}
+\times \ldots \times \Omega _{i-1} \times A_{i} \times \Omega _{i+1} \times
+\ldots \times \Omega _{n}]
+\end{align*}
+für $A_{i} \in \AA_{i}$ - heißen \emph{Randverteilungen} von
+$P_{X} \quad (i=1,\ldots , n)$.\fishhere  
+\end{defnenum}
+\end{defn}
+
+\begin{bemn}[Wichtiger Spezialfall.]
+$(\Omega _{i}, \AA_{i}) =
+(\R, {\BB})$ für $i=1, \ldots, n$. Dann sind die $X_i$ reelle
+Zufallsvariablen und $X$ ein Zufallsvektor.\maphere
+\end{bemn}
+
+\begin{bem}[Bemerkungen.]
+\label{bem:3.5}
+Seien die Bezeichnungen wie in Definition \ref{defn:3.6}.
+\begin{bemenum}
+\item
+Die Verteilung $P_{X}$ ist ohne Zusatzvoraussetzung durch ihre Randverteilungen
+\textit{nicht} eindeutig festgelegt.
+\item
+Die Projektionsabbildung
+\begin{align*}
+\pi _{i} : \prod^{n}_{k=1} \Omega _{k} \to \Omega_{i},\qquad (\omega _{1},
+\ldots, \omega _{n}) \to \omega _{i}
+\end{align*}
+ist messbar
+und somit gilt
+\begin{align*}
+P_{X_{i}} = (P_{X})_{\pi _{i}},\qquad i=1, \ldots , n.\maphere
+\end{align*}
+\end{bemenum}
+\end{bem}
+
+Aufgrund der Messbarkeit der Projektionen sind die Randverteilungen
+einer gemeinsamen Verteilung eindeutig bestimmt. Die Umkehrung, dass die
+Randverteilungen auch die gemeinsame Verteilung eindeutig bestimmen ist im
+Allgemeinen falsch. Wir werden uns in Kapitel \ref{chap:5} ausführlicher damit
+beschäftigen.
+
+\begin{bem}[Bemerkungen.]
+\label{bem:3.6}
+\begin{bemenum}
+\item
+Sei $Q$ ein W-Maß auf $(\R^n, {\BB}_{n})$.
+Dann existieren reelle Zufallsvariablen $X_{1}, \ldots , X_{n}$
+auf einem geeigneten W-Raum $(\Omega ,\AA,P)$ so,
+dass ihre gemeinsame Verteilung mit $Q$ übereinstimmt: \\
+Auf dem W-Raum $(\Omega, \AA,P) \defl (\R^{n}, {\BB}_{n}, Q)$, wird
+$X_{i} : \Omega \to \R$ definiert als die Projektionsabbildung
+\begin{align*}
+(x_{1}, \ldots, x_{n}) \to x_{i} \quad (i=1, \ldots,n);
+\end{align*}
+hierbei ist also $X\defl (X_{1}, \ldots ,X_{n})$ die auf
+$\R^n$ definierte identische Abbildung.
+\item
+Wir können die Aussage aus a) unmittelbar auf einen beliebigen Produkt-Meßraum
+$\left(\prod\limits^{n}_{i=1}\Omega _{i}, \;
+\bigotimes^{n}_{i=1} \AA_{i}\right)$
+statt $(\R^{n}, {\BB}_{n})$ verallgemeinern.
+\item Sonderfall zu b): Ist $(\Omega, \AA,Q)$ ein W-Raum, $X:\Omega \to
+\Omega$ die identische Abbildung, so gilt $P_{X} =Q$. Jedes W-Maß lässt sich somit
+als eine Verteilung auffassen (und - definitionsgemäß - umgekehrt).\maphere
+\end{bemenum}
+\end{bem}
+
+Dieser Zusammenhang zwischen W-Maß und Verteilung hat eine große Bedeutung, wie
+wir mit der Einführung des Maßintegrals im folgenden Kapitel sehen werden.

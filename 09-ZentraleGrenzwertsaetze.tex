@@ -1,0 +1,1522 @@
+\chapter{Zentrale Grenzwertsätze}
+\label{chap:9}
+
+\section{Schwache Konvergenz von Wahrscheinlichkeitsmaßen in $\R $}
+
+Im Folgenden sei stets $n\in \N$ und ``$\to$'' bezeichne die Konvergenz für
+$n\to\infty$.
+
+\begin{defn}
+\label{defn:9.1}
+\begin{defnenum}%[label=\alph{*})]
+\item Seien $Q_{n}$, $Q$ W-Maße auf der $\sigma$-Algebra
+  ${\BB}$ der Borelschen Mengen in $\R$. Die Folge $(Q_{n})$ heißt
+  gegen $Q$ \emph{schwach konvergent (weakly convergent)} --- Schreibweise
+  $Q_{n} \to Q $ schwach --- , wenn für jede beschränkte stetige Funktion $g:
+  \R\to \R$ gilt,
+\begin{align*}
+\int_{\R} g\dQ_{n} \to \int_{\R}g\dQ, \qquad n\to
+\infty.
+\end{align*}
+\item Seien $X_{n}$, $X$ reelle Zufallsvariablen (nicht notwendig
+auf demselben W-Raum definiert). Die Folge $(X_{n})$ heißt gegen $X$ 
+\emph{nach Verteilung konvergent (convergent in distribution, convergent in
+law)} --- Schreibweise $X_{n}\Dto X\;\, (n\to\infty)$ --- ,
+wenn $P_{X_{n}}\to P_{X}$ schwach, d.h. für jede beschränkte stetige Funktion $g:\R\to \R$ gilt
+\begin{align*}
+\int_{\R} g\dP_{X_{n}}\to \int_{\R} g\dP_{X}, \qquad n\to
+\infty
+\end{align*}
+oder (äquivalent nach dem Transformationssatz für Integrale)
+\begin{align*}
+\E g (X_{n}) \to \E g (X), \qquad n\to \infty.\fishhere
+\end{align*}
+\end{defnenum}
+\end{defn}
+
+\begin{bem}[Bemerkungen.]
+\label{bem:9.1}
+\begin{bemenum}%[label=\alph{*})]
+\item In Definition \ref{defn:9.1}a ist das Grenz-W-Maß $Q$ eindeutig 
+bestimmt.
+\item In Definition \ref{defn:9.1}b können $X_{n}$, $X$ durch reelle
+Zufallsvariablen $X'_{n}$, $X'$ mit $P_{X'_{n}} = P_{X_{n}}$, $P_{X'} =P_{X}$
+ersetzt werden.\maphere
+\end{bemenum}
+\end{bem}
+
+Bevor wir die Eindeutigkeit des Grenz-W-Maßes beweisen, betrachten wir
+zunächst den Poissonschen Grenzwertsatz
+\begin{align*}
+\forall k\in\N_0 : b(n,p_n;k) \to \pi(\lambda;k),\qquad n\to \infty,
+\end{align*}
+falls $n p_n \to \lambda$. Dies ist (hier) äquivalent zu
+\begin{align*}
+\forall x\in\R : F_n(x)\to F(x),
+\end{align*}
+wobei $F_n$ Verteilungsfunktion einer $b(n,p)$-verteilten und $F$
+Verteilungsfunktion einer $\pi(\lambda)$-verteilten Zufallsvariable ist.
+
+Seien $X_n,X$ reelle Zufallsvariablen mit $X_n=\frac{1}{n}\fs$, $X\defl0\fs$, so
+gilt $X_n\to X\fs$ für $n\to\infty$.
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-1.5,-1)(4,2.5)
+\psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-1.2,-0.5)(3.2,2)[\color{gdarkgray}$t$,-90][\color{gdarkgray},0]
+
+\psline[linecolor=darkblue](-1,0.01)(1,0.01)
+\psline[linecolor=purple](-1,0)(0,0)
+
+\psline[linecolor=darkblue](1,1.01)(3,1.01)
+\psline[linecolor=purple](0,1)(3,1)
+
+\rput(0.4,1.4){\color{gdarkgray}$F$}
+
+\rput(1.4,1.4){\color{gdarkgray}$F_n$}
+
+\psxTick(1){\color{gdarkgray}\frac{1}{n}}
+\psyTick(1){\color{gdarkgray}1}
+
+\end{pspicture} 
+\caption{Verteilungsfunktionen von $X$ und $X_n$.}
+\end{figure}
+Für die Verteilungsfunktionen folgt
+\begin{align*}
+\forall x\in\R\setminus\setd{0} : F_n(x)\to F(x),
+\end{align*}
+denn $0$ ist Unstetigkeitsstelle von $F$. Wir sehen an diesem Beispiel, dass
+die Konvergenz der Verteilungsfunktion in Unstetigkeitsstellen im Allgemeinen
+\textit{nicht} fordern können. Wir können jedoch die Konvergenz nach Verteilung
+durch die Konvergenz der $F_n$ in Stetigkeitspunkten charakterisieren.
+
+\begin{defnn}[Klassische Definition der Verteilungskonvergenz]
+Seien $X_n,X$ reelle Zufallsvariablen bzw. $Q_n$, $Q$ W-Maße mit
+Verteilungsfunktion $F_n$ bzw. $F$. Dann ist
+\begin{align*}
+X_n\Dto X,
+\end{align*}
+bzw.
+\begin{align*}
+Q_n\to Q\text{ schwach},
+\end{align*}
+wenn
+\begin{align*}
+\forall \text{Stetigkeitspunkte $x$ von $F$} : F_n(x)\to F(x),\qquad n\to
+\infty.\fishhere
+\end{align*}
+\end{defnn}
+Diese Definition ist jedoch nicht so allgemein wie die in \ref{defn:9.1}, da
+sie sich nicht auf unendlichdimensionale Räume übertragen lässt.
+
+\begin{proof}[Beweis der Eindeutigkeit
+des Grenz-W-Maßes.]
+Falls $Q_n\to Q^{*}$ schwach und $Q_n\to Q^{**}$ schwach, so gilt nach Satz
+\ref{prop:9.2} (noch zu zeigen),
+\begin{align*}
+F_n(x) \to F^{*}(x),\qquad F_n(x)\to F^{**}(x)
+\end{align*}
+für jede Stetigkeitsstelle $x$ von $F^{*}$ bzw. $F^{**}$. Aufgrund der
+rechtsseitigen Stetigkeit einer Verteilungsfunktion folgt,
+\begin{align*}
+\forall x\in \R : F^{*}(x) = F^{**}(x)
+\end{align*} 
+und damit auch $Q^{*}=Q^{**}$.\qedhere
+\end{proof}
+
+\begin{prop}
+\label{prop:9.1}
+Seien $X_{n}$, $X$ reelle Zufallsvariablen auf $(\Omega, {\AA}, P)$. Dann gilt
+\begin{align*}
+X_{n} \Pto X \Rightarrow X_{n}\Dto X.\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Sei $g: \R\to\R$ stetig und beschränkt. Angenommen $\E (g(X_n)-g(X))$
+konvergiert nicht gegen Null, es gibt also eine Teilfolge $(n_k)$, so dass
+\begin{align*}
+\abs{\E (g(X_{n_k})-g(X))} > \ep,\qquad \forall k\in\N.
+\end{align*}
+Aber da auch $X_{n_k}\Pto X$, besitzt $X_{n_k}$ eine Teilfolge, die $\Pfs$
+konvergiert. Da $g$ stetig, folgt somit auch
+\begin{align*}
+g(X_{n_{k_l}}) \to  g(X) \Pfs
+\end{align*}
+Da außerdem $g$ beschränkt, können wir den Satz von der dominierten Konvergenz
+anwenden und erhalten somit
+\begin{align*}
+\E g(X_{n_{k_l}}) \to  \E g(X),
+\end{align*}
+im Widerspruch zur Annahme, dass $\E g(X_n)$ nicht gegen $\E g(X)$
+konvergiert.\qedhere
+\end{proof}
+
+\begin{prop}
+\label{prop:9.2}
+Seien $Q_{n}$, $Q$ W-Maße auf ${\BB}$ bzw.\ reelle Zufallsvariablen $X_{n}$,
+$X$ mit Verteilungsfunktion $F_{n}$,~$F$.
+
+$Q_{n} \to Q$ schwach bzw.\ $X_{n} \Dto X$ gilt genau dann, wenn $F_{n}(x) \to
+F(x)$ für alle Stetigkeitspunkte $x$ von $F$.\fishhere
+\end{prop}
+\begin{proof}
+``$\Rightarrow$'': Es gelte $X_n\Dto X$. Sei $D\defl\setdef{x\in\R}{F(x-)=F(x)}$
+die Menge der Stetigkeitspunkte von $F$. $D$ ist dicht in $\R$, denn $F$ ist
+monoton und daher ist $D^c$ höchstens abzählbar. Sei $x\in D$. Für jedes
+$p\in \N$ setze
+\begin{align*}
+&f_p(y) \defl
+\begin{cases}
+1, & y\le x,\\
+p(x-y), & x\le y\le x+\frac{1}{p},\\
+0, & x+\frac{1}{p}\le y,
+\end{cases}\\
+&g_p(y) \defl
+\begin{cases}
+1, & y\le x -\frac{1}{p},\\
+p(x-y), & x-\frac{1}{p}\le y\le x,\\
+0, & x\le y.
+\end{cases}
+\end{align*}
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-1.5,-1)(4,2.5)
+\psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-1.2,-0.5)(3.2,2)[\color{gdarkgray}$t$,-90][\color{gdarkgray},0]
+
+\psline[linecolor=darkblue](-1,1.01)(0.5,1.01)(1.5,0.01)(3,0.01)
+\psline[linecolor=purple](-1,1)(1.5,1.0)(2.5,0.0)(3,0)
+\psline[linecolor=yellow](-1,1)(1.5,1.0)(1.5,0.0)(3,0)
+
+
+\rput(0.4,1.4){\color{darkblue}$g_p$}
+
+\rput(2.4,1.4){\color{purple}$f_p$}
+
+\rput(1.4,1.4){\color{yellow}$\Id_{(-\infty,x]}$}
+
+\psxTick(0.5){\color{gdarkgray}x-\frac{1}{p}}
+\psxTick(1.5){\color{gdarkgray}x}
+\psxTick(2.5){\color{gdarkgray}x+\frac{1}{p}}
+
+\end{pspicture} 
+\caption{Verteilungsfunktionen von $X$ und $X_n$.}
+\end{figure}
+
+$f_p,g_p: \R\to[0,1]$ sind stetige, beschränkte Approximationen von
+$\Id_{(-\infty,x]}(y)$, wobei
+\begin{align*}
+f_p(y) \downarrow \Id_{(-\infty,x]}(y),\quad
+g_p(y) \uparrow \Id_{(-\infty,x]}(y),\qquad
+p\to\infty.
+\end{align*}
+Da $X_n$ nach Verteilung konvergiert, gilt
+\begin{align*}
+&\forall p\in\N : \lim\limits_{n\to\infty} \E f_p(X_n) = \E f_p(X),\\
+&\forall p\in\N : \lim\limits_{n\to\infty} \E g_p(X_n) = \E g_p(X).
+\end{align*}
+Nach Definition der Verteilungsfunktion ist $F_n(x)= \E \Id_{(-\infty,x]}(X)$,
+also gilt auch
+\begin{align*}
+&\E g_p(X_n)\le F_n(x) \le \E f_p(X_n).
+\end{align*}
+Mit dem Lemma von Fatou folgt außerdem
+\begin{align*}
+\forall p\in\N : \E g_p(X) &\le \liminf\limits_{n\to\infty} \E g_p(X_n) \le
+\liminf\limits_{n\to\infty} F_n(x) \le \limsup\limits_{n\to\infty} F_n(x)\\
+&\le \limsup\limits_{n\to\infty} \E f_p(X_n) \le \E f_p(X),\tag{*}
+\end{align*}
+%wobei wir $f_p(X_n)$ durch $\Id_{(-\infty,x]}(X_n)$ majorisieren können mit $\E
+%\Id_{(-\infty,x]}(X_n) \le 1$.
+da $f_p$ beschränkt. 
+Weiterhin folgt mit dem Satz von der monotonen Konvergenz,
+\begin{align*} 
+&\lim\limits_{p\to\infty} \E f_p(X) = \E \Id_{(-\infty,x]}(X) = P[X\le x] =
+F(x),\\
+&\lim\limits_{p\to\infty} \E g_p(X) = \E \Id_{(-\infty,x)}(X) = P[X < x] =
+F(x-).
+\end{align*}
+Mit (*) folgt $F(x-0)\le\liminf\limits_{n\to\infty} F_n(x) \le
+\limsup\limits_{n\to\infty} F_n(x) \le  F(x)$. Für $x\in D$ gilt
+\begin{align*}
+F(x-) = F(x),
+\end{align*}
+also auch
+\begin{align*}
+\lim\limits_{n\to\infty} F_n(x) = F(x).
+\end{align*}
+``$\Leftarrow$'': Diese Richtung ist etwas mühsamer. Hier approximiert man
+umgekehrt zur Hinrichtung eine stetige, beschränkte Funktion $g$ durch
+Stufenfunktionen. Details findet man in [Jacod J, Protter P. Probability Essentials].\qedhere
+\end{proof}
+
+\begin{prop}
+\label{prop:9.3}
+Seien $X_{n}$, $X$ reelle Zufallsvariablen auf $(\Omega,{\AA},P)$. Ist $X$
+P-f.s. konstant, so gilt:
+\begin{align*}
+X_{n}\Dto X \Leftrightarrow
+X_{n}\Pto X.\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+``$\Leftarrow$'': Klar nach Satz \ref{prop:9.1}.
+
+``$\Rightarrow$'': Sei $X=c\Pfs$ mit Verteilungsfunktion $F$. $c$ ist die
+einzige Unstetigkeitsstelle von $F$.
+
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-1.5,-1)(4,2.5)
+\psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-1.2,-0.5)(3.2,2)[\color{gdarkgray}$x$,-90][\color{gdarkgray},0]
+
+\psline[linecolor=darkblue,arrows=*-](-1,0)(1.5,0)
+\psline[linecolor=darkblue](1.5,1)(3,1)
+
+\rput(1.6,1.4){\color{darkblue}$F$}
+
+\psxTick(1.5){\color{gdarkgray}c}
+\psyTick(1){\color{gdarkgray}1}
+
+\end{pspicture} 
+\caption{Verteilungsfunktionen von $X$.}
+\end{figure}
+Da $X_n\Dto X$ nach Voraussetzung folt mit Satz \ref{prop:9.1},
+\begin{align*}
+\forall \R \setminus\setd{c} : F_n(x)\to F(x).
+\end{align*}
+Sei $\ep > 0$ beliebig aber fest, so gilt
+\begin{align*}
+P[\abs{X_n-X}>\ep] &= 1-P[\abs{X_n-X}\le\ep]\\
+P[\abs{X_n-X}\le \ep] &=
+P[c-\ep \le X_n \le c+\ep]
+\ge
+P[c-\ep < X_n \le c+\ep]\\
+&= \underbrace{F_n(c+\ep)}_{\to F(c+\ep)}-\underbrace{F_n(c-\ep)}_{\to
+F(c-\ep)}\to 1.
+\end{align*}
+Somit konvergiert $P[c-\ep < X_n \le c+\ep]\to 1$, also $P[\abs{X_n-X}>\ep]\to
+0$.\qedhere
+\end{proof}
+
+\begin{prop}
+\label{prop:9.4}
+Seien $X_{n}$, $Y_{n}$, $X$ reelle Zufallsvariablen auf $(\Omega, {\AA}, P)$.
+Gilt
+\begin{align*}
+X_{n}\Dto X,\qquad
+|X_{n} -Y_{n}| \Pto 0,
+\end{align*}
+so folgt
+\begin{align*}
+Y_{n} \Dto X.\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Sei $g: \R\to\R$ stetig und beschränkt. Ohne Einschränkung können wir annehmen,
+dass $g$ gleichmäßig stetig ist (siehe Satz \ref{prop:9.9}). Außerdem gilt ohne
+Einschränkung
+\begin{align*}
+\abs{X_n-Y_n}\to 0\Pfs
+\end{align*}
+ansonsten gehen wir zu einer Teilfolge $(n_k)$ über. Betrachte
+\begin{align*}
+\E g(Y_n) = \E g(X_n) + \E[g(Y_n)-g(X_n)].
+\end{align*}
+da $g$ gleichmäßig stetig und $\abs{X_n-Y_n}\to 0 \Pfs$ gilt $g(Y_n)-g(X_n)\to
+0\Pfs$. $\abs{g(Y_n)-g(X_n)}\le c$, da $g$ beschränkt, also können wir den
+Satz von der dominierten Konvergenz anwenden und erhalten $\E[g(Y_n)-g(X_n)] \to 0$.
+
+Somit gilt
+\begin{align*}
+\E g(Y_n) = \underbrace{\E g(X_n)}_{\to \E g(X) \Pfs} +
+\underbrace{\E[g(Y_n)-g(X_n)]}_{\to 0 \Pfs} \to \E g(X)\Pfs.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{prop}[Spezialfall des Darstellungssatzes von Skorokhod]
+\label{prop:9.5}
+Seien $X_{n}$, $X$ reelle Zufallsvariablen mit $X_{n}\Dto X$. Dann existiert
+ein W-Raum $(\Omega ^ {\ast}, {\AA}^ {\ast}, P^ {\ast})$ --- wobei man 
+$\Omega^{\ast} = [0,1]$, ${\AA}^ {\ast} = [0,1] \cap {\cal B}$, $P^ {\ast} = $
+L-B-Maß auf ${\AA}^ {\ast}$ wählen kann --- und reelle Zufallsvariablen 
+$X^{\ast}_{n}$, $X^{\ast}$ auf $(\Omega ^ {\ast}, {\AA}^ {\ast}, P^ {\ast})$ derart, dass
+\begin{align*}
+\forall n\in\N : P_{X_{n}} =P^*_{X^ {\ast}_{n}},\;\, P_{X} =
+P^*_{X^ {\ast}},\,\; X^ {\ast}_{n} \to X^ {\ast}\;
+P^{\ast}\mbox{-f.s.}\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+\textit{Beweisidee}. Wähle als Ansatz für $X_n^*$, $X^*$ die verallgemeinerte
+Inverse von $F_n$ und $F$,
+\begin{align*}
+&X_n^*(\omega) \defl \inf\setdef{t\in\R}{F_n(t)\ge \omega},\\
+&X^*(\omega) \defl\inf\setdef{t\in\R}{F(t)\ge \omega}.
+\end{align*}
+Nach Annahme konvergiert $X_n\Dto X$ und daher $F_n(x)\to F(x)$ in den
+Stetigkeitspunkten von $F$. Zu zeigen ist nun
+\begin{align*}
+X_n^*(\omega) \to X^*(\omega)
+\end{align*}
+in den Stetigkeitspunkten $\omega$ von $X^*$, also $\fu{\lambda}$.
+
+\textit{Formaler Beweis}. Wähle $\Omega^*=(0,1)$, $\AA^*=(0,1)\cap \BB$ und
+$P^*=\lambda\big|_{\AA^*}$. Seien $F_n$ und $F$ die Verteilungsfunktionen von
+$X_n$ und $X$. Nun setzen wir
+\begin{align*}
+&X_n^*(\omega) \defl \inf\setdef{t\in\R}{F_n(t)\ge \omega},\\
+&X^*(\omega) \defl\inf\setdef{t\in\R}{F(t)\ge \omega},
+\end{align*}
+d.h. $X_n^*$ und $X^*$ sind die verallgemeinerten Inversen von $F_n$ bzw. $F$.
+Somit sind $X_n^*$ und $X^*$ monotone Funktionen und damit insbesondere messbar.
+Wähle für die Verteilung von $X^*$,
+\begin{align*}
+P^*[X^*\le x] \defl F(x) = P[X\le x],
+\end{align*}
+so gilt $P^*_{X^*} = P_X$, entsprechend für $X_n$ und $X_n^*$. Somit ist
+auch klar, dass $X^*$ höchstens abzählbar viele Unsteigkeitsstellen hat.
+
+Es genügt nun zu zeigen $X_n^*\to X^*$ für alle Stetigkeitspunkte $\omega$ von
+$X^*$. Sei $\omega$ Stetigkeitspunkt von $X^*$ und $\ep > 0$. Es existieren
+dann Stetigkeitspunkte $x_1$ und $x_2$ von $F$ mit
+\begin{align*}
+x_1< X^*(\omega) < x_2 \text{ und }x_2-x_1< \ep,\tag{*}
+\end{align*}
+Hierbei gilt auch $F(x_1)<\omega < F(x_2)$, da $\omega$ Stetigkeitspunkt von
+$X^*$, sowie $F_n(x_1)\to F(x_1)$ und $F_n(x_2)\to F(x_2)$, da $x_1,x_2$
+Stetigkeitspunkte von $F$ und $X_n\Dto X$. Also
+\begin{align*}
+\exists n_0\in\N \forall n\ge n_0 : F_n(x_1) < \omega < F_n(x_2)
+\end{align*}
+und damit auch
+\begin{align*}
+\forall n\ge n_0 : x_1\le X_n^*(\omega) \le x_2\tag{**},
+\end{align*}
+wobei lediglich benötigt wird, dass $\omega$ Stetigkeitspunkt von
+$X^*$, nicht unbedingt von $X_n^*$.
+
+Aus (*) und (**) folgt nun $\abs{X_n^*(\omega)-X^*(\omega)}<\ep$.\qedhere
+\end{proof}
+
+\begin{prop}[Satz von der stetigen Abbildung]
+\label{prop:9.6}
+Seien $X_{n}$, $X$ reelle Zufallsvariablen mit $X_{n}\Dto X$. Sei die Abbildung
+\begin{align*}
+h: (\R, {\BB}) \to (\R, {\BB})
+\end{align*}
+$P_{X}$-f.ü.\ stetig. Dann gilt $h(X_{n})\Dto h(X)$.\fishhere
+\end{prop}
+
+\begin{proof}
+Sei $D\defl\setdef{x\in\R}{h\text{ unstetig in }x}$. Den Beweis $D\in\BB$
+überspringen wir. Nach Voraussetzung ist $P_X(D)=0$.
+
+Nach Satz \ref{prop:9.5} existieren ein W-Raum $(\Omega^*,\AA^*,P^*)$ und
+Zufallsvariablen $X_n^*$, $X^* : (\Omega^*,\AA^*,P^*)\to (\R,\BB)$ mit
+$X_n^*\to X^*\fu{P^*}$ und
+\begin{align*}
+P^*_{X_n^*} = P_{X_n},\qquad P^*_{X^*} = P_X.
+\end{align*}
+Da $h$ stetig, gilt
+\begin{align*}
+h(X_n^*(\omega)) \to h(X^*(\omega))
+\end{align*}
+für $\omega\in D^c$, aber
+\begin{align*}
+P^*(\setdef{\omega\in\Omega^*}{X^*(\omega)\in D}) = P^*[X^*\in D] =
+P^*_{X^*}(D) = P_X(D) = 0,
+\end{align*}
+also gilt $h(X_n^*)\to h(X^*)$ $P^*\text{ f.s.}$ Somit folgt nach Satz
+\ref{prop:9.1} $h(X_n^*)\Dto h(X^*)$, also
+\begin{align*}
+P^*_{h(X_n^*)}\to P^*_{h(X^*)}\quad \text{schwach}.
+\end{align*}
+Nun ist $P^*_{h(X_n^*)} = (P^*_{X_n^*})_h = (P_{X_n})_h = P_{h(X_n)}$, analog
+$P^*_{h(X^*)} = P_{h(X^*)}$. Somit
+\begin{align*}
+P_{h(X_n)}\to P_{h(X)}\quad \text{schwach}.\qedhere
+\end{align*}
+\end{proof}
+
+Wie wir gesehen haben, vertauscht der Limes Operator der
+Verteilungskonvergenz im Allgemeinen nicht mit der Addition oder der
+Multiplikation. Für spezielle Zufallsvariablen erhalten wir jedoch
+Vertauschbarkeit.
+
+\begin{prop}[Satz von Slutsky]
+\label{prop:9.7}
+Seien $X_{n}$, $Y_{n}$ und $X$ reelle Zufallsvariablen auf
+$(\Omega, \AA, P)$ und $c\in \R$.
+\begin{align*}
+\begin{rcases}
+X_{n}\Dto X,\\
+Y_{n} \Pto c,
+\end{rcases}
+\Rightarrow
+\begin{cases}
+X_{n} +Y_{n} \Dto X+c,\\
+Y_{n}X_{n} \Dto cX.\fishhere
+\end{cases}
+\end{align*}
+\end{prop}
+\begin{proof}
+Sei $c\in\R$ und $Z_n\defl X_n+(Y_n-c)$, so gilt
+\begin{align*}
+\abs{X_n-Z_n} = \abs{Y_n-c} = 0 \fs,
+\end{align*}
+insbesondere  $\abs{X_n-Z_n}\Pto 0$. Somit ist \ref{prop:9.4} anwendbar und
+daher,
+\begin{align*}
+X_n+(Y_n-c) = Z_n\Dto X.
+\end{align*}
+Nun wenden wir den Satz von der stetigen Abbildung an mit
+\begin{align*}
+h : \R\to\R,\quad x\mapsto x+c,
+\end{align*}
+so gilt
+\begin{align*}
+X_n + Y_n = h(X_n+(Y_n-c)) \Dto h(X) = X+c.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{prop}
+\label{prop:9.8}
+Für reellwertige Zufallsvariablen $X_n$, $X$ mit Dichten $f_n$
+bzw. $f$ gilt:
+\begin{align*}
+f_n \rightarrow f \text{ $\lambda$-f.ü.} \Rightarrow X_n \Dto
+X.\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Sei $g\in C_b(\R)$. Wähle $c\in\R$, so dass $\abs{g}\le c$, so folgt
+\begin{align*}
+g+c \ge 0.
+\end{align*}
+Da $\dP_X = f\dlambda$ erhalten wir,
+\begin{align*}
+\int_\R g\dP_X = - c +\int_\R (c+g) \dP_X =
+-c+ \int_\R (c+g) f\dlambda.
+\end{align*}
+Nun ist $f = \lim\limits_{n\to\infty} f_n = \liminf\limits_{n\to\infty} 
+f_n\fu{\lambda}$ nach Vorraussetzung. Da $f,f_n$ Dichten und daher positiv,
+können wir das Lemma von Fatou anwenden und erhalten,
+\begin{align*}
+\int_\R g\dP_X &\le - c  +\liminf\limits_{n\to\infty} \int_\R (c+g) f_n\dlambda
+=  \liminf\limits_{n\to\infty} \int_\R g f_n\dlambda\\
+&\le \limsup\limits_{n\to\infty} \int_\R g f_n\dlambda
+= -\liminf\limits_{n\to\infty} \int_\R - g f_n\dlambda\\
+&= c-\liminf\limits_{n\to\infty} \int_\R \underbrace{(c-g)}_{\ge 0}f_n\dlambda
+\le c-\int_\R \liminf\limits_{n\to\infty}(c-g)f_n\dlambda\\
+&= \int_\R gf \dlambda.
+\end{align*}
+Es gilt also
+\begin{align*}
+\int_\R g\dP_X \le \liminf\limits_{n\to\infty} \int_\R g f_n \dlambda
+\le \limsup\limits_{n\to\infty} \int_\R g f_n \dlambda \le \int_\R g\dP_X.
+\end{align*}
+Somit existiert $\lim\limits_{n\to\infty} \int_\R g f_n\dlambda$ und es gilt
+\begin{align*}
+\lim\limits_{n\to\infty} \int_\R g \dP_{X_n} = \int_\R g\dP_X.\qedhere
+\end{align*}
+\end{proof}
+
+Um $X_n\Dto X$ nachzuweisen, müssen wir für jedes stetige beschränkte $g$
+nachweisen
+\begin{align*}
+\E g(X_n) \to \E g(X).
+\end{align*}
+Der nächste Satz zeigt, dass es genügt, sich auf eine kleinere Menge von
+Funktionen zurückzuziehen.
+
+\begin{defnn}
+Eine Funktion $g:\R\to\R$ heißt \emph{Lipschitz-stetig}, falls eine Konstante
+$L\in\R$ existiert, so dass
+\begin{align*}
+\abs{g(x)-g(y)} \le L\abs{x-y},\qquad \forall x,y\in\R.\fishhere
+\end{align*}
+\end{defnn} 
+Jede lipschitzstetige Funktion ist gleichmäßig stetig und jede gleichmäßig
+stetige Funktion ist stetig. Die Umkehrungen gelten im Allgemeinen
+\textit{nicht}.
+
+Die gleichmäßig stetigen Funktionen auf $\R$ bilden eine echte Teilmenge der
+stetigen Funktionen.
+
+\begin{prop}
+\label{prop:9.9}
+Für reellwertige Zufallsvariablen $X_n$, $X$ gilt:
+\begin{align*}
+X_n \Dto X \Leftrightarrow \E f(X_n) \to \E f(X)
+\end{align*}
+für alle beschränkten \textit{gleichmäßig} stetigen Funktionen
+$f:\R\to\R$.\fishhere
+\end{prop} 
+\begin{proof}
+``$\Rightarrow$'': Klar, denn die Aussage gilt nach Voraussetzung für stetige
+beschränkte  und somit insbesondere für gleichmäßig stetige
+beschränkte Funktionen.
+
+``$\Leftarrow$'': Sei $f\in C_b(\R)$. Zu zeigen ist $\E f(X_n)\to \E f(X)$, da
+$f$ lediglich stetig und beschränkt. Setzen wir
+\begin{align*}
+\alpha \defl \sup_{x\in\R} \abs{f(x)} = \norm{f}_\infty.
+\end{align*}
+Wir zeigen nun, dass für jedes $i\in\N$ eine Lipschitz-stetige Funktion
+$g_i:\R\to\R$ existiert mit
+\begin{align*}
+-\alpha \le g_i \le g_{i+1}\le \alpha,\qquad \forall x\in \R : g_i(x)\to
+f(x),\quad i\to\infty.\tag{*}
+\end{align*}
+Haben wir die Existenz der $g_i$ gezeigt, so gilt für $i\in\N$
+\begin{align*}
+\liminf_n \E f(X_n) \ge \liminf\limits_{n\to\infty} \E g_i(X_n)
+= \lim\limits_{n\to\infty} \E g_i(X_n) = \E g_i(X),\tag{**}
+\end{align*}
+denn die $g_i$ sind gleichmäßig stetig und daher konvergiert der Erwartungswert
+nach Voraussetzung.
+
+Da die $g_i$ durch $\alpha$ beschränkt sind, ist $g_i(X)+\alpha \ge 0$ und es
+gilt
+\begin{align*}
+\lim\limits_{i\to\infty} \E(g_i(X)+\alpha)
+\overset{\text{mon.konv}}{=}
+\E (f(X)+\alpha).
+\end{align*}
+Somit gilt auch $\lim\limits_{i\to\infty} \E(g_i(X)) = \E f(X)$. Zusammen mit
+(**) erhalten wir also
+\begin{align*}
+\liminf\limits_{n\to\infty} \E f(X_n) \ge \E f(X).
+\end{align*}
+Analog erhalten wir mit $f$ ersetzt durch $-f$,
+\begin{align*}
+\limsup\limits_{n\to\infty} \E f(X_n) \le \E f(X).
+\end{align*}
+Insgesamt gilt also $\E f(X_n)\to \E f(X)$ und die Behauptung ist gezeigt.
+
+Wir müssen also noch die Behauptung (*) nachweisen. Es genügt, eine Folge
+$(h_k)_{k\in\N}$ Lipschitz-stetiger Funktionen zu finden mit
+\begin{align*}
+h_k \ge -\alpha\text{ und } \forall x\in\R : \sup_{k\in\N} h_k(x) = f(x). 
+\end{align*} 
+Denn dann leistet $g_i$ mit $g_i(x)=\max\setd{h_1(x),\ldots,h_i(x)}$ das
+Gewünschte, denn das Maximum über endlich viele Lipschitz-stetige Funktionen
+ist wieder Lipschitz-stetig.
+
+Wir können ohne Einschränkung davon ausgehen, dass $f\ge 0$, ansonsten ersetzen
+wir $f$ durch $\tilde{f}=f+\alpha\ge 0$. Wähle $A\in\BB$ und setze
+\begin{align*}
+d_A(x) = \inf\setdef{\abs{x-y}}{y\in A}.
+\end{align*}
+$d_A$ ist der Hausdorffabstand des Punktes $x$ von der Menge $A$. Sei $r \ge
+0$ rational, $m\in\N$ und 
+\begin{align*}
+h_{m,r}(x) = \min\setd{r, (m\cdot d_{\setd{t:f(t)\le r}}(x))},
+\end{align*}
+so sind die $h_{m,r}$ lipschitz, denn
+\begin{align*}
+\abs{h_{m,r}(x)-h_{m,r}(y)} \le m \abs{d_{\setd{t : f(t)\le r}}(x)-d_{\setd{t :
+f(t)\le r}}(y)} \le m \abs{x-y},
+\end{align*}
+außerdem sind die $h_{m,r}$ beschränkt, denn $\abs{h_{m,r}}\le r$, und
+$\abs{h_{m,r}}(x) = 0$ für $x$ mit $f(x)\le r$. Insbesondere
+\begin{align*}
+0 \le h_{m,r}(x)\le f(x),\qquad \forall x\in\R.
+\end{align*}
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-3.2,-0.7)(3.2,4.7)
+
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-3,-0.5)(3,4.5)[\color{gdarkgray}$x$,-90][,0]
+
+
+\psplot[linewidth=1.2pt,%
+	     linecolor=darkblue,%
+	     algebraic=true]%
+	     {-2}{2}{%
+x^2
+}
+
+\psline[linewidth=1.2pt,linecolor=yellow](-3,0.98)(-2,0.98)(-1,-0.02)(1,-0.02)(2,0.98)(3,0.98)
+\psline[linewidth=1.2pt,linecolor=purple](-3,1.02)(-1.5,1.02)(-1,0.02)(1,0.02)(1.5,1.02)(3,1.02)
+
+\rput(2.5,4){\color{darkblue}$f$}
+\rput(2.5,1.4){\color{purple}$h_{2,r}$}
+\rput(2.5,0.6){\color{yellow}$h_{1,r}$}
+\end{pspicture}
+\caption{$h_{m,r}(x)$ für $f(x)=x^2$, $r=1$ und $m=1,2$.}
+\end{figure}
+Wähle $x\in\R$, $\ep > 0$ beliebig aber fest. Wähle außerdem $0\le r\in\Q$ so,
+dass
+\begin{align*}
+f(x)-\ep < r < f(x).
+\end{align*}
+Es gilt $f(y)> r$ für alle $y$ aus einer hinreichend kleinen Umgebung von
+$x$, da $f$ stetig. Somit folgt
+\begin{align*}
+d_{\setd{t : f(t)\le r}}(x) > 0,
+\end{align*}
+also ist auch
+\begin{align*}
+h_{m,r}(x) = r
+\begin{cases}
+ < f(x),\\
+ > f(x)-\ep,
+\end{cases}
+\end{align*}
+für $m$ hinreichend groß.
+
+Die Menge $\setdef{h_{m,r}}{m\in\N,\; 0\le r\in \Q}$ ist abzählbar. Sei
+\begin{align*}
+\setdef{h_k}{k\in\N}
+\end{align*}
+eine Abzählung dieser Menge. Nach Konstruktion gilt nun
+\begin{align*}
+\sup_{k\in\N} h_k(x)
+\begin{cases}
+\le f(x),\\
+\ge f(x)-\ep,
+\end{cases}
+\end{align*}  
+also $\sup\limits_{k\in\N} h_k(x) = f(x)$, da $\ep > 0$ beliebig.\qedhere
+\end{proof}
+
+% \begin{figure}[!htpb]
+% \centering
+% \begin{pspicture}(-1,-0.7)(5,4.7)
+% 
+%  \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+%  (0,0)(-0.5,-0.5)(3.5,4.5)[\color{gdarkgray}$x$,-90][,0]
+% 
+% 
+% \psplot[linewidth=1.2pt,%
+% 	     linecolor=darkblue,%
+% 	     algebraic=true]%
+% 	     {-0.5}{3.5}{%
+% 3 + 3*x - 4*x^2 + x^3
+% }
+% 
+% % \psline(-3,3)(5,3)
+% % 
+% % \psline[linewidth=1.2pt,linecolor=yellow]%
+% %  	(-3,0)(0,0)(0.5,1)(1,0)(3,0)(3.5,1)(4,1)
+% 
+% 
+% % \psline[linewidth=1.2pt,linecolor=purple](-3,1.02)(-1.5,1.02)(-1,0.02)(1,0.02)(1.5,1.02)(3,1.02)
+% 
+% % \rput(2.5,4){\color{darkblue}$f$}
+% % \rput(2.5,1.4){\color{purple}$h_{2,r}$}
+% % \rput(2.5,0.6){\color{yellow}$h_{1,r}$}
+% \end{pspicture}
+% \caption{$h_{m,r}(x)$ für $f(x)=x^2$, $r=1$ und $m=1,2$.}
+% \end{figure}
+
+\begin{prop}[Satz von L\'{e}vy-Cram\'{e}r; Stetigkeitssatz]
+\label{prop:9.10}
+Seien $Q_{n}$, $Q$ W-Maße auf ${\BB}$ mit
+charakteristischen Funktionen $\ph_{n}$, $\ph :\R\to \C$.
+Dann gilt:
+\begin{align*}
+Q_{n}\to Q \text{ schwach} \Leftrightarrow \forall u\in
+\R : \ph_{n} (u) \to \ph (u).\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+``$\Rightarrow$'': Sei $\ph_n$ die charakteristische Funktion von $Q_n$, also
+\begin{align*}
+\ph_n(u) = \int_\R \e^{iux}\dQ_n(x)
+= \int_\R \cos(ux)\dQ_n(x) + i\int_\R \sin(ux)\dQ_n(x).
+\end{align*}
+$\sin$ und $\cos$ sind beschränkte Funktionen also,
+\begin{align*}
+\ph_n(u)
+\to &\int_\R \cos(ux)\dQ(x) + i\int_\R \sin(ux)\dQ(x)
+= \int_\R \e^{iux}\dQ(x) \\ &= \ph(u).
+\end{align*}
+``$\Leftarrow$'': Seien $Y_n$, $Y_0$, $X$ unabhängige Zufallsvariablen auf
+$(\Omega,\AA,P)$ mit $Y_n\sim Q_n$, $Y_0\sim Q$, $X\sim N(0,1)$. Dann gilt für
+alle $\alpha>0$,
+\begin{align*}
+P_{Y_n+\alpha X} = P_{Y_n}*P_{\alpha X}.
+\end{align*}
+% Aufgrund der Unabhängigkeit ist die charakteristische Funktion dieser Faltung
+% gegeben durch das Produkt,
+% \begin{align*}
+% \ph_n(u)\e^{-\frac{(\alpha u)^2}{2}}.
+% \end{align*}
+Nach Übungsaufgabe 40 besitzt $P_{Y_n+\alpha X}$ die Dichte
+\begin{align*}
+g_{n,\alpha}(x) = \frac{1}{2\pi}\int \e^{-ux}\ph_n(u)\e^{-\frac{(\alpha
+u)^2}{2}}\du.
+\end{align*}
+Der Integrand besitzt eine integrierbare Majorante, denn
+\begin{align*}
+\abs{\e^{-ux}\ph_n(u)\e^{-\frac{(\alpha
+u)^2}{2}}}
+\le
+\e^{-ux}\e^{-\frac{(\alpha u)^2}{2}},
+\end{align*}
+also können wir den Satz von der dominierten Konvergenz anwenden und erhalten,
+\begin{align*}
+\forall x\in\R : 
+g_{n,\alpha}(x) \to \frac{1}{2\pi}\int_\R \e^{-ux}\ph(u)\e^{-\frac{(\alpha
+x)^2}{2}}\du.
+\end{align*}
+Unter Verwendung des Satzes \ref{prop:9.8} erhalten wir
+\begin{align*}
+Y_n+\alpha X \Dto Y_0 + \alpha X.\tag{*}
+\end{align*}
+Zum Nachweis von $Y_n\Dto Y_0$ genügt es nach Satz \ref{prop:9.9} zu
+zeigen, dass für beliebige beschränkte gleichmäßig stetige Funktionen gilt
+$f:\R\to\R$
+\begin{align*}
+\int f(Y_n)\dP \to \int f(Y_0)\dP.
+\end{align*}
+Seien also $f$ wie vorausgesetzt, $\ep > 0$ und $\delta > 0$, so dass
+\begin{align*}
+\abs{f(y+x)-f(y)} < \frac{\ep}{6},\qquad \forall x,y\in\R\text{ mit } \abs{x}<
+\delta.
+\end{align*}
+Wähle außerdem $\alpha > 0$ mit
+\begin{align*}
+P[\abs{\alpha X} \ge \delta] \le \frac{\ep}{12\norm{f}_\infty}.
+\end{align*}
+Nach (*) existiert ein $n_0$ so, dass
+\begin{align*}
+\forall n\ge n_0 : \abs{\int_\Omega f(Y_n+\alpha X) - f(Y_0 + \alpha X)\dP} < 
+\frac{\ep}{3}.
+\end{align*}
+Dann gilt für $n\ge n_0$,
+\begin{align*}
+\abs{\int_\Omega f(Y_n)-f(Y_0)\dP} &\le \underbrace{\int_\Omega
+\abs{f(Y_n)-f(Y_n+\alpha X)}\dP}_{(1)} \\
+&+ \underbrace{\abs{\int_\Omega f(Y_n+\alpha X)- f(Y_0+\alpha
+X)\dP}}_{(2)} \\ &+ \underbrace{\int_\Omega \abs{f(Y_0+\alpha
+X)-f(Y_0)}\dP}_{(3)}.
+\end{align*}
+(1): Wir nutzen die gleichmäßige Stetigkeit von $f$ aus,
+\begin{align*}
+\int_\Omega \abs{f(Y_n)-f(Y_n+\alpha
+X)}\dP
+&= \int_{\abs{\alpha X}\ge \delta} \abs{f(Y_n)-f(Y_n+\alpha
+X)}\dP\\
+&+\int_{\abs{\alpha X}< \delta} \abs{f(Y_n)-f(Y_n+\alpha
+X)}\dP\\
+&< 2\norm{f}_\infty P\left[\abs{\alpha X} \ge \delta\right] +
+\frac{\ep}{6}P\left[ \abs{\alpha X} < \delta
+\right]\\
+&\le
+2\norm{f}_\infty \frac{\ep}{12\norm{f}_\infty} + \frac{\ep}{6}\cdot1
+=
+\frac{\ep}{3}.
+\end{align*}
+(2) $< \frac{\ep}{3}$ für $n\ge n_0$.\\
+(3) $< \frac{\ep}{6}P[\abs{\alpha X}< \delta] + 2\norm{f}_\infty
+P[\abs{\alpha X}\ge \delta] \le \frac{\ep}{3}$.\\
+Somit $\E f(Y_n)\to \E f(Y_0)$, d.h. $Y_n\Dto  Y_0$.\qedhere
+\end{proof}
+
+\begin{bem}
+\label{bem:9.2}
+Die obigen Definitionen und Sätze lassen sich auf W-Maße auf ${\BB}_{k}$
+bzw.\ $k$-dim.\ Zufallsvektoren übertragen.\maphere
+\end{bem}
+
+\section{Zentrale Grenzwertsätze}
+
+Ausssagen über die Approximation von Verteilungen, insbesondere der
+Verteilungen von Summen von Zufallsvariablen, durch die Normalverteilung im
+Sinne der schwachen Konvergenz werden als zentrale Grenzwertsätze bezeichnet.
+
+\begin{prop}[Zentraler Grenzwertsatz von Lindeberg-L\'{e}vy im
+  1-dim.\ Fall]
+\label{prop:9.11}
+Sei $(X_{n})_{n\in \N}$ eine unabhängige Folge identisch verteilter quadratisch
+integrierbarer reeller Zufallsvariablen mit $\E X_{1} \defr a$, $\V(X_{1})\defr\sigma
+^ {2}$ mit $\sigma >0$. Dann
+\begin{align*}
+\frac{1}{\sqrt{n} \sigma } \sum\limits^{n}_{k=1} (X_{k}-a)\quad
+\overset{\DD}{\longrightarrow}\quad N(0,1)\mbox{-verteilte reelle
+Zufallsvariable.}\fishhere
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Ohne Einschränkung können wir $a=0$ und $\sigma=1$ annehmen (andernfalls
+ersetzen wir $X_k$ durch $\frac{X_k-a}{\sigma}$). $X_1$ habe die
+charakteristische Funktion $\ph$, dann besitzt
+\begin{align*}
+\sum\limits_{k=1}^n X_k
+\end{align*}
+nach Satz \ref{prop:6.4} die charakteristische Funktion $\ph^n$. Somit hat
+\begin{align*}
+\frac{1}{\sqrt{n}}\sum\limits_{k=1}^n X_k
+\end{align*}
+die charakteristische Funktion $\ph^n(\frac{\cdot}{\sqrt{n}})$.
+Nach Satz \ref{prop:9.10} genügt es zu zeigen,
+\begin{align*}
+\forall x\in\R : \ph^n\left(\frac{u}{\sqrt{n}}\right)\to \e^{-\frac{u^2}{2}}.
+\end{align*}
+$\e^{-\frac{u^2}{2}}$ ist nach Bemerkung \ref{bem:6.4} die charakterisitsche
+Funktion einer $N(0,1)$-Verteilung.
+
+Nach Satz \ref{prop:6.6} besitzt $\ph$ wegen $\E X_1^2 < \infty$ eine stetige
+2. Ableitung und daher nach dem Satz von Taylor eine Darstellung
+\begin{align*}
+\ph(u) &= \ph(0) + u\ph'(0) + \frac{u^2}{2}\ph''(0) + \rho(u)\\ 
+&= 1 + iu\E X_1 - \frac{u^2}{2}\E X_1^2 + \rho(u),
+\end{align*}
+mit einem Restterm $\rho(u)$ der Ordnung $o(u^2)$, d.h.
+\begin{align*}
+\lim\limits_{u\to 0}\frac{\rho(u)}{u^2} = 0.
+\end{align*}
+Nach Voraussetzung ist $\E X_1 = a = 0$ und $\E X_1(X_1-1)
+= \E X_1^2 = \V X_1 = 1$ und daher
+\begin{align*}
+\ph(u) =  1 - \frac{u^2}{2} + \rho(u).
+\end{align*}
+Für $u\in\R$ beliebig aber fest gilt
+\begin{align*}
+\ph^2\left(\frac{u}{\sqrt{n}}\right) =
+\left(1 - \frac{u^2}{2n} + \rho\left(\frac{u}{\sqrt{n}}\right)\right)^n
+=  \left(1 - \frac{\frac{u^2}{2} +
+n\rho\left(\frac{u}{\sqrt{n}}\right)}{n}\right)^n
+\end{align*} 
+Nach Voraussetzung $n\rho\left(\frac{u}{\sqrt{n}}\right)\to 0$ für
+$n\to\infty$, also
+\begin{align*}
+\left(1 - \frac{\frac{u^2}{2} +
+n\rho\left(\frac{u}{\sqrt{n}}\right)}{n}\right)^n \to
+\e^{-\frac{u^2}{2}}.\qedhere
+\end{align*}
+\end{proof}
+
+Als unmittelbares Korollar erhalten wir.
+
+\addtocounter{cor}{1}
+
+\begin{cor}[Zentraler Grenzwertsatz von de Moivre und Laplace]
+\label{cor:9.2}
+Für eine unabhängige Folge $(X_{n})_{n\in \N}$ identisch verteilter
+reeller Zufallsvariablen auf $(\Omega, \AA,P)$ mit
+\begin{align*}
+P[X_{1} =1]=p,\quad P[X_{1}=0] = 1-p \defr q,\quad (0<p<1)
+\end{align*}
+gilt für $n\to\infty$
+\begin{align*}
+\forall \alpha < \beta \in \R :
+P\left[\alpha\mathop{<}\limits_{(=)} \frac{\sum^ {n}_{k=1}
+X_{k}-np}{\sqrt{npq}}\mathop{<}\limits_{(=)} \beta \right] \to
+\frac{1}{\sqrt{2\pi}}\int^{\beta}_{\alpha }\e^ {-t^ {2}/2}\dt.\fishhere
+\end{align*}
+\end{cor}
+
+\begin{bsp}
+Volksabstimmung zu Vorschlägen $A$ und $B$. Eine resolute Minderheit
+von $3.000$ Personen stimmt für $A$. Weitere $1.000.000$ Personen stimmen
+zufällig ab.
+
+\textit{Wie groß ist die Wahrscheinlichkeit, dass $A$ angenommen wird?}
+Bezeichne die ``gleichgültigen'' Wähler mit den Nummern
+$k=1,2,3,\ldots,1.000.000$,
+\begin{align*}
+X_k = \begin{cases}
+1, & \text{Wähler wählt }A,\\
+0, & \text{Wähler wählt }B.
+\end{cases}
+\end{align*}
+Somit sind $X_1,X_2,\ldots$ unabhängig und $b(1,1/2)$-verteilt. Seien
+$n=1.000.000$, $r=3.000$, so wird der Vorschlag $A$ angenommen, wenn
+\begin{align*}
+\sum_{k=1}^n X_k + r > n - \sum\limits_{k=1}^n X_k,
+\end{align*}
+d.h. genau dann, wenn
+\begin{align*}
+\sum_{k=1}^n X_k > \frac{n-r}{2} = 498.500.
+\end{align*}
+Die Wahrscheinlichkeit dafür ist gegeben durch,
+\begin{align*}
+P[\sum_{k=1}^n X_k > 498.500]
+= P\left[\frac{\sum_{k=1}^n X_k - \frac{n}{2}}{\sqrt{n\frac{1}{4}}} >
+\frac{498.500 - 500.000}{500} = -3\right].
+\end{align*}
+Korollar \ref{cor:9.2} besagt, dass $\dfrac{\sum_{k=1}^n X_k -
+\frac{n}{2}}{\sqrt{n\frac{1}{4}}}$ annähernd $N(0,1)$-verteilt ist, d.h.
+\begin{align*}
+P\left[\frac{\sum_{k=1}^n X_k - \frac{n}{2}}{\sqrt{n\frac{1}{4}}} >
+-3\right] &= 1- P\left[\frac{\sum_{k=1}^n X_k -
+\frac{n}{2}}{\sqrt{n\frac{1}{4}}} \le -3\right]\\ &
+ \approx 1-\Phi(-3) = 0.9986.
+\end{align*}
+Obwohl lediglich 3.000 Personen sicher für $A$ stimmen, wird der Vorschlag
+mit einer Wahrscheinlichkeit von $99.86\%$ angenommen.
+
+Dies ist auch der Grund dafür, dass Vorschläge, die den Großteil der
+Abstimmenden nicht interessieren, bereits von einer kleinen Gruppe von
+Entschlossenen durchgesetzt werden können.\bsphere
+\end{bsp}
+
+\noindent
+\textit{Normal- oder Poisson-Approximation?} 
+
+Seien $X_n$ unabhängige $b(1,p)$-verteilte Zufallsvariablen. Nach dem
+Grenzwertsatz von de Moivre-Laplace gilt
+\begin{align*}
+\underbrace{\sum_{i=1}^n\frac{X_i-p}{\sqrt{np(1-p)}}}_{\Dto N(0,1)-\text{vert.
+ZV}} \approx N(0,1)\text{-verteilt für ``große'' }n.\tag{1}
+\end{align*}
+Andererseits gilt nach dem Grenzwertsatz von Poisson
+\begin{align*}
+\underbrace{\sum_{j=1}^n X_i}_{\Dto \pi(\lambda)} \approx \pi(np_n),\;
+\text{falls $n$ ``groß'' und $p_n$ ``klein''},\tag{2}
+\end{align*} 
+und $np_n\to \lambda\in (0,\infty)$ (siehe Übungsaufgabe 45).
+
+Im Fall (1) sind die Summanden dem Betrag nach klein für großes $n$, während
+im Fall (2) nur die Wahrscheinlichkeit, $p_n=P[X_n=1]$, klein ist,
+dass die Summanden \textit{nicht} klein sind.
+
+Als \textit{Faustregel} gilt
+\begin{defnpropenum}
+  \item Normal-Approximation ist ``gut'', falls $np(1-p)\ge 9$.
+  \item Poisson-Approximation ist ``gut'', falls $n\ge 50$ und $p\le 0.05$.
+\end{defnpropenum}
+Im Allgemeinen können Poisson- und Normal-Approximation (für kleine $n$) nicht
+gleichzeitig angewendet werden.
+
+
+\begin{bem}[Bemerkungen.]
+\label{bem:9.3}
+\begin{bemenum}
+\item Seien $X_n$ unabhängige, identisch verteilte reelle Zufallsvariablen mit
+endlichen Varianzen und $\mu=\E X_1$, so gilt nach dem starken Gesetz der großen
+Zahlen,
+\begin{align*}
+\frac{1}{n}S_n \defl \frac{1}{n}\sum_{i=1}^n X_i\to \mu,\qquad
+\Pfs\text{ und }L^2. 
+\end{align*}
+Sei $\ep > 0$. Wie groß ist nun $n_0$ zu wählen, so dass
+\begin{align*}
+\abs{\frac{1}{n}S_n - \mu} < \ep,\qquad n\ge n_0?
+\end{align*}
+Mit Standardmethoden der Analysis lässt sich die Fragestellung umformulieren zu
+\begin{align*}
+\exists \alpha > 0 \exists c\neq 0 :
+\lim\limits_{n\to\infty} n^\alpha \abs{\frac{S_n}{n}-\mu} = c,\qquad
+\Pfs?
+\end{align*}
+Ein solches $\alpha$ existiert nicht, da nach dem zentralgen Grenzwertsatz
+\begin{align*}
+n^{\frac{1}{2}} \left(
+\frac{S_n}{n}-\mu
+\right)
+\Dto
+N(0,\V(X_1))\text{-verteilte Zufallsvariable}.
+\end{align*}
+Für $\alpha<\frac{1}{2}$ liegt nach dem Satz von Slutsky Verteilungs-Konvergenz
+gegen Null vor, also auch nach Wahrscheinlichkeit.
+\item In der Praxis ist die Verteilungsfunktion $F$ der Zufallsvariablen
+$X$ meist unbekannt. Seien dazu $X_1,\ldots,X_n$ unabhängige
+Zufallsvariablen mit Verteilungsfunktion $F$. Schätze $F_n$ durch
+\begin{align*}
+\hat{F}_n(x) \defl \hat{F}_n(x,\omega) \defl
+\frac{1}{n}\sum_{i=1}^n \Id_{[X_i(\omega)\le x]},\qquad x\in\R,
+\end{align*}
+wobei $\hat{F}_n(x)$ die relative Anzahl derjenigen $X_1,\ldots,X_n$
+bezeichnet mit $X_i\le x$. $\hat{F}_n$ heißt \emph{empirische
+Verteilungsfunktion} zu $X_1,\ldots,X_n$. Nach dem starken Gesetz der großen
+Zahlen von Kolmogorov gilt $\Pfs$
+\begin{align*}
+\lim\limits_{n\to\infty}
+\hat{F}_n(x)
+&=
+\lim\limits_{n\to\infty}
+\frac{1}{n}\sum_{i=1}^n \underbrace{\Id_{[X_i\le x]}}_{\defl Y_i(x)}
+= \E Y_1(x)
+= \E \Id_{[X_1\le x]} = P[X_1\le x] \\ &= F(x),
+\end{align*}
+also $\hat{F}_n(x)\to F(x)\Pfs$ und $L^2$. Eine Verschärfung dieser Aussage
+liefert der
+\begin{propn}[Satz von Glivenko-Cantelli]
+Seien $X_n$, $X$ unabhängige und identisch verteilte Zufallsvariablen. Die
+empirische Verteilungsfunktion $\hat{F}_n$ konvergiert P-f.s. gleichmäßig
+gegen $F$, d.h.
+\begin{align*}
+\forall \ep > 0\exists n_0\in\N \forall x\in \R,n\ge n_0:
+\sup_{x\in\R}\abs{\hat{F}_n(x)-F(x)} < \ep\fs.\fishhere
+\end{align*}
+\end{propn}
+Dieser Satz wird in der mathematischen Statistik bewiesen und heißt auch
+Hauptsatz der Statistik.
+
+Nach dem zentralen Grenzwertsatz gilt
+\begin{align*}
+\sqrt{n}\left(\hat{F}_n(x)-F(x) \right) &= \sqrt{n}
+\left(\frac{1}{n}\sum_{i=1}^n \Id_{[X_i\le x]} - \E \Id_{[X_1\le x]} \right)\\
+&= 
+\frac{\sum_{i=1}^n\left( \Id_{[X_i\le x]} - \E \Id_{[X_1\le
+x]}\right)}{\sqrt{n}} \Dto N(0,\sigma^2(x))
+\end{align*}
+wobei $\sigma^2(x) = \V(\Id_{[X_1\le x]}) = F(x)(1-F(x))$ und $\Id_{[X_1\le
+x]}$ eine $b(1,F(x))$ verteilte Zufallsvariable.
+Somit ist $\hat{F}_n(x)-F(x)$ approximativ
+$N\left(0,\frac{F(x)(1-F(x)}{n}\right)$-verteilt.
+
+Da $\sigma(x)\le1/4$  für alle $x\in\R$, gilt für ein vorgegebenes $\ep>0$
+und eine $N(0,1)$-verteilte Zufallsvariable $Z$,
+\begin{align*}
+P[|\hat{F}_n(x)-F(x)| \le \ep]
+& \approx P\left[|Z| \le \epsilon\sqrt{\frac{n}{F(x)(1-F(x))}}\right]\\
+& \ge P\left[|Z| \le 2 \sqrt{n} \ep \right] \\
+&= 2 \Phi(2\ep\sqrt{n}) -1
+\end{align*}
+\begin{bspn}[Zahlenbeispiel]
+$\ep=0.1$, $n=100$, dann ist $P[|\hat{F}_n(x)-F(x)| \le
+\ep] \gtrapprox 0,955 $ für jedes $x$ und jede Verteilfungsfunktion $F$.\bsphere
+\end{bspn}
+\item
+\begin{propn}[Satz von Berry-Esseen]
+Seien $X_n$ unabhängige identisch verteilte Zufallsvariablen mit $\E X_1 =
+\mu$, $\V(X_1) = \sigma^2$ und $\E \abs{X_1}^3 < \infty$. Dann gilt
+\begin{align*}
+\sup_{x\in\R}\abs{P\left[\sqrt{n}\frac{\sum_{i=1}^n (X_i-\mu)}{n\sigma} \le x
+\right] - \Phi(x)} \le c \frac{\E \abs{X_1}^3}{\sigma^3\sqrt{n}},
+\end{align*}
+mit $c < 0.7975$, wobei
+\begin{align*}
+P\left[\sqrt{n}\frac{\sum_{i=1}^n (X_i-\mu)}{n\sigma} \le x \right] \to
+ \Phi(x) = \int_{-\infty}^x \frac{1}{2\pi} \e^{-\frac{t^2}{2}}\dt. 
+\end{align*}
+nach dem zentralen Grenzwertsatz.\fishhere\maphere
+\end{propn}
+\end{bemenum}
+\end{bem}
+
+% \begin{lemn}[Hilfsformel]
+% \begin{align*}
+% \forall {k\in \N}\forall {x\in \R} :  | \e^ {ix}-1-\frac{ix}{1!} -
+% \ldots - \frac{(ix)^ {k-1}}{(k-1)!}| \leq \frac{|x|^ {k}}{k!}.\fishhere
+% \end{align*}
+% \end{lemn}
+
+\begin{prop}[Zentraler Grenzwertsatz von Lindeberg]
+\label{prop:9.12}
+Die Folge $(X_{n})_{n\in \N}$ quadratisch integrierbarer reeller
+Zufallsvariablen mit $\E X^{2}_{1}>0$, $\E X_{n}=0$, sei
+unabhängig und erfülle --- mit $s^{2}_{n}\defl\sum^{n}_{i=1}\E X^{2}_{i}$, $s_n =
+\sqrt{s^2_n}$ --- die \emph{klassische Lindeberg-Bedingung}
+\begin{align*}
+\forall {\varepsilon > 0} :
+\frac{1}{s^ {2}_{n}}\sum^{n}_{i=1} \E(X^ {2}_{i}\Id_{ [|X_{i}| > \ep s_n]})\to
+0.
+\tag{LB}
+\end{align*}
+Dann
+\begin{align*}
+\frac{1}{s_{n}}\sum\limits^ {n}_{i=1}X_{i}\quad
+\overset{\DD}{\longrightarrow}\quad N(0,1)\mbox{-verteilte
+Zufallsvariable.}\fishhere
+\end{align*}
+\end{prop}
+
+Die Lindeberg-Bedingung stellt sicher, dass der Einfluss aller Zufallsvariablen
+ungefähr ``gleich groß ist''. Salop kann man sagen, dass ein Zentraler
+Grenzwertsatz immer existiert, wenn man eine Größe betrachtet, die aus sehr
+vielen aber kleinen und nahezu unabhängigen Einflüssen besteht. In diesem Fall
+kann man stets vermuten, dass die Summe der Einflüsse normalverteilt ist.
+
+Als Beispiel sei der Kurs einer Aktien genannt, die sich im Streubesitzt
+befindet. Durch unabhängige Kauf- und Verkaufsaktionen haben die Aktienbesitzer
+nur einen geringen Einfluss auf den Kurs, in ihrer Gesamtheit führt dies aber
+zu normalverteilten Tages-Renditen. Befindet sich die Aktie dagegen im Besitz
+einiger weniger Großaktionäre, sind die Aktienkurse  nicht mehr
+($\log$)\-normalverteilt.
+
+\begin{bem}[Bemerkungen.]
+\label{bem:9.3}
+\begin{bemenum}%[label=\alph{*})]
+\item In Satz \ref{prop:9.12} dient die Folge $(s_n)$ zur Normierung. Die
+  Lindeberg-Bedingung (LB) schränkt den Einfluss der einzelnen Zufallsvariablen ein.
+\item In Satz \ref{prop:9.12} --- mit am Erwartungswert zentrierten Zufallsvariablen ---
+  impliziert die klassische Lindeberg-Bedingung (LB) die \emph{klassische
+  Feller-Bedingung}
+\begin{align*}
+\max\limits_{i=1,\ldots,n} \left(\frac{1}{s^{2}_{n}}\E X^ {2}_{i}\right)
+\to 0
+\end{align*}
+und wird ihrerseits durch die \emph{klassische Ljapunov-Bedingung}
+\begin{align*}
+\exists \delta > 0 : \frac{1}{s^ {2+\delta }_{n}}
+\sum\limits^ {n}_{i=1} \E|X_{i}| ^ {2+\delta }\to 0
+\end{align*}
+impliziert. Bei nicht am Erwartungswert zentrierten Zufallsvariablen ist jeweils $X_{i}$
+durch $X_{i}-\E X_{i}$, auch in der Definition von $s_{n}$, zu ersetzen.
+\item
+Satz \ref{prop:9.12} $\Rightarrow $ Satz \ref{prop:9.11}.\maphere
+\end{bemenum}
+\end{bem}
+
+Satz \ref{prop:9.12} folgt aus
+
+\begin{prop}[Zentraler Grenzwertsatz von Lindeberg für Dreiecksschemata von
+  ZVn]
+\label{prop:9.13}
+Für jedes $n\in\mathbb{N}$ seien
+$X_{n,1},\ldots,X_{n,m_n}$ unabhängige quadratisch integrierbare reelle
+Zufallsvariablen mit $m_n\to \infty$ für $n\to\infty$. Ferner seien
+\begin{align*}
+\E X_{n,i}=0,\quad \sum_{i=1}^{m_n} \E X_{n,i}^2=1
+\end{align*}
+und die Lindeberg-Bedingung
+\begin{align*}
+\forall \ep > 0 : \sum^{m_n}_{i=1}
+\E\left(X^{2}_{n,i}\Id_{ [|X_{i}| > \ep]}\right) \to 0.
+\end{align*}
+erfüllt.  Dann
+\begin{align*}
+\sum\limits^{m_n}_{i=1}X_{n,i}\Dto
+N(0,1)\mbox{-verteilte Zufallsvariable.}\fishhere
+\end{align*}
+\end{prop}
+
+Bevor wir den Satz beweisen, betrachten wir folgendes Beispiel.
+
+\begin{bsp}
+Seien $X_n$ unabhängige, identisch verteilte, quadratisch integrierbare reelle
+Zufallsvariablen mit
+\begin{align*}
+\E X_1 = 0,\quad \E X_1^2 = 1,\quad S_n \defl \sum_{i=1}^n X_i.
+\end{align*}
+Wir zeigen
+\begin{align*}
+n^{-\frac{3}{2}} \sum_{k=1}^n S_k \to N(0,\frac{1}{3})\text{-verteilte
+Zufallsvariable}.
+\end{align*}
+Der zentrale Grenzwertsatz von Lindeberg \ref{prop:9.12} lässt sich so nicht
+anwenden, da beispielsweise die Unabhängikeit in Bezug auf die $S_k$ verletzt
+ist. Es gilt jedoch,
+\begin{align*}
+\sqrt{3}n^{-\frac{3}{2}} \sum_{k=1}^n S_k
+= \sqrt{3}n^{-\frac{3}{2}} \sum_{k=1}^n \sum_{j=1}^k X_j
+= \sqrt{3}n^{-\frac{3}{2}} \sum_{j=1}^n \underbrace{\sum_{k=j}^n
+X_j}_{(n-j+1)X_j}.
+\end{align*}
+Die Vertauschbarkeit der Summen macht man sich schnell an der Skizze klar.
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-0.7,-0.7)(3.2,3.2)
+\psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-0.5,-0.5)(3,3)[\color{gdarkgray}$k$,-90][\color{gdarkgray}$j$,0]
+
+\psdots[linecolor=darkblue](0.5,0.5)(1,0.5)(1.5,0.5)(2,0.5)(2.5,0.5)
+\psdots[linecolor=darkblue](1,1)(1.5,1)(2,1)(2.5,1)
+\psdots[linecolor=darkblue](1.5,1.5)(2,1.5)(2.5,1.5)
+\psdots[linecolor=darkblue](2,2)(2.5,2)
+\psdots[linecolor=darkblue](2.5,2.5)
+
+\psxTick(2.5){\color{gdarkgray}n}
+\psyTick(2.5){\color{gdarkgray}n}
+
+\end{pspicture}
+\caption{Zur Vertauschbarkeit der Summen.}
+\end{figure}
+
+Setzen wir nun $X_{n,j} = \sqrt{3}n^{-\frac{3}{2}}(n-j+1)X_j$, so sind die
+Voraussetzung von Satz \ref{prop:9.13} erfüllt, denn
+\begin{align*}
+\E X_{n,j} &= 0,\\
+\sum_{j=1}^{m_n}\E X_{n,j}^2
+&=\sum_{j=1}^{n} \E\left(\sqrt{3}n^{-\frac{3}{2}} (n-j+1) X_j\right)^2
+=3 \frac{1}{n}\sum_{j=1}^n\left(1-\frac{j-1}{n}\right)^2\\
+&\to 3 \int_0^1(1-t)^2\dt = 1.
+\end{align*}
+Außerdem ist (LB) erfüllt, da für $\ep > 0$,
+\begin{align*}
+&3\sum_{j=1}^n \E n^{-3}(n-j+1)^2 X_j^2\Id_{[\sqrt{3}n^{-\frac{3}{2}}
+(n-j+1)X_j>\ep]}\\
+&\quad\le \frac{3}{n}\sum\limits_{j=1}^n \E
+\underbrace{X_1^2\Id_{[\sqrt{3}n^{-\frac{1}{2}}\abs{X_1}>\ep]}}_{\to 0\text{ in
+}\Omega} \to 0,
+\end{align*}
+denn $X_1^2\Id_{[\sqrt{3}n^{-\frac{1}{2}}\abs{X_1}>\ep]} \le X_1^2$ und $\E
+X_1^2 < \infty$, also können wir den Satz von der dominierten Konvergenz
+anwenden. Somit konvergieren die Erwartungswerte gegen Null und nach dem Satz
+von Stolz-Cesàro konvergiert daher auch das arithmetische Mittel gegen Null.
+
+Somit gilt
+\begin{align*}
+\sqrt{3}n^{-\frac{3}{2}} \sum_{k=1}^n S_k = \sum_{j=1}^n X_{n,j} \Dto
+N(0,1)\bsphere
+\end{align*}
+\end{bsp}
+
+Zur Beweisvorbereitung benötigen wir noch einige Ergebnisse.
+
+\begin{lemn}
+Seien $z_i,\eta_i \in\C$ mit $\abs{z_i},\abs{\eta_i} < 1$, so gilt,
+\begin{align*}
+\abs{\prod_{i=1}^n z_i - \prod_{i=1}^n \eta _i} \le \sum_{i=1}^n
+\abs{z_i-\eta_i}.\fishhere
+\end{align*}
+\end{lemn}
+\begin{proof}
+Der Beweis erfolgt durch Induktion. Der Induktionsanfang mit $n=1$ ist klar.
+``$n=2$'':
+\begin{align*}
+&z_1z_2 - \eta_1\eta_2 = z_1(z_2-\eta_2)+\eta_2(z_1-\eta_1),\\
+\Rightarrow &\abs{z_1z_2 - \eta_1\eta_2} \le \abs{z_2+\eta_2} +
+\abs{z_1+\eta_1}.
+\end{align*}
+Der Induktionsschritt erfolgt analog.\qedhere
+\end{proof}
+
+Aus der Analysis kennen wir die
+
+\begin{propn}[Taylor-Formel mit Integralrestglied]
+Sei $I\subset\R$ ein Intervall und $f: I\to \C$ mindestens $(n+1)$-mal stetig
+differenzierbar, so gilt für $a\in I$
+\begin{align*}
+f(x) = \sum_{k=0}^n \frac{f^{(k)}(0)}{k!}(x-a)^k + \frac{1}{n!}\int_a^x (x-t)^n
+f^{(n+1)}(t)\dt.\fishhere
+\end{align*}
+\end{propn}
+
+Als unmittelbare Konsequenz erhalten wir
+\begin{lemn}[Hilfsformel 1]
+$\abs{\e^{ix}-(1+ix-\frac{x^2}{2})} \le \min\setd{\abs{x^2},\abs{x^3}}$.\fishhere
+\end{lemn}
+\begin{proof}
+Nach dem Taylor-Formel gilt für $a=0$ und $m\in\N$,
+\begin{align*}
+\e^{ix} = \sum_{k=0}^m \frac{1}{k!}(ix)^k + \frac{1}{m!}\int_0^x i^m
+(x-s)^m\e^{is}\ds.
+\end{align*}
+\begin{align*}
+&m=1: \abs{\e^{ix}-(1+ix)} = \abs{\int_0^x i\e^{is}(x-s)\ds} \le
+\frac{\abs{x}^2}{2},\\ &m=2: \abs{\e^{ix}-(1+ix-\frac{x^2}{2})} \le \frac{\abs{x}^3}{6} \le \abs{x}^3.
+\end{align*}
+und folglich
+\begin{align*}
+\abs{\e^{ix}-(1+ix-\frac{x^2}{2})}
+\le \abs{\e^{ix}-(1+ix)}+\frac{\abs{x}^2}{2} \le \abs{x}^2.
+\end{align*}
+Zusammenfassend also
+\begin{align*}
+\abs{\e^{ix}-(1+ix-\frac{x^2}{2})} \le \min\setd{\abs{x^2},\abs{x^3}}.\qedhere
+\end{align*}
+\end{proof}
+\begin{lemn}[Hilfsformel 2]
+Für $x\ge 0$ gilt $\abs{\e^{-x}-(1-x)} \le \frac{1}{2}x^2$.\fishhere
+\end{lemn}
+\begin{proof}
+$\abs{\e^{-x}-(1-x)} \le \int_0^x \abs{\e^{-s}(x-s)}\ds \le \int_0^x \abs{x-s}\ds
+= \frac{1}{2}x^2$.\qedhere
+\end{proof}
+
+\begin{proof}[Beweis von Satz \ref{prop:9.13}]
+Wir zeigen zunächst, dass das Maximum der Varianzen von
+$X_{n,1},\ldots,X_{n,n_m}$ gegen Null konvergiert. Sei also $\ep > 0$
+\begin{align*}
+\max_{i\in\setd{1,\ldots,m_n}} \V(X_{n,i})
+&=
+\max_{i\in\setd{1,\ldots,m_n}} 
+\int_\Omega X_{n,i}^2 \Id_{[\abs{X_{n,i}}\le \ep]} + 
+X_{n,i}^2\Id_{[\abs{X_{n,i}}> \ep]}\dP\\
+&\le \ep^2 + \underbrace{\int_\Omega
+\sum_{i=1}^{m_n}X_{n,i}^2\Id_{[\abs{X_{n,i}}> \ep]}\dP}_{\to 0\text{ nach Vor.
+}}.
+\end{align*}
+Somit konvergiert das Maximum gegen Null, da $\ep$ beliebig.
+
+Seien nun $S_n = \sum_{i=1}^n X_i$ und $C_{n,i}\defl\V X_{n,i}$, so gilt nach
+Annahme $\sum_{i=1}^nC_{n,i}=~1$. Nach Satz \ref{prop:6.7} gilt für $t\in\R$,
+\begin{align*}
+\abs{\ph_{S_n}(t)-\e^{-\frac{t^2}{2}}} = 
+\abs{\prod_{i=1}^n \ph_{X_{n,i}}(t)-\prod_{i=1}^{m_n} \e^{-C_{n,i}\frac{t^2}{2}}}
+\le \sum_{i=1}^n \abs{\ph_{X_{n,i}}(t)-\e^{-C_{n,i}\frac{t^2}2}},\tag{*}
+\end{align*}
+nach dem obigen Lemma. Anwendung von Hilfsformel 1 und $\E X_{n,i}=0$ ergibt,
+\begin{align*}
+\abs{\ph_{n,i}(t)-\left(1-c_{n,i}\frac{t^2}{2}\right)}
+&= \abs{\int_\Omega
+\e^{itX_{n,i}}-\left(1-itX_{n,i}-X_{n,i}^2\frac{t^2}{2}\right)\dP}\\ 
+&\overset{\text{HF1}}{\le} \int_\Omega \min\setd{\abs{tX_{n,i}}^2,
+\abs{tX_{n,i}}^3}\dP\\ &\le \underbrace{\max\setd{1,\abs{t}^3}}_{\alpha}\int_\Omega X_{n,i}^2
+\min\setd{1,\abs{X_{n,i}}}\dP,
+\end{align*}
+wobei
+\begin{align*}
+\int X_{n,i}^2 \min\setd{1,\abs{X_{n,i}}}\dP &\le
+\int_{[\abs{X_{n,i}}>\ep]} X_{n,i}^2 \dP
++ \int_{[\abs{X_{n,i}}\le \ep]} X_{n,i}^2\underbrace{\abs{X_{n,i}}}_{\le
+\ep}\dP\\
+&\le\E\left(X_{n,i}^2\Id_{[\abs{X_{n,i}}>\ep]}\right)
++ \ep C_{n,i}. 
+\end{align*}
+Durch Summation erhalten wir,
+\begin{align*}
+\sum_{i=1}^{m_n} \abs{\ph_{n,i}(t)-\left(1-C_{n,i}\frac{t^2}{2}\right)}
+\le \alpha
+\left(\underbrace{\sum_{i=1}^{m_n}\E\left(X_{n,i}^2\Id_{[X_{n,i}>\ep]}\right)}_{\to
+0,\quad n\to\infty} + \ep\underbrace{\sum_{i=1}^{m_n}C_{n,i}}_{=1}\right)\tag{1}
+\end{align*}
+Also konvergiert der gesamte Ausdruck gegen Null für $n\to\infty$, da $\ep > 0$
+beliebig.
+
+Da $C_{n,i}$ Varianz, ist $C_{n,i}\ge0$. Wir können somit
+Hilfsformel 2 anwenden und erhalten,
+\begin{align*}
+\sum_{i=1}^{m_n}\abs{\e^{-C_{n,i}\frac{t^2}{2}}-\left(1-C_{n,i}\frac{t^2}{2}\right)}
+\overset{\text{HF2}}{\le} \frac{t^2}{4}\sum_{i=1}^{m_n} C_{n,i}^2
+\le \frac{t^2}{4} \underbrace{\max\limits_{1\le i\le m_n}
+C_{n,i}}_{\to
+0,\quad n\to\infty}
+\underbrace{\sum_{j=1}^{m_n} C_{n,i}}_{=1}.\tag{2}
+\end{align*}
+
+Wenden wir die Dreieckungsungleichugn sowie (1) und (2) auf (*) an, so folgt
+\begin{align*}
+\forall t\in \R : \ph_{S_n}(t) \to \e^{-\frac{t^2}{2}}.\qedhere
+\end{align*}
+\end{proof}
+
+\subsection{Multivariate zentrale Grenzwertsätze}
+
+Ist $X$ ein $d$-dimensionaler integrierbarer Zufallsvektor, d.h. $\E\norm{X} <
+\infty$, so heißt
+\begin{align*}
+\E X= (\E X_1,\ldots,\E X_d)^\top
+\end{align*}
+\emph{Erwartungsvektor} von $X$.
+
+Ist $X$ ein $d$-dimensionaler quadratisch integrierbarer Zufallsvektor,
+d.h. $\E\norm{X}^2 < \infty$, so heißt
+\begin{align*}
+\Cov(X)\defl (\Cov(X_i,X_j))_{i,j\in\setd{1,\ldots,d}}
+\end{align*}
+\emph{Kovarianzmatrix} von $X$, wobei die einzelnen Einträge die
+\emph{Kovarianzen}
+\begin{align*}
+\Cov(X_i,X_j)\defl\E(X_i-\E X_i)(X_j-\E X_j)
+\end{align*}
+der reellwertigen Zufallsvariablen $X_i$ und $X_j$ darstellen.
+
+Auf der Hauptdiagonalen der Kovarianzmatrix stehen die Varianzen der $X_i$.
+Insbesondere ist im eindimensionalen Fall gerade $\V X = \Cov(X)$. Die
+Nebendiagonalelemente können als Maß für die stochastische Abhängigkeit der
+$X_i,X_j$ interpretiert werden. Sind alle Komponenten unabhängig, so ist die
+Kovarianzmatrix eine Diagonalmatrix.
+
+\begin{defn}
+\label{defn:9.2}
+Ein $d$-dimensionaler Zufallsvektor
+$X=(X_1,\ldots,X_d)^\top$ heißt \emph{multivariat normalverteilt} (oder auch
+$d$-dimensional normalverteilt), falls für jedes $u\in\R^d$ die
+Zufallsvariable $\lin{u,X} = u^tX=\sum_{i=1}^d u_iX_i$
+eindimensional normalverteilt ist, wobei eine 1-dimensionale Normalverteilung
+mit Varianz $0$ als eine Dirac-Verteilung $\delta_a$ im Punkt $a$
+interpretiert wird.\fishhere
+\end{defn}
+
+\begin{defn}
+\label{defn:9.2}
+Seien $X_n$, $X$ $d$-dimensionale Zufallsvektoren so konvergiert $X_n\to X$
+\emph{nach Verteilung} für $n\to\infty$, wenn
+\begin{align*}
+\forall f\in C_b(\R^n) : \E f(X_n)\to \E f(X).
+\end{align*}
+Schreibe $X_n\Dto X$.\fishhere
+\end{defn}
+
+\begin{prop}[Satz (Cram\'{e}r-Wold-Device)]
+\label{prop:9.14}
+Für $d$-dimensionale Zufallsvektoren $X_n$ und $X$ gilt $X_n \Dto X$ genau
+dann, wenn $\lin{u,X_n} \Dto \lin{u,X}$
+für alle $u\in\R^d$.\fishhere
+\end{prop}
+\begin{proof}
+Der Beweis wird in den Übungen behandelt.\qedhere
+\end{proof}
+
+\begin{prop}[Multivariater zentraler Grenzwertsatz]
+\label{prop:9.15}
+Seien $X_{n,1},\ldots,X_{n,m_n}$ unabhängige quadratisch
+integrierbare $d$-dimensionale Zufallsvariablen mit $m_n\to \infty$ für
+$n\to\infty$. Des Weiteren gelte
+\begin{defnpropenum}
+\item $\forall n\in\N \forall i\in\setd{1,\ldots,m_n} :
+\E X_{n,i}=0$,
+\item $\forall n\in\N  : \sum_{i=1}^{m_n} \Cov(X_{n,i}) =
+C \in \R^{d\times d}$,
+\item  $\forall \ep > 0 :
+\sum^{m_n}_{i=1} \E\left(\norm{X}^{2}_{n,i}\Id_{ [\norm{X_{i}} >
+\ep]} \right) \to 0.$
+\end{defnpropenum}
+Dann
+\begin{align*}
+\sum\limits^{m_n}_{i=1}X_{n,i}\Dto
+N(0,C)\text{-verteilten Zufallsvektor}.\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+$S_n\defl\sum_{i=1}^{m_n} X_{n,i}$. Wegen Satz \ref{prop:9.14} genügt es zu zeigen,
+\begin{align*}
+\forall u\in\R^d : \lin{u,S_n}\Dto N(0,\lin{u,Cu}).
+\end{align*}
+\textit{1. Fall} $\lin{u,Cu} = 0$. Dann ist
+\begin{align*}
+\V(\lin{u,S_n}) = 0,
+\end{align*}
+also $\lin{u,S_n}=0\Pfs$\\
+\textit{2. Fall} $\lin{u,Cu} > 0$. Wende Satz \ref{prop:9.13} auf
+\begin{align*}
+\tilde{X}_{n,i} = \frac{1}{\sqrt{\lin{u,Cu}}}\lin{u,X_{n,i}}
+\end{align*}
+an, so erhalten wir für den Erwartungswert
+\begin{align*}
+\E \tilde{X}_{n,i} = \frac{1}{\sqrt{\lin{u,Cu}}}\lin{u,\E X_{n,i}} = 0,
+\end{align*}  
+also
+\begin{align*}
+\sum_{i=1}^{m_n} \V(\tilde{X}_{n,i}) =
+\frac{1}{\lin{u,Cu}}\underbrace{\sum_{i=1}^{m_n}\V(\lin{u,X_{n,i}})}_{\lin{u,Cu}}
+= 1.
+\end{align*}
+Zum Nachweis der Lindebergbedingung betrachte
+\begin{align*}
+\sum_{i=1}^{m_n} \E \left( \tilde{X}_{n,i}^2\Id_{[\abs{\tilde{X}_{n,i}}>\ep]}
+\right) &=
+\frac{1}{\lin{u,Cu}}
+\sum_{i=1}^{m_n} \E
+\underbrace{\lin{u,X_{n,i}}^2}_{\le\norm{u}^2\norm{X_{n,i}}^2}
+\Id_{\left[\frac{1}{\sqrt{\lin{u,Cu}}}\abs{\lin{u,X_{n,i}}}
+>\ep \right]}\\
+&\le
+\frac{1}{\lin{u,Cu}}
+\sum_{i=1}^{m_n} \E\left(\norm{u}^2\norm{X_{n,i}}^2\right)
+\Id_{\left[\frac{\norm{u}}{\sqrt{\lin{u,Cu}}}\norm{X_{n,i}}
+>\ep \right]}\\
+&\le
+\frac{\norm{u}^2}{\lin{u,Cu}}\sum_{i=1}^{m_n}\E \norm{X_{n,i}}^2
+\Id_{[\norm{X_{n,i}} > \frac{\sqrt{\lin{u,Cu}}}{\norm{u}}\ep]}
+\to 0,
+\end{align*}
+nach Voraussetzung für $n\to\infty$. Damit sind alle Voraussetzungen von Satz
+\ref{prop:9.13} erfüllt.\qedhere
+\end{proof}
+\begin{cor}
+\label{cor:9.3}
+Ist $(X_n)_{n\in\mathbb{N}}$ eine unabhängige Folge
+  identisch verteilter quadratisch integrierbarer Zufallsvektoren, so gilt
+\begin{align*}
+\frac{1}{\sqrt{n}} \sum\limits^{m_n}_{i=1}(X_{i}-\E X_i)
+\Dto N(0,\Cov(X_1))\text{-verteilte ZV}.\fishhere
+\end{align*}
+\end{cor}

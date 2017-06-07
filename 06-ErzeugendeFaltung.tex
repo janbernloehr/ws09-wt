@@ -1,0 +1,1245 @@
+\chapter{Erzeugende und charakteristische Funktionen, Faltungen}
+\label{chap:6}
+
+Die erzeugenden und charakteristischen Funktionen sind ein methodisches
+Hilfsmittel zur Untersuchung von W-Maßen.
+
+Bisher haben wir gesehen, dass Verteilungen und Verteilungsfunktionen 
+manchmal schwierig ``zu fassen'' sind.
+Erzeugende und charakteristische Funktionen ermöglichen den Übergang von
+Verteilungen definiert auf einer $\sigma$-Algebra zu Funktionen definiert auf
+$\R$. Dadurch erhalten wir die Möglichkeit, Konzepte aus der Analysis wie
+Integration, Differentiation und Grenzwertbildung anzuwenden.
+
+\section{Erzeugende Funktionen}
+
+\begin{defn}
+\label{defn:6.1}
+Es sei $\mu :{\BB} \to \R$ ein auf
+$\mathbb{N}_{0}$ konzentriertes W-Maß mit Zähldichte $(b_{k})_{k\in
+  \mathbb{N}_{0}}$ bzw.\ $X$ eine reelle Zufallsvariable auf einem W-Raum $(\Omega, {\cal
+  A}, P)$, deren Verteilung $P_{X}$ auf $\mathbb{N}_{0}$ konzentriert ist, mit
+Zähldichte $(b_{k})_{k\in \mathbb{N}_{0}}$\,. Dann heißt die auf $[0,1]$ (oder
+auch $\{s\in \mathbb{C}\mid$ $| s | \leq 1 \}$) definierte Funktion $g$ mit
+\begin{align*}
+g(s) \defl\sum_{k=0}^ {\infty} b_{k} \, s^ {k} =
+\begin{cases}
+\sum \mu  (\{k\})s^ {k},\\
+\text{bzw.}\\
+\sum P[X=k]s^ {k}=\sum P_{X}(\{k\})s^ {k} =\E s ^ {X}.
+\end{cases}
+\end{align*}
+die \emph{erzeugende Funktion} von $\mu $ bzw.~$X$.\fishhere
+\end{defn}
+
+\begin{bem}
+\label{bem:6.1}
+In Definition \ref{defn:6.1} gilt $| g (s)| \leq \sum b_{k}|
+s | ^ {k}\leq \sum b_{k}=1$ für $| s | \leq 1$, da es sich bei $(b_k)$
+um eine Zähldichte handelt.\maphere
+\end{bem}
+
+Bei der erzeugenden Funktion handelt es sich also um die formale Potenzreihe
+\begin{align*}
+g(s) = \sum\limits_{k=0}^\infty b_k s^k,
+\end{align*}
+die nach obiger Bemerkung auf dem Intervall $[0,1]$ bzw. der
+abgeschlossenen Kreisscheibe $\setdef{s\in\C}{\abs{s}\le 1}$ absolut und
+gleichmäßig bezüglich $s$ konvergiert.
+
+Von besonderem Interesse sind die erzeugenden Funktionen, die neben der
+Darstellung als Potenzreihe auch über eine explizite Darstellung verfügen, denn
+dann lassen sich $g(s)$, $g'(s)$, \ldots\ meißt leicht berechnen und man
+erspart sich kombinatorische Tricks, um die Reihen auf eine Form mit bekanntem
+Wert zu bringen.
+
+
+\begin{bem}[Bemerkungen.]
+\begin{bemenum}
+\item
+Die Binomialverteilung $b(n,p)$ mit $n\in \N$ und $p\in [0,1]$ hat - mit
+$q\defl 1-p$ - die erzeugende Funktion $g$,
+\begin{align*}
+g(s) &\defl \sum\limits_{k=0}^\infty \binom{n}{k} p^k(1-p)^{n-k} s^k
+= \sum\limits_{k=0}^n \binom{n}{k} (p\cdot s)^k(1-p)^{n-k}\\ &
+= (p\cdot s + (1-p))^n = (ps+q)^n.
+\end{align*}
+Die Reihe lässt sich im Gegensatz zu dem Ausdruck $(ps+q)^n$ nur mit einigem
+an Aufwand direkt berechnen.
+
+\item
+Die Poissonverteilung $\pi(\lambda )$ mit $\lambda \in (0,\infty)$ hat die
+erzeugende Funktion $g$ mit
+\begin{align*}
+g(s) = \sum\limits_{k=0}^\infty \e^{-\lambda} \frac{\lambda^k}{k!}s^k
+= \e^{-\lambda} \sum\limits_{k=0}^\infty \e^{-\lambda} \frac{(\lambda s)^k}{k!}
+= \e^{-\lambda}\e^{s\lambda} = \e^{-\lambda(1-s)}. 
+\end{align*}
+\item
+Als \emph{negative Binomialverteilung} oder \emph{Pascal-Verteilung}
+$Nb(r,p)$ mit Parametern
+$r\in \mathbb{N}$, $p\in (0,1)$ wird ein W-Maß auf ${\BB}$ (oder auch
+$\overline{{\BB}}$)  bezeichnet, das auf $\mathbb{N}_{0}$ konzentriert ist
+und --- mit $q\defl 1-p$ --- die Zähldichte
+\begin{align*}
+k \to Nb (r,p;k) \defl {r+k-1\choose k} p^ {r}q^ {k},\,\, k\in \mathbb{N}_{0}
+\end{align*}
+besitzt. Speziell wird $Nb(1,p)$ --- mit Zähldichte
+\begin{align*}
+k\to p(1-p)^ {k}, \;\, k\in \mathbb{N}_{0}
+\end{align*}
+--- als \emph{geometrische Verteilung} mit Parameter $p\in (0,1)$
+bezeichnet.
+
+Ist $(X_{n})_{n\in \mathbb{N}}$ eine unabhängige Folge von $b(1,p)$-verteilten Zufallsvariablen,
+so ist die erweitert-reelle Zufallsvariable
+\begin{align*}
+X\defl \inf\setdef{n\in\N}{\sum\limits^{n}_{k=1} X_{k}=r} -r,
+\end{align*}
+mit der Konvention $ \inf \emptyset \defl\infty$, $Nb(r,p)$-verteilt. $X$ gibt die
+Anzahl der Misserfolge bis zum r-ten Erfolg bei der zu $(X_{n})$ gehörigen
+Folge von Bernoulli-Versuchen an.
+\begin{align*}
+\E X ={\dfrac{rq}{p}}, \V(X) ={\dfrac{rq}{p^ {2}}}.
+\end{align*}
+$Nb(r,p)$ hat die erzeugende Funktion $g$ mit $g(s) =p^ {r}(1-qs)^
+{-r}$.\maphere
+\end{bemenum}
+\end{bem}
+
+\begin{prop}[Eindeutigkeitssatz für erzeugende Funktionen]
+
+\label{prop:6.1}
+Besitzen zwei auf ${\BB}$ definierte, aber auf $\mathbb{N}_{0}$ konzentrierte
+W-Maße bzw.\ Verteilungen dieselbe erzeugende Funktion, so stimmen sie
+überein.\fishhere
+\end{prop}
+\begin{proof}
+Dies folgt aus dem Identitätssatz für Potenzreihen, der besagt, dass zwei
+auf einer nichtleeren offenen Menge identische Potenzreihen dieselben
+Koeffizienten haben.\qedhere
+\end{proof}
+
+Es besteht also eine Bijektion zwischen diskreten Verteilungen und erzeugenden
+Funktionen. Insbesondere haben zwei diskrete Zufallsvariablen mit derselben
+erzeugenden Funktion auch dieselbe Verteilung.
+
+\begin{prop}
+\label{prop:6.2}
+Sei $X$ eine reelle Zufallsvariable, deren Verteilung auf
+$\mathbb{N}_{0}$ konzentriert ist, mit erzeugender Funktion $g$.\\[-7mm]
+\begin{propenum}
+\item
+$g$ ist auf der offenen Kreisscheibe $\setdef{s\in \C}{| s | < 1}$ unendlich oft
+differenzierbar, sogar analytisch und für $j\in \mathbb{N}$ gilt
+\begin{align*}
+g^{(j)} (1-) \defl\lim\limits_{0\le s \uparrow 1} g^ {(j)} (s) =\E[X(X-1)\ldots
+(X-j+1)] \quad (\leq \infty),
+\end{align*}
+insbesondere $g'(1-) =\E X$.
+\item
+Falls $\E X<\infty$, so gilt $\V(X) = g'' (1-)+g'(1-) -(g'(1-))^
+{2}$.\fishhere
+\end{propenum}
+\end{prop}
+\begin{proof}
+\begin{proofenum}
+\item Die Differenzierbarkeit bzw. die Analytizität auf der offenen
+Kreisscheibe wird in der Funktionentheorie bewiesen. Auf dieser Kreisscheibe
+können wir gliedweise differenzieren und erhalten somit,
+\begin{align*}
+g^{(j)}(s) &= \sum\limits_{k=j}^\infty b_k k(k-1)\cdots (k-j+n)s^{k-j},\quad
+0\le s < 1.
+\end{align*}
+Auf dem Rand gehen wir
+gegebenfalls zum Grenzwert über und erhalten mit 
+dem Satz von der monotonen Konvergenz für $s\uparrow 1$,
+\begin{align*}
+g^{(j)}(s) \to \sum\limits_{k=j}^\infty b_k k(k-1)\cdots (k-j+n).
+\end{align*} 
+Diese Reihe können wir auch als Erwartungswert der Zufallsvariablen
+\begin{align*}
+X(X-1)\cdots(X-j+1)
+\end{align*}
+betrachten (siehe Satz \ref{prop:4.5}), d.h.
+\begin{align*}
+\lim\limits_{s\uparrow 1} g^{(j)}(s) = \E(X(X-1\cdots (X-j+1))).
+\end{align*}
+Insbesondere erhalten wir $g'(1-) = \E X$.
+\item Da $X$ integrierbar, können wir die Varianz darstellen als
+\begin{align*}
+\V X &= \E X^2 - (\E X)^2 = \E(X(X-1)) + \E X - (\E X)^2
+\\ &= g''(1-) + g'(1-) - (g'(1-))^2.\qedhere
+\end{align*}
+\end{proofenum}
+\end{proof}
+
+Kennen wir eine explizite Darstellung der erzeugenden Funktion einer diskreten
+Zufallsvariablen, lassen sich mit Satz \ref{prop:6.2} ihre Momente oftmals
+leicht berechnen.
+
+\begin{prop}
+\label{prop:6.3}
+Seien $X_{1},\ldots,X_{n}$ unabhängige reelle Zufallsvariablen, deren
+Verteilungen jeweils auf $\N_{0}$ konzentriert sind, mit erzeugenden
+Funktionen $g_{1},\ldots,g_{n}$. Für die erzeugende Funktion $g$ der Summe
+$X_{1}+\ldots+X_{n}$ gilt dann $g=\prod^ {n}_{j=1}g_{j}$.\fishhere
+\end{prop}
+
+\begin{proof}
+Sei $\abs{s}<1$, dann gilt \textit{per definitionem}
+\begin{align*}
+g(s) = \sum\limits_{k=0}^\infty P[X_1+\ldots+X_n=k]s^k.
+\end{align*}
+Nun interpretieren wir die erzeugende Funktion als Erwartungswert wie in
+\ref{defn:6.1}, d.h.
+\begin{align*}
+g(s) = \E\ s^{X_1+\ldots+X_n}
+= \E\prod\limits_{i=1}^n s^{X_i}.
+\end{align*}
+Da $X_1,\ldots,X_n$ unabhängig, sind nach Satz \ref{prop:5.4} auch
+$s^{X_1},\ldots,s^{X_n}$ unabhängig, d.h.
+\begin{align*}
+g(s) = \prod\limits_{i=1}^n\E s^{X_i} = \prod\limits_{i=1}^n g_i(s).\qedhere
+\end{align*}
+\end{proof}
+
+\begin{bsp}
+Seien $X_1,X_2,\ldots$ unabhängige $b(1,p)$ verteilte Zufallsvariablen, mit
+\begin{align*}
+P[X_i=1] = p,\quad P[X_i=0] = \underbrace{1-p}_{q},
+\end{align*}
+so können wir sie als Folge von Bernoulli-Versuchen interpretieren mit
+jeweiliger Erfolgswahrscheinlichkeit $p$,
+\begin{align*}
+[X_i=1],\qquad \text{Erfolg im i-ten Versuch}.
+\end{align*}
+Die erweiterte reellwertige Zufallsvariable $Z_1$ gebe die Anzahl der
+Misserfolge bis zum 1. Erfolg an. $Z_1$ ist erweitert reellwertig, da die
+Möglichkeit besteht, dass $Z_1$ unendlich wird.
+
+Nach dem 1. Erfolg wiederholt sich die stochastische Situation. $Z_2$ gebe die
+Anzahl der Misserfolge nach dem 1. bis zum 2. Erfolg an. 
+
+Betrachte nun eine Realisierung
+\begin{align*}
+\underbrace{0,0,0,0}_{Z_1},1,\underbrace{0,0}_{Z_2},1\underbrace{,}_{Z_3}1,0,\ldots
+\end{align*}
+Die Zufallsvariablen $Z_1,Z_2,\ldots$ sind unabhängig und identisch verteilt.
+\begin{proof}[Nachweis der Unabhänigkeit und der identischen Verteilung.]
+%,
+%auch die Bernoulli-Versuche unabhängig und identisch verteilt sind.
+Wir zeigen zuerst die identische Verteilung,
+\begin{align*}
+P[Z_1=k]&=q^kp,\qquad k\in\N_0\\
+P[Z_1=\infty] &= 1-\sum\limits_{k=0}^\infty q^kp
+= 1-p\frac{1}{1-q} = 0,\quad \text{für }p > 0,\\
+P[Z_2=k] &= \sum\limits_{j=1}^\infty P[Z_1=j, Z_2=k]
+= \sum\limits_{j=1}^\infty q^jpq^kp\\
+&= p^2q^k \frac{1}{1-q}=q^kp,\\
+P[Z_2=\infty] &= \ldots = 0.
+\end{align*}
+Induktiv erhalten wir
+\begin{align*}
+\forall j,k\in\N_0 : P[Z_1=j,Z_2=k]=q^jpq^kp = P[Z_1=j]P[Z_2=k]
+\end{align*}
+insbesondere sind $Z_1$ und $Z_2$ unabhängig.\qedhere
+
+$Z_1$ hat die erzeugende Funktion,
+\begin{align*}
+h(s) &= \sum\limits_{k=0}^\infty q^kp s^k = p\frac{1}{1-qs} = p(1-qs)^{-1},\quad
+\abs{s}<1,\\
+h'(s) &= pq(1-qs)^{-2},\quad h'(1-) = \frac{pq}{(1-q)^2} = \frac{q}{p},\\
+h''(s) &= 2pq^2(1-qs)^{-3},\quad  h''(1-) = \frac{2pq^2}{(1-q)^3} =
+\frac{2q^2}{p^2}.
+\end{align*}
+Nach Satz \ref{prop:6.2} gilt somit
+\begin{align*}
+\E Z_1 = \frac{q}{p},\quad \V Z_1 = \frac{2q^2}{p^2} + \frac{q}{p} -
+\left(\frac{q}{p}\right)^2 = \frac{q(q+p)}{p^2} = \frac{q}{p^2}.
+\end{align*}
+Sei nun $r\in\N$ fest, so hat die Zufallsvariable
+\begin{align*}
+X\defl \sum\limits_{i=1}^r Z_i
+\end{align*}
+nach Satz \ref{prop:6.3} die erzeugende Funktion $g=h^r$, also 
+\begin{align*}
+g(s) = h(s)^r = p^r(1-qs)^{-r}.
+\end{align*}
+Aus der Analysis kennen wir folgenden Spezialfall der binomischen Reihe,
+\begin{align*}
+(1+x)^\alpha = \sum\limits_{k=0}^\infty \binom{\alpha}{k}x^k,\qquad \abs{x}<
+1,\quad \binom{\alpha}{k} = \frac{\alpha(\alpha-1)\cdots (\alpha-k-1)}{k!}.
+\end{align*}
+Diese Definition ist auch für $\alpha\in\R$ sinnvoll.
+Wir können somit $g$ darstsellen als
+\begin{align*}
+&g(s) = \sum\limits_{k=0}^\infty p^r\binom{-r}{k}(-1)^k q^ks^k
+= \sum\limits_{k=0}^\infty p^r\binom{r+k-1}{k} q^ks^k,\\
+\overset{\ref{prop:6.1}}{\Rightarrow} & P[X=k] = \binom{r+k-1}{k}p^rq^k,\qquad
+k\in\N_0.
+\end{align*}
+Die Zufallsvariable $X$ gibt die Anzahl der Misserfolge bis zum $r$-ten Erfolg
+an. Also ist eine äquivalente Definition von $X$ gegeben durch
+\begin{align*}
+X\defl\inf \setdef{n\in\N}{\sum\limits_{k=1}^n X_k = r} - r
+\end{align*}
+wobei $X_k$ angibt, ob im $k$-ten Versuch ein Erfolg aufgetreten ist.
+
+Eine Zufallsvariable, welche die Anzahl der Misserfolge bis zum $r$-ten Erfolg
+bei Bernoulli-Versuchen mit Erfolgswahrscheinlichkeit $p\in (0,1)$ angibt, hat
+somit die Zähldichte
+\begin{align*}
+\binom{r+k-1}{k}p^rq^k,\qquad k\in\N_0, r\in\N, p\in (0,1),
+\end{align*}
+wobei $N_b(r,p;k) \defl \binom{-r}{k}(-1)^kp^rq^k = \binom{r+k-1}{k}p^rq^k$.
+$Nb(r,p)$ heißt \emph{negative Binomial-Verteilung} oder
+\emph{Pascal-Verteilung} mit Parametern $r\in\N$, $p\in (0,1)$.
+
+Für $r=1$ heißt $Nb(1,p)$ mit Zähldichte $(pq^k)_{k\in\N}$ \emph{geometrische
+Verteilung} mit Parameter $p\in(0,1)$. Wir können nun die negative
+Binomial-Verteilung darstellen als
+\begin{align*}
+Nb(r,p) = \underbrace{Nb(1,p)*\ldots*Nb(1,p)}_{r-\text{mal}}.\bsphere
+\end{align*}
+\end{proof}
+\end{bsp}
+
+\subsection{Konvergenzsätze der Maßtheorie}
+
+Wir haben bereits den Satz von der monotonen Konvergenz kennengelernt, der eine
+Aussage über Vertauschbarkeit von Grenzwertbildung und Integration für 
+positive, monotone Funktionenfolgen macht. Im Allgemeinen sind die
+Funktionenfolgen, mit denen wir in der Wahrscheinlichkeitstheorie arbeiten
+weder monoton noch positiv, wir benötigen also allgemeinere Aussagen.
+
+\begin{lemn}[Lemma von Fatou]
+Sei $(\Omega,\AA,P)$ ein Maßraum. Für jede Folge von nichtnegativen erweitert
+reellen messbaren Funktionen $f_n$ gilt,
+\begin{align*}
+\int_\Omega \liminf\limits_{n\to\infty} f_n\dmu \le \liminf\limits_{n\to\infty}
+\int_\Omega f_n\dmu \le
+\limsup\limits_{n\to\infty}
+\int_\Omega f_n\dmu.
+\end{align*}
+Gilt außerdem $\abs{f_n}\le g$ mit $\int_\Omega g \dmu < \infty$, so gilt auch
+\begin{align*}
+\limsup\limits_{n\to\infty}
+\int_\Omega f_n\dmu
+\le
+\int_\Omega \limsup\limits_{n\to\infty}f_n\dmu.\fishhere
+\end{align*} 
+\end{lemn}
+\begin{proof}
+Wir beweisen lediglich die erste Ungleichung, die andere ist trivial. Setze
+\begin{align*}
+g_n \defl \inf\limits_{m\ge n} f_m \uparrow \liminf_n f_n \defr g.
+\end{align*}
+Auf diese Funktionenfolge können wir den Satz von der monotonen Konvergenz
+anwenden und erhalten somit,
+\begin{align*}
+\int_{\Omega} \liminf f_n \dmu &= \lim\limits_{n\to\infty}
+\int_\Omega
+\inf\limits_{m\ge n} f_n \dmu
+\le
+\lim_{n\to\infty}
+\inf\limits_{m\ge n} 
+\int_\Omega
+ f_n \dmu\\
+ &=
+ \liminf_{n} 
+\int_\Omega
+ f_n \dmu.\qedhere
+\end{align*}
+\end{proof}
+
+Man kann das Lemma von Fatou als Verallgemeinerung des Satzes von der monotonen
+Konvergenz von monotonen nichtnegativen auf lediglich nichtnegative
+Funktionenfolgen betrachten. Dadurch wird jedoch auch die Aussage auf ``$\le$''
+anstatt ``$=$'' abgeschwächt.
+
+\begin{propn}[Satz von der dominierten Konvergenz]
+Sei $(\Omega,\AA,\mu)$ ein Maßraum und $f_n$, $f$, $g$ erweitert reellwertige
+messbare Funktionen mit $f_n\to f$ $\mufu$, $\abs{f_n}\le g$ $\mufu$ sowie
+$\int_\Omega g\dmu < \infty$. Dann existiert 
+\begin{align*}
+\lim\limits_{n\to\infty} \int_\Omega f_n \dmu
+\end{align*}
+und es gilt
+\begin{align*}
+\lim\limits_{n\to\infty} \int_\Omega f_n \dmu
+=  \int_\Omega \lim\limits_{n\to\infty} f_n \dmu
+= \int_\Omega f\dmu.\fishhere
+\end{align*}
+\end{propn}
+Man findet den Satz in der Literatur auch unter dem Namen Satz von der
+majorisierten Konvergenz bzw. Satz von Lebesgue.
+\begin{proof}
+Setze $N\defl [f_n\nrightarrow f]\ \cup\ \bigcup_{n\in\N} [\abs{f_n}>g]\ \cup\ 
+[g=\infty]\in \AA$, so ist nach Voraussetzung $\mu(N) =0$. Setze nun
+\begin{align*}
+\tilde{f}_n \defl f_n\cdot\Id_{N^c},\quad \tilde{f} \defl f\cdot\Id_{N^c},\quad
+\tilde{g}\defl g\cdot\Id_{N^c}.
+\end{align*}
+Dann gilt $\tilde{f}_n+\tilde{g}\ge 0$, $\tilde{g}-\tilde{f}_n\ge 0$ auf ganz
+$\Omega$ und für alle $n\in\N$. Mit dem Lemma von Fatou folgt,
+\begin{align*}
+\int_\Omega \tilde{f}\dmu
+&=
+\int_\Omega \liminf_n (\tilde{f}_n + \tilde{g})\dmu
+- \int_\Omega \tilde{g}\dmu\\ 
+&\le \liminf_n \int_\Omega (\tilde{f}_n+\tilde{g})\dmu - \int_\Omega \tilde{g}
+\dmu = \liminf_n \int_\Omega \tilde{f}_n \dmu \\ &  \le \limsup_n \int_\Omega
+\tilde{f}_n\dmu
+= -\liminf_n \int_\Omega
+-\tilde{f}_n\dmu
+ \\ &= \int_\Omega \tilde{g} \dmu - \liminf_n \int_\Omega
+(\tilde{g}-\tilde{f}_n)\dmu\\ &\le
+\int_\Omega \tilde{g}\dmu - \int_\Omega \liminf_n (\tilde{g}-\tilde{f}_n)\dmu
+= \int_\Omega \tilde{f}\dmu.
+\end{align*}
+Insbesondere gilt $\liminf_n \int_\Omega \tilde{f}_n \dmu  = \limsup_n
+\int_\Omega \tilde{f}_n\dmu$ und somit ist alles gezeigt.\qedhere
+\end{proof}
+
+
+\section{Charakteristische Funktionen}
+
+
+\begin{defn}
+\label{defn:6.2}
+Sei $\mu$ ein W-Maß auf ${\BB}$ bzw.\ $X$ eine
+reelle Zufallsvariable mit Verteilungsfunktion $F$. Dann heißt die auf
+$\R$ definierte (i.a.\ komplexwertige) Funktion $\ph$
+mit
+\begin{align*}
+\ph (u) \defl \int_{\R} \e^{iux} \mu(\dx)
+\end{align*}
+bzw.
+\begin{align*}
+\ph(u) \defl \E \e^ {iuX} = \int_{\R }\e^ {iux}\,P_{X}(\dx) =
+\int _{\R}\e^ {iux} \dF(x)
+\end{align*}
+die \emph{charakteristische} Funktion von $\mu$ bzw.\ $X$.\fishhere
+\end{defn}
+
+Diese Definition ist tatsächlich sinvoll, denn wir können $\e^{iux}$ für
+$u,x\in\R$ stets durch $1$ majorisieren. Es gilt also
+\begin{align*}
+\abs{\ph(u)}\le \E\abs{\e^{iu X}} \le \E 1 =1
+\end{align*}
+und daher existiert $\ph(u)$ für jedes $u\in\R$.
+
+\begin{bem}[Bemerkungen.]
+\label{bem:6.3}
+In Definition \ref{defn:6.2} gilt\\[-7mm]
+\begin{bemenum}
+\item $\ph (0) = 1$,
+\item $\abs{\ph (u)} \leq 1$, $ u\in \R$,
+\item $\ph $ gleichmäßig stetig in $\R$,
+\item $\ph (-u) = \overline{\varphi (u)}$, $ u \in \R$.\maphere
+\end{bemenum}
+\end{bem}
+\begin{proof}
+Nachweis von Bemerkung \ref{bem:6.3} c)
+\begin{align*}
+\abs{\ph(u+h)-\ph(u)}
+&= \abs{\int_\R \e^{i(u+h)x}-\e^{iux}\mu(\dx)}
+= \abs{\int_\R (\e^{ihx}-1)\e^{iux}\mu(\dx)}\\
+&\le \int_\R\abs{\e^{ihx}-1}\mu(\dx)
+\end{align*}
+Nun verschwindet der Integrand für $h\to 0$, d.h. für jede Nullfolge $h_n$ gilt
+\begin{align*}
+\abs{\e^{ih_nx}-1}\to 0,\qquad n\to\infty.
+\end{align*}
+Außerdem ist $\abs{\e^{ih_nx}-1}\le \abs{\e^{ih_nx}}+1 = 2$, und $\int_\R 2\dmu =
+2\mu(\R) = 2$, wir können also den Satz von der dominierten Konvergenz
+anwenden.\qedhere
+\end{proof}
+
+Die charakteristische Funktion ist im Wesentlichen die Inverse
+Fouriertransformierte von $P_X$, der Verteilung von $X$. Besitzt $X$ eine
+Dichte $f$, so gilt nach dem Transformationssatz
+\begin{align*}
+\ph_X(u) = \int_\R \e^{iux}f(x)\dx.
+\end{align*}
+
+\begin{bem}
+\label{bem:6.4}
+Die Normalverteilung $N(a,\sigma ^ {2})$ mit $a \in \R$ und $\sigma ^ {2} \in
+(0,\infty )$ besitzt die charakteristische Funktion $\ph : \R\to\C $ mit
+\begin{align*}
+\ph(u) = \e^{iau} \e^ {-\frac{\sigma^ {2}u^ {2}}{2}}.
+\end{align*}
+Insbesondere besitzt die Standardnormalverteilung $N(0,1)$ die charakteristische
+Funktion $\ph $ mit $\ph(u) = \e^ {-\frac{u^ {2}}{2}}$.\maphere
+\end{bem}
+\begin{proof}[Beweisskizze.]
+\textit{1. Teil}. Wir betrachten zunächst $N(0,1)$. Die
+Standardnormalverteilung besitzt die Dichte
+\begin{align*}
+f(x) = \frac{1}{\sqrt{2\pi}}\e^{-\frac{x^2}{2}},
+\end{align*}
+somit gilt für die charakteristische Funktion,
+\begin{align*}
+\ph(u) &= \int_\R \e^{iux} \frac{1}{\sqrt{2\pi}}\e^{-\frac{1}{2}x^2}\dx
+= \frac{1}{\sqrt{2\pi}} 
+\int_\R \e^{i(x-iu)^2-\frac{1}{2}u^2}\dx\\
+&=
+\frac{1}{\sqrt{2\pi}}
+\e^{-\frac{1}{2}u^2}
+\int_\R \e^{\frac{1}{2}(x-iu)^2}\dx.
+\end{align*}
+Um das Integral zu berechnen, betrachten wir $z\mapsto
+\e^{\frac{1}{2}z^2}$; diese Funktion einer komplexen Variablen $z$ ist
+komplex differenzierbar (analytisch, holomorph). Wir verwenden nun den
+Residuensatz, ein Resultat aus der Funktionentheorie, der besagt, dass das
+Integral einer holomorphen Funktion über jede geschlossene Kurve $c$
+verschwindet,
+\begin{align*}
+\int_c \e^{\frac{1}{2}z^2} \dz = 0. 
+\end{align*}
+
+Um dies auszunutzen, wählen wir eine spezielle geschlossene Kurve
+$c$ (siehe Skizze) bestehend aus den Geradenstücken
+$c_1,c_2,c_3$ und $c_4$.
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(0,-1.12)(3.56,1.1)
+\psline{->}(0.04,0.06)(3.44,0.06)
+\psline{->}(1.72,-0.94)(1.74,1.08)
+
+\psline[linecolor=darkblue](3,-0.74)(0.44,-0.74)(0.44,0.06)(3,0.06)(3,-0.74)(0.44,-0.74)
+
+\psline[linecolor=darkblue]{->}(0.44,0.06)(0.44,-0.34)
+\psline[linecolor=darkblue]{->}(0.44,-0.74)(2.24,-0.74)
+\psline[linecolor=darkblue]{->}(3,-0.74)(3,-0.2)
+\psline[linecolor=darkblue]{->}(3,0.06)(0.98,0.06)
+
+%\psline(1.22,0.06)(0.44,0.06)
+%\psline(0.44,-0.34)(0.44,-0.74)
+%\psline(2.24,-0.74)(3.04,-0.74)
+%\psline(3.04,0.06)(3.04,-0.3)
+
+\rput(1.19,0.325){\color{gdarkgray}$c_1$}
+\rput(2.34,-0.955){\color{gdarkgray}$c_3$}
+\rput(3.35,-0.315){\color{gdarkgray}$c_4$}
+\rput(0.17,-0.335){\color{gdarkgray}$c_2$}
+
+\psline(0.44,0.22)(0.44,0.04)
+\psline(3,0.22)(3,0.04)
+
+\rput(0.44,0.405){\color{gdarkgray}$-R$}
+\rput(3,0.405){\color{gdarkgray}$R$}
+\end{pspicture} 
+\caption{Zur Konstruktion der geschlossenen Kurve $c$.}
+\end{figure}
+
+ Für diese Geradenstücke können wir die Integrale
+leicht berechnen bzw. abschätzen,
+\begin{align*}
+&\int_{c_1} \e^{-\frac{1}{2}z^2}\dz \overset{R\to\infty}{\to} -\sqrt{2\pi},\\
+&\int_{c_2,c_4} \e^{-\frac{1}{2}z^2}\dz = \int_{c_2} \e^{-\frac{1}{2}z^2}\dz +
+\underbrace{\int_{c_4} \e^{-\frac{1}{2}z^2}\dz}_{-\int_{c_2}
+\e^{-\frac{1}{2}z^2}\dz} = 0,\\
+&\int_{c_3} \e^{-\frac{1}{2}z^2}\dz \overset{R\to\infty}{\to} \int_\R
+\e^{-\frac{1}{2}(x-iu)^2}\dx.
+\end{align*}
+
+Für ganz $c$ gilt nach Voraussetzung,
+\begin{align*}
+&0 = \int_c \e^{-\frac{1}{2}z^2} \dz =
+\sum_{i=1}^4
+\int_{c_i}
+\e^{-\frac{1}{2}z^2}\dz
+= 
+\int_{c_1} \e^{-\frac{1}{2}z^2}\dz +
+\int_{c_3} \e^{-\frac{1}{2}z^2}\dz
+\\
+\Rightarrow 
+&\int_\R
+\e^{-\frac{1}{2}(x-iu)^2}\dx = \sqrt{2\pi}.
+\end{align*}
+Somit besitzt $N(0,1)$ die charakteristische Funktion
+\begin{align*}
+\ph(u) = \frac{1}{\sqrt{2\pi}}\e^{-\frac{1}{2}u^2}\int_\R
+\e^{-\frac{1}{2}(x-iu)^2}\dx
+= \e^{-\frac{1}{2}u^2}.
+\end{align*}
+\textit{2. Teil}. Für $N(a,\sigma^2)$ allgemein ist die charakteristische
+Funktion gegeben durch,
+\begin{align*}
+\ph(u) = \int_\R
+\e^{iux}\frac{1}{\sqrt{2\pi}\sigma}\e^{\frac{(x-a)^2}{2\sigma^2}}\dx
+\end{align*}
+Die Substitution $y=\frac{x-a}{\sigma}$ liefert die Behauptung.\qedhere
+\end{proof}
+
+\begin{bem}
+\label{bem:6.5}
+Als \emph{Exponentialverteilung} $\exp (\lambda )$ mit
+Parameter $\lambda \in (0,\infty)$ wird ein W-Maß auf ${\BB}$ oder
+$\overline{\BB}$
+bezeichnet, das eine Dichtefunktion $f$ mit
+\begin{align*}
+f(x)= \begin{cases}
+\lambda \e^ {-\lambda x}, &  x>0     \\
+0,                       & x\leq 0
+\end{cases}
+\end{align*}
+besitzt.
+
+Die zufällige Lebensdauer eines radioaktiven Atoms wird durch eine
+exponentialverteilte Zufallsvariable angegeben. Ist $X$ eine erweitert-reelle
+Zufallsvariable, deren Verteilung auf $\overline{\R}_{+}$ konzentriert ist,
+mit $P[0<X<\infty]>0$, so gilt
+\begin{align*}
+&\forall s, t\in (0,\infty) :
+ P[X>t+s \mid X>s] =P[X>t].
+\end{align*}
+Diese Eigenschaft nennt man \emph{Gedächtnislosigkeit}. Eine auf
+$\overline{\R}_{+}$ konzentrierte reell erweiterte Zufallsvariable ist genau
+dann gedächtnislos, wenn sie exponentialverteilt ist.
+\begin{proof}
+``$\Leftarrow$'': Sei $X$ also $\exp(\lambda)$ verteilt. Per definitionem der
+bedingten Wahrscheinlichkeit gilt,
+\begin{align*}
+P[X>t+s\mid X>s] = \frac{P[X>t+s,\;X>s]}{P[X>s]}
+= \frac{1-F(t+s)}{1-F(s)}. 
+\end{align*}
+Die Verteilungsfunktion erhält man durch elementare Integration,
+\begin{align*}
+F(x) = 
+\begin{cases}
+\int_0^x \lambda \e^{-\lambda t}\dt = 1-\e^{-\lambda x}, & x > 0,\\
+0, & x\le 0.
+\end{cases}
+\end{align*}
+Somit ergibt sich
+\begin{align*}
+\frac{1-F(t+s)}{1-F(s)} = \frac{\e^{-\lambda (t+s)}}{\e^{-\lambda s}} =
+\e^{-\lambda t} = 1- F(t) = P[X>t].
+\end{align*}
+``$\Rightarrow$'': Sei $X$ gedächtnislos, d.h. $P[X>t+s\mid X>s]=P[X>s]$. Unter
+Verwendung der Definition der bedingten Wahrscheinlichkeit erhalten wir
+\begin{align*}
+\underbrace{P[X>t+s]}_{H(t+s)} =
+\underbrace{P[X>t]}_{H(t)}\underbrace{P[X>s]}_{H(s)}.
+\end{align*}
+Wir interpretieren diese Gleichung als Funktionalgleichung und suchen nach
+einer Lösung $H:\R_+\to\R_+$, die diese Gleichung erfüllt. Da
+\begin{align*}
+H(t)=P[X>t]=1-F(t)
+\end{align*}
+erhalten wir aus den Eigenschaften der Verteilungsfunktion
+für $H$ außerdem die Randbedingungen $H(0)=1$ und
+$\lim\limits_{t\to\infty}H(t) = 0$. Offensichtlich ist $H(t)=\e^{-\lambda t}$
+für $\lambda\in(0,\infty)$ eine Lösung.
+
+Man kann zeigen, dass dies in der Klasse auf $\overline{\R}_+$ konzentrierten
+Verteilungen die einzige Lösung ist (siehe Hinderer $\mathsection$ 28).\qedhere
+\end{proof}
+
+Für die Beschreibung von technischen Geräten oder Bauteilen ist es oft
+notwending ein ``Gedächtnis'' miteinzubauen. Dafür eignet sich die sog.
+Weibull-Verteilung\footnote{Ernst Hjalmar Waloddi Weibull (* 18. Juni 1887; †
+12. Oktober 1979 in Annecy) war ein schwedischer Ingenieur und Mathematiker.},
+welche eine Verallgemeinerung der Exponential-Verteillung darstellt.
+
+Für eine Zufallsvariable $X$ mit $P_{X}= \exp (\lambda )$ gilt
+\begin{align*}
+\E X=\frac{1}{\lambda},\qquad \V(X) =\frac{1}{\lambda ^{2}}.
+\end{align*}
+\begin{proof}
+Der Nachweis folgt durch direktes Rechnen,
+\begin{align*}
+&\E X = \int\limits_{-\infty}^\infty xf(x)\dx
+ = \int\limits_0^\infty
+\lambda x\e^{-\lambda x}\dx 
+= -x\e^{-\lambda x}\bigg|_{x=0}^\infty + \int_0^\infty \e^{-\lambda x}\dx
+= \frac{1}{\lambda}\\
+&\V X = \E X^2- (\E X)^2
+= \int\limits_0^\infty \lambda x^2\e^{-\lambda x}
+- \frac{1}{\lambda^2}
+= \frac{1}{\lambda^2}.\qedhere
+\end{align*}
+\end{proof}
+exp $(\lambda )$ hat die charakteristische Funktion $\ph$  mit $\ph(u)
+=\frac{\lambda }{\lambda - iu}$.
+\begin{proof}
+$\ph(u)=\int_{0}^\infty \e^{iux}\lambda \e^{-\lambda x}\dx
+=
+\lambda \int_{0}^\infty \e^{-(\lambda-iu)x}\dx
+ =
+\frac{\lambda}{\lambda-iu}$.\qedhere\maphere
+\end{proof}
+\end{bem}
+
+\begin{bem}
+\label{bem:6.6}
+Als \emph{Gamma-Verteilung} $\Gamma _{\lambda , \nu }$ mit
+Parametern $\lambda , \nu \in (0,\infty )$ wird ein W-Maß auf ${\BB}$
+oder $\overline{\BB}$ bezeichnet, das eine Dichtefunktion $f$ mit
+\begin{align*}
+f(x) = \begin{cases}
+\frac{\lambda ^ {\nu }}{\Gamma (\nu )} x^ {\nu -1}e ^ {-\lambda x},& x>0, \\
+0, & x\leq 0,
+\end{cases}
+\end{align*}
+besitzt. Hierbei ist $ \Gamma _{\lambda ,1} = \exp (\lambda)$ Die
+Gamma-Verteilung stellt also ebenfalls eine Verallgemeinerung der
+Exponential-Verteilung dar. $\Gamma _{\frac{1}{2},\frac{n}{2}}$ wird als
+\emph{Chi-Quadrat-Verteilung} $\chi^ {2}_{n}$ mit $n$ Freiheitsgraden
+bezeichnet ($n\in\N$).
+
+Für eine Zufallsvariable $X$ mit $P_{X} =\Gamma _{\lambda , \nu }$ gilt
+\begin{align*}
+\E X=\frac{\nu}{\lambda},\qquad \V(X) = \frac{\nu }{\lambda ^ {2}}.
+\end{align*}
+$\Gamma _{\lambda , \nu }$ hat die charakteristische Funktion $\varphi $ mit
+$\varphi (u) =  \left( \frac{\lambda}{\lambda -iu}\right) ^ {\nu }$.
+\begin{proof}
+$\E X$ und $\V X$ folgen durch direktes Integrieren oder unter Verwendung der
+charakteristischen Funktion.
+
+Die charakteristische Funktion ist gegeben durch folgendes Integral
+\begin{align*}
+\ph(u) = \int\limits_0^\infty
+\frac{\lambda^\nu}{\Gamma(\nu)}\e^{iux}x^{\nu-1}\e^{-\lambda x}\dx.
+\end{align*}
+Dieses wollen wir nicht direkt berechnen, sondern in eine Differentialgleichung
+umformen und so elegant lösen. Unter Verwendung des Satzes über dominierte
+Konvergenz lässt sich nachweisen, dass  Differentiation
+und Integration hier vertauscht werden können. Somit erhalten wir
+\begin{align*}
+\ph'(u) &= \int\limits_0^\infty \partial_u
+\frac{\lambda^\nu}{\Gamma(\nu)}\e^{iux}x^{\nu-1}\e^{-\lambda x}\dx
+= \frac{\lambda^\nu}{\Gamma(\nu)}
+ \int\limits_0^\infty
+ix \e^{iux}x^{\nu-1}\e^{-\lambda x}\dx\\
+&=
+\frac{i\lambda^\nu}{\Gamma(\nu)}
+ \int\limits_0^\infty
+\e^{(iu-\lambda)x}x^{\nu}\dx\\
+&=
+ \underbrace{\frac{i\lambda^\nu}{\Gamma(\nu)}
+x^\nu\frac{\e^{(iu-\lambda)x}}{iu-\lambda}\bigg|_0^\infty}_{=0}
+- \frac{i\lambda^\nu}{\Gamma(\nu)}
+ \int\limits_0^\infty
+\nu x^{\nu-1}\frac{\e^{(iu-\lambda)x}}{iu-\lambda}\dx\\
+&=
+\frac{i\nu}{\lambda-iu}
+ \int\limits_0^\infty
+ \frac{\lambda^\nu}{\Gamma(\nu)}
+x^{\nu-1}\e^{(iu-\lambda)x}\dx
+=
+ \frac{i\nu}{\lambda-iu}\ph(u).
+\end{align*}
+Dies liefert nach Zerlegung der DGL in Real- und Imaginäranteil und
+anschließendem Lösen der Anfangswertprobleme $\Re\ph(0) = 1$ und $\Im\ph(0) =
+0$ die eindeutige Lösung
+\begin{align*}
+\ph(u) = \left(\frac{\lambda}{\lambda-iu}\right)^\nu.\qedhere\maphere
+\end{align*}
+\end{proof}
+\end{bem}
+
+\subsection{Eindeutigkeitssatz und Umkehrformeln}
+
+Per se ist nicht klar, ob zwei unterschiedliche Verteilungsfunktionen auch
+unterschiedliche charakteristische Funktionen besitzten bzw. inwiefern
+eine charakteristische Funktion die Verteilung ``charakterisiert''. Der folgende
+Satz beantwortet die Frage.
+
+\begin{prop}[Eindeutigkeitssatz für charakteristische Funktionen]
+\label{prop:6.4}
+Besitzen zwei auf ${\BB}$ definierte W-Maße bzw.\ Verteilungen dieselbe
+charakteristische Funktion, so stimmen sie überein.
+
+Ist $\mu $ ein W-Maß auf
+${\BB}$ bzw.\ $P_{X}$ die Verteilung einer reellen Zufallsvariablen $X$ mit
+zugehöriger Verteilungsfunktion $F$ und zugehöriger charakteristischer
+Funktion $\ph $ und sind $a,b$ mit $a<b$ Stetigkeitsstellen von $F$, so
+gilt die Umkehrformel
+\begin{align*}
+\underbrace{F(b) -F(a)}_{{ = \mu ((a,b])  \text{ bzw. } P_{X}((a,b])}}
+= \lim\limits_{U\to \infty} \frac{1}{2\pi}  \int^ {U}_{-U} \frac{\e^ {-iua}-\e^
+{-iub}}{iu} \ph (u) \du.\fishhere
+\end{align*}
+\end{prop}
+
+Wir erhalten mit Hilfe dieses Satzes zunächst nur die Eindeutigkeit auf den
+halboffenen Intervallen. Der Fortsetzungssatz besagt jedoch, dass damit auch
+die Fortsetzung auf die Menge der Borelschen Mengen eindeutig ist.
+
+\begin{proof}
+Es genügt, die Umkehrformel zu beweisen. Wir verwenden dazu die Dirichlet-Formel
+\begin{align*}
+\lim\limits_{\atop{A\to-\infty}{B\to\infty}}\frac{1}{\pi}\int\limits_{A}^B
+\frac{\sin(v)}{v}\dv = 1,
+\end{align*}
+die man leicht unter Verwendung der Funktionentheorie beweisen kann.
+Wir verwenden außerdem die Identität,
+\begin{align*}
+\e^{-iua}-\e^{-iub} = -\e^{-iuy}\bigg|_{y=a}^b
+= iu \int\limits_{y=a}^b \e^{-iuy}\dy,
+\end{align*}
+somit folgt nach Anwendung des Satzes von Fubini
+\begin{align*}
+&\lim\limits_{U\to\infty} \frac{1}{2\pi} \int\limits_{u=-U}^U
+\frac{1}{iu}\left(\e^{-iua}-\e^{-iub}\right)\ph(u)\du\\
+&=\lim\limits_{U\to\infty} \frac{1}{2\pi} \int\limits_{u=-U}^U
+\int\limits_{x=-\infty}^\infty
+\frac{1}{iu}\left(\e^{-iua}-\e^{-iub}\right)\e^{iux}F(\dx) \du\\
+&=\lim\limits_{U\to\infty} \frac{1}{2\pi} 
+\int\limits_{x=-\infty}^\infty
+\int\limits_{u=-U}^U
+\int\limits_{y=a}^b \e^{iu(x-y)}\dy F(\dx) \du\\
+&=\lim\limits_{U\to\infty} \frac{1}{2\pi} 
+\int\limits_{x=-\infty}^\infty
+\int\limits_{y=a}^b
+\int\limits_{u=-U}^U
+\e^{iu(x-y)}  \du\dy F(\dx)\\
+&=\lim\limits_{U\to\infty} \frac{1}{2\pi} 
+\int\limits_{x=-\infty}^\infty
+\int\limits_{y=a}^b
+\frac{\e^{iU(x-y)}-\e^{-iU(x-y)}}{i(x-y)}
+\dy F(\dx)\\
+&=\lim\limits_{U\to\infty} \frac{1}{\pi} 
+\int\limits_{x=-\infty}^\infty
+\int\limits_{y=a}^b
+\frac{\sin(U(x-y))}{(x-y)}
+\dy F(\dx)
+\end{align*}
+Nun substituieren wir $\nu=U(x-y)$, d.h. ``$\dx = \frac{1}{U}\dnu$'',
+\begin{align*}
+&=
+\int\limits_{x=-\infty}^\infty
+\lim\limits_{U\to\infty}
+\underbrace{\frac{1}{\pi}  
+\int\limits_{y=U(x-a)}^{U(x-b)}
+\frac{\sin(v)}{v}
+\dv}_{\defl G(U,x)} F(\dx)\\
+&=
+\int\limits_{-\infty}^\infty
+\lim\limits_{U\to\infty} G(U,x)F(\dx)
+\end{align*}
+Für den Integranden erhalten wir unter Verwendung der Formel von Dirichlet,
+\begin{align*}
+\lim\limits_{U\to\infty} G(U,x)=\begin{cases} 1, & \text{falls } a<x<b,\\
+0, & \text{falls } x<a,\\
+0, & \text{falls } x> b.
+\end{cases}
+\end{align*}
+Falls wir den Satz von der dominierten Konvergenz anwenden können, erhalten wir
+für das Integral
+\begin{align*}
+\int\limits_{-\infty}^\infty \lim\limits_{U\to\infty} G(U,x)F(\dx)
+= F(b)-F(a),
+\end{align*}
+denn das Verhalten des Integranden an den Unstetigkeitsstellen ist für den
+Integralwert nicht von Bedeutung.
+
+Wir müssen also noch nachweisen, dass wir den Satz über die dominierte
+Konvergenz auch anwenden können. Setze $n=U$ und $f_n=G(U,\cdot)$,
+$G(U,\cdot)$ ist beschränkt, d.h.
+\begin{align*}
+\abs{G(U,\cdot)} \le g < \infty,\qquad g\in \R. 
+\end{align*}
+Nun ist die konstante Funktion $g$ integrierbar bezüglich der durch die
+Verteilungsfunktion $F$ induzierten Verteilung $\mu$.
+$(\mu(a,b]=F(b)-F(a))$.\qedhere
+\end{proof}
+
+Mit dem Eindeutigkeitssatz erhält man aus $\ph$ die Verteilungsfunktion, ist
+$\ph$ darüber hinaus integrierbar, gilt wesentlich mehr.
+
+\begin{prop}
+\label{prop:6.5}
+Gegeben sei eine Verteilungsfunktion\ $F$ mit charakteristischer Funktion
+$\ph$; es sei $\int^{\infty}_{-\infty} \abs{\ph(u)}\du < \infty
+$. Dann besitzt $F$ eine Dichte $f$, die stetig und beschränkt ist, und es gilt
+die Umkehrformel
+\begin{align*}
+f(x) = \frac{1}{2\pi }  \int_{\R} \e^ {-iux} \varphi (u) \du,\quad
+x\in \R.\fishhere
+\end{align*}
+\end{prop}
+
+\begin{proof}
+Sei also $\ph$ integrierbar, d.h. $\int_\R \abs{\ph}(x) \dx = c <\infty$.
+Wir verwenden die Umkehrformel
+\begin{align*}
+F(b)-F(a) = \lim\limits_{U\to\infty} \frac{1}{2\pi}\int\limits_{-U}^U
+\frac{\e^{-iua}-\e^{-iub}}{iu}\ph(u)\du
+\end{align*}
+und bilden so den Differenzenquotienten für $F$, falls $F$ in $x$ stetig,
+\begin{align*}
+\frac{F(x+h)-F(x)}{h}
+&= \lim\limits_{U\to\infty} \frac{1}{2\pi}\int\limits_{-U}^U
+-\left(\frac{\e^{-iu(x+h)}-\e^{-iux}}{iuh}\right)\ph(u)\du.
+\end{align*}
+Diesen Ausdruck können wir durch $\frac{1}{2\pi}\int_\R \abs{\ph}(u)\du$
+majorisieren, denn
+\begin{align*}
+\abs{\frac{\e^{-iu(x+h)}-\e^{-iux}}{iuh}}
+= 
+\frac{1}{\abs{uh}}
+\abs{\int_{x}^{x+h} -iu \e^{-ius}\ds}
+\le \frac{1}{\abs{h}} \abs{\int_{x}^{x+h}} \ds
+= 1.
+\end{align*}
+% 
+%  indem wir auf den Integranden den Mittelwertsatz bezüglich
+% $x$ anwenden,
+% \begin{align*}
+% \frac{\e^{-iu(x+h)}-\e^{-iux}}{iuh}=
+% -\frac{iu \e^{iu\xi}}{iu} = - \e^{iu\xi},\qquad \xi\in[x,x+h].
+% \end{align*}
+Somit können wir den Satz von der dominierten Konvergenz anwenden und die
+Grenzwertbildung für $h\to 0$ mit der Grenzwertbildung für $U\to\infty$ und der
+Integration  vertauschen.
+\begin{align*}
+\lim\limits_{h\to 0}
+\frac{F(x+h)-F(x)}{h}
+&=
+\lim\limits_{h\to0}\lim\limits_{U\to\infty}
+\frac{1}{2\pi}\int\limits_{-U}^U
+-\left(\frac{\e^{-iu(x+h)}-\e^{-iux}}{iuh}\right)\ph(u)\du\\ 
+&= \frac{1}{2\pi}\int\limits_{\R}
+\e^{-iux}\ph(u)\du \defr f(x).
+\end{align*}
+$f$ ist offensichtlich Dichte zu $F$ und beschränkt, denn
+\begin{align*}
+\abs{f(x)} \le 
+\frac{1}{2\pi}\int\limits_{\R}
+\abs{\e^{-iux}}\abs{\ph(u)}\du
+= 
+\frac{1}{2\pi}\int\limits_{\R}
+\abs{\ph(u)}\du < \infty,
+\end{align*}
+und außerdem stetig, denn
+\begin{align*}
+\abs{f(y)-f(x)}
+&\le \int_\R \abs{\e^{iuy}-\e^{iux}}\abs{\ph(u)}\du\\
+&\le \sup_{x,y\in U}  \abs{\e^{iuy}-\e^{iux}}\int_\R
+\abs{\ph(u)}\du \\ &=
+c\sup_{x,y\in U}  \abs{\e^{iuy}-\e^{iux}}.
+\end{align*}
+Der rechte Ausdruck wird klein für $\abs{x-y}$ klein, denn $\e^{iu\cdot}$ ist
+stetig.\qedhere
+\end{proof}
+
+Ist $X$ Zufallsvariable mit integrierbarer charakteristischer Funktion $\ph$,
+so besitzt $X$ eine Dichte und diese entspricht im Wesentlichen der
+Fouriertransformierten von $\ph$. Wie wir bereits festgestellt haben, erhalten
+wir $\ph$ als inverse Fouriertransformierte dieser Dichte zurück.
+
+\begin{prop}
+\label{prop:6.6}
+Sei $X$ eine reelle Zufallsvariable mit Verteilung $P_{X}$ und
+charakteristischer Funktion $\ph $. Falls für $j\in \mathbb{N}$ gilt:
+\begin{align*}
+&\E\abs{X}^{j} < \infty,
+\end{align*}
+so besitzt $\ph$
+eine stetige $j$-te Ableitung
+$\ph^{(j)}$ mit
+\begin{align*}
+\ph^{(j)}(u) = i^{j}\int_{\R}
+x^ {j} \e^ {iux} P_{X}(\dx),\quad u\in \R.
+\end{align*}
+Insbesondere $\ph^{(j)} (0) = i^ {j} \E X^ {j}$.\fishhere
+\end{prop}
+
+\begin{proof}
+Wir beweisen die Behauptung für $j=1$, der Rest folgt induktiv.
+\begin{align*}
+\ph(u) &= \int\limits_{-\infty}^\infty \e^{iux}P_X(\dx)\\
+\ph'(u) &= \lim\limits_{h\to0} \frac{\ph(u+h)-\ph(u)}{h}
+= \lim\limits_{h\to 0}\int\limits_\R \frac{\e^{i(u+h)x}-\e^{iux}}{h} P_X(\dx)\\
+&= \lim\limits_{h\to 0}\int\limits_\R
+\e^{iux}\underbrace{\left(\frac{\e^{ihx}-1}{h}\right)}_{\to ix\e^{iux}} P_X(\dx)
+\end{align*}
+Wir müssen also nachweisen, dass wir den Satz von der dominierten Konvergenz
+anwenden können,
+\begin{align*}
+\abs{\e^{iux}\underbrace{\left(\frac{\e^{ihx}-1}{h}\right)}_{\to ix\e^{iux}}} = 1
+\abs{\frac{\e^{ihx}-1}{h}} < \const\abs{x},\qquad x,h\in\R
+\end{align*}
+und $\int_\R \abs{x}P_X(\dx) = \E \abs{X} < \infty$.
+
+Somit erhalten wir für das Integral,
+\begin{align*}
+\ph'(u) = i\int_\R x \e^{iux}P_X(\dx)
+\end{align*}
+$\ph'$ ist gleichmäßig stetig, denn
+\begin{align*}
+\abs{\ph'(u+h)-\ph'(u)} \le \int_\R \abs{x}\abs{\e^{i(u+h)x}-\e^{iux}}P_X(\dx)
+\end{align*}
+Nun ist $\abs{\e^{i(u+h)x}-\e^{iux}}$ nach der Dreiecksungleichung durch $2$
+beschränkt und konvergiert für $h\to 0$ gegen Null, somit haben wir eine
+integrierbare Majorante und mit dem Satz von der dominierten Konvergenz folgt,
+\begin{align*}
+\abs{\ph'(u+h)-\ph'(u)} \to 0,\qquad h\to 0.\qedhere
+\end{align*} 
+\end{proof}
+
+Erinnern wir uns an die erzeugende Funktion $g$ einer auf $\N_0$ konzentrierten
+Verteilung so besagt Satz \ref{prop:6.2},
+\begin{align*}
+g^{(j)}(1-) = \E (X(X-1)\cdots(X-j+1)).
+\end{align*}
+Für charakteristische Funktionen reeller Zufallsvariablen gilt nun,
+\begin{align*}
+\ph^{(j)}(0) = i^j\E X^j.
+\end{align*}
+
+Erzeugende und charakteristische Funktionen ermöglichen es uns
+Integrationsaufgaben,
+\begin{align*}
+\int_\R x^j P_X,\qquad \sum_{k\ge 0} k^j b_k 
+\end{align*}
+auf Differentiationsaufgaben $\ph^{j}(u)\big|_{u=0}$, $g^{(j)}(1-)$ 
+zurückzuführen, die sich meist wesentlich leichter lösen lassen.
+
+
+\begin{prop}
+\label{prop:6.7}
+Seien $X_{1},\ldots ,X_{n}$ unabhängige reelle Zufallsvariablen mit
+charakteristischen Funktionen $\varphi_{1},\ldots ,\varphi _{n}$. Für die
+charakteristische Funktion der Summe
+\begin{align*}
+X_{1}+\ldots +X_{n}
+\end{align*}
+gilt dann
+\begin{align*}
+\ph = \prod\limits^ {n}_{j=1} \ph _{j}.\fishhere
+\end{align*}
+\end{prop}
+
+\begin{proof}
+$\ph(u)=\E \e^{iu(X_1+\ldots+X_n)} = \E(\e^{iu X_1}\cdots \e^{iu X_n}) 
+\overset{\ref{prop:5.4}}{=}(\E \e^{iu X_1})\cdots (\E \e^{iu X_n})$.\qedhere
+\end{proof}
+
+Für die erzeugende und charakteristische Funktion einer Summe von unabhängigen
+Zufallsvariablen gelten also analoge Aussagen. Beide beruhen auf der
+Multiplikativität des Erwartungswerts für unabhänige Zufallsvariablen.
+
+\section{Faltungen}
+
+In Abschnitt \ref{chap:5.a} haben wir bereits für zwei reelle unabhängige
+Zufallsvariablen $X$ und $Y$ die Faltung $P_X*P_Y\defl P_{X+Y}$ als Verteilung von
+$X+Y$ definiert. Wir wollen die Definition nun noch etwas Verallgemeinern und
+die Argumentationslücken aus \ref{chap:5.a} schließen. 
+
+\begin{defn}
+\label{defn:6.3}
+Zu zwei W-Maßen $P,Q$ auf ${\BB}$ wird das W-Maß $P\ast
+Q$ auf ${\BB}$, die sog. \emph{Faltung} von $P$ und $Q$, folgendermaßen
+definiert:
+\begin{defnenum}
+\item
+Sei $T: \R \times \R \to \R$ mit $T(x,y)=x+y$;
+\begin{align*}
+P\ast Q\defl (P\otimes Q)_{T}
+\end{align*}
+($P\otimes Q$ W-Maß auf ${\BB}_{2}$ mit $(P\otimes Q)(B_{1}\times B_{2})=
+P(B_{1})Q(B_{2}), \;\, B_{1,2}\in {\BB}$, sog.\ Produkt-W-Maß von $P$ und
+$Q$)
+
+oder --- äquivalent ---
+\item
+Man wähle ein unabhängiges Paar reeller Zufallsvariablen $X,Y$ mit Verteilungen
+$P_{X}=P$, $P_{Y}=Q$ und setze
+\begin{align*}
+P\ast Q\defl P_{X+Y}.\fishhere
+\end{align*}
+\end{defnenum}
+\end{defn}
+
+\begin{proof}[Beweis der Äquivalenz in \ref{defn:6.3}.]
+Sei $Z=(X,Y)$ gemäß b), dann gilt
+\begin{align*}
+P_{X+Y} = P_{T\circ Z} = (P_Z)_T
+\overset{!}{=} (P_X\otimes P_Y)_T.
+\end{align*}
+Um (!) nachzuweisen, genügt es zu zeigen, dass
+\begin{align*}
+\forall B_1,B_2\in\BB : \underbrace{(P_Z)(B_1\times B_2)}_{P[Z\in B_1\times
+B_2]} = \underbrace{(P_X\otimes P_Y)(B_1\times B_2)}_{P_X(B_1)P_Y(B_2)}.\tag{*}
+\end{align*}
+Da $X,Y$ unabhängig sind, gilt
+\begin{align*}
+P[Z\in B_1\times B_2] &= P[(X,Y)\in B_1\times B_2] = P[X\in B_1, Y\in B_2]\\
+&= P[X\in B_1]P[Y\in B_2]
+\end{align*}
+und somit ist die Identität (*) gezeigt. Mit Hilfe des Fortsetzungssatzes liegt
+die Identität auf allen Borelschen Mengen aus $\BB_2$ vor.\qedhere 
+\end{proof}
+
+\begin{prop}
+\label{prop:6.8}
+\begin{propenum}
+\item Die Faltungsoperation ist kommutativ und assoziativ.
+\item
+Sei $(X,Y)$ ein unabhängiges Paar reeller Zufallsvariablen. Für $X,Y$ und
+$X+Y$ seien die Verteilungsfunktionen mit $F,G,H$, die Dichten --- falls existent --- mit
+$f,g,h$ und die Zähldichten --- falls $P_{X}$, $P_{Y}$ auf $\mathbb{N}_{0}$
+konzentriert sind --- mit $(p_{k})$, $(q_{k})$, $(r_{k})$ bezeichnet. Dann
+gilt
+\begin{align*}
+H(t) = \int_{\R}F(t-y)\,G(\dy) = \int_{\R}G(t-x)\,F(dx), \;\, t\in
+\R.
+\end{align*}
+Falls $f$ existiert, so existiert $h$ mit
+\begin{align*}
+h(t) =\int_{\R} f(t-y)\, G(\dy) \quad  \text{für (L-f.a.) }
+t \in \R;
+\end{align*}
+falls zusätzlich $g$ existiert, so gilt
+\begin{align*}
+h(t) =\int_{\R}f(t-y) g(y)\dy= \int_{\R}g(t-x) f(x)\dx
+\text{ \;für ($L$-f.a.) }t\in \R.
+\end{align*}
+Falls $(p_{k})_{k\in \mathbb{N}_{0}}, \;\, (q_{k})_{k\in \mathbb{N}_{0}}$
+existieren, so existiert $(r_{k})_{k\in \mathbb{N}_{0}}$ mit
+\begin{align*}
+r_{k}= {\displaystyle\sum\limits^ {k}_{i=0}p_{k-i}q_{i}= \sum^
+{k}_{i=0}q_{k-i}p_{i} \;\, (k\in \mathbb{N}_{0})}.\fishhere
+\end{align*}
+\end{propenum}
+\end{prop}
+\begin{proof}
+\begin{proofenum}
+\item Assoiziativität und Kommutativität der Faltungsoperation folgen direkt aus der
+Assoziativität und Kommutativität der Addition reeller
+Zahlen.
+\item Siehe auch Satz \ref{prop:5.6}. Sei
+\begin{align*}
+H(t) = P[X+Y\le t] = P[(X,Y)\in B]
+\end{align*}
+mit $B\defl\setdef{(x,y)}{x+y\le t}$, also
+% \begin{pspicture}(-1,-1)(4,3)
+% 
+% \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+%  (0,0)(-0.5,-0.5)(3.5,2.5)[\color{gdarkgray}$x$,-90][\color{gdarkgray}$y$,0]
+% 
+% \psline[linecolor=darkblue](-1,3)(3,0)
+% 
+% \rput(-1,1){\color{gdarkgray}$B$}
+% \end{pspicture}
+\begin{align*}
+H(t) &= P_{(X,Y)}(B) = (P_X\otimes P_Y)(B) = \int_\R
+P_X((-\infty,t-y])P_Y(\dy)\\
+&= \int_\R F(t-y)G(\dy) \overset{\text{Komm. von $X+Y$}}{=}  \int_\R
+G(t-x)F(\dx).
+\end{align*}
+Falls zu $F$ eine Dichte $f$ existiert, dann gilt für $t\in\R$,
+\begin{align*}
+H(t) &= \int_\R \left[\int\limits_{-\infty}^{t-y}
+f(\tau)\dtau\right]G(\dy) \overset{\text{Fubini}}{=}
+\int\limits_{-\infty}^{t}\left[\int_\R
+f(\tau-y)G(\dy)\right]\dtau.
+\end{align*}
+Falls zusätzlich $G$ eine Dichte $g$ besitzt, dann ist $G(\dy)=g(y)\dy$ und
+somit besitzt $H$ eine Dichte der Form
+\begin{align*}
+h(t) = \int\limits_\R f(t-y)g(y)\dy
+=
+\int\limits_\R g(t-x)f(x)\dx,
+\end{align*}
+wobei $h(t)$ nur $\fu{\lambda}$ definiert ist. 
+Falls $X$ und $Y$ Zähldichten $(p_k)$ und $(q_k)$ besitzen, dann ist
+\begin{align*}
+r_k &\defl P[X+Y=k] = P[\exists i\in \setd{0,1,\ldots,k}: X=k-i, Y=i]\\
+&= \sum\limits_{i=0}^k P[X=k-i, Y=i]
+=\sum\limits_{i=0}^k P[X=k-i]P[Y=i]\\
+&=\sum\limits_{i=0}^k p_{k-i}q_i
+=\sum\limits_{i=0}^k q_{k-i}p_i.\qedhere
+\end{align*}
+\end{proofenum}
+\end{proof}
+
+Sind $X$ und $Y$ reelle unabhängige Zufallsvariablen mit Dichten $f$ und $g$,
+so ist mit dem eben bewiesenen die Dichte von $X+Y$ gegeben durch
+\begin{align*}
+\int_\R f(x-y)g(y)\dy = \int_\R g(y-x)f(x)\dx.  
+\end{align*}
+Dieser Ausdruck wird als \emph{Faltung von $f$ mit $g$} bezeichnet, geschrieben
+\begin{align*}
+f*g\defr f_{X+Y}.
+\end{align*}
+
+\begin{bem}[Bemerkungen.]
+\label{bem:6.7}
+\begin{bemenum}
+\item
+Für $n_{1,2} \in \N$, $\, p\in [0,1]$ gilt
+\begin{align*}
+b(n_{1},p)\ast b(n_{2},p) =b(n_{1}+n_{2},p).
+\end{align*}
+Die Summe von $n$ unabhängigen $b(1,p)$ verteilten Zufallsvariablen ist also
+$b(n,p)$-verteilt.
+\item
+Für $\lambda _{1,2} >0$ gilt
+$\pi(\lambda _{1}) \ast \pi(\lambda _{2})= \pi
+(\lambda _{1} +\lambda _{2})$.
+\begin{proof}
+$\pi(\lambda_1),\pi(\lambda_2)$ haben nach Bemerkung \ref{prop:6.2} die
+erzeugenden Funktionen
+\begin{align*}
+g_1(s) = \e^{\lambda_1(s-1)},\qquad g_2(s) = \e^{\lambda_2(s-1)}.
+\end{align*}
+Im Satz \ref{prop:6.3} haben wir gezeigt, dass die Verteilungsfunktion einer
+Zufallsvariable $X+Y$, wobei $X$ und $Y$ unabhängig und $X$ $\pi(\lambda_1)$
+und $Y$ $\pi(\lambda_2)$ verteilt ist, die Form hat
+\begin{align*}
+\pi(\lambda_1)*\pi(\lambda_2).
+\end{align*}
+Diese hat die erzeugende Funktion
+\begin{align*}
+g_1(s)g_2(s) = \e^{(\lambda_1+\lambda_2)(s-1)},
+\end{align*}
+welche ebenfalls  die erzeugende Funktion von
+$\pi(\lambda_1+\lambda_2)$ ist. Mit Satz \ref{prop:6.1} folgt nun, dass
+$\pi(\lambda_1+\lambda_2)=\pi(\lambda_1)*\pi(\lambda_2)$.\qedhere
+\end{proof}
+\item
+Für $r_{1,2} \in \mathbb{N}$, $\, p \in (0,1)$ gilt
+\begin{align*}
+Nb(r_{1},p) \ast Nb(r_{2},p)=Nb (r_{1} +r_{2},p).
+\end{align*}
+Die Summe von $r$ unabhängigen $Nb (1,p)$-verteilten Zufallsvariablen ist also
+$Nb(r,p)$-verteilt.
+\item
+Für $a_{1,2}\in \R$, $\, \sigma^ {2}_{1,2}\in (0,\infty)$ gilt
+\begin{align*}
+N(a_{1},\sigma^ {2}_{1})\ast N(a_{2},\sigma ^ {2}_{2}) =
+N(a_{1}+a_{2}, \sigma ^ {2}_{1} +\sigma ^ {2}_{2}).
+\end{align*}
+\item
+Für $\lambda \in (0,\infty )$, $\, \nu _{1,2} \in (0,\infty)$ gilt
+\begin{align*}
+\Gamma _{\lambda,\nu _{1}}\ast \Gamma _{\lambda , \nu _{2}} =
+\Gamma _{\lambda , \nu _{1} +\nu _{2}}.
+\end{align*}
+Die Summe von $n$ unabhängigen $\exp (\lambda)$-verteilten Zufallsvariablen ist
+$\Gamma_{\lambda , n}$-verteilt. \\
+Die Summe der Quadrate von $n$ unabhängigen jeweils $N(0,1)$-verteilten Zufallsvariablen
+ist $\chi^ {2}_{n}$-verteilt.\maphere
+\end{bemenum}
+\end{bem}
+
+Es lässt sich auch für nicht unabhängige reelle Zufallsvariablen $X$ und $Y$
+nach der Verteilung von $X+Y$ fragen. Um diese zu berechnen kann man stets
+folgenden Ansatz wählen,
+\begin{align*}
+F_{X+Y}(t) &= P[X+Y\le t] = P[g\circ (X,Y)\le t] = P[(X,Y)\in
+g^{-1}(-\infty,t]]\\
+&= P_{(X,Y)}[g^{-1}(-\infty,t]] = \int_{g^{-1}(-\infty,t]} 1 \dP_{(X,Y)}.
+\end{align*}
+Besitzen $X$ und $Y$ eine gemeinsame Dichte, so kann man das
+eigentliche Integrationsgebiet $g^{-1}(-\infty,t]\cap \setd{f_{(X,Y)}\neq 0}$
+(meißt geometrisch) bestimmen und so das Integral berechnen.

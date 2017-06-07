@@ -1,0 +1,718 @@
+\chapter{Bedingte Erwartungen}
+
+Bedingte Erwartungen stellen den mathematischen Rahmen zur Untersuchung der
+Fragestellung, welchen Mittelwert eine Zufallsvariable $Y$ annimmt unter der 
+Voraussetzung, dass eine andere Zufallsvariable $X$ den Wert $x$
+annimmt,
+\begin{align*}
+\E(Y\mid X=c).
+\end{align*}
+Als Beispiel sei die Suche des mittleren Körpergewichts einer gegebenen
+Bevölkerungsschicht, unter Vorraussetzung einer gewissen Körpergröße, genannt.
+
+Erinnern wir uns zurück an die Definition des Erwartungswerts, so können wir
+diesen als Verallgemeinerung des Begriffes der Wahrscheinlichkeit für das
+Eintreten eines Ereignisses interpretieren.
+Allgemeiner gilt
+\begin{align*}
+P(A\mid X=x)=\E(\Id_A\mid X=x).
+\end{align*}
+
+Als Beispiel sei das Ereignis $A$, die Straße ist glatt, unter der
+Voraussetzung, dass die Lufttemperatur $X$ den Wert $x$ annimmt.
+
+Unsere bisherige Definition von $P(A\mid X=x)$ schließt den Fall $P[X=x]=0$
+nicht mit ein. Wir werden dieses Manko durch die Definition einer allgemeinen
+``bedingten Erwartung'' beheben.
+\clearpage
+
+\section{Grundlagen}
+
+Wie immer sei $(\Omega,\AA,P)$ ein W-Raum.
+
+Erinnern wir uns zunächst an die Definition der Messbarkeit einer
+Abbildung. $f$ ist $\CC$-$\BB$-messbar $\Leftrightarrow$ $f^{-1}(\BB)
+\subseteq \CC$.
+
+Eine reellwertige Funktion ist eine Zufallsvariable, falls sie $\AA-\BB$
+messbar ist. Bedingte Erwartungen sind spezielle Zufallsvariablen, bei denen
+die Messbarkeitsforderung noch verschärft wird.
+
+Zum Beweis des folgenden Satzes benötigen wir den Satz von Radon-Nikodym (siehe
+Anhang), der ein Verhältnis zwischen zwei Maßen $\mu$ und $\nu$ herstellt.
+
+\begin{prop}
+\label{prop:10.1}
+Sei $X: (\Omega, {\AA},P)\to (\RA, \overline{\BB})$ integrierbare
+Zufallsvariable und ${\CC} \subset {\AA}$ $\sigma $-Algebra. Dann existiert
+eine Zufallsvariable
+\begin{align*}
+Z : (\Omega, {\AA}, P) \to (\R,{\BB})
+\end{align*}
+mit folgenden Eigenschaften:
+\begin{defnpropenum}
+\item\label{prop:10.1:1}
+$Z$ ist integrierbar und ${\CC}$-${\BB}$-messbar,
+\item\label{prop:10.1:2}
+$\forall C\in {\CC} : \int_{C}X\dP = \int_{C}Z\dP$.\fishhere
+\end{defnpropenum}
+\end{prop}
+
+\begin{proof}
+Ohne Einschränkung sei $X\ge 0$, ansonsten zerlegen wir $X$ in $X_+$ und $X_-$.
+Sei $\ph: \CC \to \R$ definiert durch
+\begin{align*}
+\ph(C) \defl \int_C X\dP,\qquad C\in \CC,
+\end{align*}
+so ist $\ph$ aufgrund der Integrierbarkeit von $X$ wohldefiniert und ein Maß.
+Außerdem ist $\ph$ ein $P\big|_{\CC}$-stetiges endliches Maß auf $\CC$.
+
+Somit sind alle Voraussetzungen des Satzes von Radon-Nikodyn erfüllt und es
+folgt die Existenz einer bis auf die Äquivalenz ``$=\fu{P\big|_\CC}$''
+eindeutige, $\CC-\BB$-messbare Funktion
+\begin{align*}
+Z: \Omega\to \R_+.
+\end{align*}
+Weiterhin ist $Z$ $P\big|_{\CC}$-integrierbar, wobei
+\begin{align*}
+\forall C\in\CC : \ph(C) = \int_C Z \dP\big|_{\CC}
+=  \int_C Z \dP.\qedhere
+\end{align*}
+$Z$ ist auch $\AA-\BB$-messbar und bezüglich $\PP$ integrierbar.\qedhere
+\end{proof}
+
+Die Aussage des Satzes mag zunächst unscheinbar sein. Es ist jedoch zu
+beachten, dass die Zufallsvariable $Z$ tatsächlich so konstruiert werden kann,
+dass sie $\CC$-$\BB$-messbar ist. Da man $\CC$ als echte Teilmenge von $\AA$
+wählen kann, ist dies überhaupt nicht offensichtlich
+
+$Z$ ist eindeutig bis auf die Äquivalenz ``$\fu{P\big|_{\CC}}$'
+
+\begin{defn}
+\label{defn:10.1}
+Sei $X : (\Omega, {\AA},P)\to (\R, \overline{\BB})$
+integrierbare Zufallsvariable und ${\CC}\subset {\AA}$
+$\sigma$-Algebra. Die Äquivalenzklasse (im oberen
+Sinne) der Zufallsvariablen $Z$: $(\Omega , {\AA}, P) \to (\R , {\BB})$ mit
+\ref{prop:10.1:1} und \ref{prop:10.1:2} --- oder auch ein Repräsentant dieser
+Äquivalenzklasse --- heißt \emph{bedingte Erwartung von $X$ bei gegebenem
+  ${\CC}$}\index{Bedingte!Erwartung}. Man bezeichnet $Z$ mit $\E(X\mid {\CC})$.
+
+Häufig wird ein Repräsentant dieser Äquivalenzklasse als eine Version von
+$\E(X\mid {\CC})$ bezeichnet.\fishhere
+\end{defn}
+
+Die bedingte Erwartung $\E(X\mid {\CC})$ stellt im Allgemeinen also
+\textit{keine} reelle Zahl sondern eine Zufallsvariable dar! $\E(X\mid {\CC})$
+kann man als eine ``Vergröberung'' von $X$ betrachten, da $\CC$ gröber als
+$\AA$ und $Z$ daher weniger Möglichkeiten der Variation als $X$ besitzt.
+(Siehe Abbildung \ref{abb:10.1})
+
+\begin{bemn}[Bemerkungen.]
+\begin{bemenum}
+\item Zur Eindeutigkeit von Satz \ref{prop:10.1} betrachte zwei Zufallsvariablen
+$Z_1$ und $Z_2$, so gilt
+\begin{align*}
+\forall C\in\CC : \int_C (Z_1-Z_2)\dP = 0 \Rightarrow Z_1=Z_2 \fu{P\big|_{\CC}}
+\end{align*}
+\item $\E(X\mid\CC) = \frac{\dph}{\dP\big|_{\CC}}$, wobei $\ph(C) = \int_C
+X\dP$ für $C\in\CC$.\maphere
+\end{bemenum}
+\end{bemn}
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-0.7,-1)(4.7,4.7)
+
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-0.5,-0.5)(4.5,4.5)[\color{gdarkgray}$\omega$,-90][,0]
+
+\psline[linewidth=1.2pt,linecolor=darkblue](0,1)(1,1)
+\psline[linewidth=1.2pt,linecolor=darkblue](1,2)(2,2)
+\psline[linewidth=1.2pt,linecolor=darkblue](2,3)(3,3)
+\psline[linewidth=1.2pt,linecolor=darkblue](3,4)(4,4)
+\psline[linewidth=1.2pt,linecolor=purple](0,1.5)(2,1.5)
+\psline[linewidth=1.2pt,linecolor=purple](2,3.5)(4,3.5)
+
+\rput(2.7,4){\color{darkblue}$X$}
+\rput(3.7,3.2){\color{purple}$Z$}
+
+\psxTick(1){\color{gdarkgray}\frac{1}{4}}
+\psxTick(2){\color{gdarkgray}\frac{1}{2}}
+\psxTick(3){\color{gdarkgray}\frac{3}{4}}
+\psxTick(4){\color{gdarkgray}1}
+
+\psyTick(1){\color{gdarkgray}1}
+\psyTick(2){\color{gdarkgray}2}
+\psyTick(3){\color{gdarkgray}3}
+\psyTick(4){\color{gdarkgray}4}
+
+\end{pspicture}
+\caption{$\Omega=[0,1]$, %
+$\AA=\sigma\left(\setd{[0,\frac{1}{4}),[\frac{1}{4},\frac{1}{2}),[\frac{1}{2},\frac{3}{4}),[\frac{3}{4},1]}\right)$, %
+$\CC=\sigma\left(\setd{[0,\frac{1}{2}),[\frac{1}{2},1]}\right)\subsetneq\AA$.}
+\label{abb:10.1}
+\end{figure}
+
+
+\begin{bsp}
+\label{bsp:10.1}
+\begin{bspenum}
+\item Sei ${\CC} = {\AA}$, so gilt $\E(X\mid {\CC}) = X $ f.s.
+\item Sei $\CC =  \setd{\emptyset, \Omega}$ so gilt $\E(X\mid {\CC}) = \E
+X$, denn
+\begin{align*}
+\underbrace{\int_\emptyset X\dP}_{=0} = \underbrace{\int_\varnothing \E
+X\dP}_{=0},\quad
+\int_\Omega X\dP = \int_\Omega \E X \dP.
+\end{align*}
+\item Sei ${\CC} = \setd{\emptyset, B, B^ {c},\Omega}$ für festes $B$
+mit $0<P(B)<1$. So gilt
+\begin{align*}
+(\E(X\mid {\CC}))(\omega)=
+\begin{cases}
+\frac{1}{P(B)} \int_{B} X\dP \defr \E(X\mid B),
+  & \omega \in B\\
+\frac{1}{P(B^ {c})} \int_{B^{c}}X\dP, & \omega \in B^ {c}.
+\end{cases}
+\end{align*}
+$\E(X\mid B)$ heißt \emph{bedingter Erwartungswert von $X$ unter der
+Hypothese $B$}.
+\begin{proof}
+Scharfes Hinsehen liefert, dass die rechte Seite nach obiger Definition
+$\CC-\BB$-messbar ist. Weiterhin gilt
+\begin{align*}
+\int_\varnothing ``\text{rechte Seite}"\dP &= 0 = \int_\varnothing X\dP,\\
+\int_B ``\text{rechte Seite}" \dP& = \frac{\int_B 1\dP}{P(B)}\int_B X\dP =
+\int_B X\dP,\\
+\int_{B^c} ``\text{rechte Seite}" \dP& = \frac{\int_{B^c}
+1\dP}{P(B^c)}\int_{B^c} X\dP = \int_{B^c} X\dP,\\
+\int_\Omega ``\text{rechte Seite}" \dP
+&= \int_{B} ``\text{rechte Seite}" \dP
++ \int_{B^c} ``\text{rechte Seite}" \dP\\
+&= \int_{B} X \dP
++ \int_{B^c} X \dP
+= \int_\Omega X\dP.\qedhere\bsphere
+\end{align*}
+\end{proof}
+\end{bspenum}
+\end{bsp}
+
+\begin{prop}
+\label{prop:10.2}
+Seien $X$, $X_{i}$ integrierbar, ${\CC} \subset
+{\AA}$ $\sigma$-Algebra und $c,\alpha _{1,2} \in \R$.
+\begin{propenum}
+\item\label{prop:10.2:1} $\forall {C\in {\CC}} : \int_{C}  \E(X\mid {\CC})\dP =
+\int_{C} X\dP$.
+\item\label{prop:10.2:2}
+$X=c$ P-f.s. $\Rightarrow \E(X\mid {\CC})=c$ f.s.
+\item\label{prop:10.2:3}
+$X\geq 0$ P-f.s. $\Rightarrow \E(X\mid {\CC}) \geq 0$ f.s.
+\item $\E(\alpha _{1} X_{1} +\alpha _{2} X_{2} \mid {\CC}) = \alpha _{1}
+  \E(X_{1} \mid {\CC})+\alpha _{2}\E (X_{2} \mid {\CC})$ f.s.
+\item\label{prop:10.2:4}
+$X_{1} \leq X_{2} $ P-f.s. $\Rightarrow \E(X_{1} \mid {\CC})\leq \E(X_{2}
+\mid {\CC})$ f.s.
+\item\label{prop:10.2:5}
+$X$ ${\CC}$-${\BB}$-messbar $\Rightarrow X=\E(X\mid {\CC})$ f.s.
+\item\label{prop:10.2:6}
+$X$ integrierbar, $Y$ ${\CC}$-${\BB}$-messbar, $XY$ integrierbar
+\begin{align*}
+\Rightarrow \E(XY\mid {\CC})= Y\E (X\mid {\CC}) \fs
+\end{align*}
+\item[g')]\label{prop:10.2:6a}
+$X,X'$ integrierbar, $X\E(X'\mid {\CC})$ integrierbar
+\begin{align*}
+\Rightarrow \E(X\E(X'\mid {\CC})\mid {\CC})=\E( X\mid {\CC})\E(X'\mid
+{\CC})\fs
+\end{align*}
+\item[h)]\label{prop:10.2:7} $\sigma$-Algebra ${\CC}_{1,2}$ mit ${\CC}_{1}
+\subset {\CC}_{2} \subset {\AA}$, $X$ integrierbar
+\begin{align*}
+&\E(\E(X\mid {\CC}_{1})\mid {\CC}_{2})=\E(X\mid{\CC}_{1})\fs\\
+&\E(\E(X\mid {\CC}_{2})\mid {\CC}_{1})=\E(X\mid{\CC}_{1})\fs
+\end{align*}
+Hier bedeutet f.s., Rest$\,_{{\CC}_{2}}$ P-f.s. bzw.
+Rest$\,_{{\CC}_{1}}$ P-f.s.\fishhere
+\end{propenum}
+\end{prop}
+\begin{proof}
+\begin{proofenum}
+\item Folgt sofort aus der Definition der bedingten Erwartung.
+\item Klar, denn Glättung einer Konstanten ergibt die Konstante selbst.
+\item Für eine $\CC-\BB$-messbare Funktion $Z$ mit $\forall C\in\CC : \int_C
+Z\dP \ge 0$ folgt $Z\ge 0$ $P\big|_{\CC}$-$\fs$
+\item Folgt direkt aus der Linearität des Intergrals.
+\item Folgt direkt aus der Monotonie des Integrals, denn für $\CC-\BB$-messbare
+Zufallsvariablen $Z_{1,2}$ mit
+\begin{align*}
+\forall C\in\CC : \int_C Z_1\dP \le \int_C Z_2\dP
+\end{align*}
+gilt auch $Z_1\le Z_2$ $P\big|_{\CC}$-$\fs$
+\item Klar.
+\item Es folgt sofort, dass $XY$ und $Y\E(X\mid \CC)$ $\CC-\BB$-messbar. Es
+verbleibt zu zeigen, dass
+\begin{align*}
+\forall C\in \CC : \int_C Y \E (X\mid \CC)\dP = \int_C XY\dP.
+\end{align*}
+Ohne Einschränkung ist $X\ge 0$, ansonsten gehen wir zu $X_+$ und $X_-$ über.
+Sei $C\in\CC$ so gilt
+\begin{align*}
+\int_C Y \E (X\mid \CC)\dP
+=
+\int_C Y \E (X\mid \CC)\dP\big|_{\CC},
+\end{align*}
+wobei $\E(X\mid \CC)=\frac{\dph}{\dP\big|_{\CC}}$ mit $\ph(C) = \int_C X\dP$ für
+$C\in\CC$, so dass nach dem Zusatz zum Satz von Radon-Nikodym,
+\begin{align*}
+\int_C Y \E (X\mid \CC)\dP\big|_{\CC} = 
+\int_C Y \dph = \int_C Y \dph^*, 
+\end{align*}
+mit $\ph^*(A) = \int_A X\dP$ für $A\in\AA$ (also $\ph=\ph^*\big|_{\CC}$). Somit
+ist $\ph^*$ ein endliches Maß auf $\AA$. Erneute Anwendung des Zusatzes zum
+Satz von Radon-Nikodym ergibt,
+\begin{align*}
+\int_C Y \dph^* = \int_C Y \frac{\dph^*}{\dP}\dP.
+\end{align*}
+Nun ist $\frac{\dph^*}{\dP} = X\Pfs$ und daher
+\begin{align*}
+\int_C Y \frac{\dph^*}{\dP}\dP=\int_C Y X\dP.
+\end{align*}
+\item[g')] Folgt sofort aus g), wenn wir $Y=\E(X\mid\CC)$ setzen.
+\item[h)]
+\begin{enumerate}[leftmargin=16pt]
+\item[($\alpha$)] 
+Aus g) folgt direkt, dass
+\begin{align*}
+\E(\E(X\mid\CC_1)\mid \CC_2) = \E(X\mid\CC_1)\underbrace{\E(1\mid\CC_2)}_{1},
+\end{align*}
+da $\E(X\mid\CC_1)$ $\CC_1-\BB$-messbar.
+\item[($\beta$)]
+Die zweite Gleichung ist plausibel, da die Vergröberung von $X$ über $\CC_2$
+zur noch kleineren $\sigma$-Algebra $\CC_1$ dasselbe liefert, wie die unmittelbare
+Vergröberung über $\CC_1$.
+
+Seien also $Z\defl\E(X\mid\CC_1)$ und $Y\defl\E(X\mid\CC_2)$. Es ist zu zeigen, dass
+$Z=\E(Y\mid\CC_1)$. Zunächst ist nach Definition $Z$ auch
+$\CC_1-\BB$-messbar. Weiterhin sei $C\in\CC_1\subseteq \CC_2$, so gilt per
+definitionem,
+\begin{align*}
+&\int_C Z \dP = \int_C X\dP,\qquad \int_C Y \dP = \int_ C X\dP,\\
+\Rightarrow & \int_C Y \dP = \int_C Z\dP.\qedhere  
+\end{align*}
+\end{enumerate}
+\end{proofenum}
+\end{proof}
+
+\begin{defn}
+\label{defn:10.2}
+Sei ${\CC}\subset {\AA}$ $\sigma$-Algebra und $A\in {\AA}$.
+\begin{align*}
+P(A\mid {\CC})\defl \E(\Id _{A}\mid {\CC})
+\end{align*}
+heißt \emph{bedingte Wahrscheinlichkeit von $A$ bei gegebenem
+${\CC}$}\index{Bedingte!Wahrscheinlichkeit}.\fishhere
+\end{defn}
+
+Setzen wir $\CC=\setd{\varnothing,\Omega}$, so ist $\E(\Id_A\mid\CC) = \E
+\Id_A = P(A)$ (vgl. \textsc{Bsp} \ref{bsp:10.1}). Nach Definition
+\ref{defn:10.2} gilt dann
+\begin{align*}
+\E(\Id_A\mid\CC) = P(A\mid\CC).
+\end{align*}
+
+\begin{bem}[Bemerkung zu Definition \ref{defn:10.2}.]
+\label{bem:10.1}
+\begin{align*}
+\forall{C\in {\CC}} : \int_{C} P(A\mid {\CC})\dP =P(A\cap C).\maphere
+\end{align*}
+\end{bem}
+\begin{proof}
+Sei $C\in\CC$, so gilt
+\begin{align*}
+\int_{C} P(A\mid {\CC})\dP = \int_{C} \E(\Id_A\mid \CC)\dP
+= \int_{C} \Id_A\dP=\int_{\Omega} \Id_A\Id_C\dP = P(A\cap C).\qedhere
+\end{align*}
+\end{proof}
+
+\begin{bsp}
+\label{bsp:10.2}
+Sei ${\CC} = \setd{\emptyset,B,B^ {c},\Omega}$ mit $0< P(B) < 1$. Sei
+$A\in\AA$, so gilt
+\begin{align*}
+(P(A\mid {\CC}))(\omega )=
+\begin{cases}
+\frac{P(A\cap B)}{P(B)}\defr P(A\mid B), & \omega \in B\\
+\frac{P(A\cap B^{c})}{P(B^ {c})}\defr P(A\mid B^c), &
+\omega \in B^ {c},
+\end{cases}
+\end{align*}
+denn
+\begin{align*}
+(P(A\mid {\CC}))(\omega) &\overset{\text{vgl. \textsc{Bsp} \ref{bsp:10.1}}}{=}
+\E(\Id_A\mid\CC)(\omega) \\
+&=
+\begin{cases}
+\frac{1}{P(B)}\int_B \Id_A \dP = \frac{P(A\cap B)}{P(B)} = P(A\mid B), &
+\omega\in B,\\
+\frac{1}{P(B^c)}\int_{B^c} \Id_A \dP = \frac{P(A\cap B^c)}{P(B^c)} = P(A\mid
+B^c), &\omega\notin B.\bsphere
+\end{cases} 
+\end{align*}
+\end{bsp}
+
+\begin{defn}
+\label{defn:10.3}
+\begin{defnenum}
+\item
+Seien $X:(\Omega, {\AA}, P) \to (\RA,\overline{\BB})$, $Y:~(\Omega, {\AA},  P)
+\to (\Omega', {\AA}')$ Zufallsvariablen und $X$ integrierbar.
+\begin{align*}
+\E(X\mid Y)\defl\E(X\mid {Y^ {-1} ({\AA}')})
+\end{align*}
+heißt \emph{bedingte Erwartung von $X$ bei
+gegebenem $Y$}\index{Bedingte!Erwartung}.
+$Y^{-1}(\AA)$ bezeichnet hier die kleinste $\sigma$-Algebra in $\Omega$, bzgl.\
+der $Y$ messbar ist.
+\item
+Seien $X : (\Omega, {\AA}, P) \to (\RA,\overline{\BB})$,  
+$Y_{i} : (\Omega, {\AA}, P)\to (\Omega'_{i}, {\AA}'_{i})$ für $i\in\II$
+Zufallsvariablen und $X$ integrierbar. 
+
+$\CC \subset {\AA}$ sei die kleinste $\sigma$-Algebra in $\Omega $, bzgl.\ der
+alle $Y_{i}$ messbar sind, d.h.
+${\CC}= {\FF} \left(\bigcup_{i\in\II} Y^ {-1}_{i}  ({\AA}_{i})\right)$. So heißt
+\begin{align*}
+\E(X\mid (Y_{i})_{i\in\II}) \defl \E(X\mid {\CC})
+\end{align*}
+\emph{bedingte Erwartung von $X$ bei
+gegebenen~$Y_{i}$}, $i\in\II$\index{Bedingte!Erwartung}.
+\item
+Sei $A\in {\AA}$ und $Y: (\Omega, {\AA}, P) \to (\Omega' ,
+{\AA}')$ Zufallsvariable.
+\begin{align*}
+P(A\mid Y) \defl \E(\Id_{A}\mid Y)
+\end{align*}
+heißt \emph{bedingte Wahrscheinlichkeit von $A$ bei
+gegebenem $Y$}\index{Bedingte!Wahrscheinlichkeit}.\fishhere
+\end{defnenum}
+\end{defn}
+
+\begin{bem}[Bemerkungen.]
+\label{bem:10.2}
+Sei $X : (\Omega, {\AA},P)\to (\R, \overline{\BB})$ eine integrierbare
+Zufallsvariable.
+\begin{bemenum}
+\item Sei ${\CC}$ $\sigma$-Algebra in ${\AA}$. Dann gilt
+
+$(X^ {-1}(\overline{\BB}), {\CC})$ unabhängig $\Rightarrow \E(X \mid {\CC}) =
+\E X$ f.s.
+\item
+Sei $Y: (\Omega, {\AA}, P) \to (\Omega', {\AA}')$ eine Zufallsvariable. Dann
+gilt
+
+$(X,Y)$ unabhängig $ \Rightarrow \E(X\mid Y) =\E X $ f.s.\maphere
+\end{bemenum}
+\end{bem}
+\begin{proof}
+\begin{bemenum}
+\item Zu zeigen ist, dass
+\begin{align*}
+\forall C\in\CC : \int_C \E X \dP = \int_C X \dP. 
+\end{align*}
+Schreiben wir
+\begin{align*}
+\int_C \E X \dP = (\E X)\int_\Omega \Id_C \dP = (\E X)(P(C)),
+\end{align*}
+sowie
+\begin{align*}
+\int_C X\dP = \int_\Omega \Id_C X\dP = \E(\Id_C X) = \E(\Id_C)\E X,
+\end{align*}
+mit Hilfe der Unabhängigkeit, so ist die Gleichheit offensichtlich.
+\item Folgt direkt mit a).\qedhere
+\end{bemenum}
+\end{proof}
+
+\begin{prop}
+\label{prop:10.3}
+Seien $X: (\Omega, {\AA}, P)\to (\RA,\overline{\BB})$, $Y: (\Omega, {\AA}, P)
+\to (\Omega ', {\AA}')$ Zufallsvariablen. Dann existiert eine Abbildung
+\begin{align*}
+g: (\Omega ', {\AA}') \to (\R, {\BB}),
+\end{align*}
+mit $\E(X\mid Y) = g \circ Y$. $g$ ist die sog.\ \emph{Faktorisierung der
+bedingten Erwartung}\index{Faktorisierung}.
+$g$ ist eindeutig bis auf die Äquivalenz ``$=P_{Y}$-f.ü.\ ''.\maphere
+\end{prop}
+\begin{proof}
+Sei $Z\defl \E(X\mid Y)$, dann
+\begin{align*}
+Z: (\Omega,\FF(Y)) \to (\R,\BB).
+\end{align*}
+\begin{proofenum}
+\item \textit{Existenz}
+\textit{1. Schritt}. Rückführung auf Indikatorfunktionen. Sei $Z=\Id_A$ für
+ein $A\in\FF(Y)=Y^{-1}(\AA')$, also existiert ein $A'\in\AA'$, so dass
+$Y^{-1}(A') = A$.
+\begin{align*}
+\Id_{A'}(Y(\omega)) = 
+\begin{cases}
+1, & Y(\omega)\in A',\text{ d.h. }\omega\in A,\\
+0, & \text{sonst} 
+\end{cases}
+= \Id_A(\omega).
+\end{align*}
+Also ist $Z=g\circ Y$ mit $g=\Id_{A'}$.
+
+\textit{2. Schritt}. $Z$ sei nichtnegativ und einfach. Dann folgt die Existenz
+von $g$ mit $Z=g\circ Y$ direkt aus dem 1. Schritt.
+
+\textit{3. Schritt}. $Z$ sei nichtnegativ und $\CC-\BB$-messbar. Dann existiert
+einer Folge von einfachen Zufallsvariablen $Z_n$ mit $Z_n\uparrow Z$. Nach dem
+2. Schritt existieren $g_n: (\Omega',\AA')\to(\R,\BB')$ mit $Z_n = g_n\circ Y$.
+Setzen wir
+\begin{align*}
+g^* \defl \sup_{n\in\N} g_n,
+\end{align*}
+so ist $g^*$ messbar und setzten wir weiterhin
+\begin{align*}
+g = g^*\Id_{[g^*< \infty]},
+\end{align*}
+so ist $g$ reellwertig. Da $Z= \sup_{n\in\N} Z_n$, gilt auch $\Pfs$
+\begin{align*}
+Z = g\circ Y.
+\end{align*}
+\textit{4. Schritt}. Sei $Z$ messbar, so besitzt $Z$
+eine Darstellung $Z=Z_+-Z_-$, mit $Z_+,Z_-$ positiv und messbar. Nach dem 3.
+Schritt existieren Abbildungen $g_+,g_-$ mit $Z_+ = g_+\circ Y$ und $Z_- =
+g_-\circ Y$. $g\defl g_+-g_-$ ist die gesuchte Abbildung.
+\item\textit{Eindeutigkeit}.
+Es gelte $\E(X\mid Y) = g_1\circ Y \fs = g_2\circ Y \fs$ und somit
+\begin{align*}
+&\forall {C\in\FF(Y)} : \int_C g_1\circ Y \dP = \int_C
+X \dP = \int_C g_2\circ Y \dP.\\
+\Rightarrow &\forall {C'\in\AA'} : \int_{Y^{-1}(C')} g_1\circ Y \dP =
+\int_{Y^{-1}(C')} g_2\circ Y \dP.
+\end{align*}
+Nach dem Transformationssatz gilt somit
+\begin{align*}
+\forall {C'\in\AA'} : \int_{C'} g_1 \dP_Y =
+\int_{C'} g_2 \dP_Y,
+\end{align*}
+d.h. gerade
+\begin{align*}
+\forall {C'\in\AA'} : \int_{C'} (g_1-g_2) \dP_Y = 0
+\end{align*}
+und daher $g_1=g_2 \fu{P_{Y}}$\qedhere
+\end{proofenum}
+\end{proof}
+
+\begin{defn}
+\label{defn:10.4}
+Sei $X: (\Omega, {\AA}, P)\to (\RA,\overline{\BB})$  
+bzw. $A\in {\AA}$ eine integrierbare Zufallsvariable und $Y : (\Omega,
+{\AA},P)\to (\Omega ', {\AA}')$ Zufallsvariable. Sei $g$ bzw.\ $g_{A}$ eine ---
+bis auf Äquivalenz ``$=P_{Y}$ - f.ü.'' eindeutig bestimmte --- Faktorisierung
+von $\E(X|Y)$ bzw.\ von $P(A\mid Y)$.
+\begin{align*}
+\E(X\mid Y=y)\defl g(y)
+\end{align*}
+heißt \emph{bedingte Erwartung von $X$ unter der Hypothese
+$Y=y$}.\index{Bedingte!Erwartung}
+\begin{align*}
+P(A\mid Y=y) \defl g_{A}(y)
+\end{align*}
+heißt \emph{bedingte Wahrscheinlichkeit von $A$ unter der
+Hypoththese.~$Y=y$}\index{Bedingte!Wahrscheinlichkeit}
+\begin{align*}
+&\E(X\mid Y=\cdot)=g,\\
+&P(A\mid Y=\cdot )=g_{A}.\fishhere
+\end{align*}
+\end{defn}
+
+\begin{prop}
+\label{prop:10.4}
+Sei $X: (\Omega, {\AA}, P)\to (\overline{\R},
+\overline{\BB})$ bzw. $A\in {\AA}$ integrierbare Zufallsvariable und
+$Y : (\Omega, {\AA},P)\to (\Omega ', {\AA }')$ Zufallsvariable. Dann gelten
+\begin{propenum}
+\item
+$\forall {A' \in {\AA}'} : \int_{A'} \E(X\mid Y=y)
+\dP_{Y}(y) =\int_{Y^ {-1}(A')} X\dP$,
+
+insbesondere $\int_{\Omega '} \E( X \mid Y=y)\dP_{Y}(y) = \E X$.
+\item
+$\forall A'\in {\AA}' : \int_{A'} P(A\mid Y=y) \dP_{Y}(y)= P(Y^ {-1}
+(A')\cap A)$.
+
+insbesondere $\int_{\Omega '} P(A\mid Y=y)\dP_{Y}(y) = P(A)$.\fishhere
+\end{propenum} 
+\end{prop}
+
+In vielen Anwendungen ist es tatsächlicher einfacher, die bedingte Erwartung
+$\int_{\Omega '} \E( X \mid Y=y)\dP_{Y}(y)$ anstelle des Erwartungswerts
+$\E Y$ zu berechnen.
+
+\begin{proof}
+\begin{proofenum}
+\item Sei $g$ eine Faktorisierung von $\E(X\mid Y)$ (deren Existenz sichert
+Satz \ref{prop:10.3}) und $A'\in\AA'$. So gilt
+\begin{align*} 
+\int_{Y^{-1}(A')} X \dP &= \int_{Y^{-1}(A')} \E(X\mid Y)\dP
+ \overset{\text{Satz \ref{prop:10.3}}}{=} \int_{Y^{-1}(A')} g\circ Y\dP
+ \\&= \int_{A'} g(y)\dP_Y(y)\overset{\text{Def \ref{defn:10.4}}}=
+ \int_{A'} \E(X\mid Y=y) \dP_Y(y).
+\end{align*}
+\item Folgt direkt aus dem Vorangegangenen mit $X=\Id_A$.\qedhere
+\end{proofenum}
+\end{proof}
+
+\begin{bsp}
+Seien $X$ bzw. $A$ sowie $Y$ wie zuvor. Sei $y \in \Omega '$ wobei
+$\setd{y} \in {\AA}'$ und $P[Y=y]=P_{Y}(\setd{y})>0$.
+\begin{bspenum}
+\item
+$\underbrace{\E(X\mid Y=y)}_{\text{s.\ Definition \ref{defn:10.4}}}
+=
+\underbrace{ \E(X\mid [Y=y])}_{\text{s.\ \textsc{Bsp} \ref{bsp:10.1}}}$.
+\begin{proof}
+Sei also $y\in\Omega'$ fest mit $\setd{y}\in\AA'$ und $P_Y(\setd{y})>0$. Nach
+Satz \ref{prop:10.4} ist $\E(X\mid Y=y)$ eindeutig, denn für zwei
+Faktorisierungen $g_1$ und $g_2$ von $\E(X\mid Y)$ stimmen $g_1$ und $g_2$ bis
+auf eine Menge vom $P_Y$-Maß Null überein, aber $P_Y(\setd{y})>0$, also
+$g_1(y)=g_2(y)$.
+
+Sei also $g$ eine Faktorisierung von $\E(X\mid Y)$, so ist $\E(X\mid Y)=g(y)$
+unabhängig von der Wahl von $g$. Nach Satz \ref{prop:10.4}  gilt
+\begin{align*}
+&\int_{\setd{y}} g(y')\dP_Y(y') = \int_{[Y=y]} X\dP,\\
+\Rightarrow &
+g(y) = \frac{1}{P[Y=y]} \int_{[Y=y]} X\dP.\qedhere
+\end{align*}
+\end{proof}
+\item $\underbrace{P(A\mid Y=y)}_{\text{s.\ Definition \ref{defn:10.4}}}
+=
+\underbrace{P(A\mid [Y=y])}_{\text{s.\ \textsc{Bsp} \ref{bsp:10.2}}}$.\bsphere
+\end{bspenum}
+\end{bsp}
+
+\begin{prop}
+\label{prop:10.5}
+Sei $X: (\Omega, {\AA}, P) \to (\RA, \overline{\BB})$ integrierbare
+Zufallsvariable und $Y$: $(\Omega, {\AA})\to (\Omega ', {\AA}')$
+Zufallsvariable.
+\begin{propenum}
+\item
+$X=c $f.s. $\Rightarrow \E(X\mid Y=\cdot ) = c \fu{P_{Y}}$.
+\item
+$X\geq 0 $ f.s. $\Rightarrow \E(X\mid Y= \cdot) \geq 0 \fu{P_{Y}}$.
+\item
+$\E(\alpha X_{1} +\beta X_{2} \mid Y=\cdot ) = \alpha \E(X_{1}\mid Y=\cdot)
++ \beta \E(X_{2} \mid Y=\cdot ) \fu{P_{Y}}$.
+\item $X_{1} \leq X_{2}$ f.s. $\Rightarrow \E(X_{1}\mid Y=\cdot )\leq
+  \E(X_{2} \mid Y=\cdot ) \fu{P_{Y}}$.\fishhere
+\end{propenum}
+\end{prop}
+\begin{proof}
+Diese Eigenschaften ergeben sich sofort aus Satz \ref{prop:10.2} und
+Satz \ref{prop:10.3}.\qedhere
+\end{proof}
+
+
+\begin{prop}
+\label{prop:10.6}
+Seien ${\CC}\subset {\AA}$ eine Sub-$\sigma$-Algebra und $X$, $X_n$
+integrierbare Zufallsvariablen. Dann gilt:
+\begin{propenum}
+\item Ist $0 \le X_n \uparrow X \fs$, so folgt
+\begin{align*}
+\E(X_n\mid {\CC}) \to \E(X\mid {\CC}) \fs
+\end{align*}
+(Satz von der monotonen Konvergenz für bedingte Erwartungen).
+\item Ist $ X_n \to X\fs$, $|X_n| \le Y\fs$  und
+$Y$ eine integrierbare Zufallsvariable, so folgt
+\begin{align*}
+\E(X_n\mid {\CC}) \to \E(X\mid {\CC}) \fs
+\end{align*}
+(Satz von der dominierten Konvergenz für bedingte Erwartungen).\fishhere
+\end{propenum}
+\end{prop}
+\begin{proof}
+\begin{proofenum}
+\item Sei $0\le X_n \uparrow X\fs$, so folgt mit dem klassischen Satz von der
+monotonen Konvergenz, dass
+\begin{align*}
+\E \abs{X_n-X} = \E X_n - \E X \to 0.
+\end{align*}
+Außerdem folgt aus der Dreiecksungleichung oder aus Satz \ref{prop:10.7},
+\begin{align*}
+\E(\E(\abs{X_n-X}\mid \CC))
+\ge \E(\abs{\E((X_n-X)\mid \CC)})
+=
+\E(\abs{\E(X_n\mid \CC)-\E(X\mid \CC)}),
+\end{align*}
+wobei die linke Seite gegen Null konvergiert, also
+$\E(X_n\mid\CC)\overset{L^1}{\to}\E(X\mid\CC)$. Nun existiert eine Teilfolge,
+so dass $\E(X_{n_k}\mid \CC)\to \E(X\mid \CC)\fs$ und da $X_{n_k}\uparrow X\fs$
+ist auch die Konvergenz von $(\E(X_{n_k}\mid\CC))$ monoton und da
+$(\E(X_n\mid\CC))$ monoton folgt
+\begin{align*}
+\E(X_n\mid \CC)\uparrow \E(X\mid \CC).
+\end{align*}
+\item Sei $X_n\to X\fs$ Setzen wir $Z_n\defl\sup\limits_{k\ge n} \abs{X_k-X}$, so
+ist klar, dass $Z_n\downarrow 0\Pfs$ und es gilt
+\begin{align*}
+\abs{\E(X_n\mid\CC)-\E(X\mid\CC)} \le 
+\E(\abs{X_n-X}\mid\CC) \le \E(Z_n\mid\CC),
+\end{align*}
+aufgrund der Monotonie der bedingten Erwartung. Es genügt nun zu zeigen, dass
+$\E(Z_n\mid\CC)\downarrow 0\Pfs$
+
+Da $Z_n \downarrow 0\Pfs$, konvergiert auch $\E(Z_n\mid\CC)$ $P$-f.s. punktweise
+gegen eine nichtnegative Zufallsvariable. Sei also $U\defl \lim\limits_{n\to\infty}
+\E(Z_n\mid\CC)$. Nun gilt
+\begin{align*}
+0 \le Z_n \le \sup_{n\in\N} \abs{X_n} + \abs{X} \le 2 Y.
+\end{align*}
+Wir können schreiben
+\begin{align*}
+\E(U) = \E(\E(U\mid\CC)) \le \E(\E(Z_n\mid\CC)) = \E(Z_n)\to 0,
+\end{align*}
+nach dem klassischen Satz von der dominierten Konvergenz, denn die $Z_n$
+konvergieren f.s. und werden durch eine integrierbare Zufallsvariable
+majorisiert. Somit ist $U=0\fs$\qedhere
+\end{proofenum}
+\end{proof}
+
+\begin{prop}[Jensen'sche Ungleichung]
+\label{prop:10.7}
+Sei ${\CC} \subset {\AA}$ eine Sub-$\sigma$-Algebra, $I \subset \R$ ein
+Intervall, $f: I \to \R$ eine konvexe Funktion und $X:\Omega\to I$ eine
+integrierbare Zufallsvariable. Dann ist $\E(X\mid {\CC}) \in I$ fast sicher.
+Ist $f(X)$ integrierbar, so gilt
+\begin{align*}
+f(\E(X\mid {\CC})) \le \E(f(X)\mid {\CC}) \fs\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Falls $a \le X$ bzw. $X\le b$, so ist $a\le \E(X\mid\CC)$ bzw. $\E(X\mid\CC)
+\le b$ und daher $\E(X\mid\CC)\in I$.
+
+Eine konvexe Funktion $f:I\to\R$ besitzt eine Darstellung als
+\begin{align*}
+f(x) = \sup_{v\in V} v(x),\qquad V\defl \setdef{v: I\to\R}{v(t)=a+bt\le f(t),\quad
+t\in I}.
+\end{align*}
+Somit gilt aufgrund der Linearität
+\begin{align*}
+f(\E(X\mid\CC)) = \sup\limits_{v\in V}v(\E(X\mid\CC))
+= \sup\limits_{v\in V}(\E(v(X)\mid\CC)).
+\end{align*}
+Nun ist $\sup\limits_{v\in\V} v(X)\le f(X)$ und somit,
+\begin{align*}
+\sup\limits_{v\in V}(\E(v(X)\mid\CC)) \le \E(f(X)\mid\CC).\qedhere
+\end{align*}
+%TODO: Bild konvexe Funktion, Geraden an zwei Stützpunkte, sodass geraden f
+% nicht schneiden (höchstens berühren)
+\end{proof}

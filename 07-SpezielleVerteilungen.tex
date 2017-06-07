@@ -1,0 +1,472 @@
+\chapter{Spezielle Verteilungen}
+\label{chap:7}
+
+Wir wollen in diesem Kapitel die wesentlichen Eigenschaften der bisher
+vorgestellten Verteilungen zusammenfassen.
+
+\section{Diskrete Verteilungen}
+
+Verteilungen, die auf höchstens abzählbare Mengen konzentriert sind, heißen
+\emph{diskret}. Nimmt eine Zufallsvariable nur endlich oder
+abzählbar viele Werte an, so ist ihre Verteilung $P_X$ diskret.
+
+\begin{defn}
+\label{defn:7.1}
+Als \emph{Binomialverteilung} $b(n,p)$ mit Parametern $n\in
+\N$, $\, p\in (0,1)$ oder auch $[0,1]$ wird ein W-Maß auf ${\BB}$
+bezeichnet, das auf $\{0,1,\ldots,n\}$ konzentriert ist und die Zähldichte
+\begin{align*}
+k\mapsto b(n,p;k)\defl {n\choose k} p^ {k}(1-p)^ {n-k}, \;\, k\in \N_{0}
+\end{align*}
+besitzt.\fishhere
+\end{defn}
+
+\begin{prop}
+\label{prop:7.1}
+Sei $n\in \N$, $\, p\in [0,1]$; $\, q\defl 1-p$.\\[-7mm]
+\begin{propenum}
+\item
+Ist $(X_{1}, \ldots , X_{n})$ ein $n$-Tupel unabhängiger reeller Zufallsvariablen mit
+\begin{align*}
+P[X_{i} =1] = p,\qquad P[X_{i}=0] = q,\qquad i=1,\ldots,n
+\end{align*}
+d.h. mit jeweiliger $b(1,p)$-Verteilung, so ist $\sum^{n}_{i=1} X_{i}$ \; $b(n,p)$-verteilt.
+\item Für eine Zufallsvariable $X$ mit $P_{X}= b(n,p)$ gilt
+\begin{align*}
+\E X=np,\qquad\V(X) =npq.
+\end{align*} 
+\item
+$b(n,p)$ hat die erzeugende Funktion $g$ mit $g(s) = (q+ps)^ {n}$.
+\item
+Für $n_{1,2} \in \N$ gilt
+\begin{align*}
+b(n_{1},p) \ast b(n_{2},p) = b (n_{1}+n_{2},p),
+\end{align*}
+d.h.\ für zwei unabhängige Zufallsvariablen $X_{1}$, $X_{2}$ mit
+$P_{X_{1}}=b(n_{1},p)$ und $P_{X_{2}}= b(n_{2},p)$ gilt
+$ P_{X_{1}+X_{2}}=b(n_{1}+n_{2},p)$.\fishhere
+\end{propenum}
+\end{prop}
+
+\begin{bem}
+\label{bem:7.1}
+Das $n$-Tupel $(X_{1},\ldots, X_{n})$ von Zufallsvariablen aus Satz
+\ref{prop:7.1} beschreibt ein $n$-Tupel von Bernoulli-Versuchen, d.h.\
+Zufallsexperimenten ohne gegenseitige Beeinflussung mit Ausgängen 1
+(``Erfolg'') oder 0 (``Misserfolg'') und jeweiliger Erfolgswahrscheinlichkeit
+$p$; $\sum^ {n}_{k=1} X_{i}$ gibt die Anzahl der Erfolge in $n$
+Bernoulli-Versuchen an.\maphere
+\end{bem}
+
+\begin{defn}
+\label{defn:7.2}
+Als \emph{Poisson-Verteilung} $\pi (\lambda )$ mit
+Parameter $\lambda > 0$ wird ein W-Maß auf ${\BB}$ bezeichnet, das auf
+$\N_{0}$ konzentriert ist und die Zähldichte
+\begin{align*}
+k\mapsto \pi (\lambda ; k) \defl \e^ {-\lambda }\frac{\lambda ^ {k}}{k!} \, , \;\,
+k\in \N_{0}
+\end{align*}
+besitzt.\fishhere
+\end{defn}
+
+\begin{prop}
+\label{prop:7.2}
+Sei $\lambda >0$.\\[-7mm]
+\begin{propenum}
+\item
+Ist $(b(n,p_{n}))_n$ eine Folge von Binomialverteilungen mit $n\,p_{n}\to
+\lambda$ für $n\to~\infty$, dann konvergiert
+\begin{align*}
+b(n,p_{n}; k)\to \pi (\lambda; k) \qquad (n\to \infty) \mbox{ für alle } k\in
+\N_{0}.
+\end{align*}
+\item
+Für eine Zufallsvariable $X$ mit $P_{X}= \pi (\lambda ) $ gilt
+\begin{align*}
+\E X =\V(X) =\lambda.
+\end{align*}
+\item
+$\pi (\lambda )$ hat die erzeugende Funktion $g$ mit $g(s) = \e^ {-\lambda
++\lambda s}$.
+\item
+Für $\lambda _{1,2} > 0$ gilt
+\begin{align*}
+\pi (\lambda _{1})\ast \pi (\lambda _{2}) = \pi (\lambda _{1} +\lambda _{2})\,
+.\fishhere
+\end{align*}
+\end{propenum}
+\end{prop}
+
+\begin{bem}
+\label{bem:7.2}
+Bei einer rein zufälligen Aufteilung von $n$
+unterscheidbaren Teilchen auf $m$ gleichgroße mehrfach besetzbare Zellen in
+einem Euklidischen Raum wird die Anzahl der Teilchen in einer vorgegebenen
+Zelle durch eine $b(n,\frac{1}{m})$-verteilte Zufallsvariable angegeben.
+
+Der Grenzübergang $n\to \infty$, $m\to \infty$ mit {\it Belegungsintensität}
+$\frac{n}{m} \to \lambda > 0 $ führt gemäß Satz \ref{prop:7.2}a zu einer
+$\pi(\lambda)$-verteilten Zufallsvariable.\maphere
+\end{bem}
+
+\begin{defn}
+\label{defn:7.3}
+Als \emph{negative Binomialverteilung} oder \emph{
+Pascal-Verteilung} $Nb (r,p)$ mit Parametern $r\in \N$, $p\in (0,1)$
+wird ein W-Maß auf ${\BB}$ (oder auch $\overline{\BB}$) bezeichnet, das
+auf $\N_{0}$ konzentriert ist und --- mit $q\defl 1-p$ --- die Zähldichte
+\begin{align*}
+k\mapsto Nb(r,p;k) \defl {r+k-1\choose k}p^ {r} q^ {k},\quad k\in \N
+\end{align*}
+besitzt. Speziell wird $Nb (1,p)$ --- mit Zähldichte
+$k\mapsto p(1-p)^ {k},\; k\in \N_{0}$ ---
+als \emph{geometrische Verteilung} mit Parameter $p\in (0,1)$
+bezeichnet.\fishhere
+\end{defn} 
+
+\begin{prop}
+\label{prop:7.3}
+Sei $r \in \N$, $p\in (0,1)$, $q\defl 1-p$.
+\begin{propenum}
+\item
+Sei $(X_{n})_{n\in \N}$ eine unabhängige Folge von $b(1,p)$-verteilten
+Zufallsvariablen. Die erweitert-reelle Zufallsvariable
+\begin{align*}
+X\defl \inf\setdef{n\in \N}{\sum\limits^{n}_{k=1} X_{k}=r}-r
+\end{align*}
+mit $\inf \emptyset \defl\infty $ ist $Nb(r,p)$-verteilt.
+\item
+Für eine Zufallsvariable $X$ mit $P_{X} =Nb (r,p)$ gilt
+\begin{align*}
+\E X =\frac{rq}{p},\qquad \V(X) = \frac{rq}{p^ {2}}.
+\end{align*}
+\item
+$Nb(r,p)$ hat die erzeugende Funktion $g$ mit $g(s) = p^ {r} (1-qs)^ {-r}$.
+\item Für $r_{1,2} \in \N$  gilt
+\begin{align*}
+Nb(r_{1},p)\ast Nb (r_{2},p) =Nb (r_{1}+r_{2},p).
+\end{align*}
+Die Summe von $r$  unabhängigen $Nb(1,p)$-verteilten Zufallsvariablen ist somit
+$Nb(r,p)$-verteilt.\fishhere
+\end{propenum}
+\end{prop}
+
+\begin{bem}
+\label{bem:7.3}
+Für die Folge $(X_{n})$ in Satz \ref{prop:7.3}a wird durch die
+erweitert-reelle Zufallsvariable
+\begin{align*}
+T\defl \inf \setdef{n\in \N}{\sum\limits^ {n}_{k=1} X_{k}=r}
+\end{align*}
+mit $\inf \emptyset \defl\infty$ die {\it Wartezeit} bis zum $r$-ten
+Auftreten der Eins in $(X_{n})$ und durch die erweitert-reelle Zufallsvariable $X=T-r$  die
+Anzahl der Misserfolge bis zum $r$-ten Erfolg bei der zu $(X_{n})$ gehörigen
+Folge von Bernoulli-Versuchen angegeben.\maphere
+\end{bem}
+
+\begin{defn}
+\label{defn:7.4}
+Als \emph{hypergeometrische Verteilung} mit Parametern 
+$n,r, s\in \N$, wobei $n\leq r+s$, wird ein W-Maß auf ${\BB}$
+bezeichnet, das auf $\{0,1,\ldots,n\}$ --- sogar auf $\{\max \,(0,n-s),\ldots
+,\min\, (n,r)\}$
+--- konzentriert ist und die Zähldichte
+\begin{align*}
+k\mapsto
+\begin{cases}
+{\dfrac{{r\choose k} {s\choose n-k}}{{r+s\choose n}} }, & \quad
+k=0,1,\ldots,n\\[2mm]
+0, & \quad k=n+1, n+2,\ldots
+\end{cases}
+\end{align*}
+
+besitzt.\fishhere
+\end{defn}
+
+\begin{bem}
+\label{bem:7.4}
+Werden aus einer Urne mit $r$ roten und $s$ schwarzen
+Kugeln rein zufällig $n$ Kugeln ohne Zurücklegen gezogen ($n,r,s$ wie in
+Definition \ref{defn:7.4}), so wird die Anzahl der gezogenen roten Kugeln durch
+eine Zufallsvariable angegeben, die eine hypergeometrische Verteilung mit
+Parametern $n,r,s $ besitzt. Anwendung der hypergeometrischen Verteilung in der
+Qualitätskontrolle.\maphere
+\end{bem}
+
+\clearpage
+
+\section{Totalstetige Verteilungen}
+
+Totalstetige Verteilungen sind die Verteilungen, die eine Dichtefunktion
+\begin{align*}
+f: \R \to \R_+
+\end{align*}
+besitzen. Sie sind dann natürlich auch stetig, denn für ihre
+Verteilungsfunktion gilt
+\begin{align*}
+F(t) = \int_{-\infty}^t f(x)\dx,
+\end{align*}
+aber nicht jede stetige Verteilung besitzt eine Dichtefunktion. Mit Hilfe der
+Dichtefunktion können wir Randverteilungen, Erwartungswert, Varianz, Momente
+\ldots\ sehr leicht berechnen. Totalstetige Verteilungen sind also
+sehr angenehm.
+
+\begin{defn}
+\label{defn:7.5}
+Als \emph{Gleichverteilung auf $ (a,b)$} mit $-\infty < a < b < \infty $
+wird ein W-Maß auf ${\BB}$ bezeichnet, das eine Dichte
+\begin{align*}
+f=\frac{1}{b-a}\Id_{(a,b)}
+\end{align*}
+besitzt.\fishhere
+\end{defn}
+
+\begin{prop}
+\label{prop:7.4}
+Für eine Zufallsvariable $X$ mit Gleichverteilung auf $(a,b)$ gilt
+\begin{align*}
+\E X=\frac{a+b}{2},\qquad \V(X) = \frac{(b-a)^{2}}{12}.\fishhere
+\end{align*}
+\end{prop} 
+
+\begin{defn}
+\label{defn:7.6}
+Als (eindimensionale) \emph{Normalverteilung} oder
+\emph{Gauß-Verteilung} $N(a,\sigma ^ {2})$  mit Parametern $a\in \R$,
+$\sigma > 0$ wird ein W-Maß auf ${\BB}$ bezeichnet, das eine Dichte $f$ mit
+\begin{align*}
+f(x) = \frac{1}{\sqrt{2 \pi }\sigma}\e^ {-\frac{(x-a)^ {2}}{2\sigma ^ {2}}}\, ,
+\quad x\in \R
+\end{align*}
+besitzt. Speziell heißt $N(0,1)$ \emph{standardisierte
+Normalverteilung}.\fishhere
+\end{defn}
+
+\begin{bem}[Bemerkungen.]
+\label{bem:7.5}
+\begin{bemenum}
+\item
+Sei $f$ wie in Definition \ref{defn:7.6}. Der Graph von $f$ heißt Gaußsche
+Glockenkurve. Im Fall $a=0$ ist $f(0) ={\displaystyle\frac{1}{\sqrt{2 \pi
+}\sigma}}$ und hat $f$ zwei Wendepunkte ${\displaystyle(\pm \sigma ;
+\frac{1}{\sqrt{2 \pi e}\sigma })}\, $.
+\begin{figure}
+\centering
+\begin{pspicture}(-2.8,-1)(2.8,3)
+
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-2.7,-0.5)(2.7,2.5)[\color{gdarkgray}$t$,-90][\color{gdarkgray}$\ph(t)$,0]
+
+\psplot[linewidth=1.2pt,%
+	     linecolor=darkblue,%
+	     algebraic=true]%
+	     {-2.5}{2.5}{2*(2.71828)^(-(3/2.5*x)^2/2)}
+	     
+\psxTick(0.91){\color{gdarkgray}\sigma}
+\psxTick(-0.91){\color{gdarkgray}-\sigma}
+
+\psyTick(2){\color{gdarkgray}\frac{1}{\sqrt{2\pi}\sigma}}
+
+\psline[linestyle=dashed](0.913,0)(0.913,1.1)
+\psline[linestyle=dashed](-0.913,0)(-0.913,1.1)
+
+\rput(1.4,1.4){\color{gdarkgray}$\ph$}
+\end{pspicture}
+\caption{Gaußsche Glockenkurve mit Wendepunkten}
+\end{figure}
+\item
+Dichte- und die Verteilungsfunktion $\phi $ von $N(0,1)$ sind tabelliert.
+\item
+Ist die Zufallsvariable $X$ $N(a,\sigma ^ {2})$-verteilt, so ist
+${\displaystyle\
+\frac{X-a}{\sigma }}$ $N(0,1)$-verteilt. Es gilt hierbei
+\begin{center}
+$\begin{array}{lllll}
+P[a-\sigma \leq X\leq a+\sigma ]& = & 2\phi (1) -1& \approx & 0,683\\[2mm]
+P[a-2\sigma \leq X\leq a+2\sigma ]& = & 2\phi (2) -1& \approx & 0,954\\[2mm]
+P[a-3\sigma \leq  X\leq a+3\sigma ]& =  & 2\phi (3) -1& \approx & 0,997\, .
+\end{array}$
+\end{center}
+\item
+Anwendung der Normalverteilung z.B.\ in der Theorie der
+Beobachtungsfehler.\maphere
+\end{bemenum}
+\end{bem}
+
+\begin{prop}
+\label{prop:7.5}
+ Sei $a \in \R$, $\sigma > 0$.
+\begin{propenum}
+\item Für eine Zufallsvariable $X$ mit Verteilung $N(a,\sigma ^ {2})$ gilt:
+\begin{align*}
+\E(X-a)^ {2k-1} = 0,\qquad \E(X-a)^ {2k} =\sigma ^ {2k} \prod
+\limits^ {k}_{j=1} (2j-1), \quad k\in \N\, ;
+\end{align*}
+insbesondere $\E X =a$, $\V(X) = \sigma ^ {2}$. Die Zufallsvariable $Y=cX+b$ mit
+$ 0 \neq c\in \R$, $\, b\in \R$ hat die Verteilung $N(ca+b,\,\; c^ {2} \sigma
+^{2})$.
+\item
+Die charakteristische Funktion von $N(a,\sigma ^ {2})$ ist $\varphi $ mit
+\begin{align*}
+\ph (u) = \e^ {iau} \e^ {-\frac{\sigma ^ {2} u^ {2}}{2}}\, .
+\end{align*}
+\item
+Für $a_{1,2} \in \R$, $\sigma _{1,2} >0$ gilt
+\begin{align*}
+N(a_{1}, \sigma ^ {2}_{1}) \ast N(a_{2},\sigma ^ {2}_{2}) = N (a_{1} +a_{2},
+\sigma ^ {2}_{1} +\sigma ^ {2}_{2})\, .\fishhere
+\end{align*}
+\end{propenum}
+\end{prop}
+
+\begin{defn}
+\label{defn:7.7}
+Als \emph{Exponentialverteilung} $\exp (\lambda)$ mit
+Parameter $\lambda >0$ wird ein W-Maß auf ${\BB}$ oder $\overline{\BB}$
+bezeichnet, das eine Dichtefunktion $f$ mit
+\begin{align*}
+f(x)=
+\begin{cases}
+\lambda \e^ {-\lambda x}, & x>0,\\
+0, & x\leq 0,
+\end{cases}
+\end{align*}
+besitzt.\fishhere
+\end{defn}
+
+\begin{prop}
+\label{prop:7.6}
+Sei $\lambda >0$.
+\begin{propenum}
+\item
+Sei $X$ eine erweitert-reelle Zufallsvariable, deren Verteilung auf
+$\overline{\R}_{+}$ konzentriert sei, mit $P[0<X<\infty] >0$.
+$X$ erfüllt
+\begin{align*}
+\forall s,t\in (0,\infty ) :
+P[X>t+s\mid X>s] = P[X>t].
+\end{align*}
+genau dann, wenn $P_{X}$  eine Exponentialverteilung ist. Diese Eigenschaft
+heißt ``\emph{Gedächtnislosigkeit}''.
+\item Für eine Zufallsvariable $X$ mit $P_{X} = \exp (\lambda ) $ gilt
+\begin{align*}
+\E X = \frac{1}{\lambda}, \qquad \V(X) = 
+\frac{1}{\lambda ^ {2}}.
+\end{align*}
+\item
+$\exp (\lambda )$ hat die charakteristische Funktion $\varphi $  mit
+\begin{align*}
+\ph (u) = {\displaystyle \frac{\lambda}{\lambda -iu}}.\fishhere
+\end{align*}
+\end{propenum}
+\end{prop}
+
+\begin{bem}
+\label{bem:7.6}
+Die zufällige Lebensdauer eines radioaktiven Atoms wird
+durch eine exponentialverteilte Zufallsvariable angegeben.\maphere
+\end{bem}
+
+\begin{defn}
+\label{defn:7.8}
+Als \emph{Gamma-Verteilung} $\Gamma _{\lambda, \nu}$ mit
+Parametern $\lambda, \nu >0$ wird ein W-Maß auf ${\BB}$ oder $\overline{\cal
+B}$ bezeichnet, das eine Dichtefunktion $f$ mit
+\begin{align*}
+f(x) = \left\{ \begin{array}{ll}
+{\displaystyle\frac{\lambda ^ {\nu}}{\Gamma (\nu)}}x^ {\nu -1} \e^ {-\lambda
+x},& x>0\\[2mm]
+0 ,& x\leq 0
+\end{array}\right.
+\end{align*}
+besitzt. Hierbei gilt $\Gamma _{\lambda,1} = \exp (\lambda)$. $\Gamma
+_{\frac{1}{2}, \frac{n}{2}}$ wird als Chi-Quadrat-Verteilung $\chi ^ {2}_{n}$ mit $n (\in
+\N)$ Freiheitsgraden bezeichnet.\fishhere
+\end{defn}
+
+\begin{prop}
+\label{prop:7.7}
+Seien $\lambda, \nu  >0,\;\, n\in \N$.
+\begin{propenum}
+\item
+Für eine Zufallsvariable $X$ mit $P_{X}=\Gamma _{\lambda, \nu}$ gilt $\E X
+=\frac{\nu}{\lambda}$, $\V(X) = \frac{\nu}{\lambda ^ {2}}\, .$
+\item
+$\Gamma _{\lambda , \nu}$ hat die charakteristische Funktion $\varphi $ mit
+\begin{align*}
+\ph(u) = {\displaystyle\left( \frac{\lambda }{\lambda -iu}\right)^ {\nu}}.
+\end{align*}
+\item
+Für $\nu _{1,2} >0$ gilt
+\begin{align*}
+\Gamma _{\lambda , \nu _{1}}\ast \Gamma _{\lambda , \nu _{2}} = \Gamma _{\lambda
+, \nu _{1}+\nu_{2}}.
+\end{align*}
+Insbesondere ist $\Gamma _{\lambda , n }$ die $n$-fache Faltung von $\exp
+(\lambda )$.
+\item
+Die Summe der Quadrate von $n$ unabhängigen jeweils $N(0,1)$-verteilten reellen
+Zufallsvariablen ist $\chi^ {2}_{n}$-verteilt.\fishhere
+\end{propenum}
+\end{prop}
+
+\begin{bem}
+\label{bem:7.7}
+Sind $X,Y$ zwei unabhängige reelle Zufallsvariablen mit $P_{X}=N(0,1)$
+und $P_{Y}=\chi ^ {2}_{n}$, so wird die Verteilung der Zufallsvariablen
+$\dfrac{X}{\sqrt{Y/n}}$ als \emph{$t$
+-Verteilung} oder \emph{Student-Verteilung} $t_n$ bzw.\ $St_{n}$  mit $n$
+Freiheitsgraden bezeichnet $(n\in \N)$.
+$t_1$ bzw.\ $St_{1}$ ist eine sogenannte \emph{Cauchy-Verteilung}
+--- Anwendung von $\chi^ {2}_{n}$ und $St_{n}$ in der Statistik.\maphere
+\end{bem}
+
+Sei $\setdef{T_{n}}{n\in \N}$ eine unabhängige Folge
+nichtnegativ-reeller Zufallsvariablen
+(d.h.\ $T_{i}$ und~$T_{j}$ haben jeweils dieselbe Verteilung)
+mit $P[T_{n}=0] < 1$.
+
+Definiere die Zufallsvariable 
+$N_{t}\defl \sup \setdef{n\in \N}{T_{1} +\ldots +T_{n} \leq t}$ für $t\in\R_{+}$
+und der Konvention $\sup \emptyset = 0$.
+
+\begin{bsp}
+In einem technischen System wird ein Bauelement mit endlicher
+zufälliger Lebensdauer bei Ausfall durch ein gleichartiges Element ersetzt. Die
+einzelnen Lebensdauern seien Realisierung der Zufallsvariablen $T_{n}$. $N_{t}$ gibt die
+Anzahl der Erneuerungen im Zeitintervall $[0,t]$ an.\bsphere
+\end{bsp}
+
+\begin{prop}
+\label{prop:7.8}
+Ist --- mit den obigen Bezeichnungen --- $T_{n}$ $\exp (\lambda
+)$-verteilt $(\lambda > 0)$, so ist $N_{t}$ $\pi (\lambda t)$-verteilt, $t\in
+\R_{+}$.\fishhere
+\end{prop}
+\begin{proof}
+Setze
+$S_k\defl T_1+\ldots+T_k$ mit $k\in\N$, wobei $S_0=0$. Gesucht ist nun
+\begin{align*}
+P[N_t = k] = P[S_k\le t, S_{k+1}> t] = P[S_k\le t]-P[S_{k+1}\le t],
+\end{align*}
+denn $[S_{k+1}> t]=[S_{k+1}\le t]^c$ und somit ist
+\begin{align*}
+[S_k\le t]\cap[S_{k+1}\le t]^c = [S_k\le t]\setminus[S_{k+1}\le t].
+\end{align*}
+Nun ist $S_k$ $\Gamma_{\lambda,k}$ verteilt und $S_{k+1}$
+$\Gamma_{\lambda,k+1}$ verteilt. Für die Dichte erhalten wir somit,
+\begin{align*}
+P[N_t = k] &= 
+\int_0^t \frac{\lambda^k}{(k-1)!}x^{k-1}\e^{-\lambda x}\dx-
+\int_0^t \frac{\lambda^{k+1}}{k!}x^{k}\e^{-\lambda x}\dx\\
+&= \e^{-\lambda t}\frac{(\lambda t)^k}{k!}
+\end{align*}
+Der letzte Schritt folgt durch Differenzieren der Integrale nach $t$,
+Zusammenfassen und anschließendes Integrieren.\qedhere
+\end{proof}
+\begin{bem}
+\label{bem:7.8}
+Die Familie $\{N_{t}\mid t\in \R_{+}\}$ aus Satz
+\ref{prop:7.8} ist ein sogenannter \emph{Poisson-Prozess}.\maphere
+\end{bem} 

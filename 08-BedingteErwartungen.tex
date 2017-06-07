@@ -1,0 +1,860 @@
+% \section{Bedingte Erwartungen}
+% 
+% {\bf Satz 8.1.} W-Raum $(\Omega, {\cal A }, P)$. {\bf Integrierbare } Zufallsvariable
+% $X$: $(\Omega, \AA,P)\to (\overline{\mathbb{R}}, \overline{\BB})$.
+% $\sigma $-Algebra ${\CC} \subset \AA$. Dann existiert  eine Zufallsvariable $Z : 
+% (\Omega, \AA, P) \to (\mathbb{R},{\BB})$ mit folgenden Eigenschaften:
+% \begin{enumerate}
+% \item[($\ast$)]
+% $Z$ ist integrierbar und ${\CC}$-${\BB}$-messbar,
+% \item[($\ast\ast$)]
+% ${\displaystyle\mathop{\forall}\limits_{C\in {\CC}} \;\,\int_{C}X\,dP
+% = \int_{C}Z\,dP\, . }$
+% \end{enumerate}
+% $Z$ ist eindeutig bis auf die Äquivalenz ``= Rest$\,_{\CC}$ $P$-f.ü.''.\\
+% 
+% {\bf Definition 8.1.} W-Raum $(\Omega, \AA,P)$. Integrierbare Zufallsvariable $X$:
+% $(\Omega, \AA,P)\to (\overline{\mathbb{R}}, \overline{\BB})$.
+% $\sigma$-Algebra ${\CC   }\subset \AA$. Die Äquivalenzklasse (im oberen 
+% Sinne) der Zufallsvariablen $Z$: $(\Omega , \AA, P) \to (\mathbb{R} , {\BB})$ mit
+% $(\ast )$ und $(\ast\ast )$ --- oder auch ein Repräsentant dieser 
+% Äquivalenzklasse --- heißt {\bf bedingte Erwartung von $X$ bei gegebenem ${\CC}$}
+% \ldots $E(X\mid {\CC})$. Häufig wird ein Repräsentant dieser Äquivalenzklasse
+% als eine Version von $E(X\mid {\CC})$ bezeichnet.\\
+% 
+% $E(X\mid {\CC})$ ist eine ``Vergröberung'' von $X$.\\
+% 
+% Beispiele
+% \begin{itemize}
+% \item[a)] ${\CC} = \AA \ldots E(X\mid {\CC}) =   X $ f.s.
+% \item[b)] ${\CC} =  \{\emptyset, \Omega \} \ldots E(X\mid {\CC}) = EX$
+% \item[c)] ${\CC} = \{\emptyset, B, B^ {c},\Omega \}$ mit $0<P(B)<1$.
+% $$
+% (E(X\mid {\CC}))(\omega)=
+% \left\{ \begin{array}{l}
+% {\displaystyle\frac{1}{P(B)}} {\displaystyle \int_{B}} X\,dP \defr E(X\mid B), \;\,
+% \omega \in B\\[6mm]
+% {\displaystyle\frac{1}{P(B^ {c})}} {\displaystyle\int_{B^{c}}}X\,dP, \;\, \omega
+% \in B^ {c} \end{array}
+% \right.
+% $$
+% $E(X\mid B)$ heißt {\bf bedingter Erwartungswert von $X$ unter der Hypothese $B$}.\\
+% \end{itemize}
+% 
+% {\bf Satz 8.2.} W-Raum $(\Omega, \AA, P)$. $X, X_{i}$ integrierbar; 
+% $\sigma$-Algebra ${\CC} \subset \AA$; $c,\alpha _{1,2} \in \mathbb{R}$.
+% \begin{enumerate}
+% \item[a)] ${\displaystyle \mathop{\forall}\limits_{C\in {\CC}}\;\, \int_{C} 
+% E(X\mid {\CC})dP = \int_{C} X\,dP}$
+% \item[b)]
+% $X=c$ P-f.s. $\Longrightarrow E(X\mid {\CC})=c$ f.s.
+% \item[c)]
+% $X\geq 0$ P-f.s. $\Longrightarrow E(X\mid {\CC}) \geq 0$ f.s.
+% \item[d)]
+% $E(\alpha _{1} X_{1} +\alpha _{2} X_{2} \mid {\CC}) = \alpha _{1} E(X_{1} 
+% \mid {\CC})+\alpha _{2}E (X_{2} \mid {\CC})$ f.s.
+% \item[e)]
+% $X_{1} \leq X_{2} $ P-f.s. $\Longrightarrow E(X_{1} \mid {\CC})\leq E(X_{2}
+% \mid {\CC})$ f.s.
+% \item[f)]
+% $X$ ${\CC}$-${\BB}$-messbar $\Longrightarrow X=E(X\mid {\CC})$ f.s.
+% \item[g)]
+% $X$ integrierbar, $Y$ ${\CC}$-${\BB}$-messbar, $XY$ integrierbar $\Longrightarrow E(XY\mid 
+% {\CC})= YE (X\mid {\CC})$ f.s.
+% \item[g')]
+% $X,X'$ integrierbar, $XE(X'\mid {\CC})$ integrierbar \\
+% $\Longrightarrow E(XE(X'\mid {\cal 
+% C})\mid {\CC})=E( X\mid {\CC})E(X'\mid {\CC})$ f.s.
+% 
+% \item[h)] $\sigma$-Algebra ${\CC}_{1,2}$ mit ${\CC}_{1} \subset {\cal
+%     C}_{2} \subset \AA$, $X$ integrierbar
+% 
+% \hspace*{1.5cm} $E(E(X\mid {\CC}_{1})\mid {\CC}_{2})=E(X\mid{\cal
+%   C}_{1})$ f.s.
+% 
+% \hspace*{1.5cm} $E(E(X\mid {\CC}_{2})\mid {\CC}_{1}) = E (X\mid {\cal
+%   C}_{1})$ f.s.  
+% 
+% Hier f.s. \ldots Rest$\,_{{\CC}_{2}}$ P-f.s.\ bzw.\ 
+% Rest$\,_{{\CC}_{1}}$ P-f.s.\\
+% \end{enumerate}
+% 
+% {\bf Definition 8.2.} W-Raum $(\Omega, \AA, P)$. $\sigma$-Algebra
+% ${\CC}\subset \AA$. $A\in \AA$.\\
+% $P(A\mid {\CC})\defl E(\chi _{A}\mid {\CC})$ heißt {\bf bedingte
+%   Wahrscheinlichkeit von $A$ bei gegebenem ${\CC}$}.\\
+% 
+% {\bf Bemerkung 8.1.} Zu Definition 8.2.
+% $$
+% \mathop{\forall}\limits_{C\in {\CC}}\;\, \int_{C} P(A\mid  {\CC})\,dP 
+% =P(A\cap C).
+% $$
+% 
+% \bigskip
+% 
+% {\bf Beispiel}. ${\CC} = \{\emptyset,B,B^ {c},\Omega \}$ mit $0< P(B) < 1$.
+% $$
+% (P(A\mid {\CC}))(\omega )= \left\{
+% \begin{array}{l}
+% {\displaystyle\frac{P(A\cap B)}{P(B)}}\defr P(A\mid B), \;\, \omega \in B\\[6mm]
+% {\displaystyle\frac{P(A\cap B^{c})}{P(B^ {c})}}\defrP(A\mid B^c), \;\, 
+% \omega \in B^ {c}\, .
+% \end{array}\right.
+% $$
+% 
+% \bigskip
+% 
+% {\bf Definition 8.3.} W-Raum $(\Omega, \AA, P)$.
+% \begin{enumerate}
+% \item[a)]
+% Integrierbare Zufallsvariable $X$: $(\Omega, \AA, P) \to (\overline{\mathbb{R}}, 
+% \overline{\BB})$. Zufallsvariable $Y$: $(\Omega, \AA,  P) \to (\Omega', {\cal 
+% A}')$.\\
+% $E(X\mid Y)\deflE(X\mid\underbrace{Y^ {-1} (\AA')})$ \ldots 
+% {\bf bedingte Erwartung von $X$ bei gegeb.~$Y$}.\\
+% \hspace*{1cm} [kleinste $\sigma$-Algebra in $\Omega$, bzgl.\ der $Y$  messbar 
+% ist \ldots ${\cal F}(Y)(\subset \AA)$]
+% \item[b)]
+% Integrierbare\ Zufallsvariable $X$: $(\Omega, \AA, P) \to (\overline{\mathbb{R}},
+% \overline{\BB})$. Zufallsvariablen  $Y_{i}$: $ (\Omega, \AA, P)\to (\Omega'_{i}, 
+% \AA'_{i})\;\, (i\in I) $
+% 
+% ${\CC} (\subset \AA)$ sei die kleinste
+% $\sigma$-Algebra in $\Omega $, bzgl.\ der alle $Y_{i}$ messbar sind 
+% 
+% $[{\CC}= 
+% {\cal F} (\mathop{\cup}\limits_{i\in I} Y^ {-1}_{i}  (\AA_{i})) \ldots 
+% {\cal F} (Y_{i},\,\; i\in I)]$
+% 
+% $E(X\mid (Y_{i})_{i\in I}) \defl E(X\mid {\CC})$ \ldots 
+% {\bf bedingte Erwartung von $X$ bei gegebenem~$Y_{i},\;\, i\in I$}.
+% \item [c)]
+% $A\in \AA$; Zufallsvariable $Y$: $ (\Omega, \AA, P) \to (\Omega' , \AA')$.
+% 
+% $P(A\mid Y) \defl E(\chi _{A}\mid Y)$ \ldots 
+% {\bf bedingte Wahrscheinlichkeit von $A$ bei gegeb.~$Y$}.
+% \end{enumerate}
+% 
+% %\newpage
+% 
+% {\bf Bemerkung 8.2.} Integrierbare\ Zufallsvariable $X$: $(\Omega, \AA,P)\to 
+% (\overline{\mathbb{R}}, \overline{\BB})$.
+% \begin{enumerate}
+% \item[a)]
+% $\sigma$-Algebra ${\CC}$ in $\AA$
+% 
+% $(X^ {-1}(\overline{\BB}), {\CC})$ unabhängig $\Longrightarrow
+%  E(X \mid {\CC}) = EX$ f.s.
+% \item[b)]
+% Zufallsvariable $Y$: $ (\Omega, \AA, P) \Longrightarrow (\Omega', \AA')$
+% 
+% $(X,Y)$ unabhängig $ \to E(X\mid Y) =EX $ f.s.
+% \end{enumerate}
+% 
+% \bigskip
+% 
+% {\bf Satz 8.3.} W-Raum $(\Omega, \AA, P)$. Integrierbare\ Zufallsvariable $X$: $ (\Omega, 
+% \AA, P)\to (\overline{\mathbb{R}}, \overline{\BB})$.
+% 
+% Zufallsvariable $Y$: $(\Omega, \AA, P) \to (\Omega ', \AA')$. Dann ex.\ Abb.\ $g$:
+% $ (\Omega ', \AA') \to (\mathbb{R}, {\BB})$ mit $E(X\mid Y) = g \circ 
+% Y$.\\ $g$ ist die sog.\ {\bf Faktorisierung der bedingten Erwartung}. \\
+% $g$ ist eindeutig bis auf die Äquivalenz ``$=P_{Y}$-f.ü.\ ''.\\
+% 
+% {\bf Definition 8.4.} W-Raum $(\Omega, \AA, P)$. Integrierbare\ Zufallsvariable $X$: $(\Omega,
+% \AA, P)\to (\overline{\mathbb{R}},\overline{\BB})$ bzw.\ $A\in {\cal 
+% A}$.
+% Zufallsvariable $Y$: $(\Omega, \AA,P)\to (\Omega ', \AA')$. Sei $g$ bzw.\ $g_{A}$ 
+% eine  --- bis auf Äquivalenz ``$=P_{Y}$ - f.ü.'' eindeutig bestimmte --- 
+% Faktorisierung von $E(X|Y)$ bzw.\ von $P(A|Y)$.
+% 
+% $E(X\mid Y=y)\defl g(y) \ldots $ 
+% {\bf bedingte Erwartung von $X$ unter der Hypothese $Y=y$}
+% 
+% $P(A\mid Y=y) \defl g_{A}(y) \ldots $ 
+% {\bf bed.\ Wahrscheinlichkeit von $A$ unter der Hypoth.~$Y=y$}
+% 
+% $E(X\mid Y=\cdot)=g$
+% 
+% $P(A\mid Y=\cdot )=g_{A} $\\
+% 
+% {\bf Satz 8.4.} W-Raum $(\Omega, \AA, P)$. Integrierbare Zufallsvariable $X$: $(\Omega,
+% \AA, P)\to (\overline{\mathbb{R}}, \overline{\BB})$ bzw.\ $A\in {\cal 
+% A}$. Zufallsvariable $Y$: $(\Omega, \AA,P)\to (\Omega ', {\cal A }')$
+% \begin{enumerate}
+% \item[a)]
+% $\mathop{\forall}\limits_{A' \in \AA'} \;\, \int_{A'} E(X\mid Y=y)\;\, 
+% P_{Y} (dy) =\int_{Y^ {-1}(A')} X\,dP\, ,$
+% 
+% insbesondere $\int_{\Omega '} E( X \mid Y=y)\;\, P_{Y}(dy) = EX \, .$
+% \item[b)]
+% $\mathop{\forall}\limits_{A'\in \AA'} \;\, \int_{A'} P(A\mid Y=y) 
+% \;\, P_{Y}(dy)=  P(Y^ {-1} (A')\cap A)\, ,$
+% 
+% insbesondere $\int_{\Omega '} P(A\mid Y=y)\;\, P_{Y} (dy) = P(A)\, .$
+% \end{enumerate}
+% 
+% \bigskip
+% 
+% {\bf Beispiel.} $X$ bzw. $A$ sowie $Y$ wie zuvor. Sei $y \in \Omega '$  mit 
+% $\{y\} \in \AA'$ und $P_{Y}(\{y\})>0$.
+% \begin{enumerate}
+% \item[a)]
+% $\underbrace{E(X\mid Y=y)}\;\,  =\;\, \underbrace{ E(X\mid [Y=y])}$
+% 
+% s.\ Def.\ 8.4. \quad s.\ Beispiel nach Def.\ 8.1.
+% 
+% \item[b)] $\underbrace{P(A\mid Y=y)}\;\, = \;\, \underbrace{P(A\mid [Y=y])}$
+% 
+% s.\ Def.\ 8.4. \quad s.\ Beispiel nach Def.\ 8.2.
+% \end{enumerate}
+% 
+% %\newpage
+% 
+% {\bf  Satz 8.5.} W-Raum $(\Omega, {\cal A }, P)$. Integrierbare Zufallsvariable $X$: 
+% $(\Omega, \AA, P) \to (\overline{\mathbb{R}}, \overline{\BB})$.
+% 
+% Zufallsvariable $Y$: $(\Omega, \AA)\to (\Omega ', \AA')$.
+% \begin{enumerate}
+% \item[a)]
+% $X=c $ f.s. $\Longrightarrow E(X\mid Y=\cdot ) = c\;\, P_{Y}$-f.ü.
+% \item[b)]
+% $X\geq 0 $ f.s. $\Longrightarrow E(X\mid Y= \cdot) \geq 0  \;\, P_{Y}$-f.ü.
+% \item[c)]
+% $E(\alpha X_{1} +\beta X_{2} \mid Y=\cdot ) = \alpha E(X_{1}\mid Y=\cdot)
+% + \beta E(X_{2} \mid Y=\cdot ) \;\, P_{Y}$-f.ü.
+% \item[d)]
+% $X_{1} \leq X_{2}$ f.s. $\Longrightarrow E(X_{1}\mid Y=\cdot )\leq E(X_{2} \mid Y=\cdot 
+% )\;\, P_{Y}$-f.ü.
+% \end{enumerate}
+% 
+% {\bf Satz 8.6.}  W-Raum $(\Omega, \AA, P)$, Sub-$\sigma$-Algebra ${\cal
+%   C} (\subset \AA)$, $X$, $X_n$ ($n\in \N$) integrierbare
+% Zufallsvariablen. Dann gilt:
+% \begin{enumerate}
+% \item[a)] Ist $0 \le X_n \uparrow X$ fast sicher ($n\to\N$), so folgt
+%   $$
+%   E(X_n\mid {\CC}) \to E(X\mid {\CC}) \quad \text{fast sicher} $$
+%   (Satz von der monotonen Konvergenz für bedingte Erwartungen).
+% \item[b)] Ist $ X_n \to X$ fast sicher ($n\to\N$) und $|X_n| \le Y$
+%   fast sicher für alle $n\in\N$ und $Y$ eine integrierbare
+%   Zufallsvariable (d.h.\ $E|Y| <\infty$), so folgt
+%   $$
+%   E(X_n\mid {\CC}) \to E(X\mid {\CC}) \quad \text{fast sicher} $$
+%   (Satz von der dominierten Konvergenz für bedingte Erwartungen).
+% \end{enumerate}
+% 
+% 
+% {\bf Satz 8.7.}  W-Raum $(\Omega, \AA, P)$, Sub-$\sigma$-Algebra ${\cal
+%   C} (\subset \AA)$, $I \subset \R$ ein Intervall und $f: I \to
+% \R$ eine konvexe Funktion und $X:\Omega\to I$ eine integrierbare
+% Zufallsvariable. Dann ist $E(X\mid {\CC}) \in I$ fast sicher. Ist $f(X)$
+% integrierbar, so gilt
+% $$ f(E(X\mid {\CC})) \le E(f(X)\mid {\CC}) \quad \text{fast sicher} $$
+% 
+% \newpage
+% 
+% \section{Martingale}
+% 
+% {\bf  Definition 9.1.} W-Raum $(\Omega, \AA, P)$.\\
+% Eine Folge $(X_{n})_{n\in \N}$ von integrierbaren Zufallsvariablen $X_{n}$: $ (\Omega
+% , \AA,P)\to (\overline{\R}, \overline{\BB})$ heißt bei gegebener
+% nonoton wachsender Folge $(\AA_{n}) _{n\in \N}$ von $\sigma 
+% $-Algebren $\AA_{n}\subset \AA $ mit $\AA_{n}$-$\overline{\cal 
+% B}$-Messbarkeit von $X_{n}$ 
+% [wichtiger Fall $\AA_{n}= {\cal F}(X_{1},\ldots ,X_{n}) \;\, (n\in \N)$]
+% \begin{enumerate}
+% \item[a)]
+% ein {\bf Martingal} bzgl.\ $(\AA_{n})$, wenn
+% \begin{eqnarray*}
+%  & &  \mathop{\forall}\limits_{n\in \N}\;\, E(X_{n+1}\mid \AA_{n}) 
+% = X_{n} \mbox{ f.s. }\\[2mm]
+%  [\mbox{d.h.}&& \mathop{\forall}\limits_{n\in
+% \N}\;\,
+% \mathop{\forall}\limits_{C\in \AA_{n}}\;\, \int_{C} X_{n+1}\, dP 
+% = \int_{C} X_{n}\,dP]\, ,
+% \end{eqnarray*}
+% \item[b)]
+% ein {\bf Submartingal} bzgl. $(\AA_{n})$, wenn
+% \begin{eqnarray*}
+% & & \mathop{\forall}\limits_{n\in \N}\;\, E(X_{n+1}\mid {\cal 
+% A}_{n})\geq X_{n} \mbox{ f.s.}\\[2mm]
+% [\mbox{d.h.} && \mathop{\forall}\limits_{n \in 
+% \N}\;\,\mathop{\forall}\limits_{C\in \AA_{n}}\;\, 
+% \int_{C}X_{n+1}\,dP\geq \int_{C} X_{n}\,dP]\, ,
+% \end{eqnarray*}
+% \item[c)]
+% ein {\bf Supermartingal}  bzgl. $(\AA_{n})$, wenn $(-X_{n})$ ein 
+% Submartingal bzgl. $(\AA_{n})$ ist.
+% \end{enumerate}
+% 
+% \bigskip
+% 
+% {\bf  Bemerkung 9.1.} Ein Martingal $(X_{n})$ bzgl. $(\AA_{n})$ ist auch 
+% ein Martingal bzgl. $({\cal F} (X_{1},$ $\ldots, X_{n}))$. Entsprechend für Sub-, 
+% Supermartingal.\\
+% 
+% {\bf Satz 9.1.} W-Raum $(\Omega, \AA, P)$, Folge $(V_{n})_{n\in 
+% \N}$ von Zufallsvariablen $V_{n}$: 
+% $(\Omega, \AA,P)\to (\R, {\BB})\, $. 
+% Die Partialsummenfolge $(\sum\limits^ {n}_{j=1} V_{j})_{n\in \N}$ ist
+% genau dann ein  Martingal bzw.\ Submartingal bzgl. $({\cal F} 
+% (V_{1},V_{1}+V_{2}, \ldots , V_{1}+ \ldots +V_{n})) = ( {\cal F}(V_{1},\ldots 
+% ,V_{n}))$, wenn 
+% $$\mathop{\forall}\limits_{n\in \N}\;\, V_{n} 
+% \text{ integrierbar und} 
+% \mathop{\forall}\limits_{n\in \N} \;\, E(V_{n+1} \mid 
+% V_{1} , \ldots , V_{n})= 0 \text{ bzw. } \geq 0 \text{ f.s.}$$
+% 
+% \bigskip
+% 
+% {\bf  Definition 9.2.} Ein Spiel mit zufälligen Gewinnständen $X_{1}, 
+% X_{2},\ldots $ nach dem 1., 2., \ldots Schritt heißt {\bf fair}, 
+% wenn $EX_{1} =0   
+% $ und $(X_{n})_{n\in \N}$ ein Martingal 
+% [bzgl.\ $({\cal F}(X_{1}, \ldots
+% ,X_{n}))]$ ist, d.h. $EX_{1} = 0$ und $\mathop{\forall}\limits_{n}\;\, 
+% E(X_{n+1}\mid X_{1} = x_{1}, \ldots , X_{n} = x_{n})=x_n$  für $P_{(X_{1}, \ldots , 
+% X_{n})}$-f.a. $(x_{1},\ldots ,x_{n})$.\\
+% 
+% {\bf Satz 9.2.} W-Raum $(\Omega, \AA, P)$, Folge $(V_{n})$ von {\bf
+% quadratisch integrierbaren} Zufallsvariablen \mbox{$V_{n}$:} $(\Omega , \AA, P) \to
+% (\R, {\BB})$.
+% Die Partialsummenfolge $(\sum\limits^ {n}_{j=1} V_{j})$ sei ein
+% Martingal. \\
+% Dann gilt $\mathop{\forall}\limits_{i\neq j}\;\, EV_{i}V_{j}=0$.\\
+% 
+% Beispiel für ein Martingal: Partialsummenfolge $(\sum\limits^ {n}_{i=1} 
+% V_{j})_{n\in \N}$ zu einer unabhängigen Folge $(V_{n})_{n\in 
+% \N}$ von integrierbaren reellen Zufallsvariablen mit Erwartungswerten 0.\\
+% 
+% {\bf Satz 9.3 ((Sub)Martingalkonvergenztheorem (Doob)).}
+% W-Raum $(\Omega, \AA,P)$. \\
+% $(X_{n})$ sei ein Submartingal mit
+% $\overline{\lim} E|X_{n}| < \infty$. \\ Dann existiert eine integrierbare
+% reelle Zufallsvariable  $X$ mit $X_{n}\to X$ P-f.s.
+% 
+% \bigskip
+% 
+% Zum Beweis von Satz 9.3: Definition 9.3, Definition 9.4., Satz 9.4, Satz 9.5.\\
+% 
+% {\bf Definition 9.3.} W-Raum $(\Omega, \AA, P)$. Monoton wachsende Folge
+% $({\cal A }_{n})_{n\in \N}$ von $\sigma$-Algebren $\AA_{n}\subset 
+% \AA$. Eine Zufallsvariable $T$: $(\Omega, {\cal A },P)\to (\overline{\N}\defl
+% \N\cup \{\infty \}$, ${\cal P} (\overline{\N}))$  heißt
+% {\bf Stoppzeit} 
+% bzgl.\ $(\AA_{n})$, wenn $\mathop{\forall}\limits_{k\in \N}$
+% $[T=k]\in \AA_{k}$;
+% hierbei heißt $T$ {\bf Stoppzeit im engeren Sinne}, falls $P[T<\infty] =1$ \quad
+% [``Kein Vorgriff auf die Zukunft''].
+% 
+% \bigskip
+% 
+% Wichtiger Fall: $\AA_{n} = {\cal F} (X_{1},\ldots ,X_{n})$ $(n\in 
+% \N)$  mit Zufallsvariablen $X_{n}$ \\
+% Deutung $(X_{n})$ \ldots \
+% Folge der Gewinnstände in einem Spiel. \\
+% Ein Spieler ohne prophetische Gaben bricht das Spiel im zufälligen Zeitpunkt 
+% $T$
+% aufgrund des bisherigen Spielverlaufs ab. \\
+% Beispiel: $T(\omega ) = \inf \{n\in 
+% \N$: $ X_{n}(\omega ) \in B\}$, $\omega \in \Omega $ --- festes messbares
+% $B$.\\
+% 
+% {\bf Definition 9.4.} W-Raum $(\Omega, \AA, P)$
+% 
+% Folge $(X_{n})_{n\in \N}$ von Zufallsvariablen $X_{n}$: $(\Omega, \AA,P)\to 
+% (\overline{\R}, \overline{\BB})$;
+% 
+% Folge $(T_{n})_{n\in \N}$ von Stoppzeiten bzgl.\ $(X_{n})$ [d.h.\ bzgl.\
+% $({\cal F}(X_{1},\ldots ,X_{n}))$]
+% 
+% mit $T_{1} \leq T_{2} \leq \ldots < \infty$. Neue Folge: Folge 
+% $(X_{T_{n}})_{n\in \N}$ von Zufallsvariablen definiert durch
+% $$
+% (X_{T_{n}})(\omega ) \defl X_{T_{n}(\omega)} (\omega), \,\; \omega \in \Omega\, .
+% $$
+% Übergang von $(X_{n})$ zu $(X_{T_{n}})$ heißt {\bf optional sampling} [frei
+% gewählte Stichprobenbildung]
+% 
+% \bigskip
+% 
+% Deutung \ldots \
+% Testen des Spielverlaufs zu den Zeitpunkten $T_{n}(\omega )$.\\
+% 
+% {\bf Satz 9.4 (Optional sampling theorem).}
+% 
+% Submartingal $(X_{n})_{n\in \N}$. Festes $M\in \N$.
+% 
+% Folge $(T_{n})_{n\in \N}$ von Stoppzeiten bzgl.\ $(X_{n})$ mit $T_{1}\leq
+% T_{2} \leq \ldots \leq M$.
+% 
+% Die durch optional sampling erhaltene Folge $(X_{T_{n}})_{n\in \N}$ ist 
+% ebenfalls ein Submartingal. --- Entsprechend für Martingal statt Submartingal 
+% (Deutung: die Fairness eines Spielverlaufs wird nicht geändert).\\
+% 
+% {\bf Satz 9.5} ({\bf ``upcrossing inequality''} (von Doob)).
+% 
+% Sei $(X_{1},\ldots, X_{n})$ ein --- beim festen Index $n\in \N$ 
+% abbrechendes --- Submartingal. Feste reelle Zahlen $a,b$ mit $a<b$. Die Zufallsvariable $U 
+% [a,b]$ gebe die Anzahl der aufsteigenden Überquerungen des Intervalls $[a,b]$ 
+% durch $X_{1},\ldots ,X_{n}$ an (d.h. die Anzahl der Übergänge der abbrechenden 
+% Folge von einem Wert $\leq a $ zu einem Wert $\geq b$). Dann   gilt
+% $$
+% (b-a)EU [a,b] \leq E(X_{n}-a) ^ {+} -E(X_{1} -a)^ {+}\, .
+% $$
+% 
+% \bigskip
+% 
+% {\bf Korollar 9.1.} Ist $(U_{n})$ eine Folge integrierbarer nichtnegativ-reeller
+% Zufallsvariablen auf $(\Omega, \AA,P)$ und $(\AA_{n})$ eine monoton 
+% wachsende Folge von Unter-$\sigma $-Algebren von $\AA$ mit ${\cal 
+% A}_{n}$-${\BB}_{+}$-Messbarkeit von $U_{n} \;\, (n\in \N)$ und gilt
+% $$
+% E(U_{n+1}\mid \AA_{n})\leq (1+\alpha _{n}) U_{n} +\beta _{n} \quad (n\in 
+% \N)
+% $$
+% wobei $\alpha _{n}, \;\, \beta _{n} \in \R_{+}$ mit $\sum \alpha _{n} < 
+% \infty$, $\sum \beta _{n}< \infty$, dann konvergiert $(U_{n})$ f.s. --- 
+% $(U_{n})$ ist ``fast ein nichtnegatives Supermartingal''.\\
+% Auch $(EU_{n})$ konvergiert.\\
+% 
+% {\bf Satz 9.6.}
+% Folge $(V_{n})$ von quadratisch integrierbaren reellen Zufallsvariablen mit $\sum V(V_{n})< 
+% \infty$. Dann ist 
+% $$\sum (V_{n}-E(V_{n} \mid V_{1},\ldots ,V_{n-1})) \quad \text{f.s.\ 
+% konvergent.}
+% $$
+% [Falls zusätzlich $(V_{n})$ unabhängig, dann ist $\sum (V_{n}-EV_{n})$ 
+% f.s.\ konvergent]\\
+% 
+% {\bf Satz 9.7.}
+% Folge $(V_{n})$ von quadratisch integrierbaren reellen Zufallsvariablen mit $\sum n^ {-2} 
+% V(V_{n})< \infty$.
+% Dann 
+% $$\displaystyle{\frac{1}{n}} \sum\limits^ {n}_{j=1} 
+% (V_{j}-E(V_{j}\mid V_{1},\ldots , 
+% V_{j-1}))\to 0  \quad \text{f.s.} $$
+% 
+% Falls zusätzlich $(V_{n})$ unabhängig, dann $\frac{1}{n} \sum\limits^ {n}_{j=1} 
+% (V_{j}-EV_{j})\to 0 $ f.s.
+% 
+% (Kriterium von Kolmogorov zum starken Gesetz der großen Zahlen)
+% 
+% \bigskip
+% 
+% Beweis von Satz 9.7 mit Satz 9.6 und dem folgenden --- 
+% etwas spezialisierten ---
+% 
+% \bigskip
+% 
+% {\bf Lemma von Kronecker}.
+% Folge $(c_{n})_{n\in\N}$ reeller Zahlen.
+% 
+% $$
+% \sum\frac{c_{n}}{n}\mbox{ konv. }\Longrightarrow
+% \frac{1}{n} \sum\limits^ {n}_{j=1} c_{j}\to 0 \;\, (n\to \infty) .
+% $$
+% 
+% \bigskip
+% 
+% {\bf Bemerkung 9.2.} Aus Satz 9.6 bzw. 9.7 ergibt sich unmittelbar für eine 
+% Folge $(V_{n})$ quadratisch integrierbarer reeller Zufallsvariablen eine hinreichende 
+% Bedingung für die f.s.\ Konvergenz der Reihe $\sum V_{n}$ bzw.\ für $\frac{1}{n}
+% \sum\limits^{n}_{j=1} V_{j}\to 0 $ f.s.\\
+% 
+% {\bf Definition 9.5.} Eine Folge $(X_{n})_{n\in\N}$ von integrierbaren 
+% reellen Zufallsvariablen auf einem W-Raum $(\Omega, \AA, P)$ genügt dem {\bf schwachen}
+%  bzw.\ {\bf starken Gesetz der großen Zahlen}, wenn
+% $$
+% \frac{1}{n}\sum\limits^ {n}_{k=1} (X_{k}-EX_{k})\to 0 \quad (n\to \infty)
+% \mbox{ nach Wahrscheinlichkeit bzw.\ P-f.s.}
+% $$
+% 
+% %\newpage
+% 
+% {\bf Satz 9.8 (Kriterium von Kolmogorov für das starke Gesetz der großen 
+% Zahlen).}
+% 
+% Eine unabhängige Folge $(X_{n})_{n\in\N}$ quadratisch integrierbarer 
+% reeller Zufallsvariablen mit
+% $$
+% \sum\limits^ {\infty}_{n=1} n^ {-2} V(X_{n})< \infty
+% $$
+% genügt dem starken Gesetz der großen Zahlen.
+% 
+% \bigskip
+% 
+% {\bf Satz 9.9 (Kolmogorovsches starkes Gesetz der großen Zahlen).}
+% 
+% Für eine unabhängige Folge $(X_{n})_{n\in\N}$ identisch verteilter 
+% integrierbarer reeller Zufallsvariablen gilt
+% $$
+% \frac{1}{n} \sum\limits^ {n}_{k=1}X_{k} \to EX_{1}\quad (n\to \infty ) \mbox{ 
+% f.s.}
+% $$
+% 
+% {\bf Bemerkung 9.3.} 
+% \begin{itemize}
+% \item[a)] In Satz 9.9 darf die Integrierbarkeitsvoraussetzung
+% nicht weggelassen werden.
+% \item[b)] 
+% Die Voraussetzung der Unabhängigkeit in Satz 9.9 kann zur Voraussetzung der 
+% paarweisen Unabhängigkeit abgeschwächt werden (N.\ Etemadi, Z.\ 
+% Wahrscheinlichkeitstheorie verw.\ Gebiete 55 (1981), 119-122).\\
+% \end{itemize}
+% 
+% {\bf Satz 9.10} (Tschebyschev).
+% 
+% Eine Folge $(X_{n})_{n\in \N}$ quadratisch integrierbarer paarweise 
+% unkorrelierter 
+% [d.h.\ es gilt \\ $\mathop{\forall}\limits_{j\neq k}\;\, E(X_{j}-EX_{j}) 
+% (X_{k}-EX_{k})=0$] reeller Zufallsvariablen mit
+% $$
+% n^ {-2} \sum\limits^ {n}_{k=1} V(X_{k}) \to 0 \;\, (n\to \infty)
+% $$
+% genügt dem schwachen Gesetz der großen Zahlen.\\
+% 
+% {\bf Bemerkung 9.4} (Folgerung aus obigen Sätzen). Für eine unabhängige Folge 
+% $(X_{n})$ identisch verteilter reeller Zufallsvariablen mit $P[X_{1} = 1] =p$, $P[X_{1}=0]= 
+% 1-p$ (festes $p\in [0,1]$) gilt
+% $$
+% \frac{1}{n} \sum\limits^ {n}_{k=1} X_{k} \to p \quad (n\to \infty) \;\, 
+% \mbox{P-f.s.\ und nach Wahrscheinlichkeit}
+% $$
+% (Borelsches starkes  Gesetz der großen Zahlen bzw. Bernoullisches schwaches 
+% Gesetz der großen Zahlen).\\
+% 
+% \newpage
+% 
+% 
+% %\section{Verteilungskonvergenz in \boldmath $\R $ \unboldmath}
+% \section{Verteilungskonvergenz in $\R $}
+% 
+% 
+% {\bf Definition 10.1.}
+% \begin{enumerate}
+% \item[a)]
+% W-Maße $Q_{n}$ $(n\in \N)$, $Q$ auf der $\sigma$-Algebra ${\BB}$ der 
+% Borelschen Mengen in $\R$. Die Folge $(Q_{n})$ heißt gegen $Q$ 
+% {\bf schwach
+% konvergent} (weakly convergent) --- Schreibweise $Q_{n} \to Q $ schwach --- ,
+% wenn für jede beschränkte stetige Funktion $g: \R\to \R$ gilt
+% $$
+% \int_{\R} g\,dQ_{n} \to \int_{\R}g\,dQ \quad (n\to \infty).
+% $$
+% \item[b)]
+% Reelle Zufallsvariablen $X_{n}$ $(n\in \N)$, $X$ (nicht notwendig auf demselben 
+% W-Raum definiert). Die Folge $(X_{n})$ heißt gegen $X$ {\bf nach Verteilung
+% konvergent} (convergent in distribution, convergent in law) --- Schreibweise
+% $X_{n}\stackrel{{\cal D}}{\to} X\;\, (n\to\infty)$ --- , 
+% wenn $P_{X_{n}}\to P_{X}$ schwach, d.h. für jede beschränkte stetige Funktion
+% $g:\R\to \R$ gilt
+% $$
+% \int_{\R} g\,dP_{X_{n}}\to \int_{\R} g\,dP_{X}  \quad (n\to
+% \infty) $$
+% oder (äquivalent nach dem Transformationssatz für Integrale)
+% $$
+% Eg (X_{n}) \to E g (X) \quad (n\to \infty )\, .
+% $$
+% \end{enumerate}
+% 
+% {\bf Bemerkung 10.1.} a) In Definition 10.1a ist das Grenz-W-Maß $Q$ eindeutig 
+% bestimmt. b) In Definition 10.1b können $X_{n}$, $X$ durch reelle Zufallsvariablen $X'_{n}$, 
+% $X'$ mit $P_{X'_{n}} = P_{X_{n}}$, $P_{X'} =P_{X}$ ersetzt werden.\\
+% 
+% {\bf Satz 10.1.} Reelle Zufallsvariablen $X_{n}$ $\,(n\in \N)$, $X$ auf $(\Omega,
+% \AA, P)$.\\
+% Aus $X_{n} \to X$ nach Wahrscheinlichkeit (Schreibweise $X_{n } 
+% \mathop{\rightarrow}\limits_{P} X$) folgt $X_{n}\stackrel{{\cal
+% D}}{\rightarrow} X$.\\
+% 
+% {\bf Satz 10.2.} W-Maße $Q_{n}$ $\, (n\in\N)$, $Q$ auf ${\BB}$ bzw.\ 
+% reelle Zufallsvariablen $X_{n}$ $\, (n\in \N)$, $X$ mit VFn $F_{n}$,~$F$.
+% 
+% $Q_{n} \to Q$ schwach bzw.\ $X_{n} \stackrel{{\cal D}}{\rightarrow}X$ $\, (n\to 
+% \infty )$ gilt genau dann, wenn $F_{n}(x) \to F(x)$ $\, (n\to \infty)$ für alle 
+% Stetigkeitspunkte $x$ von $F$.\\
+% 
+% {\bf Satz 10.3.} Reelle Zufallsvariablen  $X_{n}$ $\, (n\in \N)$, $X$ auf $(\Omega,
+% \AA,P)$. Ist $X$ P-f.s. konstant, so gilt:
+% $$
+% X_{n}\stackrel{{\cal D}}{\rightarrow}X \, \Longleftrightarrow
+% X_{n}\mathop{\rightarrow}\limits_{P} X\, .
+% $$
+% 
+% \vspace{2mm}
+% {\bf Satz 10.4.} Reelle Zufallsvariablen $X_{n}$, $Y_{n}$ $\, (n\in \N)$, $X$ auf 
+% $(\Omega, \AA, P)$\\
+% 
+% $$
+% \left.\begin{array}{l}
+% X_{n}\stackrel{{\cal D}}{\rightarrow}X\\[2mm]
+% |X_{n} -Y_{n}| \mathop{\rightarrow}\limits_{ P} 0
+% \end{array}\right\}
+% \Longrightarrow Y_{n} \stackrel{{\cal D}}{\rightarrow} X\, .
+% $$
+% 
+% {\bf Satz 10.5} (Spezialfall des {\bf Darstellungssatzes von Skorokhod).}
+% 
+% Reelle Zufallsvariablen $X_{n}$ $\, (n\in \N)$, $X$ mit $X_{n}\stackrel{{\cal 
+% D}}{\rightarrow} X$. Dann existiert ein W-Raum $(\Omega ^ {\ast}, \AA^ 
+% {\ast}, P^ {\ast})$ --- wobei man $\Omega ^ {\ast} = [0,1]$, $\AA^ {\ast} =
+% [0,1] \cap {\BB}$, $P^ {\ast} = $ L-B-Maß auf $\AA^ {\ast}$ wählen kann
+% --- und reelle Zufallsvariablen $X^ {\ast}_{n} \;\, (n\in \N)$, $X^ {\ast}$ auf
+% $(\Omega ^ {\ast}, \AA^ {\ast}, P^ {\ast})$ derart, dass
+% $$
+% \mathop{\forall}\limits_{n}\;\, P_{X_{n}} =P^*_{X^ {\ast}_{n}},\;\, P_{X} =
+% P^*_{X^ {\ast}},\,\; X^ {\ast}_{n} \to X^ {\ast} \quad (n\to \infty) \;\, P^
+% {\ast}\mbox{-f.s.}
+% $$
+% 
+% {\bf Satz 10.6} {\bf (Satz von der stetigen Abbildung).}
+% 
+% Reelle Zufallsvariablen $X_{n}$ $\, (n\in \N)$, $X$ mit $X_{n}\stackrel{{\cal 
+% D}}{\rightarrow} X$; Abbildung $h: (\R, {\BB}) \to (\R, {\cal
+% B})$ sei $P_{X}$-f.ü.\ stetig. Dann gilt $h(X_{n})\stackrel{{\cal 
+% D}}{\rightarrow} h(X)$.\\
+% 
+% {\bf Satz 10.7 (Satz von Slutsky).}
+% 
+% Reelle Zufallsvariablen  $X_{n}$, $Y_{n}$, $X$ auf $(\Omega, \AA, P)$; $\, c\in 
+% \R$.
+% $$
+% \left.
+% \begin{array}{l}
+% X_{n}\stackrel{{\cal D}}{\rightarrow} X\\[2mm]
+% Y_{n} \mathop{\rightarrow}\limits_{P} c
+% \end{array}\right\}
+% \Longrightarrow
+% \left\{
+% \begin{array}{l}
+% X_{n} +Y_{n} \stackrel{{\cal D}}{\rightarrow} X+c\\[2mm]
+% Y_{n}X_{n} \stackrel{{\cal D}}{\rightarrow} cX\, .
+% \end{array}\right.
+% $$
+% 
+% \vspace{4mm}
+% {\bf Definition 10.2.} Eine Menge ${\cal Q}$ von W-Maßen auf ${\BB}$ heißt
+% \begin{enumerate}
+% \item[a)]
+% {\bf relativ-(folgen)kompakt}, wenn jede Folge von Elementen aus ${\cal Q}$ eine
+% Teilfolge besitzt, die schwach gegen ein W-Maß auf ${\BB}$ konvergiert,
+% \item[b)]
+% {\bf gleichmäßig straff} [tight], wenn
+% $$
+% \mathop{\forall}\limits_{\varepsilon > 0}\;\, 
+% \mathop{\exists}\limits_{\text{komp.\ } K\subset \R} \;\, 
+% \mathop{\forall}\limits_{Q\in {\cal Q}}\;\, Q(K^ {c})\leq \varepsilon \, .
+% $$
+% \end{enumerate}
+% 
+% {\bf Satz 10.8} (Spezialfall des {\bf Satzes von Prokhorov}).
+% 
+% Eine Menge ${\cal Q}$ von W-Maßen auf ${\BB}$ ist genau dann relativ-kompakt,
+% wenn sie gleichmäßig straff ist.\\
+% 
+% {\bf Satz 10.9 (Auswahlsatz von Helly).}
+% 
+% Ist $(Q_{n})$ eine Folge von W-Maßen auf ${\BB}$ mit zugehörigen VFn
+% $F_{n}:\R\to \R\;\, (n\in \N)$, dann existiert eine
+% Indexfolge $(n_{i})$ und ein endliches Maß $Q$ auf ${\BB}$ (nicht notw.\ 
+% W-Maß!) mit zugehöriger maßdefinierender Funktion $F: \R\to \R$ 
+% $(F(x) \defl Q((-\infty, x])+ $ const.\ (geeignet), $x\in \R$) derart, dass
+% $F_{n_{i}} (x) \to F(x) \;\, (i\to \infty)$ für alle Stetigkeitspunkte $x$
+% von~$F$.\\
+% 
+% {\bf Satz 10.10 (Satz von L\'{e}vy-Cram\'{e}r; Stetigkeitssatz).}
+% \begin{enumerate}
+% \item[a)]
+% W-Maße $Q_{n}$ auf ${\BB}$ mit char.\ Fktn.\ $\varphi _{n}:\R\to
+% \mathbb{C}\;\, (n\in \N)$. Ist $Q$ ein W-Maß auf ${\BB}$  mit char.\ 
+% Fkt.\ $\varphi :\R \to \mathbb{C}$ und gilt $Q_{n}\to Q$ schwach, dann 
+% gilt
+% $$
+% \mathop{\forall}\limits_{u\in \R}\;\, \varphi _{n} (u) \to \varphi (u)\,
+% .
+% $$
+% Existiert eine in $0$ stetige Funktion $\varphi :\R \to \mathbb{C}$ und 
+% gilt
+% $$
+% \mathop{\forall}\limits_{u\in \R}\;\, \varphi _{n}(u) \to \varphi (u) \,
+% ,
+% $$
+% dann existiert ein W-Maß $Q$ auf ${\BB}$ mit char.\ Fkt.\ $\varphi$ und 
+% $Q_{n}\to Q$ schwach.
+% \item[b)]
+% W-Maße $Q_{n}$ $\, (n\in \N)$, $Q$  auf ${\BB}$ mit char.\ Fktn.\ 
+% $\varphi_{n}$,
+% $\varphi :\R\to \mathbb{C}$. 
+% $$Q_{n}\to Q \text{ schwach}
+% \Longleftrightarrow
+% \mathop{\forall}\limits_{u\in \R}\;\, \varphi_{n} (u) \to \varphi 
+% (u).$$
+% \end{enumerate}
+% 
+% {\bf Bemerkung 10.2.} Die obigen Definitionen und Sätze lassen sich auf W-Maße 
+% auf ${\BB}_{k}$ bzw.\ $k$-dim.\ Zufallsvektoren übertragen.\\
+% 
+% \newpage
+% 
+% \section{Zentrale Grenzwertsätze}
+% 
+% Ausssagen über die Approximation von Verteilungen, insbesondere der Verteilungen
+% von Summen von Zufallsvariablen, durch die Normalverteilung im Sinne der 
+% schwachen Konvergenz werden als zentrale Grenzwertsätze bezeichnet.\\
+% 
+% {\bf Satz 11.1 (Zentraler Grenzwertsatz von Lindeberg-L\'{e}vy im 1-dim.\ Fall).}
+% 
+% Sei $(X_{n})_{n\in \N}$ eine unabhängige Folge identisch verteilter 
+% quadratisch integrierbarer reeller Zufallsvariablen mit $EX_{1} \defr a$, $V(X_{1})\defr\sigma ^ 
+% {2}$ mit $\sigma >0$. Dann
+% $$
+% \frac{1}{\sqrt{n} \sigma } \sum\limits^{n}_{k=1} (X_{k}-a)\stackrel{{\cal 
+% D}}{\rightarrow} N(0,1)\mbox{-verteilte reelle Zufallsvariable.}
+% $$
+% 
+% \bigskip
+% 
+% {\bf Korollar 11.1 (Zentraler Grenzwertsatz von de Moivre und Laplace).}
+% 
+% Für eine unabhängige Folge $(X_{n})_{n\in \N}$ identisch verteilter 
+% reeller Zufallsvariablen auf $(\Omega, \AA,P)$ mit $P[X_{1} =1]=p$, 
+% $P[X_{1}=0] = 1-p \defrq \;\, (0<p<1)$  gilt
+% $$
+% \mathop{\forall}\limits_{\stackrel{\alpha < \beta}{\in \R}}
+% \;\, 
+% P\left[\alpha\mathop{<}\limits_{(=)} \frac{\sum^ {n}_{k=1}
+% X_{k}-np}{\sqrt{npq}}\mathop{<}\limits_{(=)} \beta \right] 
+% \to \frac{1}{\sqrt{2\pi}}\int^{\beta}_{\alpha }\e^ {-t^ {2}/2}\, dt \;\, 
+% (n\to \infty). $$
+% 
+% \bigskip
+% 
+% {\bf Satz 11.2} (B.M.\ Brown 1971, Gänssler-Stute 1977).
+% 
+% Das Schema reeller Zufallsvariablen $X_{nj} \;\, (j= 1,\ldots,j_{n}; \;\, n\in \N)$ 
+% auf einem W-Raum $(\Omega, \AA, P)$ und das Schema der $\sigma$-Algebren
+% $\AA_{nj}$ in $\Omega\;\, (j=0,\ldots,j_{n};\;\, n\in \N)$ mit 
+% ${\cal F}
+% (X_{nj})\subset \AA_{nj}\subset \AA_{n,j+1}\subset \AA$ sollen
+% die folgenden Bedingungen erfüllen:
+% \begin{enumerate}
+% \item[(1)]
+% $\mathop{\forall}\limits_{n,j}\;\, X_{nj} $ quadr.\ int., $E_{j-1} X_{nj} \defl 
+% E(X_{nj}\mid \AA_{n,j-1})=0 $\\
+% \mbox{}[die $X_{nj}$ bilden ein sog.\ Martingaldifferenzschema],
+% \item[(2)]
+% $ \sum\limits^ {j_{n}}_{j=1} E_{j-1} X^ {2} _{nj}\mathop{\rightarrow}\limits_{P}
+% 1\, ,$ \item[(3)]
+% $\mathop{\forall}\limits_{\varepsilon > 0} \;\, \sum\limits^ {j_{n}}_{j=1} 
+% E_{j-1} [X^ {2} _{nj}\chi _{[|X_{nj}| > \varepsilon
+% ]}]\mathop{\rightarrow}\limits_{P} 0 \;\, (n\to \infty )$\\
+% \mbox{}[eine sog.\ bedingte Lindeberg-Bedingung].
+% \end{enumerate}
+% Dann
+% $$
+% \sum\limits^ {j_{n}}_{j=1} X_{nj} \stackrel{{\cal D}}{\rightarrow} 
+% N(0,1)\mbox{-verteilte reelle Zufallsvariable.}
+% $$
+% 
+% \bigskip
+% 
+% {\bf Hilfsformel}
+% $$
+% \mathop{\forall}\limits_{k\in \N}\,\; \mathop{\forall}\limits_{x\in
+% \R}\;\, | \e^ {ix}-1-\frac{ix}{1!} - \ldots - \frac{(ix)^ {k-1}}{(k-1)!}|
+% \leq \frac{|x|^ {k}}{k!}
+% $$
+% 
+% %\newpage
+% 
+% {\bf Bemerkung 11.1.}
+% 
+% Schema quadr.\ int.\ am Erwartungswert zentrierter reeller Zufallsvariablen $X_{ni}$ $\, 
+% (i=1,\ldots, i_{n}; \;\, n\in \N)$ auf W-Raum $(\Omega, \AA,P)$, 
+% Schema von $\sigma$-Algebren $\AA_{ni}$ in $\Omega$ $\, (i=0,\ldots,i_{n};
+% \;\, n\in \N)$ mit ${\cal F}(X_{ni})\subset \AA_{ni} \subset {\cal 
+% A}_{n, i+1} \subset \AA$. Es gelten die folgenden Implikationen:
+% \begin{enumerate}
+% \item[a)]
+% $\mathop{\exists}\limits_{\delta >0}\quad \sum\limits^ {i_{n}}_{i=1} E(|X_{ni}|^
+% {2+\delta}\mid \AA_{n,i-1})\mathop{\rightarrow}\limits_{P} 0$ ( bedingte
+% Ljapunov-Bedingung)
+% 
+% $\Longrightarrow \mathop{\forall}\limits_{\varepsilon >0} \quad \sum\limits^
+% {i_{n}}_{i=1} E(X^ {2}_{ni}\chi _{[|X_{ni}| >\varepsilon ]}\mid{\cal
+% A}_{n,i-1})\mathop{\rightarrow}\limits_{P}0 $ (bedingte  Lindeberg-Bedingung)
+% 
+% $\Longrightarrow \mathop{\max}\limits_{i=1,\ldots,i_{n}} \;\, E(X^ {2}_{ni}
+% \mid\AA _{n,i-1})\mathop{\rightarrow}\limits_{P} 0 $ (bedingte
+% Feller-Bedingung)
+% 
+% \item[b)]
+% $\mathop{\exists}\limits_{\delta>0}\quad \sum\limits^ {i_{n}}_{i=1}
+% E(|X_{ni}|^{2+\delta })\to 0 $ (Ljapunov-Bedingung)
+% 
+% $\Longrightarrow \mathop{\forall}\limits_{\varepsilon > 0}\quad \sum\limits^
+% {i_{n}}_{i=1} E(X^ {2}_{ni}\chi _{[|X_{ni}| > \varepsilon ]}) \to 0 $
+% (Lindeberg-Bedingung)
+% 
+% $\Longrightarrow \mathop{\max}\limits_{i=1,\ldots,i_{n}}\;\, E(X^ {2}_{ni})\to 0
+% $ (Feller-Bedingung).\\[2mm]
+% Ljapunov-Bedingung  $\Longrightarrow $ bedingte Ljapunov-Bedingung\\
+% Lindeberg-Bedingung $\Longrightarrow $ bedingte Lindeberg-Bedingung
+% \item[c)]
+% Bei nicht am Erwartungswert zentrierten Zufallsvariablen ist in a), b) jeweils $X_{ni}$ durch
+% $X_{ni}-EX_{ni}$ zu ersetzen.
+% \end{enumerate}
+% 
+% {\bf Bemerkung 11.2.}
+% \begin{enumerate}
+% \item[a)] Wird in Satz 11.2 für jedes $n\in \N$ die Unabhängigkeit des
+%   $i_{n}$-tupels $(X_{n1},\ldots ,X_{ni_{n}})$ vorausgesetzt, so können ---
+%   bei $\AA_{n0}= \{\emptyset, \Omega\}$, $\AA_{ni}= {\cal F}
+%   (X_{n1},\ldots ,X_{ni})$ $\, (i=1,\ldots,i_{n},$ $n\in \N)$ --- (1),
+%   (2), (3) in äquivalenter Weise mit Erwartungswerten statt bedingter
+%   Erwartungen und Konvergenz in $\R$ statt stochastischer Konvergenz
+%   formuliert werden.
+% \item[b)]
+% In Satz 11.2 dient die Bedingung (2) der Normierung und schränkt die Bedingung 
+% (3) vom Lindeberg-Typ den Einfluss der einzelnen Zufallsvariablen ein.
+% \end{enumerate}
+% 
+% \bigskip
+% 
+% {\bf Satz 11.3 (Zentraler Grenzwertsatz von Lindeberg).}
+% 
+% Die Folge $(X_{n})_{n\in \N}$ quadratisch integrierbarer reeller Zufallsvariablen mit
+% $EX^ {2}_{1}>0$, $\mathop{\forall}\limits_{n}\;\, EX_{n}=0$ sei unabhängig und 
+% erfülle --- mit $s^ {2}_{n}\defl\sum\limits^ {n}_{i=1}EX^ {2}_{i} \;\, (n\in 
+% \N)$ --- die klassische Lindeberg-Bedingung
+% \begin{itemize}
+% \item[(4)] $\mathop{\forall}\limits_{\varepsilon > 0} \;\, \frac{1}{s^ 
+% {2}_{n}}\sum\limits^ {n}_{i=1} E(X^ {2}_{i}\chi_{ [|X_{i}| > \varepsilon
+% s_{n}]})\to 0 $.
+% \end{itemize}
+% 
+% Dann 
+% $$
+% \frac{1}{s_{n}}\sum\limits^ {n}_{i=1}X_{i}\stackrel{{\cal D}}{\rightarrow} 
+% N(0,1)\mbox{-verteilte Zufallsvariable.}
+% $$
+% 
+% {\bf Bemerkung 11.3.}
+% 
+% In Satz 11.3 --- mit am Erwartungswert zentrierten Zufallsvariablen --- impliziert die 
+% klassische Lindeberg-Bedingung (4) die klassische Feller-Bedingung
+% $$
+% \mathop{\max}\limits_{i=1,\ldots,n} \;\, (\frac{1}{s^{2}_{n}}EX^ {2}_{i}) \to 
+% 0\;\, (n\to \infty)
+% $$
+% und wird ihrerseits durch die klassische Ljapunov-Bedingung
+% $$
+% \mathop{\exists}\limits_{\delta > 0} \quad\frac{1}{s^ {2+\delta }_{n}}
+% \sum\limits^ {n}_{i=1} E|X_{i}| ^ {2+\delta }\to 0 \;\, (n\to \infty )
+% $$
+% impliziert. Bei nicht am Erwartungswert zentrierten Zufallsvariablen ist jeweils $X_{i}$ 
+% durch $X_{i}-EX_{i}$, auch in der Definition von $s_{n}$, zu ersetzen.\\
+% 
+% Satz 11.2 $\Longrightarrow $ Satz 11.3 $\Longrightarrow $ Satz 11.1

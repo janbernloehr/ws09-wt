@@ -1,0 +1,911 @@
+\chapter{Martingale}
+
+Ziel dieses Kapitels ist
+es, Kriterien für ein starkes Gesetz der großen Zahlen auch für abhängige
+Zufallsvariablen zu finden. Dazu untersuchen wir zunächst spezielle Folgen von
+Zufallsvariablen, die Martingale, für die sehr angenehme
+Konvergenzsätze existieren, auch wenn die Zufallsvariablen der Folge abhängig
+sind.
+
+Martingale spielen eine große Rolle in der Spieltheorie, in der
+Finanzmathematik und in der stochastischen Analysis.
+
+Für alles Weitere sei $(\Omega,\AA,P)$ ein W-Raum, $n\in\N$ und sofern nicht
+anders angegeben, mit ``$\to$'' die Konvergenz für $n\to\infty$
+bezeichnet.
+
+\begin{defn}
+\label{defn:11.1}
+Eine Folge $(X_{n})$ integrierbarer Zufallsvariablen $X_{n}: (\Omega ,
+{\AA},P)\to (\RA, \overline{\BB})$ heißt bei gegebener monoton
+wachsender Folge $({\AA}_{n})$ von $\sigma $-Algebren ${\AA}_{n}\subset {\AA}$
+mit ${\AA}_{n}$-$\overline{\BB}$-Messbarkeit von $X_{n}$
+\begin{propenum}
+\item
+ein \emph{Martingal}\index{Martingal} bzgl.\ $({\AA}_{n})$, wenn
+\begin{align*}
+\E(X_{n+1}\mid {\AA}_{n}) 
+= X_{n}\fs,\qquad n\ge 1,
+\end{align*}
+\item
+ein \emph{Submartingal}\index{Submartingal} bzgl. $({\AA}_{n})$, wenn
+\begin{align*}
+\E(X_{n+1}\mid {\AA}_{n})\geq X_{n} \fs,\qquad n\ge 1,
+\end{align*}
+\item
+ein \emph{Supermartingal}\index{Supermatringal}  bzgl. $({\AA}_{n})$, wenn
+$(-X_{n})$ ein Submartingal bzgl. $({\AA}_{n})$ ist.~\fishhere
+\end{propenum}
+\end{defn}
+
+Eine Folge von Zufallsvariablen ist nicht per se ein Martingal sondern
+immer nur in Bezug auf eine Folge von $\sigma$-Algebren. Ein wichtiger
+Spezialfall ist ${\AA}_{n}= {\FF}(X_{1},\ldots ,X_{n})$ und sofern nicht anders
+angegeben, gehen wir immer von dieser Wahl von $\AA_n$ aus.
+
+\begin{bem}
+\label{bem:11.1}
+Ein Martingal $(X_{n})$ bezüglich $({\AA}_{n})$ ist stets auch
+ein Martingal bezüglich $({\FF} (X_{1},$ $\ldots, X_{n}))$. Denn nach
+Voraussetzung ist jedes $X_n$ $\AA_n$-$\overline{\BB}$-messbar, so dass
+$X_n^{-1}(\overline{\BB}) = \FF(X_n) \subset \AA_n$. Aus der Monotonie von
+$\AA_n$ folgt dass $\FF(X_1,\ldots,X_n)\subset\AA_n$ und somit
+\begin{align*}
+\E(X_{n+1}\mid X_1,\ldots,X_n) &= 
+\E(\underbrace{\E(X_{n+1}\mid \AA_n}_{\ge X_n})\mid \FF(X_1,\ldots,X_n))\\
+&\ge \E(X_n\mid \FF(X_1,\ldots,X_n)) = X_n. 
+\end{align*}
+Entsprechend für Sub-, Supermartingal.\maphere
+\end{bem}
+
+\begin{prop}
+\label{prop:11.1}
+Sei $(V_{n})$ eine Folge von Zufallsvariablen $V_{n} : (\Omega, {\AA},P)\to
+(\R, {\BB})$.  Die Partialsummenfolge $S_n = \sum^{n}_{j=1}
+V_{j}\right$ ist genau dann ein Martingal bzw. Submartingal bzgl. 
+$(\FF(V_{1},V_{1}+V_{2}, \ldots , V_{1}+ \ldots +V_{n})) =
+(\FF(V_{1},\ldots,V_{n}))$, wenn für jedes $n$ gilt
+\begin{propenum}
+\item $V_{n}$ ist integrierbar, und
+\item $\E(V_{n+1} \mid 
+V_{1} , \ldots , V_{n})= 0$ bzw. $\geq 0\fs$\fishhere 
+\end{propenum}
+\end{prop}
+\begin{proof}
+Die Integrierbarkeit sichert die Existenz der bedingten Erwartungen. Weiterhin
+gilt für jedes $n\ge 0$
+\begin{align*}
+\E\left(\sum_{j=1}^{n+1} V_j\mid \FF_n \right)
+= 
+\E\biggl(V_{n+1}\mid \FF_n \biggr) + \sum_{j=1}^{n} V_j,
+\end{align*}
+nach Satz \ref{prop:10.2}, denn $V_j$ ist $\FF_n$-messbar für $j\le n$.  Somit
+ist ist die Partialsummenfolge genau dann ein Martingal, wenn
+$\E\biggl(V_{n+1}\mid \FF_n \biggr) = 0$, bzw. ein Submartingal, wenn $\ge
+0$.\qedhere
+\end{proof}
+
+\begin{defn}
+\label{defn:11.2}
+Ein Spiel mit zufälligen Gewinnständen $X_{1},X_{2},\ldots $ nach dem 1., 2.,
+\ldots\ Schritt heißt \emph{fair}\index{faires Spiel}, wenn $\E X_{1} =0 $ und
+$(X_{n})$ ein Martingal ist, d.h. für jedes $n$ gilt  $\E X_n = 0$ und
+\begin{align*}
+\E(X_{n+1}\mid X_{1} = x_{1}, \ldots , X_{n} = x_{n})=x_n \text{ für }
+P_{(X_{1}, \ldots , X_{n})}\text{-f.a. } (x_{1},\ldots ,x_{n}).\fishhere
+\end{align*}
+\end{defn}
+
+\begin{prop}
+\label{prop:11.2}
+Seien die $V_{n} : (\Omega , {\AA}, P) \to (\R, {\BB})$
+quadratisch integrierbare Zufallsvariablen und
+die Partialsummenfolge $S_n = \sum_{j=1}^n V_j$ ein Martingal.
+Dann sind die $V_n$ paarweise unkorreliert, d.h. 
+\begin{align*}
+\E(V_i\, V_j) = 0,\qquad i\neq j.\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Da $V_i$ und $V_j$ quadratisch integrierbar sind, folgt mit
+der Cauchy-Schwartz-Ungleichung, dass
+\begin{align*}
+(\E(V_jV_i))^2 \le (\E V_j^2)(\E V_i^2) < \infty.
+\end{align*}
+Also ist $V_jV_i$ integrierbar. Falls $i< j$, so ist $V_i$ $\FF_j$-messbar und
+wir erhalten
+\begin{align*}
+\E(V_jV_i) &= \E(\E(V_jV_i\mid V_i)) \overset{\ref{prop:10.2}}{=}
+\E(V_i\,\E(V_j\mid V_i)) \\ &
+= \E(\underbrace{\E(V_j\mid
+V_1,\ldots,V_{j-1})}_{=0\fs\text{ nach }\ref{defn:11.1}}\mid V_i).\qedhere
+\end{align*}
+\end{proof}
+
+\begin{bsp}
+Ein Beispiel für
+ein Martingal ist die Partialsummenfolge $(\sum^ {n}_{i=1} V_{j})_{n}$ zu einer unabhängigen Folge $(V_{n})$ von
+integrierbaren reellen Zufallsvariablen mit Erwartungswerten $0$.\bsphere
+\begin{proof}
+
+Nach Satz \ref{prop:11.1} genügt es zu zeigen, dass 
+\begin{align*}
+\E(V_{n+1}\mid V_1,\ldots,V_n) = 0 \fs
+\end{align*}
+da $(\FF(V_{n+1}), \FF(V_1,\ldots,V_n))$ ein unabhängiges Paar von
+$\sigma$-Algebren ist, gilt nach Bemerkung \ref{prop:10.2},
+\begin{align*}
+\E(V_{n+1}\mid V_1,\ldots,V_n) = \E V_{n+1} = 0.\qedhere
+\end{align*}
+\end{proof}
+\end{bsp}
+
+\begin{prop}[(Sub-/Super-)Martingalkonvergenztheorem von Doob]
+\label{prop:11.3}
+Sei $(X_{n})$ ein Sub-, Super- oder Martingal mit $\limsup\limits_{n\to\infty}
+\E|X_{n}| < \infty$.
+Dann existiert eine integrierbare reelle Zufallsvariable $X$, so dass $X_{n}\to
+X\Pfs$\fishhere
+\end{prop}
+
+Zur Beweisvorbereitung benötigen wir noch
+Definition \ref{defn:11.3} und \ref{defn:11.4}, sowie Satz \ref{prop:11.4} und
+\ref{prop:11.5}.
+
+\begin{defn}
+\label{defn:11.3}
+Sei $({\AA }_{n})$ eine monoton wachsende Folge von $\sigma$-Algebren
+${\AA}_{n}\subset {\AA}$. Eine Zufallsvariable
+\begin{align*}
+T : (\Omega, {\AA },P)\to (\overline{\N}, {\PP}(\overline{\N})),\qquad\qquad
+\overline{\N}\defl \N\cup \setd{\infty}
+\end{align*}
+heißt \emph{Stoppzeit}\index{Stoppzeit} bzgl.\ $({\AA}_{n})$, wenn
+\begin{align*}
+\forall {k\in \N} : [T=k]\in {\AA}_{k}.
+\end{align*}
+Hierbei heißt $T$ \emph{ Stoppzeit im engeren Sinne}, falls $P[T<\infty] =1$
+(``Kein Vorgriff auf die Zukunft'').
+
+Wichtiger Spezialfall: ${\AA}_{n} = {\FF} (X_{1},\ldots ,X_{n})$ mit
+Zufallsvariablen $X_{n}$.\fishhere
+\end{defn}
+
+Man kann $(X_{n})$ als Folge der Gewinnstände in einem Spiel interpretieren.
+Ein Spieler ohne prophetische Gaben bricht das Spiel im zufälligen Zeitpunkt
+$T$ aufgrund des bisherigen Spielverlaufs, d.h. aufgrund der Informationen, die
+bis zu diesem Zeitpunkt zur Verfügung stehen, ab.
+
+\begin{bsp}
+$T(\omega ) = \inf\setdef{n\in \N}{X_{n}(\omega ) \in B}$,
+$\omega \in \Omega $ --- festes messbares $B$.
+
+Zum Beispiel habe sich ein Aktienhändler einen festen Minimalwert vorgegegeben,
+bei dessen Unterschreitung er seine Aktien verkaufen will. $B$ stellt dann das
+Ereignis dar, dass eine Aktie den Minimalwert unterschreitet, und $X_n$ den
+Aktienkurs seiner Aktien. Seine Bedingung lautet damit ``Verkaufe die Aktien für
+das kleinste n, so dass $X_n\in B$''.\bsphere
+\end{bsp}
+
+\begin{defn}
+\label{defn:11.4}
+Sei $(X_{n})$ eine Folge von Zufallsvariablen $X_{n} : (\Omega, {\AA},P)\to
+(\RA, \overline{\BB})$ und $(T_{n})$ eine Folge von Stoppzeiten bzgl.\
+$(X_{n})$ [d.h.\ bzgl.\ $({\FF}(X_{1},\ldots ,X_{n}))$] mit $T_{1} \leq T_{2} \leq
+\ldots < \infty$.
+
+So wird eine neue Folge $(X_{T_{n}})_{n}$ von Zufallsvariablen definiert durch
+\begin{align*}
+(X_{T_{n}})(\omega ) \defl X_{T_{n}(\omega)} (\omega),\quad \omega \in
+\Omega.
+\end{align*}
+Der Übergang von $(X_{n})$ zu $(X_{T_{n}})$ heißt \emph{optional sampling}
+[frei gewählte Stichprobenbildung].\fishhere
+\end{defn}
+
+Man kann optional sampling z.B. als ein Testen des Spielverlaufs zu den
+Zeitpunkten $T_{n}(\omega )$ interpretieren.
+
+Anschaulich greift man aus einer vorgegebenen Menge von Zufallsvariablen eine
+zufällige Teilmenge heraus. Dabei ist es durchaus möglich, dass eine
+Zufallsvariable mehrfach auftritt.
+
+\textit{Vorsicht}: Die $(X_{T_n})$ stellen keine Teilfolge von $(X_n)$ dar!
+
+\begin{prop}[Optional Sampling Theorem]
+\label{prop:11.4}
+Sei $(X_{n})$ ein Submartingal, $M\in \N$ fest und $(T_{n})$
+eine Folge von Stoppzeiten bzgl.\ $(X_{n})$ mit $T_{1}\leq T_{2} \leq \ldots
+\leq M$.
+
+Die durch optional sampling erhaltene Folge $(X_{T_{n}})_{n\in \N}$
+ist ebenfalls ein Submartingal. --- Entsprechend für Martingal statt
+Submartingal.\fishhere
+\end{prop}
+
+Die Martingaleigenschaft ist invariant unter ``Stoppen''. Interpretieren wir
+$(X_n)$ z.B. als Folge von Gewinnständen in einem Spiel, so besagt der Satz,
+dass sich die Fairness eines Spielverlaufs nicht ändert.
+
+\begin{proof}
+Wir führen den Beweis für Submartingale. Martingale werden analog behandelt.
+
+Für alles weitere sei $n\in\N$ fest und $C\in\FF(X_{T_1},\ldots,X_{T_n})$.
+Setzen wir $T = T_{n+1}$ und $S = T_n$, so ist $S\le T \le M$ und wir haben zu
+zeigen, dass
+\begin{align*}
+\int_C X_T \dP \ge \int_C X_S \dP. 
+\end{align*}
+Da $C=\sum_{j=1}^M (C\cap[S=j])$, genügt es obige Ungleichung auf $D_j \defl C
+\cap [S=j]$ zu zeigen. Es sei noch bemerkt, dass $D_j\in
+\AA_j = \FF(X_1,\ldots,X_j)$.
+
+Wir zeigen nun per Induktion, dass für jedes $m \ge j$
+\begin{align*}
+\int_{D_j\cap [T\ge m]} X_T \dP \ge
+\int_{D_j\cap [T\ge m]} X_{m} \dP.  
+\end{align*}
+Somit folgt da $j\le T$ auf $D_j$,
+\begin{align*}
+\int_{D_j} X_T \dP = \int_{D_j\cap [T\ge j]} X_T\dP
+\ge \int_{D_j} X_j\dP = \int_{D_j} X_S\dP.
+\end{align*}
+
+Für den Induktionsanfang bemerken wir, dass $[T\ge M] = [T=M]$, also folgt die
+Behauptung unmittelbar. Für $m\ge j$ ist 
+$D_j\cap [T\ge m+1] = D_j\cap [T\le m]^c\in \AA_{m}$, also folgt mit der
+Submartingaleigenschaft von $X$
+\begin{align*}
+\int_{D_j\cap [T\ge m+1]} X_{m+1} \dP
+&\ge
+\int_{D_j\cap [T\ge m+1]} X_{m} \dP.
+\end{align*}
+Zusammen mit der Induktionsvoraussetzung gilt also
+\begin{align*}
+\int_{D_j\cap [T\ge m]} X_T \dP
+&=
+\int_{D_j\cap [T\ge m+1]} X_T \dP
++
+\int_{D_j\cap [T= m]} X_T \dP\\
+&\ge 
+\int_{D_j\cap [T\ge m+1]} X_{m+1} \dP
++
+\int_{D_j\cap [T= m]} X_T \dP\\
+&\ge
+\int_{D_j\cap [T\ge m]} X_{m} \dP.
+\end{align*}
+Damit ist die Induktion komplett und es gilt $\E(X_{T_{n+1}}\mid
+X_{T_1},\ldots,X_{T_n}) \ge X_{T_n}$, was zu zeigen war.\qedhere
+
+
+% 
+% 
+% 
+% Wir beweisen den Satz für Submartingale. Für Martingale erfolgt er analog.
+% 
+% Sei $n\in\N$ beliebig aber fest und $C\in\FF(X_{T_1},\ldots,X_{T_n})$. Zu
+% zeigen ist
+% \begin{align*}
+% \int_C X_{T_{n+1}}\dP \ge \int_C X_{T_n}\dP.\tag{*} 
+% \end{align*}
+% Sei $D_j=C\cap [T_n=j]$ für $j\in\setd{1,\ldots,M}$. Wegen $C=\sum_{j=1}^M D_j$
+% genügt es (*) auf $D_j$ nachzuweisen. Sei nun $j\in\setd{1,\ldots,M}$ fest, so
+%  gilt $D_j\in \FF(X_1,\ldots,X_j)$, denn 
+% $C=[(X_{T_1},\ldots,X_{T_n})\cap B]$ für ein $B\in\BB$ und damit
+% \begin{align*}
+% D_j &= [(X_{T_1},\ldots,X_{T_n})\cap B,\; T_n = j] \\ &=
+% \sum_{\atop{j_1,\ldots,j_{n-1}=1}{j_1\le j_2\le \ldots \le j_{n-1}\le j}}
+% [X_{j_1},\ldots,X_{j_n}\in B,T_1=j_1,\ldots,T_{n-1}=j_{n-1},T_n=j]\\
+% &\in \FF(X_1,\ldots,X_j). 
+% \end{align*}
+% Das Integral über $D_j$ ist also definiert und es gilt
+% \begin{align*}
+% \int_{D_j} X_{T_{n+1}}\dP
+% = \sum_{k=1}^{M} \int_{D_j\cap [T_{n+1}=k]} X_{T_{n+1}}\dP
+% = \sum_{k=j}^{M} \int_{D_j\cap [T_{n+1}=k]} X_{k}\dP.
+% \end{align*}
+% Wir behandeln lediglich $j=M-2$, die übrigen Fälle zeigt man analog,
+% \begin{align*}
+% \int_{D_{M-2}} X_{T_{n+1}}\dP &= \sum_{k=M-2}^{M} \int_{D_{M-2}\cap [T_{n+1}=k]}
+% X_{k}\dP.
+% \end{align*}
+% Wir schätzen nun jeden der drei Summanden ab.
+% 
+% ``$k=M$'':
+% Da $D_j\cap [T_{n+1}=M] =  D_j\cap[T_{n+1}\le M-1]^c\in
+% \FF(X_1,\ldots,X_{M-1})$, gilt aufgrund der Submartingaleigeschaft
+% \begin{align*}
+% \int_{D_{M-2}\cap [T_{n+1}=M]}
+% X_{M}\dP
+% \ge  
+% \int_{D_{M-2}\cap [T_{n+1}= M]} X_{M-1}\dP.
+% \end{align*}
+% ``$k=M-1$'': Zusammen mit dem eben gezeigten gilt
+% \begin{align*}
+% \sum_{k=M-1}^{M} \int_{D_{M-2}\cap [T_{n+1}=k]}
+% X_{k}\dP
+% &\ge \int_{D_{M-2}\cap [T_{n+1}=M-1]}
+% X_{M-1}\dP
+% +
+% \int_{D_{M-2}\cap [T_{n+1}= M]} X_{M-1}\dP\\
+% & =
+% \int_{D_{M-2}\cap [T_{n+1}\ge M-1]}
+% X_{M-1}\dP.
+% \end{align*}
+% Da $D_{M-2}\cap [T_{n+1}\ge M-1]= D_{M-2}\cap [T_{n+1}\le M-2]^c \in
+% \FF(X_1,\ldots,X_{M-2})$ gilt
+% \begin{align*}
+% \int_{D_{M-2}\cap [T_{n+1}\ge M-1]}
+% X_{M-1}\dP \ge
+% \int_{D_{M-2}\cap [T_{n+1}\ge M-1]}
+% X_{M-2}\dP.
+% \end{align*}
+% ``$k=M-2$": Folglich ist mit dem eben gezeigten,
+% \begin{align*}
+% \int_{D_j\cap [T_{n+1}=M-2]} X_{T_{n+1}} &\ge
+% \int_{D_{M-2}\cap [T_{n+1}= M-2]}
+% X_{M-2}\dP
+% +
+% \int_{D_{M-2}\cap [T_{n+1}\le M-2]^c}
+% X_{M-2}\dP\\
+% &=
+% \int_{D_{M-2}\cap [T_{n+1}\ge M-2]}
+% X_{M-2}\dP.
+% \end{align*}
+% Da $D_{M-2}\subset [T_{n}\ge M-2] \subset [T_{n+1}\ge M-2]$ gilt
+% \begin{align*}
+% \int_{D_j} X_{T_{n+1}} &\ge
+% \int_{D_{M-2}}
+% X_{M-2}\dP
+% =
+% \int_{D_{M-2}}
+% X_{T_n}\dP,
+% \end{align*}
+% da auf $D_{M-2}$, $T_n=M-2$.\qedhere
+\end{proof}
+
+
+\begin{prop}[Upcrossing inequality von Doob]
+\label{prop:11.5}
+Sei $(X_{1},\ldots, X_{n})$ ein bei $n\ge 1$
+abbrechendes Submartingal und $a < b$ reelle Zahlen. Die
+Zufallsvariable $U [a,b]$ gebe die Anzahl der aufsteigenden Überquerungen des
+Intervalls $[a,b]$ durch $X_{1},\ldots ,X_{n}$ an (d.h. die Anzahl der
+Übergänge der abbrechenden Folge von einem Wert $\leq a $ zu einem Wert $\geq
+b$). Dann gilt
+\begin{align*}
+(b-a)\E U [a,b] \leq \E(X_{n}-a)^{+} - \E(X_{1} -a)^{+}.\fishhere
+\end{align*}
+\end{prop}
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-0.7,-1)(11,5.3)
+
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-0.5,-0.5)(10.4,4.5)%
+ [\color{gdarkgray}$n$,-90][\color{gdarkgray}$X_n(\omega)$,0]
+
+\psline[linestyle=dashed](0,1)(10,1)
+\psline[linestyle=dashed](0,4)(10,4)
+\psline[linestyle=dotted,linecolor=purple](2,0.8)(4,4.9)
+\psline[linestyle=dotted,linecolor=purple](8,0.3)(10,5)
+
+\psxTick(1){\color{gdarkgray}1}
+\psxTick(2){\color{gdarkgray}2}
+\psxTick(3){\color{gdarkgray}3}
+\psxTick(4){\color{gdarkgray}4}
+\psxTick(5){\color{gdarkgray}5}
+\psxTick(6){\color{gdarkgray}6}
+\psxTick(7){\color{gdarkgray}7}
+\psxTick(8){\color{gdarkgray}8}
+\psxTick(9){\color{gdarkgray}9}
+\psxTick(10){\color{gdarkgray}10}
+
+\psyTick(1){\color{gdarkgray}a}
+\psyTick(4){\color{gdarkgray}b}
+
+\psdots[linecolor=darkblue](1,1.2)(2,0.8)(3,3.8)(4,4.9)(5,3.2)(6,0.9)(7,1.2)(8,0.3)(9,3)(10,5)
+
+\end{pspicture}
+\caption{Zur Upcrossing Inequality. $X_n(\omega)$ mit Überquerungen,
+$U_{10}[a,b]=2$.}
+\label{abb:10.1}
+\end{figure}
+
+\begin{proof}
+Da $(X_1,\ldots,X_n)$ ein Submartingal ist, ist auch $(X_1-a,\ldots,X_n-a)$
+ein Submartingal und ebenso $((X_1-a)^+,\ldots,(X_n-a)^+)$, aufgrund der
+Monotonie der bedingten Erwartung. Somit gibt $U[a,b]$ die Anzahl der
+aufsteigenden Überschreitungen des Intervalls $[0,b-a]$ durch
+$((X_1-a)^+,\ldots,(X_n-a)^+)$ an. Deshalb können wir ohne Einschränkung $a=0$
+und $X_i \ge 0$ annehmen.
+
+Zu zeigen ist nun $b\,\E U[0,b] \le \E X_n - \E X_1$. Wir definieren uns
+Zufallsvariablen $T_1,\ldots,T_{n+1}$ durch folgende Vorschrift:
+\begin{align*}
+&T_1(\omega) &&= 1,\\
+&T_{2j}(\omega) &&= 
+\begin{cases}
+\min\setdef{i}{T_{2j-1}\le i\le n,\,X_i(\omega)=0},\quad\; &
+\text{falls existent},\\
+n, & \text{sonst},
+\end{cases}\\
+&T_{2j+1}(\omega) &&=
+\begin{cases}
+\min\setdef{i}{T_{2j}(\omega)\le i \le n,\,X_i(\omega)\ge b},
+& \text{falls existent},\\
+n, & \text{sonst},
+\end{cases}\\
+&T_{n+1}(\omega) &&= n.
+\end{align*}
+Die geraden Zeiten $T_{2j}$ geben die Zeitpunkte der
+Unterschreitungen von $[0,b-a]$ an, und die ungeraden Zeiten $T_{2j+1}$ geben
+die Zeitpunkte der Überschreitungen an. So definiert sind $T_1,\ldots,T_{n+1}$
+sind Stoppzeiten mit $T_1\le \ldots\le T_{n+1}=n$. 
+
+Nach Satz \ref{prop:11.4} überträgt sich die Submartingaleigenschaft von $X$ auf
+$(X_{T_1},\ldots,X_{T_n})$ und ein Teleskopsummenargument liefert
+\begin{align*}
+X_n - X_1 = \sum_{k=1}^n (X_{T_{k+1}}-X_{T_k})
+= \underbrace{\sum\underbrace{\left(X_{T_{2j+1}} -
+X_{T_{2j}}\right)}_{\ge b,\; \text{da Aufsteigung}}}_{\ge bU[0,b]} + 
+\sum\underbrace{\left(X_{T_{2j}} -
+X_{T_{2j-1}}\right)}_{\E \ldots \ge 0, \;\text{da Submartingal}}
+\end{align*}
+Also $\E X_n - \E X_1 \ge b\E U[0,b]$.\qedhere
+\end{proof}
+
+Nun können wir einen Beweis für Satz \ref{prop:11.3} geben.
+
+\begin{proof}[Beweis von \ref{prop:11.3}.]
+Es gilt $\liminf_n X_n \le \limsup_n X_n$ und beide Zufallsvariablen sind
+messbar. Angenommen  $[\liminf_n X_n \neq \limsup_n X_n]$ habe positives Maß, so
+gilt aufgrund der Stetigkeit von $P$, dass für ein $\ep > 0$
+\begin{align*}
+P[\limsup_n X_n - \liminf_n X_n > \ep] > 0.
+\end{align*}
+Also existieren reelle Zahlen $a < b$, so dass auch
+\begin{align*}
+P[\liminf_n X_n < a < b < \limsup_n X_n] > 0.\tag{\ensuremath{\star}}
+\end{align*} 
+
+Gebe nun $U_n[a,b]$ die Anzahl der aufsteigenden Überquerungen des Intervalls
+$[a,b]$ durch $X_1,\ldots,X_n$ an. Nach Voraussetzung ist $\sup_{n\ge
+1}\E \abs{X_n} \le M < \infty$, also gilt nach Doobs Upcrossing Inequality
+\ref{prop:11.5}
+\begin{align*}
+(b-a)\E U_n[a,b] \le \E (X_n-a)^+  \le M + \abs{a}
+<\infty,\qquad n\ge 1.
+\end{align*} 
+Nach ($\star$) überqueren die $X_n$ auf einer Menge mit positivem Maß  das
+Intervall $[a,b]$ jedoch unendlich oft, d.h. $\E U_n[a,b] \uparrow \infty$ im
+Widerspruch zur Upcrossing Inequality. Somit ist die Annahme falsch und es gilt
+\begin{align*}
+P[\liminf_n X_n = \limsup_n X_n] = 1.
+\end{align*}
+Setzen wir also $X = \lim\limits_{n\to\infty} X_n$ wann immer der Limes erklärt
+ist, so gilt $X_n\to X$ \fs.~\qedhere
+% 
+% 
+% \textit{1. Schritt}. Wir zeigen,
+% \begin{align*}
+% \forall -\infty < a < b < \infty : P
+% \underbrace{\left[\liminf_n X_n < a < b < \limsup_n X_n\right]}_{\defr A(a,b)} =
+% 0
+% \end{align*}
+% Wähle also $a<b$ beliebig aber fest. $U_n[a,b]$ gebe die Anzahl der
+% aufsteigenden Überquerungen des Intervalls $[a,b]$ durch $X_1,\ldots,X_n$ an.
+% Für jedes $n\in\N$ gilt
+% \begin{align*}
+% (b-a)\E U_n[a,b] &= (b-a)\int_{A(a,b)} U_n[a,b]\dP
+% \le \E (X_n-a)^+ \dP\\ 
+% &\overset{\text{Satz }\ref{prop:11.5}}{\le} \E\abs{X_n} + a
+% \le \const  < \infty. 
+% \end{align*}
+% Angenommen $P(A(a,b)) > 0$. Dann gilt aber $U_n[a,b] \uparrow \infty$ für
+% $n\to\infty$ auf $A(a,b)$. Nach dem Satz von der monotonen Konvergenz gilt
+% \begin{align*}
+% \int_{A(a,b)} U_n[a,b]\dP  \to \infty \cdot \underbrace{P(A(a,b))}_{>0} =
+% \infty.
+% \end{align*}
+% Im Widerspruch zu $\int_{A(a,b)} U_n[a,b]\dP \le \const < \infty$.
+% 
+% \textit{2. Schritt}. Sei $A\defl[\liminf_n X_n < \limsup_n X_n] =
+% \bigcup_{a,b\in\Q} A(a,b)$, so ist $A$ messbar.
+% \begin{align*}
+% P(A) \le \sum_{a,b\in\Q} \underbrace{P(A(a,b))}_{=0} = 0.
+% \end{align*}
+% 
+% Also existiert eine erweitert reellwertige Zufallsvariable $X^*$ mit $X_n\to
+% X^*\fs$ Nun gilt
+% \begin{align*}
+% \E \abs{X^*} \le \liminf_n \E \abs{X_n} < \infty
+% \end{align*}
+% nach Voraussetzung. Also ist $X^*$ integrierbar und daher $X^*\in\R\fs$ Setzen
+% wir $X=X^*\Id_{[X^*\in\R]}$, so $X_n\to X\fs$ und $X$ ist reellwertige
+% Zufallsvariable.
+% \qedhere
+\end{proof}
+
+\begin{cor}
+\label{cor:11.1}
+Ist $(U_{n})$ eine Folge integrierbarer nichtnegativ-reeller Zufallsvariablen
+auf $(\Omega, {\AA},P)$ und $({\AA}_{n})$ eine monoton wachsende Folge von
+Sub-$\sigma $-Algebren von ${\AA}$ mit ${\AA}_{n}$-${\BB}_{+}$-Messbarkeit
+von $U_{n}$ und gilt weiterhin
+\begin{align*}
+\E(U_{n+1}\mid {\AA}_{n})\leq (1+\alpha _{n}) U_{n} +\beta _{n}, 
+\end{align*}
+wobei $\alpha _{n}, \;\, \beta _{n} \in \R_{+}$ mit $\sum \alpha_{n} < \infty$,
+$\sum \beta _{n}< \infty$, dann konvergiert $(U_{n})$ f.s. --- $(U_{n})$ ist
+``fast ein nichtnegatives Supermartingal''.\\ Auch $(\E U_{n})$
+konvergiert.\fishhere
+\end{cor}
+
+\begin{propn}[Zusatz zum Martingalkonvergenztheorem]
+Ist das Martingal $(X_n)$ bezüglich der Folge $(\AA_n)$ gleichgradig
+integrierbar, d.h.
+\begin{align*}
+\sup\limits_{n\ge 1} \E(\abs{X_n}\cdot \Id_{[\abs{X_n}\ge c]}) \to 0,\qquad
+c\to \infty,
+\end{align*}
+so gilt zusätzlich
+\begin{align*}
+X_n\overset{L^1}{\longrightarrow} X,\qquad X_n = \E(X\mid \AA_n).\fishhere
+\end{align*}
+\end{propn}
+\begin{proof}
+Sei $\ep > 0$ fest. Dann existiert ein $c > 0$, so dass
+\begin{align*}
+\sup_{n\ge 1} \E(\abs{X_n}\cdot \Id_{[\abs{X_n} > c]}) < \ep,
+\end{align*}
+da $(X_n)$ gleichgradig integrierbar. Nun gilt
+\begin{align*}
+\E\abs{X_n} = \underbrace{\E(\abs{X_n}\mid\Id_{[\abs{X_n}>c]})}_{<\ep}
++\underbrace{\E(\abs{X_n}\mid\Id_{[\abs{X_n}\le c]})}_{\le c}
+< c + \ep.
+\end{align*}
+Also ist $(X_n)$ $L^1$-beschränkt. Mit Satz \ref{prop:11.3} folgt somit
+$\lim\limits_{n\to\infty} X_n \defr X$ existiert f.s. und $X\in L^1$.
+
+Wir zeigen nun, dass $X_n\to X$ in $L^1$, d.h. $\E\abs{X_n-X}\to 0$. Setze
+dazu
+\begin{align*}
+f_c(x) \defl  
+\begin{cases}
+c, & x > c,\\
+x, & -c\le x \le c,\\
+-c, & x < -c,
+\end{cases}
+\end{align*}
+so ist $f$ lipschitz stetig und wegen der gleichgradigen Integrierbarkeit der
+$X_n$ existiert ein $c>0$, so dass
+\begin{align*}
+&\E\abs{f_c(X_n)-X_n} < \frac{\ep}{3},\qquad n\ge 1\tag{1}\\
+&\E\abs{f_c(X)-X} < \frac{\ep}{3},\tag{2}
+\end{align*}
+Da $\lim\limits_{n\to\infty} X_n = X\fs$ folgt
+\begin{align*}
+f_c(X_n)\to f_c(X)\fs
+\end{align*}
+und $\abs{f_c(X_n)} \le c$. Mit dem Satz von der dominierten Konvergenz folgt
+\begin{align*}
+\E\abs{f_c(X_n)-f_c(X)}\to 0\fs
+\end{align*}
+Zusammenfassend ergibt sich,
+\begin{align*}
+\E\abs{X_n-X} \le \E\abs{X_n-f_c(X_n)} + \E\abs{f_c(X_n)-f_c(X)}
++ \E\abs{f_c(X)-X} < \ep
+\end{align*}
+also $X_n\to X$ in $L^1$.
+
+Es verbleibt zu zeigen, dass $X_n = \E(X\mid\AA_n)\fs$.
+Sei $C\in\AA_m$ und $n\ge m$. Da $(X_n)$ ein Martingal ist, gilt $\E(X_n
+\Id_{C}) = \E(X_m \Id_C)$. Betrachte
+\begin{align*}
+\abs{\E(X_n\Id_C) - \E(X\Id_C)}
+\le
+\E(\abs{X_n-X}\Id_C)
+\le
+\E(\abs{X_n-X})\to 0,
+\end{align*}
+so folgt $\E (X_m \Id_C) = \E (X\Id_C)$.\qedhere
+\end{proof}
+
+\begin{figure}[!htpb]
+\centering
+\begin{pspicture}(-0.7,-1)(2.5,3)
+
+ \psaxes[labels=none,ticks=none,linecolor=gdarkgray,tickcolor=gdarkgray]{->}%
+ (0,0)(-0.5,-0.5)(2.2,2.8)[\color{gdarkgray}$\omega$,-90][,0]
+
+\psline[linecolor=purple,linestyle=dotted](0.5,0)(0.5,1.8)
+\psline[linecolor=purple,linestyle=dotted](1.2,0)(1.2,1.8)
+
+\psplot[linewidth=1.2pt,%
+	     linecolor=darkblue,%
+	     algebraic=true]%
+	     {0}{1.7}{%
+2/(1+(2*x-1.7)^2)*cos((2*x-1.7)^2)+0.6 %
+}
+
+\psline(0,1.8)(1.7,1.8)
+
+\psyTick(1.8){\color{gdarkgray}c}
+
+\end{pspicture}
+\caption{Zur gleichgradigen Integrierbarkeit.}
+\label{abb:10.1}
+\end{figure}
+
+\begin{prop}
+\label{prop:11.6}
+Sei $(V_{n})$ eine Folge von quadratisch integrierbaren reellen Zufallsvariablen
+mit $\sum_{n=1}^\infty \V(V_{n})< \infty$. Dann ist
+\begin{align*}
+\sum_{n=1}^\infty (V_{n}-\E(V_{n} \mid V_{1},\ldots ,V_{n-1})) \quad \text{f.s.\ 
+konvergent.}
+\end{align*}
+Sind die $V_n$ zusätzlich unabhängig, dann ist $\sum_{n=1}^\infty
+(V_{n}-\E V_{n})$ f.s.\ konvergent.\fishhere
+\end{prop}
+\begin{proof}
+Setze $W_n = V_n - \E(V_n\mid V_1,\ldots,V_{n-1})$,
+so ist $W_n$ integrierbar und $\FF_n = \FF(V_1,\ldots,V_n)$-messbar. Wir haben
+zu zeigen, dass $S_n = \sum_{i=1}^n W_i$ f.s. konvergiert.
+Zunächst ist
+\begin{align*}
+&\E(W_{n+1}\mid \FF_n)  = 
+\E(V_{n+1}\mid \FF_n)  -
+\E(\E(V_{n+1}\mid \FF_n)\mid \FF_n)
+= 0,  
+\end{align*}
+also ist $S_n$ ein Martingal. Weiterhin gilt $\E W_n^2 \le 4 \E
+V_n^2<\infty$, also sind die $W_n$ nach Satz \ref{prop:11.2} paarweise
+unkorreliert. Mit dem Satz von Bienaymé
+\ref{prop:5.5} folgt unter Verwendung von $\E S_n = 0$, dass
+\begin{align*}
+\E S_n^2 = \V S_n = \sum_{i=1}^n \V W_i \le
+\sum_{i\ge 1} \V V_i < \infty.
+\end{align*}
+Daher ist $\E\abs{S_n}$ beschränkt, und mit dem Martingalkonvergensatz
+\ref{prop:11.3} folgt nun die Behauptung, dass $S_n$ $\fs$ konvergiert.
+
+Sind die $V_n$ außerdem unabhängig, so können wir Bemerkung \ref{bem:10.2}
+anwenden und erhalten $\E(V_n\mid V_1,\ldots,V_{n-1}) = \E V_n \fs$\qedhere
+\end{proof}
+
+\begin{prop}
+\label{prop:11.7}
+ Sei $(V_{n})$ eine Folge von quadratisch integrierbaren reellen
+ Zufallsvariablen mit $\sum_{n=1}^\infty n^ {-2}\, \V(V_{n})< \infty$.  Dann
+ gilt
+ \begin{align*}
+\frac{1}{n} \sum\limits^ {n}_{j=1} (V_{j}-\E(V_{j}\mid
+V_{1},\ldots , V_{j-1}))\to 0 \quad \fs 
+ \end{align*}
+Falls zusätzlich $(V_{n})$ unabhängig, dann $\frac{1}{n} \sum^ {n}_{j=1}
+(V_{j}-\E V_{j})\to 0 \fs$\\ (Kriterium von Kolmogorov zum starken Gesetz
+der großen Zahlen)\fishhere
+\end{prop}
+
+\begin{proof}
+Wenden wir Satz \ref{prop:11.6} auf $n^{-1}\, V_n$ an, erhalten wir
+\begin{align*}
+\sum_{n=1}^\infty \frac{V_n - \E(V_n\mid V_1,\ldots,V_{n-1})}{n}\text{
+konvergiert f.s.}.
+\end{align*}
+Daraus folgt mit dem Lemma von Kronecker (s.u.),
+\begin{align*}
+\frac{1}{n}\sum_{i=1}^n \left(V_i - \E(V_i\mid V_1,\ldots,V_{i-1}\right) \to 0
+\fs.
+\end{align*}
+Falls die $V_n$ unabhängig sind, können wir Bemerkung \ref{prop:10.2}
+anwenden und erhalten so den Zusatz.\qedhere
+\end{proof}
+
+
+\begin{lem}[Lemma von Kronecker]
+Sei $(c_{n})$ eine Folge reeller Zahlen.
+\begin{align*}
+\sum_{n=1}^\infty \frac{c_{n}}{n}\mbox{ konvergiert }\Rightarrow \frac{1}{n}
+\sum\limits^ {n}_{j=1} c_{j}\to 0.\fishhere
+\end{align*}
+\end{lem}
+\begin{proof}
+Sei $s_n = \sum_{j=1}^n j^{-1} c_j$, so ist $(s_n)$ nach Voraussetzung
+konvergent, sei $s$ der Grenzwert. Offensichtlich ist
+$s_n-s_{n-1} = n^{-1}c_n$ mit $s_0=0$ und daher
+\begin{align*}
+\sum_{j=1}^n c_j = \sum_{j=1}^n j(s_j-s_{j-1}) = 
+n s_n - \sum_{j=1}^n \underbrace{(j-(j-1))}_{1}s_{j-1}.
+\end{align*}
+Somit gilt
+\begin{align*}
+\frac{1}{n}\sum_{j=1}^n c_j = s_n - \underbrace{\frac{1}{n}\sum_{j=1}^n
+s_{j-1}}_{\to s} \to 0.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{bem}
+\label{bem:11.2}
+Aus Satz \ref{prop:11.6} bzw. \ref{prop:11.7} ergibt sich unmittelbar für eine
+Folge $(V_{n})$ quadratisch integrierbarer reeller Zufallsvariablen eine hinreichende
+Bedingung für die $\fs$-Konvergenz der Reihe $\sum_{j=1}^n V_{n}$ bzw.\ für
+$\frac{1}{n} \sum^{n}_{j=1} V_{j}\to 0 \fs$\fishhere
+\end{bem}  
+
+\begin{prop}[Kriterium von Kolmogorov für das starke Gesetz der großen
+  Zahlen]
+\label{prop:11.8}
+Eine unabhängige Folge $(X_{n})$ quadratisch integrierbarer reeller
+Zufallsvariablen mit
+\begin{align*}
+\sum\limits^ {\infty}_{n=1} n^ {-2} V(X_{n})< \infty
+\end{align*}
+genügt dem starken Gesetz der großen Zahlen.\fishhere
+\end{prop}
+
+\begin{prop}[Kolmogorovsches starkes Gesetz der großen Zahlen]
+\label{prop:11.9}
+Für eine unabhängige Folge $(X_{n})_{n\in\N}$ identisch verteilter
+integrierbarer reeller Zufallsvariablen gilt
+\begin{align*}
+\frac{1}{n} \sum\limits^ {n}_{k=1}X_{k} \to \E X_{1} \fs\fishhere
+\end{align*}
+\end{prop}
+
+Der Satz wurde bereits im Kapitel \ref{chap:8} beweisen, wir wollen nun unter
+Verwendung der Martingaltheorie einen eleganteren Beweis geben.
+
+\begin{lemn}[Stutzungslemma]
+Sei $(X_n)$ eine Folge unabhängiger, identisch verteilter Zufallsvariablen mit
+$\E \abs{X_1}< \infty$. Setze $Y_n \defl X_n\Id_{[\abs{X_1}\le n]}$. Dann gilt
+\begin{propenum}
+\item $\E Y_n\to \E X_1$,
+\item $P[X_n = Y_n\text{ für fast alle }n]=1$,
+\item $(Y_n)$ erfüllt die Kolmogorov-Bedingung,
+\begin{align*}
+\sum_{n=1}^\infty n^{-2} \V(Y_n) < \infty.\fishhere
+\end{align*}
+\end{propenum}
+\end{lemn}
+\begin{proof}
+\begin{proofenum}
+\item Für jedes $n\ge 1$ besitzen $X_n$ und $X_1$ dieselbe Verteilung, folglich
+ist $\E Y_n = \E (X_1\Id_{[\abs{X_1}\le n]})$. Weiterhin ist
+$\abs{X_1\Id_{[\abs{X_1}\le n]}}\le \abs{X_1}$ und $X_1$ ist integrierbar. Mit
+dem Satz von der dominierten Konvergenz folgt somit
+\begin{align*}
+\E Y_n \to \E X_1\fs
+\end{align*}
+\item Wir stellen zunächst fest, dass
+\begin{align*}
+[X_n = Y_n\text{ für fast alle
+}n]^c &= [X_n \neq Y_n\text{ für unendlich viele
+}n]^c\\ &= \limsup [X_n\neq Y_n].
+\end{align*}
+Ferner gilt
+\begin{align*}
+\sum_{n=1}^\infty P[X_n\neq Y_n] &= \sum_{n=1}^\infty P[\abs{X_1} >n] \le
+\int_0^\infty P[\abs{X_1}>t]\dt\\
+&\overset{\text{Lemma }\ref{lem:4.1}}= \E\abs{X_1} < \infty.
+\end{align*}
+Mit dem 1. Lemma von Borel und Cantelli folgt somit
+\begin{align*}
+P(\limsup [X_n\neq Y_n]) = 0.
+\end{align*}
+\item Es gilt $\V(Y_n) = \E Y_n^2 + (\E Y_n)^2$, wobei $\E Y_n$ konvergiert und
+folglich beschränkt ist. Somit ist
+\begin{align*}
+\sum_{n\ge 1} \frac{\V(Y_n)}{n^2}
+=
+\sum_{n\ge 1} \frac{\E Y_n^2 - (\E Y_n)^2}{n^2}
+\le
+\sum_{n\ge 1} \frac{\E Y_n^2}{n^2} + M \sum_{n\ge 1}\frac{1}{n^2},   
+\end{align*}
+und nur der erste Term bedarf weiterer Untersuchung.
+Für jedes $n\in\N$ gilt nach Partialbruchzerlegung,
+\begin{align*}
+\frac{1}{n^2} \le \frac{2}{n(n+1)}
+\le
+2\left(\frac{1}{n} - \frac{1}{n+1}\right).
+\end{align*}
+Damit erhalten wir folgende Abschätzung für den Reihenrest
+\begin{align*}
+\sum_{n\ge k}\frac{1}{n^2} \le \frac{2}{k},\tag{*}
+\end{align*}
+und somit
+\begin{align*}
+\sum_{n=1}^\infty \frac{\abs{X_n}^2\Id_{[\abs{X_1}\le n]}}{n^2}
+\le
+\sum_{n\ge 1\lor\abs{X_1}} \frac{\abs{X_1}^2}{n^2}
+\le
+\frac{2\abs{X_1}^2}{1\lor\abs{X_1}}
+\le 2 \abs{X_1}.
+\end{align*}
+Also ist $\sum_{n\ge 1} \E Y_n^2/n^2 \le 2 \E \abs{X_1}$.\qedhere
+\end{proofenum}
+\end{proof}
+
+\begin{proof}[Beweis von Satz \ref{prop:11.9}.]
+Wir betrachten die gestutzten Zufallsvariablen
+\begin{align*}
+Y_n \defl X_n \Id_{[\abs{X_1}\le n]},\qquad S_n \defl \sum_{i=1}^n X_i.
+\end{align*}
+Nach Betrachtung b) im obigen Lemma genügt es zu zeigen,
+\begin{align*}
+\frac{1}{n}\sum_{i=1}^n Y_i \to \E X_1\fs
+\end{align*}
+Dazu betrachten wir die Zerlegung 
+\begin{align*}
+\frac{1}{n}\sum_{i=1}^n Y_i = 
+\frac{1}{n}\sum_{i=1}^n \E Y_i
++ \frac{1}{n}\sum_{i=1}^n (Y_i-\E Y_i).
+\end{align*}
+Nach dem Grenzwertsatz von Caesaro gilt
+\begin{align*}
+\frac{1}{n}\sum_{i=1}^n \E Y_i \to \E X_1\fs
+\end{align*}
+und nach Satz \ref{prop:11.8} gilt außerdem
+\begin{align*}
+\frac{1}{n}\sum_{i=1}^n (Y_i-\E Y_i) \to 0\fs\qedhere
+\end{align*}
+\end{proof}
+
+\begin{cor}
+Sei $(X_n)$ eine Folge von unabhängigen identisch verteilten
+reell-erweiterten Zufallsvariablen mit $\E X_1^- < \infty$ und $\E X_1^+ =
+\infty$, d.h. $\E X_1 = \infty$. Dann gilt
+\begin{align*}
+\frac{1}{n}\sum_{n=1}^\infty X_i \to \infty\fs\fishhere
+\end{align*}
+\end{cor}
+\begin{proof}
+Mit Satz \ref{prop:11.9} gilt
+\begin{align*}
+\frac{1}{n}\sum_{i=1}^\infty X_i^- \to \E X_1^- \fs
+\end{align*}
+Deshalb können wir ohne Einschränkung davon ausgehen, dass $X_i \ge 0$. Sei
+$k\in\N$ beliebig aber fest und setze
+\begin{align*}
+Z_n^{(k)} \defl X_n \Id_{[X_n \le k]}.
+\end{align*}
+So folgt $Z_n^{(k)} \le k$ und
+\begin{align*}
+\frac{1}{n}\sum_{i=1}^n X_i \ge
+\frac{1}{n}\sum_{i=1}^n Z_i^{(k)}
+\to \E Z_1^{(k)} \fs\tag{**}
+\end{align*}
+Aber $Z_1^{(k)}\uparrow X_1$ und mit dem Satz von der monotonen Konvergenz folgt
+\begin{align*}
+\E Z_1^{(k)}\uparrow \E X_1.
+\end{align*}
+Mit (**) folgt jedoch, dass
+\begin{align*}
+\frac{1}{n}\sum_{i=1}^n X_i \to \infty \fs\qedhere
+\end{align*}
+\end{proof}
+% 
+% Ein direktes Analogon zu Satz \ref{prop:9.13} für Dreiecksschemata von
+% Zufallsvariablen ist.
+% 
+% \begin{prop}
+% Das Schema reeller Zufallsvariablen $X_{n,}$ mit $j=1,\ldots.,j_n$ und das
+% Schema der $\sigma$-Algebren $\AA_{nj}$ in $\Omega$ mit $\FF(X_{nj}\subset
+% \AA_{nj} \subset \AA_{n,j+1}\subset \AA$ sollen die folgenden Bedingungen
+% erfüllen
+% \begin{propenum}
+% \item $X_{n,j}$ ist quadratisch integrierbar, $\E_{j-1} X_{n-j}\defl
+% \E(X_{nj}\mid\AA_{n,j-1}) = 0$,\\
+% die $X_{n,j}$ bilden ein sogenanntes Martingaldifferenzschema.
+% \item $\sum_{j=1}^{j_n} \E_{j-1}X_{n,j}^2 \overset{P}{\to} 1$.
+% \item Für jedes $\ep > 0$ sei
+% \begin{align*}
+% \sum_{j=1}^{j_n} \E_{j-1}\left[X_{n,j}^2\Id_{[X_{n,j}>\ep]}\overset{P}{\to} 0
+% \right]
+% \end{align*}
+% eine sogenannte bedingte Lindeberg-Bedingung.\fishhere
+% \end{propenum}
+% \end{prop}

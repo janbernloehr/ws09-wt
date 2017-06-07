@@ -1,0 +1,172 @@
+\chapter{Kombinatorische Wahrscheinlichkeitsrechnung}
+
+In der kombinatorischen Wahrscheinlichkeitsrechnung legen wir Laplacesche
+W-Räume zugrunde. Die Abzählung der ``günstigen'' und der ``möglichen'' Fälle
+erfolgt systematisch mit Hilfe der Kombinatorik.
+
+\begin{defn}
+\label{defn:2.1} Gegeben seien $n$ --- nicht notwendiger Weise verschiedene ---
+Elemente $a_{1}, \ldots, a_{n}$. Das $n$-Tupel $({\displaystyle a_{i_{1}},
+\ldots , a_{i_{n}}})$ mit $i_{j} \in \setd{1, \ldots, n}$, $i_{j} \neq i_{k}$ für
+$j \neq k$ $(j,k=1, \ldots , n)$ heißt eine \emph{Permutation} der gegebenen
+Elemente.\fishhere
+\end{defn}
+
+In der Kombinatorik spielt die mögliche Anzahl an Permutationen eine sehr große
+Rolle.
+
+\begin{prop}
+\label{prop:2.1}
+Die Anzahl der Permutationen von $n$ \textit{verschiedenen} Elementen
+ist $n!$.
+\end{prop}
+
+Eine Verallgemeinerung für nicht notwendiger weise verschiedene Elemente
+liefert der folgende
+\begin{prop}
+\label{prop:2.2}
+Gegeben seien $n$ Elemente; die verschiedenen Elemente darunter
+seien mit $a_{1}, \ldots, a_{p}$ bezeichnet $($mit $p \leq n)$. Tritt $a_{i}$
+$n_{i}$-fach auf $(i=1, \ldots, p)$, wobei $\sum^{p}_{i=1} n_{i}=n$,
+dann können die $n$ Elemente auf
+\begin{align*}
+\frac{n!}{n_{1}! \ldots n_{p}!}
+\end{align*}
+verschiedene Arten permutiert werden.\fishhere
+\end{prop}
+
+\begin{defn}
+\label{defn:2.2}
+Sei $A$ eine $n$-elementige Menge, $k \in \mathbb{N}$.
+\begin{defnenum}
+\item[1.)]
+[2.)] Jedes $k$-Tupel $(a_{1}, \ldots, a_{k})$ mit nicht notwendig verschiedenen
+[lauter verschiedenen] $a_{i} \in A$ heißt eine \emph{Kombination
+$k$-ter Ordnung aus $A$ mit [ohne] Wiederholung und mit
+Berücksichtigung der Anordnung}.
+\item[3.)]
+[4.)] Werden in a) [2.)] Kombinationen, welche dieselben Elemente in
+verschiedener
+Anordnung enthalten, als äquivalent aufgefasst, so heißen die einzelnen
+Äquivalenz\-klassen \emph{Kombinationen $k$-ter Ordnung aus $A$ mit [ohne]
+Wiederholung und ohne Berück\-sichtigung der Anordnung}.\fishhere
+\end{defnenum}
+\end{defn}
+
+\textit{Interpretation} (mit $A= \{1,\ldots ,n\}$): Aufteilung von $k$
+Kugeln auf $n$ Zellen, wobei in 1.) [2.)] die Zellen mehrfach [nicht mehrfach]
+besetzt werden dürfen und die Kugeln unterscheidbar sind ($a_{i}$ \ldots Nummer der Zelle, in
+der die $i$-te Kugel liegt), in 3.) [4.)] die Zellen mehrfach [nicht mehrfach]
+besetzt werden dürfen und die Kugeln nicht unterscheidbar sind (ein Repräsentant
+der Äquivalenzklasse ist gegeben durch ein $k$-tupel von Zahlen aus
+$\{1, \ldots , n\}$, in dem die Zellennummern so oft auftreten, wie die
+zugehörige Zelle besetzt ist).\\
+
+\begin{prop}
+\label{prop:2.3}
+Die Anzahl der Kombinationen $k$-ter Ordnung aus der
+$n$-elementigen Menge $A$ -- mit [ohne] Wiederholung und mit [ohne]
+Berücksichtigung der Anordnung -- ist gegeben durch
+
+\vspace{0.2cm}
+\begin{tabular}{l|l|l}
+ & m.\ Wiederholung & o.\ Wiederholung $(1 \leq k \leq n )$ \\ \hline
+ m.\ Ber. der Anordnung & $n^{k}$ & $n(n-1) \ldots (n-k+1)$ \\
+ \hline
+ o.\ Ber. der Anordnung & ${n+k-1 \choose k}$& ${n \choose k}$ \\
+\hline
+\end{tabular}
+
+\vspace{0.5cm}
+Bestimmung von Fakultäten durch Tabellen für $\log n!$  und -- bei großem $n$ --
+durch die \emph{Stirlingsche Formel}
+\begin{align*}
+ n! \cong \left(\frac{n}{e}\right)^{n} \sqrt{2 \pi n } \quad (n \to \infty )
+\end{align*}
+und ihre Verschärfung
+\begin{align*}
+\exp \frac{1}{12 n+1}<{\displaystyle\frac{n!}{(\frac{n}{e})^{n}\sqrt{2\pi
+n}}} < \exp \frac{1}{12 n}\, , \quad n \in \mathbb{N} \, .\fishhere
+\end{align*}
+\end{prop}
+\begin{proof}
+Wir beweisen exemplarisch die Formel für die Anzahl der Kombinationen ohne
+Berücksichtigung der Anordnung und mit Wiederholungen. Betrachte dazu $k$
+Kugeln, die auf $n$ Zellen verteilt werden sollen.
+
+\begin{figure}[H]
+\centering
+\begin{pspicture}(0,-0.23)(2.42,0.23)
+\psline(0.0,0.21)(0.0,-0.21)
+\psline(0.62,0.19)(0.62,-0.21)
+\psline(1.22,0.19)(1.22,-0.21)
+\psline(1.8,0.19)(1.8,-0.21)
+\psline(2.4,0.19)(2.4,-0.21)
+\psdots[linecolor=darkblue](0.2,0.11)
+\psdots[linecolor=darkblue](0.36,-0.13)
+\psdots[linecolor=darkblue](1.36,0.05)
+\psdots[linecolor=darkblue](1.56,-0.13)
+\psdots[linecolor=darkblue](1.64,0.11)
+\end{pspicture} 
+\caption{Zur Platzierung von $k$ Kugeln in $n$ Zellen}
+\end{figure}
+
+Ohne die äußeren Trennwende gibt es also $k$ Kugeln und $n-1$ Trennwände, d.h.
+es gibt insgesamt $(n-1+k)!$ Permutationen. Berücksichtigen wir nun noch die
+Ununterscheidbarkeit der Kugeln, so erhalten wir
+\begin{align*}
+\binom{n+k-1}{k}.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{bspn}
+\textit{Anwendung in der Physik}.
+Man beschreibt das makroskopische Verhalten von
+$k$ Teilchen in der Weise, dass man den (der Darstellung des Momentanzustandes
+dienenden) Phasenraum in $n$ kongruente würfelförmige Zellen zerlegt und die
+Wahrscheinlichkeit \mbox{$p(k_{1}, \ldots , k_{n})$} bestimmt, dass sich genau
+$k_{i}$
+der Teilchen in der $i$-ten Zelle befinden $(i \in \{ 1, \ldots, n\})$. Sei
+$\Omega '$ die Menge aller $n$-Tupel $(k_{1}, \ldots, k_{n}) \in \mathbb{N}_{0}^{n}$ von
+Besetzungszahlen mit $\sum\limits^{n}_{i=1}k_{i} = k$. W-Maße auf
+$\PP(\Omega')$ (charakterisiert durch $p$):
+\begin{bspenum}
+\item \emph{Maxwell-Boltzmann-Statistik} (Unterscheidbarkeit der
+Teilchen, Mehrfachbesetzbarkeit von Zellen)
+\begin{align*}
+p(k_{1}, \ldots,k_{n} ) = {\displaystyle\frac{k!}{k_{1}! \ldots k_{n}!} \, \,
+\frac{1}{n^{k}}}.
+\end{align*}
+\item
+\emph{Bose-Einstein-Statistik} zur Beschreibung des Verhaltens von Photonen
+(keine Unterscheidbarkeit der Teilchen, jedoch Mehrfachbesetzbarkeit von Zellen)
+\begin{align*}
+p(k_{1}, \ldots, k_{n}) = {n+k-1 \choose k} ^{-1}. 
+\end{align*}
+\item
+\emph{Fermi-Dirac-Statistik} zur Beschreibung des Verhaltens von Elektronen,
+Protonen und Neutronen (keine Unterscheidbarkeit der Teilchen, keine
+Mehrfachbesetzbarkeit von Zellen )
+\begin{align*}
+p(k_{1}, \ldots, k_{n})=
+\begin{cases}
+{n \choose k}^{-1}, &  k_{i} \in \{0,1 \} \\
+0, &  \mbox{sonst.}\bsphere
+\end{cases}
+\end{align*}
+\end{bspenum}
+\end{bspn}
+\begin{bspn}
+Die \textit{Binomialverteilung} $b(n,p)$ mit Parametern $n \in \mathbb{N}$, $p
+\in (0,1)$ ist ein W-Maß auf ${\cal B}$ mit der Zähldichte
+\begin{align*}
+k\to
+\begin{cases}
+{n \choose k} \, p^{k} (1-p)^{n-k}  , & k=0,1,\ldots, n \\
+0 ,& k = n+1, n+2, \ldots \, ;
+\end{cases}
+\end{align*}
+durch diese wird für $n$ ``unabhängige'' Versuche mit jeweiliger
+Erfolgswahrscheinlichkeit $p$ die Wahrscheinlichkeit von $k$ Erfolgen
+angegeben.\bsphere
+\end{bspn}
